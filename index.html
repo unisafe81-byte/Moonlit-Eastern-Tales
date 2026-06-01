@@ -1139,6 +1139,9 @@
           </div>
           <div class="input-area">
             <label for="structureFullInput">탭 3의 전체 본문 구조 입력 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep3ResultBtn" class="btn" type="button">Step 3 결과 가져오기</button>
+            </div>
             <textarea id="structureFullInput" spellcheck="false" placeholder="탭 3에서 생성된 [MAIN STORY STRUCTURE INPUT — COPY TO NEXT PROMPT] 전체 블록을 여기에 붙여 넣은 뒤, 아래 버튼을 누르세요."></textarea>
             <div class="actions">
               <button id="extractStructureFieldsBtn" class="btn" type="button">항목 추출</button>
@@ -1228,6 +1231,25 @@
             </div>
 
             <div class="info-band">
+              <strong>Step 4 결과값 저장</strong>
+              <span>AI에서 생성된 Step 4 결과물을 여기에 붙여 넣으면 브라우저에 저장되고, Step 5에서 불러올 수 있습니다.</span>
+            </div>
+            <label for="pipelineResultStep4">Step 4 AI 결과물</label>
+            <textarea id="pipelineResultStep4" spellcheck="false" placeholder="Paste Step 4 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep4Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep4Btn" class="btn warn" type="button">Step 4 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep4Btn" class="btn" type="button">Step 4 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep4Btn" class="btn" type="button">Step 4 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep4File" class="file-input" type="file" accept=".json,application/json">
+            </div>
+
+            <div class="info-band">
               <p>After running this prompt in your AI tool, copy the completed Main Story Structure result into Tab 5.</p>
               <p>AI 결과물 생성 후, 완성된 Main Story Structure 결과물을 5번 탭에 복사해 넣으세요.</p>
             </div>
@@ -1255,6 +1277,9 @@
           </div>
           <div class="input-area">
             <label for="mainScriptStructureInput">탭 4의 전체 Main Story Structure 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep4ResultBtn" class="btn" type="button">Step 4 결과 가져오기</button>
+            </div>
             <textarea id="mainScriptStructureInput" spellcheck="false" placeholder="탭 4에서 생성된 완성된 Main Story Structure 전체 결과물을 여기에 붙여 넣으세요."></textarea>
 
             <div class="info-band">
@@ -1321,6 +1346,25 @@
             </div>
 
             <div class="info-band">
+              <strong>Step 5 결과값 저장</strong>
+              <span>AI에서 생성된 Step 5 결과물을 여기에 붙여 넣으면 브라우저에 저장되고, Step 6에서 불러올 수 있습니다.</span>
+            </div>
+            <label for="pipelineResultStep5">Step 5 AI 결과물</label>
+            <textarea id="pipelineResultStep5" spellcheck="false" placeholder="Paste Step 5 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep5Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep5Btn" class="btn warn" type="button">Step 5 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep5Btn" class="btn" type="button">Step 5 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep5Btn" class="btn" type="button">Step 5 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep5File" class="file-input" type="file" accept=".json,application/json">
+            </div>
+
+            <div class="info-band">
               <p>After running this prompt in your AI tool, copy the [SLEEP FADE INPUT — COPY TO NEXT PROMPT] block into Tab 6.</p>
               <p>AI 결과물 생성 후, [SLEEP FADE INPUT — COPY TO NEXT PROMPT] 블록을 6번 탭에 복사해 넣으세요.</p>
               <p>The AI result from this step will be long. The main story script should normally be around 4,000–6,000 words and should include the Sleep Fade input block at the end.</p>
@@ -1354,6 +1398,9 @@
             </div>
 
             <label for="sleepFadeFullInput">탭 5 전체 결과물 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep5ResultBtn" class="btn" type="button">Step 5 결과 가져오기</button>
+            </div>
             <textarea id="sleepFadeFullInput" spellcheck="false" placeholder="탭 5에서 생성된 전체 결과물을 여기에 붙여 넣고 항목 추출을 누르세요."></textarea>
             <div class="actions">
               <button id="extractSleepFadeFieldsBtn" class="btn" type="button">항목 추출</button>
@@ -1434,6 +1481,25 @@
 
             <div class="actions">
               <button id="copySleepFadePromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
+
+            <div class="info-band">
+              <strong>Step 6 결과값 저장</strong>
+              <span>AI에서 생성된 Step 6 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep6">Step 6 AI 결과물</label>
+            <textarea id="pipelineResultStep6" spellcheck="false" placeholder="Paste Step 6 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep6Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep6Btn" class="btn warn" type="button">Step 6 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep6Btn" class="btn" type="button">Step 6 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep6Btn" class="btn" type="button">Step 6 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep6File" class="file-input" type="file" accept=".json,application/json">
             </div>
 
             <div class="info-band">
@@ -2732,6 +2798,7 @@
     const importPipelineResultStep3Btn = document.querySelector("#importPipelineResultStep3Btn");
     const importPipelineResultStep3File = document.querySelector("#importPipelineResultStep3File");
     const structureFullInput = document.querySelector("#structureFullInput");
+    const importStep3ResultBtn = document.querySelector("#importStep3ResultBtn");
     const extractStructureFieldsBtn = document.querySelector("#extractStructureFieldsBtn");
     const structureMaterialFields = Array.from(document.querySelectorAll(".structure-material"));
     const copyStructureFieldsBtn = document.querySelector("#copyStructureFieldsBtn");
@@ -2751,7 +2818,14 @@
     const generateStructurePromptBtn = document.querySelector("#generateStructurePromptBtn");
     const clearStructureBtn = document.querySelector("#clearStructureBtn");
     const copyStructurePromptBtn = document.querySelector("#copyStructurePromptBtn");
+    const pipelineResultStep4 = document.querySelector("#pipelineResultStep4");
+    const pipelineResultStep4Count = document.querySelector("#pipelineResultStep4Count");
+    const clearPipelineResultStep4Btn = document.querySelector("#clearPipelineResultStep4Btn");
+    const exportPipelineResultStep4Btn = document.querySelector("#exportPipelineResultStep4Btn");
+    const importPipelineResultStep4Btn = document.querySelector("#importPipelineResultStep4Btn");
+    const importPipelineResultStep4File = document.querySelector("#importPipelineResultStep4File");
     const mainScriptStructureInput = document.querySelector("#mainScriptStructureInput");
+    const importStep4ResultBtn = document.querySelector("#importStep4ResultBtn");
     const mainScriptInputCount = document.querySelector("#mainScriptInputCount");
     const mainScriptTemplateEditor = document.querySelector("#mainScriptTemplateEditor");
     const mainScriptTemplateHeaderCount = document.querySelector("#mainScriptTemplateHeaderCount");
@@ -2768,7 +2842,14 @@
     const generateMainScriptPromptBtn = document.querySelector("#generateMainScriptPromptBtn");
     const clearMainScriptBtn = document.querySelector("#clearMainScriptBtn");
     const copyMainScriptPromptBtn = document.querySelector("#copyMainScriptPromptBtn");
+    const pipelineResultStep5 = document.querySelector("#pipelineResultStep5");
+    const pipelineResultStep5Count = document.querySelector("#pipelineResultStep5Count");
+    const clearPipelineResultStep5Btn = document.querySelector("#clearPipelineResultStep5Btn");
+    const exportPipelineResultStep5Btn = document.querySelector("#exportPipelineResultStep5Btn");
+    const importPipelineResultStep5Btn = document.querySelector("#importPipelineResultStep5Btn");
+    const importPipelineResultStep5File = document.querySelector("#importPipelineResultStep5File");
     const sleepFadeFullInput = document.querySelector("#sleepFadeFullInput");
+    const importStep5ResultBtn = document.querySelector("#importStep5ResultBtn");
     const extractSleepFadeFieldsBtn = document.querySelector("#extractSleepFadeFieldsBtn");
     const sleepFadeMaterialFields = Array.from(document.querySelectorAll(".sleep-fade-material"));
     const copySleepFadeFieldsBtn = document.querySelector("#copySleepFadeFieldsBtn");
@@ -2788,6 +2869,12 @@
     const generateSleepFadePromptBtn = document.querySelector("#generateSleepFadePromptBtn");
     const clearSleepFadeBtn = document.querySelector("#clearSleepFadeBtn");
     const copySleepFadePromptBtn = document.querySelector("#copySleepFadePromptBtn");
+    const pipelineResultStep6 = document.querySelector("#pipelineResultStep6");
+    const pipelineResultStep6Count = document.querySelector("#pipelineResultStep6Count");
+    const clearPipelineResultStep6Btn = document.querySelector("#clearPipelineResultStep6Btn");
+    const exportPipelineResultStep6Btn = document.querySelector("#exportPipelineResultStep6Btn");
+    const importPipelineResultStep6Btn = document.querySelector("#importPipelineResultStep6Btn");
+    const importPipelineResultStep6File = document.querySelector("#importPipelineResultStep6File");
     const postProcessorFullEpisodeInput = document.querySelector("#postProcessorFullEpisodeInput");
     const postProcessorOpeningResultInput = document.querySelector("#postProcessorOpeningResultInput");
     const postProcessorMainResultInput = document.querySelector("#postProcessorMainResultInput");
@@ -3070,6 +3157,9 @@
       pipelineResultStep1.value = loadPipelineResult(1);
       pipelineResultStep2.value = loadPipelineResult(2);
       pipelineResultStep3.value = loadPipelineResult(3);
+      pipelineResultStep4.value = loadPipelineResult(4);
+      pipelineResultStep5.value = loadPipelineResult(5);
+      pipelineResultStep6.value = loadPipelineResult(6);
       updateCounts();
     }
 
@@ -3165,13 +3255,16 @@
       structureInputCount.textContent = `${structureInputLength.toLocaleString("ko-KR")}자`;
       structureTemplateHeaderCount.textContent = `${structureTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       structureTemplateCount.textContent = `${structureTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep4Count.textContent = `${pipelineResultStep4.value.length.toLocaleString("ko-KR")}자`;
       mainScriptInputCount.textContent = `${mainScriptStructureInput.value.length.toLocaleString("ko-KR")}자`;
       mainScriptTemplateHeaderCount.textContent = `${mainScriptTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       mainScriptTemplateCount.textContent = `${mainScriptTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep5Count.textContent = `${pipelineResultStep5.value.length.toLocaleString("ko-KR")}자`;
       const sleepFadeInputLength = sleepFadeFullInput.value.length + sleepFadeMaterialFields.reduce((total, field) => total + field.value.length, 0);
       sleepFadeInputCount.textContent = `${sleepFadeInputLength.toLocaleString("ko-KR")}자`;
       sleepFadeTemplateHeaderCount.textContent = `${sleepFadeTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       sleepFadeTemplateCount.textContent = `${sleepFadeTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep6Count.textContent = `${pipelineResultStep6.value.length.toLocaleString("ko-KR")}자`;
       const postProcessorInputLength = postProcessorFullEpisodeInput.value.length
         + postProcessorOpeningResultInput.value.length
         + postProcessorMainResultInput.value.length
@@ -5959,21 +6052,48 @@ ${valueOrEmpty(data.shortsPackaging)}
       importPipelineResultJson(3, pipelineResultStep3, importPipelineResultStep3File.files[0]);
       importPipelineResultStep3File.value = "";
     });
+    importStep3ResultBtn.addEventListener("click", () => importPipelineResultToField(3, structureFullInput, "Step 3 결과"));
     structureFullInput.addEventListener("input", updateCounts);
     extractStructureFieldsBtn.addEventListener("click", extractStructureFields);
     structureMaterialFields.forEach((field) => field.addEventListener("input", updateCounts));
     copyStructureFieldsBtn.addEventListener("click", copyStructureFieldsWithTitles);
     structureTemplateEditor.addEventListener("input", updateCounts);
     structureFinalPrompt.addEventListener("input", updateCounts);
+    pipelineResultStep4.addEventListener("input", () => handlePipelineResultInput(4, pipelineResultStep4));
+    clearPipelineResultStep4Btn.addEventListener("click", () => clearPipelineResultField(4, pipelineResultStep4));
+    exportPipelineResultStep4Btn.addEventListener("click", () => exportPipelineResultJson(4, pipelineResultStep4));
+    importPipelineResultStep4Btn.addEventListener("click", () => importPipelineResultStep4File.click());
+    importPipelineResultStep4File.addEventListener("change", () => {
+      importPipelineResultJson(4, pipelineResultStep4, importPipelineResultStep4File.files[0]);
+      importPipelineResultStep4File.value = "";
+    });
+    importStep4ResultBtn.addEventListener("click", () => importPipelineResultToField(4, mainScriptStructureInput, "Step 4 결과"));
     mainScriptStructureInput.addEventListener("input", updateCounts);
     mainScriptTemplateEditor.addEventListener("input", updateCounts);
     mainScriptFinalPrompt.addEventListener("input", updateCounts);
+    pipelineResultStep5.addEventListener("input", () => handlePipelineResultInput(5, pipelineResultStep5));
+    clearPipelineResultStep5Btn.addEventListener("click", () => clearPipelineResultField(5, pipelineResultStep5));
+    exportPipelineResultStep5Btn.addEventListener("click", () => exportPipelineResultJson(5, pipelineResultStep5));
+    importPipelineResultStep5Btn.addEventListener("click", () => importPipelineResultStep5File.click());
+    importPipelineResultStep5File.addEventListener("change", () => {
+      importPipelineResultJson(5, pipelineResultStep5, importPipelineResultStep5File.files[0]);
+      importPipelineResultStep5File.value = "";
+    });
+    importStep5ResultBtn.addEventListener("click", () => importPipelineResultToField(5, sleepFadeFullInput, "Step 5 결과"));
     sleepFadeFullInput.addEventListener("input", updateCounts);
     extractSleepFadeFieldsBtn.addEventListener("click", extractSleepFadeFields);
     sleepFadeMaterialFields.forEach((field) => field.addEventListener("input", updateCounts));
     copySleepFadeFieldsBtn.addEventListener("click", copySleepFadeFieldsWithTitles);
     sleepFadeTemplateEditor.addEventListener("input", updateCounts);
     sleepFadeFinalPrompt.addEventListener("input", updateCounts);
+    pipelineResultStep6.addEventListener("input", () => handlePipelineResultInput(6, pipelineResultStep6));
+    clearPipelineResultStep6Btn.addEventListener("click", () => clearPipelineResultField(6, pipelineResultStep6));
+    exportPipelineResultStep6Btn.addEventListener("click", () => exportPipelineResultJson(6, pipelineResultStep6));
+    importPipelineResultStep6Btn.addEventListener("click", () => importPipelineResultStep6File.click());
+    importPipelineResultStep6File.addEventListener("change", () => {
+      importPipelineResultJson(6, pipelineResultStep6, importPipelineResultStep6File.files[0]);
+      importPipelineResultStep6File.value = "";
+    });
     postProcessorFullEpisodeInput.addEventListener("input", updateCounts);
     postProcessorOpeningResultInput.addEventListener("input", updateCounts);
     postProcessorMainResultInput.addEventListener("input", updateCounts);
