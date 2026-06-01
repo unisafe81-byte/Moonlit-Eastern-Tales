@@ -262,7 +262,8 @@
     #koreanReviewFinalPrompt,
     #longformVisualFinalPrompt,
     #shortsMomentFinalPrompt,
-    #shortsScriptFinalPrompt {
+    #shortsScriptFinalPrompt,
+    #shortsPackagingFinalPrompt {
       min-height: 540px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 13px;
@@ -547,7 +548,8 @@
     #koreanReviewTemplateEditor,
     #longformVisualTemplateEditor,
     #shortsMomentTemplateEditor,
-    #shortsScriptTemplateEditor {
+    #shortsScriptTemplateEditor,
+    #shortsPackagingTemplateEditor {
       min-height: 340px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
@@ -556,7 +558,8 @@
     #koreanReviewFinalPrompt,
     #longformVisualFinalPrompt,
     #shortsMomentFinalPrompt,
-    #shortsScriptFinalPrompt {
+    #shortsScriptFinalPrompt,
+    #shortsPackagingFinalPrompt {
       min-height: 270px;
     }
 
@@ -622,7 +625,8 @@
       #koreanReviewFinalPrompt,
       #longformVisualFinalPrompt,
       #shortsMomentFinalPrompt,
-      #shortsScriptFinalPrompt {
+      #shortsScriptFinalPrompt,
+      #shortsPackagingFinalPrompt {
         min-height: 420px;
       }
 
@@ -669,14 +673,16 @@
       #koreanReviewTemplateEditor,
       #longformVisualTemplateEditor,
       #shortsMomentTemplateEditor,
-      #shortsScriptTemplateEditor {
+      #shortsScriptTemplateEditor,
+      #shortsPackagingTemplateEditor {
         min-height: 300px;
       }
 
       #koreanReviewFinalPrompt,
       #longformVisualFinalPrompt,
       #shortsMomentFinalPrompt,
-      #shortsScriptFinalPrompt {
+      #shortsScriptFinalPrompt,
+      #shortsPackagingFinalPrompt {
         min-height: 210px;
       }
 
@@ -730,6 +736,7 @@
       <button class="tab" type="button" data-tab="longformVisual">11. 롱폼 시각 컷 설계</button>
       <button class="tab" type="button" data-tab="shortsMoment">12. 쇼츠 순간 후보 추출</button>
       <button class="tab" type="button" data-tab="shortsScript">13. 쇼츠 대본 생성</button>
+      <button class="tab" type="button" data-tab="shortsPackaging">14. 쇼츠 패키징 생성</button>
     </nav>
 
     <main>
@@ -2023,6 +2030,116 @@
           </div>
         </section>
       </section>
+
+      <section id="tabShortsPackaging" class="tab-panel" data-panel="shortsPackaging">
+        <section class="workspace wide" aria-labelledby="shortsPackagingTitle">
+          <div class="panel-head">
+            <h2 id="shortsPackagingTitle">쇼츠 업로드 패키징 생성</h2>
+            <span id="shortsPackagingInputCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>이 단계는 Step 13에서 완성된 최종 쇼츠 내레이션 대본을 바탕으로 제목, 썸네일 문구, 설명, 해시태그, 고정댓글, 9:16 세로형 이미지 프롬프트와 영상 모션 프롬프트를 만들기 위한 프롬프트를 준비합니다. 앱은 입력 원문을 분석하지 않고 템플릿에 삽입만 합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="shortsPackagingInputTitle">
+          <div class="panel-head">
+            <h2 id="shortsPackagingInputTitle">최종 쇼츠 대본 입력</h2>
+          </div>
+          <div class="input-area">
+            <label for="shortsPackagingFullStep13Result">Step 13 전체 결과 붙여넣기</label>
+            <textarea id="shortsPackagingFullStep13Result" spellcheck="false" placeholder="Step 13의 전체 Shorts Script Generator 결과물을 여기에 붙여 넣으세요. 추천된 20초, 30초, 40초 버전의 영어 쇼츠 대본을 추출할 수 있습니다."></textarea>
+            <div class="actions">
+              <button id="extractShortsPackagingScriptBtn" class="btn" type="button">추천 쇼츠 대본 추출</button>
+            </div>
+
+            <label for="shortsPackagingFinalScript">최종 쇼츠 내레이션 대본</label>
+            <textarea id="shortsPackagingFinalScript" spellcheck="false" placeholder="Step 13에서 최종 선택한 영어 쇼츠 내레이션 대본을 그대로 붙여 넣으세요."></textarea>
+
+            <div class="info-band">
+              <p>이 입력은 업로드 패키징의 기준이 되는 최종 영어 쇼츠 대본입니다. 앱은 내용을 수정, 번역, 요약하지 않습니다.</p>
+            </div>
+
+            <label for="shortsPackagingFullStep12Result">선택 입력: Step 12 전체 결과 붙여넣기</label>
+            <textarea id="shortsPackagingFullStep12Result" spellcheck="false" placeholder="Step 12의 전체 Shorts Moment Extractor 결과물이 있으면 붙여 넣으세요. 추천 1순위 영어 블록만 추출할 수 있습니다."></textarea>
+            <div class="actions">
+              <button id="extractShortsPackagingMomentBtn" class="btn" type="button">선택 쇼츠 후보 영어 블록 추출</button>
+            </div>
+
+            <label for="shortsPackagingSelectedMoment">선택 입력: Step 12 선택 쇼츠 후보</label>
+            <textarea id="shortsPackagingSelectedMoment" spellcheck="false" placeholder="Step 12의 SELECTED SHORTS MOMENT 영어 블록이 있으면 붙여 넣으세요. 비주얼 프롬프트가 원래 후보의 Visual Anchor를 벗어나지 않도록 돕는 보조 입력입니다."></textarea>
+
+            <label for="shortsPackagingEpisodeTitle">선택 입력: 전체 에피소드 제목</label>
+            <textarea id="shortsPackagingEpisodeTitle" spellcheck="false" placeholder="전체 에피소드 제목이 있으면 붙여 넣으세요."></textarea>
+
+            <label for="shortsPackagingCoreKeyword">선택 입력: 핵심 키워드</label>
+            <textarea id="shortsPackagingCoreKeyword" spellcheck="false" placeholder="핵심 키워드가 있으면 붙여 넣으세요."></textarea>
+
+            <label for="shortsPackagingVideoUrl">선택 입력: 롱폼 영상 URL 또는 placeholder</label>
+            <textarea id="shortsPackagingVideoUrl" spellcheck="false" placeholder="롱폼 영상 URL이 있으면 붙여 넣으세요. 아직 없으면 비워두세요."></textarea>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="shortsPackagingTemplateTitle">
+          <div class="panel-head">
+            <h2 id="shortsPackagingTemplateTitle">프롬프트 템플릿</h2>
+            <span id="shortsPackagingTemplateHeaderCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>프롬프트 템플릿 버전</strong>
+                <span id="shortsPackagingTemplateFileName">14. Shorts Packaging Generator v1.1.txt</span>
+              </div>
+              <div class="meta-box">
+                <strong>저장 방식</strong>
+                <span id="shortsPackagingTemplateSaveModeSummary">기본 템플릿 사용 중</span>
+              </div>
+            </div>
+
+            <details class="prompt-editor" open>
+              <summary>프롬프트 업데이트</summary>
+              <div class="prompt-editor-body">
+                <label for="shortsPackagingTemplateEditor">현재 저장된 실행 프롬프트 원문</label>
+                <textarea id="shortsPackagingTemplateEditor" spellcheck="false"></textarea>
+
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>저장 방식</strong>
+                    <span id="shortsPackagingTemplateSaveMode">기본 템플릿 사용 중</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>프롬프트 길이</strong>
+                    <span id="shortsPackagingTemplateCount">0자</span>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button id="saveShortsPackagingTemplateBtn" class="btn primary" type="button">수정한 프롬프트 저장</button>
+                  <button id="resetShortsPackagingTemplateBtn" class="btn warn" type="button">내장 원본으로 복원</button>
+                  <button id="importShortsPackagingTemplateBtn" class="btn" type="button">텍스트 파일 불러오기</button>
+                  <button id="exportShortsPackagingTemplateBtn" class="btn" type="button">현재 프롬프트 내보내기</button>
+                  <input id="importShortsPackagingTemplateFile" class="file-input" type="file" accept=".txt,text/plain">
+                </div>
+              </div>
+            </details>
+
+            <div class="actions">
+              <button id="generateShortsPackagingPromptBtn" class="btn primary" type="button">프롬프트 생성</button>
+              <button id="clearShortsPackagingBtn" class="btn warn" type="button">초기화</button>
+            </div>
+
+            <label for="shortsPackagingFinalPrompt">최종 실행 프롬프트</label>
+            <textarea id="shortsPackagingFinalPrompt" spellcheck="false"></textarea>
+
+            <div class="actions">
+              <button id="copyShortsPackagingPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
 
@@ -2069,6 +2186,9 @@
     const SHORTS_SCRIPT_PROMPT_FILE = "13. Shorts Script Generator v1.0.1.txt";
     const SHORTS_SCRIPT_STORAGE_KEY = "moonlit_shorts_script_template_v101";
     const SHORTS_SCRIPT_SOURCE_STORAGE_KEY = "moonlit_shorts_script_template_source";
+    const SHORTS_PACKAGING_PROMPT_FILE = "14. Shorts Packaging Generator v1.1.txt";
+    const SHORTS_PACKAGING_STORAGE_KEY = "moonlit_shorts_packaging_template_v11";
+    const SHORTS_PACKAGING_SOURCE_STORAGE_KEY = "moonlit_shorts_packaging_template_source";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
@@ -2077,6 +2197,7 @@
     const LONGFORM_VISUAL_PLACEHOLDER = "{{LONGFORM_VISUAL_INPUT}}";
     const SHORTS_MOMENT_PLACEHOLDER = "{{SHORTS_MOMENT_INPUT}}";
     const SHORTS_SCRIPT_PLACEHOLDER = "{{SHORTS_SCRIPT_INPUT}}";
+    const SHORTS_PACKAGING_PLACEHOLDER = "{{SHORTS_PACKAGING_INPUT}}";
     const OPENING_FIELD_LABELS = [
       "이번 영상의 핵심 소재",
       "첫 장면 또는 첫 문장 방향",
@@ -2394,6 +2515,31 @@
     const generateShortsScriptPromptBtn = document.querySelector("#generateShortsScriptPromptBtn");
     const clearShortsScriptBtn = document.querySelector("#clearShortsScriptBtn");
     const copyShortsScriptPromptBtn = document.querySelector("#copyShortsScriptPromptBtn");
+    const shortsPackagingFullStep13Result = document.querySelector("#shortsPackagingFullStep13Result");
+    const extractShortsPackagingScriptBtn = document.querySelector("#extractShortsPackagingScriptBtn");
+    const shortsPackagingFinalScript = document.querySelector("#shortsPackagingFinalScript");
+    const shortsPackagingFullStep12Result = document.querySelector("#shortsPackagingFullStep12Result");
+    const extractShortsPackagingMomentBtn = document.querySelector("#extractShortsPackagingMomentBtn");
+    const shortsPackagingSelectedMoment = document.querySelector("#shortsPackagingSelectedMoment");
+    const shortsPackagingEpisodeTitle = document.querySelector("#shortsPackagingEpisodeTitle");
+    const shortsPackagingCoreKeyword = document.querySelector("#shortsPackagingCoreKeyword");
+    const shortsPackagingVideoUrl = document.querySelector("#shortsPackagingVideoUrl");
+    const shortsPackagingInputCount = document.querySelector("#shortsPackagingInputCount");
+    const shortsPackagingTemplateEditor = document.querySelector("#shortsPackagingTemplateEditor");
+    const shortsPackagingTemplateHeaderCount = document.querySelector("#shortsPackagingTemplateHeaderCount");
+    const shortsPackagingTemplateCount = document.querySelector("#shortsPackagingTemplateCount");
+    const shortsPackagingTemplateSaveModeSummary = document.querySelector("#shortsPackagingTemplateSaveModeSummary");
+    const shortsPackagingTemplateSaveMode = document.querySelector("#shortsPackagingTemplateSaveMode");
+    const shortsPackagingTemplateFileName = document.querySelector("#shortsPackagingTemplateFileName");
+    const saveShortsPackagingTemplateBtn = document.querySelector("#saveShortsPackagingTemplateBtn");
+    const resetShortsPackagingTemplateBtn = document.querySelector("#resetShortsPackagingTemplateBtn");
+    const importShortsPackagingTemplateBtn = document.querySelector("#importShortsPackagingTemplateBtn");
+    const exportShortsPackagingTemplateBtn = document.querySelector("#exportShortsPackagingTemplateBtn");
+    const importShortsPackagingTemplateFile = document.querySelector("#importShortsPackagingTemplateFile");
+    const shortsPackagingFinalPrompt = document.querySelector("#shortsPackagingFinalPrompt");
+    const generateShortsPackagingPromptBtn = document.querySelector("#generateShortsPackagingPromptBtn");
+    const clearShortsPackagingBtn = document.querySelector("#clearShortsPackagingBtn");
+    const copyShortsPackagingPromptBtn = document.querySelector("#copyShortsPackagingPromptBtn");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -2421,6 +2567,8 @@
     let builtInShortsMomentTemplate = "";
     let shortsScriptTemplate = "";
     let builtInShortsScriptTemplate = "";
+    let shortsPackagingTemplate = "";
+    let builtInShortsPackagingTemplate = "";
 
     function setStatus(text, type = "") {
       statusText.textContent = text;
@@ -2488,6 +2636,16 @@
       shortsScriptInputCount.textContent = `${shortsScriptInputLength.toLocaleString("ko-KR")}자`;
       shortsScriptTemplateHeaderCount.textContent = `${shortsScriptTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       shortsScriptTemplateCount.textContent = `${shortsScriptTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      const shortsPackagingInputLength = shortsPackagingFullStep13Result.value.length
+        + shortsPackagingFinalScript.value.length
+        + shortsPackagingFullStep12Result.value.length
+        + shortsPackagingSelectedMoment.value.length
+        + shortsPackagingEpisodeTitle.value.length
+        + shortsPackagingCoreKeyword.value.length
+        + shortsPackagingVideoUrl.value.length;
+      shortsPackagingInputCount.textContent = `${shortsPackagingInputLength.toLocaleString("ko-KR")}자`;
+      shortsPackagingTemplateHeaderCount.textContent = `${shortsPackagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      shortsPackagingTemplateCount.textContent = `${shortsPackagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
     }
 
     function switchTab(tabName) {
@@ -4597,6 +4755,235 @@ ${concept}`;
       shortsScriptSelectedMoment.focus();
     }
 
+    function prepareShortsPackagingTemplate(template) {
+      if (!template) return "";
+      if (template.includes(SHORTS_PACKAGING_PLACEHOLDER)) return template;
+      const inputSectionPattern = /# INPUT[\s\S]*?---\s*# PRIMARY TASK/;
+      if (inputSectionPattern.test(template)) {
+        return template.replace(inputSectionPattern, `${SHORTS_PACKAGING_PLACEHOLDER}\n\n---\n\n# PRIMARY TASK`);
+      }
+      return `${template.trimEnd()}\n\n---\n\n${SHORTS_PACKAGING_PLACEHOLDER}\n`;
+    }
+
+    function syncShortsPackagingTemplateEditor() {
+      shortsPackagingTemplateEditor.value = shortsPackagingTemplate;
+      shortsPackagingTemplateSaveMode.textContent = localStorage.getItem(SHORTS_PACKAGING_STORAGE_KEY) ? "브라우저 저장소에 저장됨" : "기본 템플릿 사용 중";
+      shortsPackagingTemplateSaveModeSummary.textContent = shortsPackagingTemplateSaveMode.textContent;
+      shortsPackagingTemplateFileName.textContent = getTemplateSourceLabel(SHORTS_PACKAGING_STORAGE_KEY, SHORTS_PACKAGING_SOURCE_STORAGE_KEY, SHORTS_PACKAGING_PROMPT_FILE);
+      updateCounts();
+    }
+
+    async function loadShortsPackagingTemplate() {
+      try {
+        const sourceTemplate = window.SHORTS_PACKAGING_GENERATOR_PROMPT || await fetch(encodeURI(SHORTS_PACKAGING_PROMPT_FILE), { cache: "no-store" }).then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          return response.text();
+        });
+        builtInShortsPackagingTemplate = prepareShortsPackagingTemplate(sourceTemplate);
+        shortsPackagingTemplate = localStorage.getItem(SHORTS_PACKAGING_STORAGE_KEY) || builtInShortsPackagingTemplate;
+        syncShortsPackagingTemplateEditor();
+        setStatus(shortsPackagingTemplate ? "Shorts Packaging 템플릿 로드됨" : "Shorts Packaging 템플릿을 찾을 수 없음", shortsPackagingTemplate ? "ready" : "error");
+      } catch (error) {
+        builtInShortsPackagingTemplate = "";
+        shortsPackagingTemplate = "";
+        syncShortsPackagingTemplateEditor();
+        setStatus("Shorts Packaging 템플릿 파일을 찾을 수 없음", "error");
+      }
+    }
+
+    function saveShortsPackagingTemplate(sourceLabel = "") {
+      const nextTemplate = shortsPackagingTemplateEditor.value;
+      if (!nextTemplate.trim()) {
+        setStatus("저장할 프롬프트가 비어 있음", "error");
+        return;
+      }
+      shortsPackagingTemplate = nextTemplate;
+      localStorage.setItem(SHORTS_PACKAGING_STORAGE_KEY, shortsPackagingTemplate);
+      setTemplateSourceLabel(SHORTS_PACKAGING_SOURCE_STORAGE_KEY, SHORTS_PACKAGING_PROMPT_FILE, sourceLabel);
+      syncShortsPackagingTemplateEditor();
+      setStatus("Shorts Packaging 프롬프트 저장 완료", "ready");
+    }
+
+    function resetShortsPackagingTemplate() {
+      if (!builtInShortsPackagingTemplate) {
+        setStatus("복원할 Shorts Packaging 기본 프롬프트가 없음", "error");
+        return;
+      }
+      shortsPackagingTemplate = builtInShortsPackagingTemplate;
+      localStorage.setItem(SHORTS_PACKAGING_STORAGE_KEY, shortsPackagingTemplate);
+      localStorage.setItem(SHORTS_PACKAGING_SOURCE_STORAGE_KEY, SHORTS_PACKAGING_PROMPT_FILE);
+      syncShortsPackagingTemplateEditor();
+      setStatus("Shorts Packaging 프롬프트 내장 원본 복원 완료", "ready");
+    }
+
+    function exportShortsPackagingTemplate() {
+      if (!shortsPackagingTemplateEditor.value) return;
+      const blob = new Blob([shortsPackagingTemplateEditor.value], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "shorts-packaging-generator-prompt-template.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function importShortsPackagingTemplate(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        shortsPackagingTemplateEditor.value = String(reader.result || "");
+        updateCounts();
+        saveShortsPackagingTemplate(`가져온 파일: ${file.name}`);
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function extractRecommendedShortsPackagingScript() {
+      const source = shortsPackagingFullStep13Result.value;
+      const recommendationMatch = source.match(/\*\*추천:\*\*\s*(20초 버전|30초 버전|40초 버전)/i);
+      let extracted = "";
+
+      if (recommendationMatch) {
+        const seconds = recommendationMatch[1].slice(0, 2);
+        const versionNumber = seconds === "20" ? "1" : seconds === "30" ? "2" : "3";
+        const versionPattern = new RegExp("##\\s*" + versionNumber + "\\.\\s*" + seconds + "초 버전[\\s\\S]*?```(?:text)?\\s*([\\s\\S]*?)```", "i");
+        const versionMatch = source.match(versionPattern);
+        extracted = versionMatch && versionMatch[1] ? versionMatch[1].trim() : "";
+      }
+
+      if (!extracted) {
+        const fallbackMatch = source.match(/##\s*[123]\.\s*(?:20|30|40)초 버전[\s\S]*?```(?:text)?\s*([\s\S]*?)```/i);
+        extracted = fallbackMatch && fallbackMatch[1] ? fallbackMatch[1].trim() : "";
+      }
+
+      if (!extracted) {
+        setStatus("추천 쇼츠 대본을 찾을 수 없습니다. Step 13에서 선택한 영어 쇼츠 대본을 직접 붙여 넣어주세요.", "error");
+        return;
+      }
+
+      shortsPackagingFinalScript.value = extracted;
+      setStatus("추천 쇼츠 대본 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractShortsPackagingMomentBlock() {
+      const source = shortsPackagingFullStep12Result.value;
+      const recommendedSection = source.match(/##\s*4\.\s*추천 1순위[\s\S]*?```(?:text)?\s*([\s\S]*?)```/i);
+      const fallbackBlock = source.match(/```(?:text)?\s*(SELECTED SHORTS MOMENT:[\s\S]*?)```/i);
+      const extracted = (recommendedSection && recommendedSection[1] ? recommendedSection[1] : fallbackBlock && fallbackBlock[1] ? fallbackBlock[1] : "").trim();
+
+      if (!extracted) {
+        setStatus("Step 12 선택 쇼츠 후보 영어 블록을 찾을 수 없습니다. 필요한 경우 직접 붙여 넣어주세요.", "error");
+        return;
+      }
+
+      shortsPackagingSelectedMoment.value = extracted;
+      setStatus("선택 쇼츠 후보 영어 블록 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function buildShortsPackagingInputBlock(finalScript, selectedMoment, episodeTitle, coreKeyword, videoUrl) {
+      const momentBlock = selectedMoment.trim() ? normalizeSelectedShortsMoment(selectedMoment) : "Not provided.";
+      const title = episodeTitle.trim() || "Not provided.";
+      const keyword = coreKeyword.trim() || "Not provided.";
+      const url = videoUrl.trim() || "Not provided.";
+
+      return `# INPUT
+
+Paste the final Shorts narration script below.
+
+Use the recommended version from Shorts Script Generator.
+
+<<< FINAL SHORTS SCRIPT START >>>
+
+${finalScript}
+
+<<< FINAL SHORTS SCRIPT END >>>
+
+---
+
+# OPTIONAL INPUTS
+
+If available, paste the selected Shorts moment block from Shorts Moment Extractor.
+
+This helps preserve the original visual anchor and avoid over-inventing.
+
+<<< SELECTED SHORTS MOMENT START >>>
+
+${momentBlock}
+
+<<< SELECTED SHORTS MOMENT END >>>
+
+FULL EPISODE TITLE:
+${title}
+
+CORE KEYWORD:
+${keyword}
+
+LONG-FORM VIDEO URL OR PLACEHOLDER:
+${url}
+
+CHANNEL NAME:
+Moonlit Eastern Tales`;
+    }
+
+    function generateShortsPackagingPrompt() {
+      const finalScript = shortsPackagingFinalScript.value;
+      if (!finalScript.trim()) {
+        setStatus("Shorts Packaging 프롬프트를 생성하기 전에 최종 쇼츠 내레이션 대본을 붙여 넣어주세요.", "error");
+        shortsPackagingFinalPrompt.value = "";
+        copyShortsPackagingPromptBtn.disabled = true;
+        updateCounts();
+        return;
+      }
+
+      const inputBlock = buildShortsPackagingInputBlock(
+        finalScript,
+        shortsPackagingSelectedMoment.value,
+        shortsPackagingEpisodeTitle.value,
+        shortsPackagingCoreKeyword.value,
+        shortsPackagingVideoUrl.value
+      );
+      const currentTemplate = shortsPackagingTemplateEditor.value;
+      shortsPackagingFinalPrompt.value = currentTemplate.includes(SHORTS_PACKAGING_PLACEHOLDER)
+        ? currentTemplate.replace(SHORTS_PACKAGING_PLACEHOLDER, () => inputBlock)
+        : `${currentTemplate.trimEnd()}\n\n${inputBlock}`;
+      copyShortsPackagingPromptBtn.disabled = !shortsPackagingFinalPrompt.value;
+      setStatus("Shorts Packaging 최종 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function copyShortsPackagingPrompt() {
+      if (!shortsPackagingFinalPrompt.value) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(shortsPackagingFinalPrompt.value);
+      } else {
+        shortsPackagingFinalPrompt.focus();
+        shortsPackagingFinalPrompt.select();
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+      setStatus("Shorts Packaging 프롬프트 복사 완료", "ready");
+    }
+
+    function clearShortsPackagingFields() {
+      shortsPackagingFullStep13Result.value = "";
+      shortsPackagingFinalScript.value = "";
+      shortsPackagingFullStep12Result.value = "";
+      shortsPackagingSelectedMoment.value = "";
+      shortsPackagingEpisodeTitle.value = "";
+      shortsPackagingCoreKeyword.value = "";
+      shortsPackagingVideoUrl.value = "";
+      shortsPackagingFinalPrompt.value = "";
+      copyShortsPackagingPromptBtn.disabled = true;
+      updateCounts();
+      shortsPackagingFinalScript.focus();
+    }
+
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         sourceIdea.value = chip.textContent.trim();
@@ -4678,6 +5065,17 @@ ${concept}`;
     shortsScriptLongformConcept.addEventListener("input", updateCounts);
     shortsScriptTemplateEditor.addEventListener("input", updateCounts);
     shortsScriptFinalPrompt.addEventListener("input", updateCounts);
+    shortsPackagingFullStep13Result.addEventListener("input", updateCounts);
+    extractShortsPackagingScriptBtn.addEventListener("click", extractRecommendedShortsPackagingScript);
+    shortsPackagingFinalScript.addEventListener("input", updateCounts);
+    shortsPackagingFullStep12Result.addEventListener("input", updateCounts);
+    extractShortsPackagingMomentBtn.addEventListener("click", extractShortsPackagingMomentBlock);
+    shortsPackagingSelectedMoment.addEventListener("input", updateCounts);
+    shortsPackagingEpisodeTitle.addEventListener("input", updateCounts);
+    shortsPackagingCoreKeyword.addEventListener("input", updateCounts);
+    shortsPackagingVideoUrl.addEventListener("input", updateCounts);
+    shortsPackagingTemplateEditor.addEventListener("input", updateCounts);
+    shortsPackagingFinalPrompt.addEventListener("input", updateCounts);
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -4830,6 +5228,17 @@ ${concept}`;
     generateShortsScriptPromptBtn.addEventListener("click", generateShortsScriptPrompt);
     clearShortsScriptBtn.addEventListener("click", clearShortsScriptFields);
     copyShortsScriptPromptBtn.addEventListener("click", copyShortsScriptPrompt);
+    saveShortsPackagingTemplateBtn.addEventListener("click", saveShortsPackagingTemplate);
+    resetShortsPackagingTemplateBtn.addEventListener("click", resetShortsPackagingTemplate);
+    importShortsPackagingTemplateBtn.addEventListener("click", () => importShortsPackagingTemplateFile.click());
+    exportShortsPackagingTemplateBtn.addEventListener("click", exportShortsPackagingTemplate);
+    importShortsPackagingTemplateFile.addEventListener("change", () => {
+      importShortsPackagingTemplate(importShortsPackagingTemplateFile.files[0]);
+      importShortsPackagingTemplateFile.value = "";
+    });
+    generateShortsPackagingPromptBtn.addEventListener("click", generateShortsPackagingPrompt);
+    clearShortsPackagingBtn.addEventListener("click", clearShortsPackagingFields);
+    copyShortsPackagingPromptBtn.addEventListener("click", copyShortsPackagingPrompt);
 
     loadPromptTemplate();
     loadEpisodeTemplate();
@@ -4844,6 +5253,7 @@ ${concept}`;
     loadLongformVisualTemplate();
     loadShortsMomentTemplate();
     loadShortsScriptTemplate();
+    loadShortsPackagingTemplate();
     updateCounts();
   </script>
 </body>
