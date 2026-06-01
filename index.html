@@ -153,6 +153,28 @@
       opacity: 0.5;
     }
 
+    .operations-nav {
+      padding: 12px 28px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(8, 26, 51, 0.64);
+    }
+
+    .operations-heading {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .operations-tabs {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(13, 36, 61, 0.7);
+    }
+
     main {
       padding: 22px 28px 28px;
       min-height: 0;
@@ -549,7 +571,8 @@
     #longformVisualTemplateEditor,
     #shortsMomentTemplateEditor,
     #shortsScriptTemplateEditor,
-    #shortsPackagingTemplateEditor {
+    #shortsPackagingTemplateEditor,
+    #operationATemplateEditor {
       min-height: 340px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
@@ -596,6 +619,15 @@
       .tabs {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         padding: 0 16px 2px;
+      }
+
+      .operations-nav {
+        padding: 12px 16px 14px;
+      }
+
+      .operations-tabs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 0;
       }
 
       .tab {
@@ -674,7 +706,8 @@
       #longformVisualTemplateEditor,
       #shortsMomentTemplateEditor,
       #shortsScriptTemplateEditor,
-      #shortsPackagingTemplateEditor {
+      #shortsPackagingTemplateEditor,
+      #operationATemplateEditor {
         min-height: 300px;
       }
 
@@ -699,6 +732,15 @@
       .tabs {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: 0 10px 2px;
+      }
+
+      .operations-nav {
+        padding: 10px;
+      }
+
+      .operations-tabs {
+        grid-template-columns: 1fr;
+        padding: 0;
       }
 
       .tab {
@@ -738,6 +780,13 @@
       <button class="tab" type="button" data-tab="shortsScript">13. 쇼츠 대본 생성</button>
       <button class="tab" type="button" data-tab="shortsPackaging">14. 쇼츠 패키징 생성</button>
     </nav>
+
+    <section class="operations-nav" aria-label="운영 보조 도구">
+      <h2 class="operations-heading">운영 보조</h2>
+      <nav class="tabs operations-tabs" aria-label="운영 보조 탭">
+        <button class="tab" type="button" data-tab="operationA">A. 최종 품질 검수</button>
+      </nav>
+    </section>
 
     <main>
       <section id="tabResearch" class="tab-panel active" data-panel="research">
@@ -2140,6 +2189,65 @@
           </div>
         </section>
       </section>
+
+      <section id="tabOperationA" class="tab-panel" data-panel="operationA">
+        <section class="workspace wide" aria-labelledby="operationATitle">
+          <div class="panel-head">
+            <h2 id="operationATitle">Episode Quality Control Checker</h2>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>완성된 에피소드 패키지를 기준으로 Moonlit Eastern Tales 채널 정체성, 대본 안정성, 패키징 적합성, 롱폼 이미지 컷, 쇼츠 결과물의 일관성을 최종 검수하는 운영 보조 기능입니다. 이 기능은 새 대본이나 새 패키징을 만드는 단계가 아니라, 제작 진행 가능 여부를 판단하는 품질관리 단계입니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace wide" aria-labelledby="operationATemplateTitle">
+          <div class="panel-head">
+            <h2 id="operationATemplateTitle">프롬프트 템플릿</h2>
+            <span id="operationATemplateHeaderCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>프롬프트 템플릿 버전</strong>
+                <span id="operationATemplateFileName">A. Episode Quality Control Checker v1.0.txt</span>
+              </div>
+              <div class="meta-box">
+                <strong>저장 방식</strong>
+                <span id="operationATemplateSaveModeSummary">기본 템플릿 사용 중</span>
+              </div>
+            </div>
+
+            <details class="prompt-editor" open>
+              <summary>프롬프트 업데이트</summary>
+              <div class="prompt-editor-body">
+                <label for="operationATemplateEditor">현재 저장된 실행 프롬프트 원문</label>
+                <textarea id="operationATemplateEditor" spellcheck="false"></textarea>
+
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>저장 방식</strong>
+                    <span id="operationATemplateSaveMode">기본 템플릿 사용 중</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>프롬프트 길이</strong>
+                    <span id="operationATemplateCount">0자</span>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button id="saveOperationATemplateBtn" class="btn primary" type="button">수정한 프롬프트 저장</button>
+                  <button id="resetOperationATemplateBtn" class="btn warn" type="button">내장 원본으로 복원</button>
+                  <button id="importOperationATemplateBtn" class="btn" type="button">텍스트 파일 불러오기</button>
+                  <button id="exportOperationATemplateBtn" class="btn" type="button">현재 프롬프트 내보내기</button>
+                  <input id="importOperationATemplateFile" class="file-input" type="file" accept=".txt,text/plain">
+                </div>
+              </div>
+            </details>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
 
@@ -2189,6 +2297,22 @@
     const SHORTS_PACKAGING_PROMPT_FILE = "14. Shorts Packaging Generator v1.1.txt";
     const SHORTS_PACKAGING_STORAGE_KEY = "moonlit_shorts_packaging_template_v11";
     const SHORTS_PACKAGING_SOURCE_STORAGE_KEY = "moonlit_shorts_packaging_template_source";
+    const operationTools = [
+      {
+        id: "A",
+        group: "operations",
+        shortLabel: "최종 품질 검수",
+        displayTitle: "Episode Quality Control Checker",
+        toolName: "Episode Quality Control Checker",
+        version: "v1.0",
+        templateFile: "A. Episode Quality Control Checker v1.0.txt"
+      }
+    ];
+    const OPERATION_A_CONFIG = operationTools[0];
+    const OPERATION_A_TEMPLATE_STORAGE_KEY = "operation-template-A";
+    const OPERATION_A_FINAL_PROMPT_STORAGE_KEY = "operation-final-prompt-A";
+    const OPERATION_A_RESULT_STORAGE_KEY = "operation-result-A";
+    const OPERATION_A_SOURCE_STORAGE_KEY = "operation-template-source-A";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
@@ -2540,6 +2664,17 @@
     const generateShortsPackagingPromptBtn = document.querySelector("#generateShortsPackagingPromptBtn");
     const clearShortsPackagingBtn = document.querySelector("#clearShortsPackagingBtn");
     const copyShortsPackagingPromptBtn = document.querySelector("#copyShortsPackagingPromptBtn");
+    const operationATemplateEditor = document.querySelector("#operationATemplateEditor");
+    const operationATemplateHeaderCount = document.querySelector("#operationATemplateHeaderCount");
+    const operationATemplateCount = document.querySelector("#operationATemplateCount");
+    const operationATemplateSaveModeSummary = document.querySelector("#operationATemplateSaveModeSummary");
+    const operationATemplateSaveMode = document.querySelector("#operationATemplateSaveMode");
+    const operationATemplateFileName = document.querySelector("#operationATemplateFileName");
+    const saveOperationATemplateBtn = document.querySelector("#saveOperationATemplateBtn");
+    const resetOperationATemplateBtn = document.querySelector("#resetOperationATemplateBtn");
+    const importOperationATemplateBtn = document.querySelector("#importOperationATemplateBtn");
+    const exportOperationATemplateBtn = document.querySelector("#exportOperationATemplateBtn");
+    const importOperationATemplateFile = document.querySelector("#importOperationATemplateFile");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -2569,6 +2704,8 @@
     let builtInShortsScriptTemplate = "";
     let shortsPackagingTemplate = "";
     let builtInShortsPackagingTemplate = "";
+    let operationATemplate = "";
+    let builtInOperationATemplate = "";
 
     function setStatus(text, type = "") {
       statusText.textContent = text;
@@ -2646,6 +2783,8 @@
       shortsPackagingInputCount.textContent = `${shortsPackagingInputLength.toLocaleString("ko-KR")}자`;
       shortsPackagingTemplateHeaderCount.textContent = `${shortsPackagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       shortsPackagingTemplateCount.textContent = `${shortsPackagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      operationATemplateHeaderCount.textContent = `${operationATemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      operationATemplateCount.textContent = `${operationATemplateEditor.value.length.toLocaleString("ko-KR")}자`;
     }
 
     function switchTab(tabName) {
@@ -4984,6 +5123,85 @@ Moonlit Eastern Tales`;
       shortsPackagingFinalScript.focus();
     }
 
+    function syncOperationATemplateEditor() {
+      operationATemplateEditor.value = operationATemplate;
+      operationATemplateSaveMode.textContent = localStorage.getItem(OPERATION_A_TEMPLATE_STORAGE_KEY) ? "브라우저 저장소에 저장됨" : "기본 템플릿 사용 중";
+      operationATemplateSaveModeSummary.textContent = operationATemplateSaveMode.textContent;
+      operationATemplateFileName.textContent = getTemplateSourceLabel(
+        OPERATION_A_TEMPLATE_STORAGE_KEY,
+        OPERATION_A_SOURCE_STORAGE_KEY,
+        OPERATION_A_CONFIG.templateFile
+      );
+      updateCounts();
+    }
+
+    async function loadOperationATemplate() {
+      try {
+        const response = await fetch(encodeURI(OPERATION_A_CONFIG.templateFile), { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        builtInOperationATemplate = await response.text();
+        operationATemplate = localStorage.getItem(OPERATION_A_TEMPLATE_STORAGE_KEY) || builtInOperationATemplate;
+        syncOperationATemplateEditor();
+        setStatus(operationATemplate ? "Episode Quality Control Checker 템플릿 로드됨" : "Episode Quality Control Checker 템플릿을 찾을 수 없음", operationATemplate ? "ready" : "error");
+      } catch (error) {
+        builtInOperationATemplate = "";
+        operationATemplate = "";
+        syncOperationATemplateEditor();
+        setStatus("Episode Quality Control Checker 템플릿 파일을 찾을 수 없음", "error");
+      }
+    }
+
+    function saveOperationATemplate(sourceLabel = "") {
+      const nextTemplate = operationATemplateEditor.value;
+      if (!nextTemplate.trim()) {
+        setStatus("저장할 프롬프트가 비어 있음", "error");
+        return;
+      }
+      operationATemplate = nextTemplate;
+      localStorage.setItem(OPERATION_A_TEMPLATE_STORAGE_KEY, operationATemplate);
+      setTemplateSourceLabel(OPERATION_A_SOURCE_STORAGE_KEY, OPERATION_A_CONFIG.templateFile, sourceLabel);
+      syncOperationATemplateEditor();
+      setStatus("Episode Quality Control Checker 프롬프트 저장 완료", "ready");
+    }
+
+    function resetOperationATemplate() {
+      if (!builtInOperationATemplate) {
+        setStatus("복원할 Episode Quality Control Checker 기본 프롬프트가 없음", "error");
+        return;
+      }
+      operationATemplate = builtInOperationATemplate;
+      localStorage.setItem(OPERATION_A_TEMPLATE_STORAGE_KEY, operationATemplate);
+      localStorage.setItem(OPERATION_A_SOURCE_STORAGE_KEY, OPERATION_A_CONFIG.templateFile);
+      syncOperationATemplateEditor();
+      setStatus("Episode Quality Control Checker 프롬프트 내장 원본 복원 완료", "ready");
+    }
+
+    function exportOperationATemplate() {
+      if (!operationATemplateEditor.value) return;
+      const blob = new Blob([operationATemplateEditor.value], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "episode-quality-control-checker-prompt-template.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function importOperationATemplate(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        operationATemplateEditor.value = String(reader.result || "");
+        updateCounts();
+        saveOperationATemplate(`가져온 파일: ${file.name}`);
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         sourceIdea.value = chip.textContent.trim();
@@ -5076,6 +5294,7 @@ Moonlit Eastern Tales`;
     shortsPackagingVideoUrl.addEventListener("input", updateCounts);
     shortsPackagingTemplateEditor.addEventListener("input", updateCounts);
     shortsPackagingFinalPrompt.addEventListener("input", updateCounts);
+    operationATemplateEditor.addEventListener("input", updateCounts);
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -5239,6 +5458,14 @@ Moonlit Eastern Tales`;
     generateShortsPackagingPromptBtn.addEventListener("click", generateShortsPackagingPrompt);
     clearShortsPackagingBtn.addEventListener("click", clearShortsPackagingFields);
     copyShortsPackagingPromptBtn.addEventListener("click", copyShortsPackagingPrompt);
+    saveOperationATemplateBtn.addEventListener("click", saveOperationATemplate);
+    resetOperationATemplateBtn.addEventListener("click", resetOperationATemplate);
+    importOperationATemplateBtn.addEventListener("click", () => importOperationATemplateFile.click());
+    exportOperationATemplateBtn.addEventListener("click", exportOperationATemplate);
+    importOperationATemplateFile.addEventListener("change", () => {
+      importOperationATemplate(importOperationATemplateFile.files[0]);
+      importOperationATemplateFile.value = "";
+    });
 
     loadPromptTemplate();
     loadEpisodeTemplate();
@@ -5254,6 +5481,7 @@ Moonlit Eastern Tales`;
     loadShortsMomentTemplate();
     loadShortsScriptTemplate();
     loadShortsPackagingTemplate();
+    loadOperationATemplate();
     updateCounts();
   </script>
 </body>
