@@ -298,7 +298,8 @@
     #shortsMomentFinalPrompt,
     #shortsScriptFinalPrompt,
     #shortsPackagingFinalPrompt,
-    #operationAFinalPrompt {
+    #operationAFinalPrompt,
+    #operationBFinalPrompt {
       min-height: 540px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 13px;
@@ -603,7 +604,8 @@
     #shortsMomentTemplateEditor,
     #shortsScriptTemplateEditor,
     #shortsPackagingTemplateEditor,
-    #operationATemplateEditor {
+    #operationATemplateEditor,
+    #operationBTemplateEditor {
       min-height: 340px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
@@ -614,7 +616,8 @@
     #shortsMomentFinalPrompt,
     #shortsScriptFinalPrompt,
     #shortsPackagingFinalPrompt,
-    #operationAFinalPrompt {
+    #operationAFinalPrompt,
+    #operationBFinalPrompt {
       min-height: 270px;
     }
 
@@ -691,7 +694,8 @@
       #shortsMomentFinalPrompt,
       #shortsScriptFinalPrompt,
       #shortsPackagingFinalPrompt,
-      #operationAFinalPrompt {
+      #operationAFinalPrompt,
+      #operationBFinalPrompt {
         min-height: 420px;
       }
 
@@ -740,7 +744,8 @@
       #shortsMomentTemplateEditor,
       #shortsScriptTemplateEditor,
       #shortsPackagingTemplateEditor,
-      #operationATemplateEditor {
+      #operationATemplateEditor,
+      #operationBTemplateEditor {
         min-height: 300px;
       }
 
@@ -749,7 +754,8 @@
       #shortsMomentFinalPrompt,
       #shortsScriptFinalPrompt,
       #shortsPackagingFinalPrompt,
-      #operationAFinalPrompt {
+      #operationAFinalPrompt,
+      #operationBFinalPrompt {
         min-height: 210px;
       }
 
@@ -819,6 +825,7 @@
       <h2 class="operations-heading">운영 보조</h2>
       <nav class="tabs operations-tabs" aria-label="운영 보조 탭">
         <button class="tab" type="button" data-tab="operationA">A. 최종 품질 검수</button>
+        <button class="tab" type="button" data-tab="operationB">B. 제작 에셋 체크</button>
       </nav>
     </section>
 
@@ -2687,6 +2694,186 @@
           </div>
         </section>
       </section>
+
+      <section id="tabOperationB" class="tab-panel" data-panel="operationB">
+        <section class="workspace wide" aria-labelledby="operationBTitle">
+          <div class="panel-head">
+            <h2 id="operationBTitle">Production Asset Checklist Generator v1.0</h2>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>완성된 에피소드 결과물을 기준으로 제작에 필요한 텍스트, 업로드 자료, 이미지/오디오/영상 파일 준비 상태를 확인하는 운영 보조 기능입니다.</p>
+              <p>이 기능은 새 대본, 새 제목, 새 썸네일, 새 쇼츠를 만들지 않습니다. 입력된 결과물을 B 프롬프트에 그대로 삽입해 제작 에셋 체크리스트 생성용 최종 프롬프트만 만듭니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="operationBBasicInfoTitle">
+          <div class="panel-head">
+            <h2 id="operationBBasicInfoTitle">에피소드 기본 정보</h2>
+          </div>
+          <div class="input-area">
+            <label for="operationBEpisodeNumber">Episode Number</label>
+            <textarea id="operationBEpisodeNumber" spellcheck="false" placeholder="예: Episode 001"></textarea>
+
+            <label for="operationBFinalTitle">Episode Title</label>
+            <textarea id="operationBFinalTitle" spellcheck="false" placeholder="최종 에피소드 제목 또는 작업 제목을 붙여 넣으세요."></textarea>
+
+            <label for="operationBCoreKeyword">Core Keyword / Source Idea</label>
+            <textarea id="operationBCoreKeyword" spellcheck="false" placeholder="핵심 키워드 또는 원본 소재 아이디어를 붙여 넣으세요."></textarea>
+
+            <label for="operationBProductionStatus">Current Production Status</label>
+            <textarea id="operationBProductionStatus" spellcheck="false" placeholder="현재 제작 상태를 자유롭게 적어주세요. 예: 대본 완료, TTS 미생성, 썸네일 후보만 있음."></textarea>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="operationBInputTitle">
+          <div class="panel-head">
+            <h2 id="operationBInputTitle">제작 에셋 체크 입력</h2>
+          </div>
+          <div class="input-area">
+            <div class="actions">
+              <button id="importOperationBStep8Btn" class="btn" type="button">Step 8 TTS 결과 가져오기</button>
+              <button id="importOperationBStep9Btn" class="btn" type="button">Step 9 Packaging 결과 가져오기</button>
+              <button id="importOperationBStep10Btn" class="btn" type="button">Step 10 Korean Review 결과 가져오기</button>
+              <button id="importOperationBStep11Btn" class="btn" type="button">Step 11 Visual Cut Plan 결과 가져오기</button>
+              <button id="importOperationBStep12Btn" class="btn" type="button">Step 12 Shorts Moment 결과 가져오기</button>
+              <button id="importOperationBStep13Btn" class="btn" type="button">Step 13 Shorts Script 결과 가져오기</button>
+              <button id="importOperationBStep14Btn" class="btn" type="button">Step 14 Shorts Packaging 결과 가져오기</button>
+              <button id="importOperationBAResultBtn" class="btn" type="button">A QC 결과 가져오기</button>
+              <button id="importAllOperationBResultsBtn" class="btn primary" type="button">전체 결과 한 번에 가져오기</button>
+            </div>
+
+            <label for="operationBFinalTtsScript">Final TTS-Ready Script</label>
+            <p class="field-help">Step 8의 TTS-ready script 결과를 붙여 넣습니다. 최종 프롬프트, 분석문, 메모를 앱이 수정하지 않습니다.</p>
+            <textarea id="operationBFinalTtsScript" spellcheck="false"></textarea>
+
+            <label for="operationBYoutubePackaging">YouTube Packaging Result</label>
+            <p class="field-help">Step 9의 유튜브 패키징 결과를 붙여 넣습니다. 제목, 설명, 태그, 썸네일 문구와 프롬프트가 있으면 그대로 보존됩니다.</p>
+            <textarea id="operationBYoutubePackaging" spellcheck="false"></textarea>
+
+            <label for="operationBKoreanReview">Korean Review Translation Result</label>
+            <p class="field-help">Step 10 결과가 있으면 붙여 넣습니다. 선택 입력입니다.</p>
+            <textarea id="operationBKoreanReview" spellcheck="false"></textarea>
+
+            <label for="operationBLongformVisual">Longform Visual Cut Plan Result</label>
+            <p class="field-help">Step 11의 롱폼 시각 컷 계획과 이미지 프롬프트 결과를 붙여 넣습니다.</p>
+            <textarea id="operationBLongformVisual" spellcheck="false"></textarea>
+
+            <label for="operationBShortsMoment">Shorts Moment Extractor Result</label>
+            <p class="field-help">Step 12의 쇼츠 순간 후보 추출 결과가 있으면 붙여 넣습니다.</p>
+            <textarea id="operationBShortsMoment" spellcheck="false"></textarea>
+
+            <label for="operationBShortsScript">Shorts Script Result</label>
+            <p class="field-help">Step 13의 쇼츠 대본 결과가 있으면 붙여 넣습니다.</p>
+            <textarea id="operationBShortsScript" spellcheck="false"></textarea>
+
+            <label for="operationBShortsPackaging">Shorts Packaging Result</label>
+            <p class="field-help">Step 14의 쇼츠 패키징 결과가 있으면 붙여 넣습니다.</p>
+            <textarea id="operationBShortsPackaging" spellcheck="false"></textarea>
+
+            <label for="operationBAQcReport">Episode Quality Control Report</label>
+            <p class="field-help">운영보조 A의 Episode Quality Control Checker 결과가 있으면 붙여 넣습니다. 선택 입력입니다.</p>
+            <textarea id="operationBAQcReport" spellcheck="false"></textarea>
+
+            <label for="operationBManualNotes">Manual Production Notes</label>
+            <p class="field-help">실제 파일 생성 여부, 오디오/영상/이미지 작업 상태, 수동 확인 사항을 적습니다. 이 메모는 제작 상태 판단에 중요합니다.</p>
+            <textarea id="operationBManualNotes" spellcheck="false" placeholder="예: TTS 오디오 파일 아직 없음. 썸네일 이미지 A만 생성 완료. 롱폼 영상 편집 전."></textarea>
+          </div>
+        </section>
+
+        <section class="workspace wide" aria-labelledby="operationBTemplateTitle">
+          <div class="panel-head">
+            <h2 id="operationBTemplateTitle">프롬프트 템플릿</h2>
+            <span id="operationBTemplateHeaderCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>프롬프트 템플릿 버전</strong>
+                <span id="operationBTemplateFileName">B. Production Asset Checklist Generator v1.0.txt</span>
+              </div>
+              <div class="meta-box">
+                <strong>저장 방식</strong>
+                <span id="operationBTemplateSaveModeSummary">기본 템플릿 사용 중</span>
+              </div>
+            </div>
+
+            <details class="prompt-editor" open>
+              <summary>프롬프트 업데이트</summary>
+              <div class="prompt-editor-body">
+                <label for="operationBTemplateEditor">현재 저장된 실행 프롬프트 원문</label>
+                <textarea id="operationBTemplateEditor" spellcheck="false"></textarea>
+
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>저장 방식</strong>
+                    <span id="operationBTemplateSaveMode">기본 템플릿 사용 중</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>프롬프트 길이</strong>
+                    <span id="operationBTemplateCount">0자</span>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button id="saveOperationBTemplateBtn" class="btn primary" type="button">수정한 프롬프트 저장</button>
+                  <button id="resetOperationBTemplateBtn" class="btn warn" type="button">내장 원본으로 복원</button>
+                  <button id="importOperationBTemplateBtn" class="btn" type="button">텍스트 파일 불러오기</button>
+                  <button id="exportOperationBTemplateBtn" class="btn" type="button">현재 프롬프트 내보내기</button>
+                  <input id="importOperationBTemplateFile" class="file-input" type="file" accept=".txt,text/plain">
+                </div>
+              </div>
+            </details>
+
+            <div class="actions">
+              <button id="generateOperationBPromptBtn" class="btn primary" type="button">B 실행 프롬프트 생성</button>
+              <button id="clearOperationBBtn" class="btn warn" type="button">초기화</button>
+            </div>
+
+            <label for="operationBFinalPrompt">최종 실행 프롬프트</label>
+            <textarea id="operationBFinalPrompt" spellcheck="false"></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>최종 실행 프롬프트 길이</strong>
+                <span id="operationBFinalPromptCount">0자</span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button id="copyOperationBPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace wide" aria-labelledby="operationBChecklistTitle">
+          <div class="panel-head">
+            <h2 id="operationBChecklistTitle">B 기능 체크리스트</h2>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>B 기능 사용 전 확인</strong>
+                <ul class="checklist">
+                  <li>Step 8 TTS-ready script가 준비되었는가?</li>
+                  <li>Step 9 YouTube Packaging 결과가 준비되었는가?</li>
+                  <li>Step 11 Longform Visual Cut Plan 결과가 준비되었는가?</li>
+                  <li>실제 오디오, 이미지, 영상 파일 생성 여부를 Manual Production Notes에 적었는가?</li>
+                </ul>
+              </div>
+              <div class="meta-box">
+                <strong>B 결과 확인 기준</strong>
+                <ul class="checklist">
+                  <li>텍스트/프롬프트 에셋과 실제 제작 파일을 구분했는가?</li>
+                  <li>롱폼과 쇼츠 제작 에셋을 분리했는가?</li>
+                  <li>누락/미완성 에셋의 우선순위가 명확한가?</li>
+                  <li>다음 제작 순서가 실행 가능한 형태로 정리되었는가?</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
 
@@ -2745,9 +2932,19 @@
         toolName: "Episode Quality Control Checker",
         version: "v1.0",
         templateFile: "A. Episode Quality Control Checker v1.0.txt"
+      },
+      {
+        id: "B",
+        group: "operations",
+        shortLabel: "제작 에셋 체크",
+        displayTitle: "Production Asset Checklist Generator",
+        toolName: "Production Asset Checklist Generator",
+        version: "v1.0",
+        templateFile: "B. Production Asset Checklist Generator v1.0.txt"
       }
     ];
     const OPERATION_A_CONFIG = operationTools[0];
+    const OPERATION_B_CONFIG = operationTools[1];
     const OPERATION_A_TEMPLATE_STORAGE_KEY = "operation-template-A";
     const OPERATION_A_INPUT_STORAGE_KEY = "operation-input-A";
     const OPERATION_A_FINAL_PROMPT_STORAGE_KEY = "operation-final-prompt-A";
@@ -2759,6 +2956,10 @@
     const OPERATION_A_QC_SUMMARY_STORAGE_KEY = "operation-qc-summary-A";
     const PIPELINE_RESULT_STORAGE_PREFIX = "pipeline-result-step-";
     const PIPELINE_RESULT_UPDATED_PREFIX = "pipeline-result-updated-step-";
+    const OPERATION_B_TEMPLATE_STORAGE_KEY = "operation-template-B";
+    const OPERATION_B_INPUT_STORAGE_KEY = "operation-input-B";
+    const OPERATION_B_FINAL_PROMPT_STORAGE_KEY = "operation-final-prompt-B";
+    const OPERATION_B_SOURCE_STORAGE_KEY = "operation-template-source-B";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
@@ -3227,6 +3428,44 @@
     const operationAProductionReadiness = document.querySelector("#operationAProductionReadiness");
     const operationAPatchStatus = document.querySelector("#operationAPatchStatus");
     const operationAQcSummary = document.querySelector("#operationAQcSummary");
+    const operationBTemplateEditor = document.querySelector("#operationBTemplateEditor");
+    const operationBTemplateHeaderCount = document.querySelector("#operationBTemplateHeaderCount");
+    const operationBTemplateCount = document.querySelector("#operationBTemplateCount");
+    const operationBTemplateSaveModeSummary = document.querySelector("#operationBTemplateSaveModeSummary");
+    const operationBTemplateSaveMode = document.querySelector("#operationBTemplateSaveMode");
+    const operationBTemplateFileName = document.querySelector("#operationBTemplateFileName");
+    const saveOperationBTemplateBtn = document.querySelector("#saveOperationBTemplateBtn");
+    const resetOperationBTemplateBtn = document.querySelector("#resetOperationBTemplateBtn");
+    const importOperationBTemplateBtn = document.querySelector("#importOperationBTemplateBtn");
+    const exportOperationBTemplateBtn = document.querySelector("#exportOperationBTemplateBtn");
+    const importOperationBTemplateFile = document.querySelector("#importOperationBTemplateFile");
+    const operationBEpisodeNumber = document.querySelector("#operationBEpisodeNumber");
+    const operationBFinalTitle = document.querySelector("#operationBFinalTitle");
+    const operationBCoreKeyword = document.querySelector("#operationBCoreKeyword");
+    const operationBProductionStatus = document.querySelector("#operationBProductionStatus");
+    const operationBFinalTtsScript = document.querySelector("#operationBFinalTtsScript");
+    const operationBYoutubePackaging = document.querySelector("#operationBYoutubePackaging");
+    const operationBKoreanReview = document.querySelector("#operationBKoreanReview");
+    const operationBLongformVisual = document.querySelector("#operationBLongformVisual");
+    const operationBShortsMoment = document.querySelector("#operationBShortsMoment");
+    const operationBShortsScript = document.querySelector("#operationBShortsScript");
+    const operationBShortsPackaging = document.querySelector("#operationBShortsPackaging");
+    const operationBAQcReport = document.querySelector("#operationBAQcReport");
+    const operationBManualNotes = document.querySelector("#operationBManualNotes");
+    const operationBFinalPrompt = document.querySelector("#operationBFinalPrompt");
+    const operationBFinalPromptCount = document.querySelector("#operationBFinalPromptCount");
+    const generateOperationBPromptBtn = document.querySelector("#generateOperationBPromptBtn");
+    const clearOperationBBtn = document.querySelector("#clearOperationBBtn");
+    const copyOperationBPromptBtn = document.querySelector("#copyOperationBPromptBtn");
+    const importOperationBStep8Btn = document.querySelector("#importOperationBStep8Btn");
+    const importOperationBStep9Btn = document.querySelector("#importOperationBStep9Btn");
+    const importOperationBStep10Btn = document.querySelector("#importOperationBStep10Btn");
+    const importOperationBStep11Btn = document.querySelector("#importOperationBStep11Btn");
+    const importOperationBStep12Btn = document.querySelector("#importOperationBStep12Btn");
+    const importOperationBStep13Btn = document.querySelector("#importOperationBStep13Btn");
+    const importOperationBStep14Btn = document.querySelector("#importOperationBStep14Btn");
+    const importOperationBAResultBtn = document.querySelector("#importOperationBAResultBtn");
+    const importAllOperationBResultsBtn = document.querySelector("#importAllOperationBResultsBtn");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -3258,6 +3497,8 @@
     let builtInShortsPackagingTemplate = "";
     let operationATemplate = "";
     let builtInOperationATemplate = "";
+    let operationBTemplate = "";
+    let builtInOperationBTemplate = "";
     const operationAInputFields = [
       ["episodeNumber", operationAEpisodeNumber],
       ["coreKeyword", operationACoreKeyword],
@@ -3270,6 +3511,21 @@
       ["shortsMoment", operationAShortsMoment],
       ["shortsScript", operationAShortsScript],
       ["shortsPackaging", operationAShortsPackaging],
+    ];
+    const operationBInputFields = [
+      ["episodeNumber", operationBEpisodeNumber],
+      ["finalTitle", operationBFinalTitle],
+      ["coreKeyword", operationBCoreKeyword],
+      ["productionStatus", operationBProductionStatus],
+      ["finalTtsScript", operationBFinalTtsScript],
+      ["youtubePackaging", operationBYoutubePackaging],
+      ["koreanReview", operationBKoreanReview],
+      ["longformVisual", operationBLongformVisual],
+      ["shortsMoment", operationBShortsMoment],
+      ["shortsScript", operationBShortsScript],
+      ["shortsPackaging", operationBShortsPackaging],
+      ["aQcReport", operationBAQcReport],
+      ["manualNotes", operationBManualNotes],
     ];
 
     function setStatus(text, type = "") {
@@ -3510,6 +3766,9 @@
       operationATemplateHeaderCount.textContent = `${operationATemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       operationATemplateCount.textContent = `${operationATemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       operationAFinalPromptCount.textContent = `${operationAFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
+      operationBTemplateHeaderCount.textContent = `${operationBTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      operationBTemplateCount.textContent = `${operationBTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      operationBFinalPromptCount.textContent = `${operationBFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
     }
 
     function switchTab(tabName) {
@@ -6284,6 +6543,371 @@ ${valueOrEmpty(data.shortsPackaging)}
       operationAEpisodeNumber.focus();
     }
 
+    function syncOperationBTemplateEditor() {
+      operationBTemplateEditor.value = operationBTemplate;
+      operationBTemplateSaveMode.textContent = localStorage.getItem(OPERATION_B_TEMPLATE_STORAGE_KEY) ? "브라우저 저장소에 저장됨" : "기본 템플릿 사용 중";
+      operationBTemplateSaveModeSummary.textContent = operationBTemplateSaveMode.textContent;
+      operationBTemplateFileName.textContent = getTemplateSourceLabel(
+        OPERATION_B_TEMPLATE_STORAGE_KEY,
+        OPERATION_B_SOURCE_STORAGE_KEY,
+        OPERATION_B_CONFIG.templateFile
+      );
+      updateCounts();
+    }
+
+    async function loadOperationBTemplate() {
+      try {
+        const response = await fetch(encodeURI(OPERATION_B_CONFIG.templateFile), { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        builtInOperationBTemplate = await response.text();
+        operationBTemplate = localStorage.getItem(OPERATION_B_TEMPLATE_STORAGE_KEY) || builtInOperationBTemplate;
+        syncOperationBTemplateEditor();
+        setStatus(operationBTemplate ? "Production Asset Checklist Generator 템플릿 로드됨" : "Production Asset Checklist Generator 템플릿을 찾을 수 없음", operationBTemplate ? "ready" : "error");
+      } catch (error) {
+        builtInOperationBTemplate = "";
+        operationBTemplate = "";
+        syncOperationBTemplateEditor();
+        setStatus("Production Asset Checklist Generator 템플릿 파일을 찾을 수 없음", "error");
+      }
+    }
+
+    function saveOperationBTemplate(sourceLabel = "") {
+      const nextTemplate = operationBTemplateEditor.value;
+      if (!nextTemplate.trim()) {
+        setStatus("저장할 프롬프트가 비어 있음", "error");
+        return;
+      }
+      operationBTemplate = nextTemplate;
+      localStorage.setItem(OPERATION_B_TEMPLATE_STORAGE_KEY, operationBTemplate);
+      setTemplateSourceLabel(OPERATION_B_SOURCE_STORAGE_KEY, OPERATION_B_CONFIG.templateFile, sourceLabel);
+      syncOperationBTemplateEditor();
+      setStatus("Production Asset Checklist Generator 프롬프트 저장 완료", "ready");
+    }
+
+    function resetOperationBTemplate() {
+      if (!builtInOperationBTemplate) {
+        setStatus("복원할 Production Asset Checklist Generator 기본 프롬프트가 없음", "error");
+        return;
+      }
+      operationBTemplate = builtInOperationBTemplate;
+      localStorage.setItem(OPERATION_B_TEMPLATE_STORAGE_KEY, operationBTemplate);
+      localStorage.setItem(OPERATION_B_SOURCE_STORAGE_KEY, OPERATION_B_CONFIG.templateFile);
+      syncOperationBTemplateEditor();
+      setStatus("Production Asset Checklist Generator 프롬프트 내장 원본 복원 완료", "ready");
+    }
+
+    function exportOperationBTemplate() {
+      if (!operationBTemplateEditor.value) return;
+      const blob = new Blob([operationBTemplateEditor.value], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "production-asset-checklist-generator-prompt-template.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function importOperationBTemplate(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        operationBTemplateEditor.value = String(reader.result || "");
+        updateCounts();
+        saveOperationBTemplate(`가져온 파일: ${file.name}`);
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function getOperationBInputData() {
+      return Object.fromEntries(operationBInputFields.map(([key, field]) => [key, field.value]));
+    }
+
+    function saveOperationBState() {
+      localStorage.setItem(OPERATION_B_INPUT_STORAGE_KEY, JSON.stringify(getOperationBInputData()));
+      localStorage.setItem(OPERATION_B_FINAL_PROMPT_STORAGE_KEY, operationBFinalPrompt.value);
+    }
+
+    function restoreOperationBState() {
+      try {
+        const savedInputs = JSON.parse(localStorage.getItem(OPERATION_B_INPUT_STORAGE_KEY) || "{}");
+        operationBInputFields.forEach(([key, field]) => {
+          field.value = typeof savedInputs[key] === "string" ? savedInputs[key] : "";
+        });
+      } catch (error) {
+        operationBInputFields.forEach(([, field]) => {
+          field.value = "";
+        });
+      }
+      operationBFinalPrompt.value = localStorage.getItem(OPERATION_B_FINAL_PROMPT_STORAGE_KEY) || "";
+      copyOperationBPromptBtn.disabled = !operationBFinalPrompt.value;
+      updateCounts();
+    }
+
+    const operationBResultSources = [
+      {
+        step: "Step 8",
+        missingMessage: "Step 8 결과물이 없습니다. Final TTS-Ready Script를 직접 붙여 넣어주세요.",
+        target: operationBFinalTtsScript,
+        getValue: () => firstNonEmptyValue([packagingTtsReadyInput, longformVisualTtsReadyInput, ttsFinalPrompt]),
+      },
+      {
+        step: "Step 9",
+        missingMessage: "Step 9 결과물이 없습니다. YouTube Packaging Result를 직접 붙여 넣어주세요.",
+        target: operationBYoutubePackaging,
+        getValue: () => firstNonEmptyValue([koreanReviewEnglishInput, packagingFinalPrompt]),
+      },
+      {
+        step: "Step 10",
+        missingMessage: "Step 10 결과물이 없습니다. Korean Review Translation Result를 직접 붙여 넣어주세요.",
+        target: operationBKoreanReview,
+        getValue: () => firstNonEmptyValue([koreanReviewFinalPrompt]),
+      },
+      {
+        step: "Step 11",
+        missingMessage: "Step 11 결과물이 없습니다. Longform Visual Cut Plan Result를 직접 붙여 넣어주세요.",
+        target: operationBLongformVisual,
+        getValue: () => firstNonEmptyValue([longformVisualFinalPrompt]),
+      },
+      {
+        step: "Step 12",
+        missingMessage: "Step 12 결과물이 없습니다. Shorts Moment Extractor Result를 직접 붙여 넣어주세요.",
+        target: operationBShortsMoment,
+        getValue: () => firstNonEmptyValue([shortsScriptFullStep12Result, shortsMomentFinalPrompt]),
+      },
+      {
+        step: "Step 13",
+        missingMessage: "Step 13 결과물이 없습니다. Shorts Script Result를 직접 붙여 넣어주세요.",
+        target: operationBShortsScript,
+        getValue: () => firstNonEmptyValue([shortsPackagingFullStep13Result, shortsScriptFinalPrompt]),
+      },
+      {
+        step: "Step 14",
+        missingMessage: "Step 14 결과물이 없습니다. Shorts Packaging Result를 직접 붙여 넣어주세요.",
+        target: operationBShortsPackaging,
+        getValue: () => firstNonEmptyValue([shortsPackagingFinalPrompt]),
+      },
+      {
+        step: "A",
+        missingMessage: "A QC 결과물이 없습니다. Episode Quality Control Report를 직접 붙여 넣어주세요.",
+        target: operationBAQcReport,
+        getValue: () => firstNonEmptyValue([operationAResult, operationAFinalPrompt]),
+      },
+    ];
+
+    function importOperationBResult(source, shouldReport = true) {
+      const value = source.getValue();
+      if (!value.trim()) {
+        if (shouldReport) {
+          setStatus(source.missingMessage, "error");
+        }
+        return false;
+      }
+
+      source.target.value = value;
+      saveOperationBState();
+      updateCounts();
+      if (shouldReport) {
+        setStatus(`${source.step} 결과 가져오기 완료`, "ready");
+      }
+      return true;
+    }
+
+    function importAllOperationBResults() {
+      const missing = [];
+      let importedCount = 0;
+
+      operationBResultSources.forEach((source) => {
+        if (importOperationBResult(source, false)) {
+          importedCount += 1;
+        } else {
+          missing.push(source.missingMessage);
+        }
+      });
+
+      setStatus(
+        missing.length
+          ? `${importedCount}개 결과를 가져왔습니다. 부족한 항목은 직접 입력해주세요.`
+          : "B 입력용 전체 결과 가져오기 완료",
+        importedCount ? "ready" : "error"
+      );
+    }
+
+    function buildOperationBInputBlock() {
+      const data = getOperationBInputData();
+      const valueOrEmpty = (value) => value.trim() || "입력 없음";
+
+      return `# INPUTS
+
+Paste the available episode outputs below.
+
+Not every input is always required.
+
+If some sections are missing, create the checklist from the provided sections and clearly mark missing sections as not provided.
+
+---
+
+## EPISODE BASIC INFO
+
+Episode Number:
+${valueOrEmpty(data.episodeNumber)}
+
+Episode Title:
+${valueOrEmpty(data.finalTitle)}
+
+Core Keyword / Source Idea:
+${valueOrEmpty(data.coreKeyword)}
+
+Current Production Status:
+${valueOrEmpty(data.productionStatus)}
+
+---
+
+## FINAL TTS-READY SCRIPT
+
+<<< FINAL TTS-READY SCRIPT START >>>
+
+${valueOrEmpty(data.finalTtsScript)}
+
+<<< FINAL TTS-READY SCRIPT END >>>
+
+---
+
+## YOUTUBE PACKAGING RESULT
+
+<<< YOUTUBE PACKAGING RESULT START >>>
+
+${valueOrEmpty(data.youtubePackaging)}
+
+<<< YOUTUBE PACKAGING RESULT END >>>
+
+---
+
+## KOREAN REVIEW TRANSLATION RESULT
+
+<<< KOREAN REVIEW TRANSLATION RESULT START >>>
+
+${valueOrEmpty(data.koreanReview)}
+
+<<< KOREAN REVIEW TRANSLATION RESULT END >>>
+
+---
+
+## LONGFORM VISUAL CUT PLAN RESULT
+
+<<< LONGFORM VISUAL CUT PLAN RESULT START >>>
+
+${valueOrEmpty(data.longformVisual)}
+
+<<< LONGFORM VISUAL CUT PLAN RESULT END >>>
+
+---
+
+## SHORTS MOMENT EXTRACTOR RESULT
+
+<<< SHORTS MOMENT EXTRACTOR RESULT START >>>
+
+${valueOrEmpty(data.shortsMoment)}
+
+<<< SHORTS MOMENT EXTRACTOR RESULT END >>>
+
+---
+
+## SHORTS SCRIPT RESULT
+
+<<< SHORTS SCRIPT RESULT START >>>
+
+${valueOrEmpty(data.shortsScript)}
+
+<<< SHORTS SCRIPT RESULT END >>>
+
+---
+
+## SHORTS PACKAGING RESULT
+
+<<< SHORTS PACKAGING RESULT START >>>
+
+${valueOrEmpty(data.shortsPackaging)}
+
+<<< SHORTS PACKAGING RESULT END >>>
+
+---
+
+## EPISODE QUALITY CONTROL REPORT
+
+<<< EPISODE QUALITY CONTROL REPORT START >>>
+
+${valueOrEmpty(data.aQcReport)}
+
+<<< EPISODE QUALITY CONTROL REPORT END >>>
+
+---
+
+## MANUAL PRODUCTION NOTES
+
+${valueOrEmpty(data.manualNotes)}`;
+    }
+
+    function mergeOperationBTemplateWithInputs(template, inputBlock) {
+      if (template.includes("{{OPERATION_B_INPUTS}}")) {
+        return template.replace("{{OPERATION_B_INPUTS}}", () => inputBlock);
+      }
+
+      const inputSectionPattern = /# INPUTS[\s\S]*?---\s*# PRIMARY TASK/;
+      if (inputSectionPattern.test(template)) {
+        return template.replace(inputSectionPattern, `${inputBlock}\n\n---\n\n# PRIMARY TASK`);
+      }
+
+      return `${template.trimEnd()}\n\n---\n\n${inputBlock}`;
+    }
+
+    function generateOperationBPrompt() {
+      if (!operationBTemplateEditor.value.trim()) {
+        setStatus("Production Asset Checklist Generator 템플릿이 비어 있어 프롬프트를 생성할 수 없습니다.", "error");
+        return;
+      }
+
+      const hasAnyInput = operationBInputFields.some(([, field]) => field.value.trim());
+      if (!hasAnyInput) {
+        setStatus("B 실행 프롬프트를 생성하려면 최소 한 개 이상의 입력값을 넣어주세요.", "error");
+        return;
+      }
+
+      const inputBlock = buildOperationBInputBlock();
+      operationBFinalPrompt.value = mergeOperationBTemplateWithInputs(operationBTemplateEditor.value, inputBlock);
+      copyOperationBPromptBtn.disabled = !operationBFinalPrompt.value;
+      saveOperationBState();
+      setStatus("Production Asset Checklist Generator 최종 실행 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function copyOperationBPrompt() {
+      if (!operationBFinalPrompt.value) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(operationBFinalPrompt.value);
+      } else {
+        operationBFinalPrompt.focus();
+        operationBFinalPrompt.select();
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+      setStatus("Production Asset Checklist Generator 프롬프트 복사 완료", "ready");
+    }
+
+    function clearOperationBFields() {
+      operationBInputFields.forEach(([, field]) => {
+        field.value = "";
+      });
+      operationBFinalPrompt.value = "";
+      copyOperationBPromptBtn.disabled = true;
+      saveOperationBState();
+      updateCounts();
+      operationBEpisodeNumber.focus();
+    }
+
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         sourceIdea.value = chip.textContent.trim();
@@ -6490,6 +7114,18 @@ ${valueOrEmpty(data.shortsPackaging)}
     operationAProductionReadiness.addEventListener("change", saveOperationAResultState);
     operationAPatchStatus.addEventListener("change", saveOperationAResultState);
     operationAQcSummary.addEventListener("input", saveOperationAResultState);
+    operationBTemplateEditor.addEventListener("input", updateCounts);
+    operationBInputFields.forEach(([, field]) => {
+      field.addEventListener("input", () => {
+        saveOperationBState();
+        updateCounts();
+      });
+    });
+    operationBFinalPrompt.addEventListener("input", () => {
+      saveOperationBState();
+      copyOperationBPromptBtn.disabled = !operationBFinalPrompt.value;
+      updateCounts();
+    });
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -6672,6 +7308,26 @@ ${valueOrEmpty(data.shortsPackaging)}
     importOperationAStep13Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[5]));
     importOperationAStep14Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[6]));
     importAllOperationAResultsBtn.addEventListener("click", importAllOperationAResults);
+    saveOperationBTemplateBtn.addEventListener("click", saveOperationBTemplate);
+    resetOperationBTemplateBtn.addEventListener("click", resetOperationBTemplate);
+    importOperationBTemplateBtn.addEventListener("click", () => importOperationBTemplateFile.click());
+    exportOperationBTemplateBtn.addEventListener("click", exportOperationBTemplate);
+    importOperationBTemplateFile.addEventListener("change", () => {
+      importOperationBTemplate(importOperationBTemplateFile.files[0]);
+      importOperationBTemplateFile.value = "";
+    });
+    generateOperationBPromptBtn.addEventListener("click", generateOperationBPrompt);
+    clearOperationBBtn.addEventListener("click", clearOperationBFields);
+    copyOperationBPromptBtn.addEventListener("click", copyOperationBPrompt);
+    importOperationBStep8Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[0]));
+    importOperationBStep9Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[1]));
+    importOperationBStep10Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[2]));
+    importOperationBStep11Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[3]));
+    importOperationBStep12Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[4]));
+    importOperationBStep13Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[5]));
+    importOperationBStep14Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[6]));
+    importOperationBAResultBtn.addEventListener("click", () => importOperationBResult(operationBResultSources[7]));
+    importAllOperationBResultsBtn.addEventListener("click", importAllOperationBResults);
 
     loadPromptTemplate();
     loadEpisodeTemplate();
@@ -6690,6 +7346,8 @@ ${valueOrEmpty(data.shortsPackaging)}
     loadOperationATemplate();
     restorePipelineResults();
     restoreOperationAState();
+    loadOperationBTemplate();
+    restoreOperationBState();
     updateCounts();
   </script>
 </body>
