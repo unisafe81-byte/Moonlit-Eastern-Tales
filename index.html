@@ -257,7 +257,8 @@
     #postProcessorFinalPrompt,
     #ttsFinalPrompt,
     #packagingFinalPrompt,
-    #koreanReviewFinalPrompt {
+    #koreanReviewFinalPrompt,
+    #longformVisualFinalPrompt {
       min-height: 540px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 13px;
@@ -512,11 +513,13 @@
       font-size: 12px;
     }
 
-    #packagingTtsReadyInput {
+    #packagingTtsReadyInput,
+    #longformVisualTtsReadyInput {
       min-height: 5px;
     }
 
-    #packagingFullTtsResult {
+    #packagingFullTtsResult,
+    #longformVisualFullTtsResult {
       min-height: 180px;
       flex: 0 0 auto;
     }
@@ -535,13 +538,15 @@
       min-height: 300px;
     }
 
-    #koreanReviewTemplateEditor {
+    #koreanReviewTemplateEditor,
+    #longformVisualTemplateEditor {
       min-height: 340px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
     }
 
-    #koreanReviewFinalPrompt {
+    #koreanReviewFinalPrompt,
+    #longformVisualFinalPrompt {
       min-height: 270px;
     }
 
@@ -597,7 +602,8 @@
       #postProcessorFinalPrompt,
       #ttsFinalPrompt,
       #packagingFinalPrompt,
-      #koreanReviewFinalPrompt {
+      #koreanReviewFinalPrompt,
+      #longformVisualFinalPrompt {
         min-height: 420px;
       }
 
@@ -617,11 +623,13 @@
         min-height: 140px;
       }
 
-      #packagingTtsReadyInput {
+      #packagingTtsReadyInput,
+      #longformVisualTtsReadyInput {
         min-height: 4px;
       }
 
-      #packagingFullTtsResult {
+      #packagingFullTtsResult,
+      #longformVisualFullTtsResult {
         min-height: 140px;
       }
 
@@ -637,11 +645,13 @@
         min-height: 220px;
       }
 
-      #koreanReviewTemplateEditor {
+      #koreanReviewTemplateEditor,
+      #longformVisualTemplateEditor {
         min-height: 300px;
       }
 
-      #koreanReviewFinalPrompt {
+      #koreanReviewFinalPrompt,
+      #longformVisualFinalPrompt {
         min-height: 210px;
       }
 
@@ -679,6 +689,7 @@
       <button class="tab" type="button" data-tab="tts">8. TTS 낭독용 대본 정리</button>
       <button class="tab" type="button" data-tab="packaging">9. 유튜브 패키징 생성</button>
       <button class="tab" type="button" data-tab="koreanReview">10. 한국어 검수 번역</button>
+      <button class="tab" type="button" data-tab="longformVisual">11. Longform Visual</button>
     </nav>
 
     <main>
@@ -1669,6 +1680,113 @@
           </div>
         </section>
       </section>
+
+      <section id="tabLongformVisual" class="tab-panel" data-panel="longformVisual">
+        <section class="workspace wide" aria-labelledby="longformVisualTitle">
+          <div class="panel-head">
+            <h2 id="longformVisualTitle">Longform Visual Cut Planner & Image Prompt Generator v1.0.2a</h2>
+            <span id="longformVisualInputCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>이 단계는 이미 완성된 TTS-ready script를 바탕으로 롱폼 영상의 8개 시각 컷을 계획하기 위한 프롬프트를 준비합니다. 앱은 대본을 직접 분석하지 않고, 입력 원문을 프롬프트 템플릿에 삽입만 합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="longformVisualInputTitle">
+          <div class="panel-head">
+            <h2 id="longformVisualInputTitle">Final TTS-ready Script Input</h2>
+          </div>
+          <div class="input-area">
+            <details class="prompt-editor" open>
+              <summary>Paste Full Step 8 TTS Result</summary>
+              <div class="prompt-editor-body">
+                <label for="longformVisualFullTtsResult">Full Step 8 TTS Result</label>
+                <textarea id="longformVisualFullTtsResult" spellcheck="false" placeholder="Paste TTS-READY SCRIPT from Step 8 or full TTS result"></textarea>
+                <div class="actions">
+                  <button id="extractLongformVisualTtsReadyBtn" class="btn" type="button">Extract TTS-READY SCRIPT</button>
+                </div>
+              </div>
+            </details>
+
+            <label for="longformVisualTtsReadyInput">Final TTS-ready Script Input</label>
+            <textarea id="longformVisualTtsReadyInput" spellcheck="false" placeholder="Paste TTS-READY SCRIPT from Step 8 or full TTS result"></textarea>
+
+            <div class="info-band">
+              <p>최종 TTS-ready script 원문을 그대로 붙여 넣는 영역입니다. 앱은 이 내용을 요약, 수정, 번역, 분석하지 않습니다.</p>
+            </div>
+
+            <label for="longformVisualVideoTitle">Optional Video Title</label>
+            <textarea id="longformVisualVideoTitle" spellcheck="false" placeholder="Optional video title"></textarea>
+
+            <label for="longformVisualTimestamps">Optional Exact Audio Timestamps</label>
+            <textarea id="longformVisualTimestamps" spellcheck="false" placeholder="Optional exact audio timestamps. Leave blank if unavailable."></textarea>
+
+            <div class="info-band">
+              <p>정확한 오디오 타임스탬프가 있을 때만 입력하세요. 비워두면 템플릿의 규칙에 따라 누적 타임라인을 만들지 않도록 안내가 함께 삽입됩니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="longformVisualTemplateTitle">
+          <div class="panel-head">
+            <h2 id="longformVisualTemplateTitle">프롬프트 템플릿</h2>
+            <span id="longformVisualTemplateHeaderCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>프롬프트 템플릿 버전</strong>
+                <span id="longformVisualTemplateFileName">11. Longform Visual Cut Planner & Image Prompt Generator v1.0.2a.txt</span>
+              </div>
+              <div class="meta-box">
+                <strong>저장 방식</strong>
+                <span id="longformVisualTemplateSaveModeSummary">기본 템플릿 사용 중</span>
+              </div>
+            </div>
+
+            <details class="prompt-editor" open>
+              <summary>프롬프트 업데이트</summary>
+              <div class="prompt-editor-body">
+                <label for="longformVisualTemplateEditor">현재 저장된 실행 프롬프트 원문</label>
+                <textarea id="longformVisualTemplateEditor" spellcheck="false"></textarea>
+
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>저장 방식</strong>
+                    <span id="longformVisualTemplateSaveMode">기본 템플릿 사용 중</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>프롬프트 길이</strong>
+                    <span id="longformVisualTemplateCount">0자</span>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button id="saveLongformVisualTemplateBtn" class="btn primary" type="button">수정한 프롬프트 저장</button>
+                  <button id="resetLongformVisualTemplateBtn" class="btn warn" type="button">내장 원본으로 복원</button>
+                  <button id="importLongformVisualTemplateBtn" class="btn" type="button">텍스트 파일 불러오기</button>
+                  <button id="exportLongformVisualTemplateBtn" class="btn" type="button">현재 프롬프트 내보내기</button>
+                  <input id="importLongformVisualTemplateFile" class="file-input" type="file" accept=".txt,text/plain">
+                </div>
+              </div>
+            </details>
+
+            <div class="actions">
+              <button id="generateLongformVisualPromptBtn" class="btn primary" type="button">Generate Prompt</button>
+              <button id="clearLongformVisualBtn" class="btn warn" type="button">Clear</button>
+            </div>
+
+            <label for="longformVisualFinalPrompt">Final Prompt</label>
+            <textarea id="longformVisualFinalPrompt" spellcheck="false"></textarea>
+
+            <div class="actions">
+              <button id="copyLongformVisualPromptBtn" class="btn primary" type="button" disabled>Copy Prompt</button>
+            </div>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
 
@@ -1706,11 +1824,15 @@
     const KOREAN_REVIEW_PROMPT_FILE = "10. Korean Review Translation Generator v1.0.txt";
     const KOREAN_REVIEW_STORAGE_KEY = "moonlit_korean_review_translation_template_v100";
     const KOREAN_REVIEW_SOURCE_STORAGE_KEY = "moonlit_korean_review_translation_template_source";
+    const LONGFORM_VISUAL_PROMPT_FILE = "11. Longform Visual Cut Planner & Image Prompt Generator v1.0.2a.txt";
+    const LONGFORM_VISUAL_STORAGE_KEY = "moonlit_longform_visual_template_v102a";
+    const LONGFORM_VISUAL_SOURCE_STORAGE_KEY = "moonlit_longform_visual_template_source";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
     const PACKAGING_PLACEHOLDER = "{{TTS_READY_SCRIPT_INPUT}}";
     const KOREAN_REVIEW_PLACEHOLDER = "{{ENGLISH_SCRIPT_INPUT}}";
+    const LONGFORM_VISUAL_PLACEHOLDER = "{{LONGFORM_VISUAL_INPUT}}";
     const OPENING_FIELD_LABELS = [
       "이번 영상의 핵심 소재",
       "첫 장면 또는 첫 문장 방향",
@@ -1965,6 +2087,27 @@
     const generateKoreanReviewPromptBtn = document.querySelector("#generateKoreanReviewPromptBtn");
     const clearKoreanReviewBtn = document.querySelector("#clearKoreanReviewBtn");
     const copyKoreanReviewPromptBtn = document.querySelector("#copyKoreanReviewPromptBtn");
+    const longformVisualFullTtsResult = document.querySelector("#longformVisualFullTtsResult");
+    const longformVisualTtsReadyInput = document.querySelector("#longformVisualTtsReadyInput");
+    const longformVisualVideoTitle = document.querySelector("#longformVisualVideoTitle");
+    const longformVisualTimestamps = document.querySelector("#longformVisualTimestamps");
+    const longformVisualInputCount = document.querySelector("#longformVisualInputCount");
+    const longformVisualTemplateEditor = document.querySelector("#longformVisualTemplateEditor");
+    const longformVisualTemplateHeaderCount = document.querySelector("#longformVisualTemplateHeaderCount");
+    const longformVisualTemplateCount = document.querySelector("#longformVisualTemplateCount");
+    const longformVisualTemplateSaveModeSummary = document.querySelector("#longformVisualTemplateSaveModeSummary");
+    const longformVisualTemplateSaveMode = document.querySelector("#longformVisualTemplateSaveMode");
+    const longformVisualTemplateFileName = document.querySelector("#longformVisualTemplateFileName");
+    const saveLongformVisualTemplateBtn = document.querySelector("#saveLongformVisualTemplateBtn");
+    const resetLongformVisualTemplateBtn = document.querySelector("#resetLongformVisualTemplateBtn");
+    const importLongformVisualTemplateBtn = document.querySelector("#importLongformVisualTemplateBtn");
+    const exportLongformVisualTemplateBtn = document.querySelector("#exportLongformVisualTemplateBtn");
+    const importLongformVisualTemplateFile = document.querySelector("#importLongformVisualTemplateFile");
+    const extractLongformVisualTtsReadyBtn = document.querySelector("#extractLongformVisualTtsReadyBtn");
+    const longformVisualFinalPrompt = document.querySelector("#longformVisualFinalPrompt");
+    const generateLongformVisualPromptBtn = document.querySelector("#generateLongformVisualPromptBtn");
+    const clearLongformVisualBtn = document.querySelector("#clearLongformVisualBtn");
+    const copyLongformVisualPromptBtn = document.querySelector("#copyLongformVisualPromptBtn");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -1986,6 +2129,8 @@
     let builtInPackagingTemplate = "";
     let koreanReviewTemplate = "";
     let builtInKoreanReviewTemplate = "";
+    let longformVisualTemplate = "";
+    let builtInLongformVisualTemplate = "";
 
     function setStatus(text, type = "") {
       statusText.textContent = text;
@@ -2031,6 +2176,13 @@
       koreanReviewInputCount.textContent = `${koreanReviewEnglishInput.value.length.toLocaleString("ko-KR")}자`;
       koreanReviewTemplateHeaderCount.textContent = `${koreanReviewTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       koreanReviewTemplateCount.textContent = `${koreanReviewTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      const longformVisualInputLength = longformVisualFullTtsResult.value.length
+        + longformVisualTtsReadyInput.value.length
+        + longformVisualVideoTitle.value.length
+        + longformVisualTimestamps.value.length;
+      longformVisualInputCount.textContent = `${longformVisualInputLength.toLocaleString("ko-KR")}자`;
+      longformVisualTemplateHeaderCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      longformVisualTemplateCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
     }
 
     function switchTab(tabName) {
@@ -3455,18 +3607,25 @@ ${ttsReadyScript}
 [TTS-READY SCRIPT END]`;
     }
 
-    function extractTtsReadyScriptFromTab8Result() {
-      const source = packagingFullTtsResult.value;
+    function extractTtsReadyScriptBlock(source) {
       const headingMatch = source.match(/(?:^|\n)\s*#{0,3}\s*TTS-READY SCRIPT\s*\n/i);
       if (!headingMatch) {
-        setStatus("TTS-READY SCRIPT heading could not be found. Please paste the TTS-ready script manually.", "error");
-        return;
+        return "";
       }
 
       const contentStart = headingMatch.index + headingMatch[0].length;
       const rest = source.slice(contentStart);
       const stopMatch = rest.match(/(?:^|\n)\s*#{0,3}\s*ADAPTATION LOG\s*(?:\n|$)/i);
-      const extracted = (stopMatch ? rest.slice(0, stopMatch.index) : rest).trim();
+      return (stopMatch ? rest.slice(0, stopMatch.index) : rest).trim();
+    }
+
+    function extractTtsReadyScriptFromTab8Result() {
+      const extracted = extractTtsReadyScriptBlock(packagingFullTtsResult.value);
+      if (!extracted) {
+        setStatus("TTS-READY SCRIPT heading could not be found. Please paste the TTS-ready script manually.", "error");
+        return;
+      }
+
       packagingTtsReadyInput.value = extracted;
       setStatus("TTS-READY SCRIPT extracted successfully.", "ready");
       updateCounts();
@@ -3646,6 +3805,156 @@ ${englishScriptInput}
       koreanReviewEnglishInput.focus();
     }
 
+    function prepareLongformVisualTemplate(template) {
+      if (!template) return "";
+      if (template.includes(LONGFORM_VISUAL_PLACEHOLDER)) return template;
+      return `${template.trimEnd()}\n\n---\n\n${LONGFORM_VISUAL_PLACEHOLDER}\n`;
+    }
+
+    function syncLongformVisualTemplateEditor() {
+      longformVisualTemplateEditor.value = longformVisualTemplate;
+      longformVisualTemplateSaveMode.textContent = localStorage.getItem(LONGFORM_VISUAL_STORAGE_KEY) ? "브라우저 저장소에 저장됨" : "기본 템플릿 사용 중";
+      longformVisualTemplateSaveModeSummary.textContent = longformVisualTemplateSaveMode.textContent;
+      longformVisualTemplateFileName.textContent = getTemplateSourceLabel(LONGFORM_VISUAL_STORAGE_KEY, LONGFORM_VISUAL_SOURCE_STORAGE_KEY, LONGFORM_VISUAL_PROMPT_FILE);
+      updateCounts();
+    }
+
+    async function loadLongformVisualTemplate() {
+      try {
+        const sourceTemplate = window.LONGFORM_VISUAL_PROMPT || await fetch(encodeURI(LONGFORM_VISUAL_PROMPT_FILE), { cache: "no-store" }).then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          return response.text();
+        });
+        builtInLongformVisualTemplate = prepareLongformVisualTemplate(sourceTemplate);
+        longformVisualTemplate = localStorage.getItem(LONGFORM_VISUAL_STORAGE_KEY) || builtInLongformVisualTemplate;
+        syncLongformVisualTemplateEditor();
+        setStatus(longformVisualTemplate ? "Longform Visual 템플릿 로드됨" : "Longform Visual 템플릿을 찾을 수 없음", longformVisualTemplate ? "ready" : "error");
+      } catch (error) {
+        builtInLongformVisualTemplate = "";
+        longformVisualTemplate = "";
+        syncLongformVisualTemplateEditor();
+        setStatus("Longform Visual 템플릿 파일을 찾을 수 없음", "error");
+      }
+    }
+
+    function saveLongformVisualTemplate(sourceLabel = "") {
+      const nextTemplate = longformVisualTemplateEditor.value;
+      if (!nextTemplate.trim()) {
+        setStatus("저장할 프롬프트가 비어 있음", "error");
+        return;
+      }
+      longformVisualTemplate = nextTemplate;
+      localStorage.setItem(LONGFORM_VISUAL_STORAGE_KEY, longformVisualTemplate);
+      setTemplateSourceLabel(LONGFORM_VISUAL_SOURCE_STORAGE_KEY, LONGFORM_VISUAL_PROMPT_FILE, sourceLabel);
+      syncLongformVisualTemplateEditor();
+      setStatus("Longform Visual 프롬프트 저장 완료", "ready");
+    }
+
+    function resetLongformVisualTemplate() {
+      if (!builtInLongformVisualTemplate) {
+        setStatus("복원할 Longform Visual 기본 프롬프트가 없음", "error");
+        return;
+      }
+      longformVisualTemplate = builtInLongformVisualTemplate;
+      localStorage.setItem(LONGFORM_VISUAL_STORAGE_KEY, longformVisualTemplate);
+      localStorage.setItem(LONGFORM_VISUAL_SOURCE_STORAGE_KEY, LONGFORM_VISUAL_PROMPT_FILE);
+      syncLongformVisualTemplateEditor();
+      setStatus("Longform Visual 프롬프트 내장 원본 복원 완료", "ready");
+    }
+
+    function exportLongformVisualTemplate() {
+      if (!longformVisualTemplateEditor.value) return;
+      const blob = new Blob([longformVisualTemplateEditor.value], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "longform-visual-prompt-template.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function importLongformVisualTemplate(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        longformVisualTemplateEditor.value = String(reader.result || "");
+        updateCounts();
+        saveLongformVisualTemplate(`가져온 파일: ${file.name}`);
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function extractLongformVisualTtsReadyScript() {
+      const extracted = extractTtsReadyScriptBlock(longformVisualFullTtsResult.value);
+      if (!extracted) {
+        setStatus("TTS-READY SCRIPT heading could not be found. Please paste the TTS-ready script manually.", "error");
+        return;
+      }
+
+      longformVisualTtsReadyInput.value = extracted;
+      setStatus("TTS-READY SCRIPT extracted successfully.", "ready");
+      updateCounts();
+    }
+
+    function buildLongformVisualInputBlock(ttsReadyScript, videoTitle, timestamps) {
+      const titleBlock = videoTitle.trim()
+        ? `\n\n[OPTIONAL VIDEO TITLE START]\n${videoTitle.trim()}\n[OPTIONAL VIDEO TITLE END]`
+        : "\n\n[OPTIONAL VIDEO TITLE]\nNot provided.";
+      const timestampBlock = timestamps.trim()
+        ? `\n\n[OPTIONAL EXACT AUDIO TIMESTAMPS START]\n${timestamps.trim()}\n[OPTIONAL EXACT AUDIO TIMESTAMPS END]`
+        : "\n\n[OPTIONAL EXACT AUDIO TIMESTAMPS]\nNot provided. Do not create cumulative timeline placement or invent exact timestamps. Divide cuts by script cues and visual progression only.";
+
+      return `[FINAL TTS-READY SCRIPT START]\n${ttsReadyScript}\n[FINAL TTS-READY SCRIPT END]${titleBlock}${timestampBlock}`;
+    }
+
+    function generateLongformVisualPrompt() {
+      const ttsReadyScript = longformVisualTtsReadyInput.value;
+      if (!ttsReadyScript.trim()) {
+        setStatus("Please paste the final TTS-ready script before generating the Longform Visual prompt.", "error");
+        longformVisualFinalPrompt.value = "";
+        copyLongformVisualPromptBtn.disabled = true;
+        updateCounts();
+        return;
+      }
+
+      const inputBlock = buildLongformVisualInputBlock(ttsReadyScript, longformVisualVideoTitle.value, longformVisualTimestamps.value);
+      const currentTemplate = longformVisualTemplateEditor.value;
+      longformVisualFinalPrompt.value = currentTemplate.includes(LONGFORM_VISUAL_PLACEHOLDER)
+        ? currentTemplate.replace(LONGFORM_VISUAL_PLACEHOLDER, () => inputBlock)
+        : `${currentTemplate.trimEnd()}\n\n${inputBlock}`;
+      copyLongformVisualPromptBtn.disabled = !longformVisualFinalPrompt.value;
+      setStatus("Longform Visual 최종 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function copyLongformVisualPrompt() {
+      if (!longformVisualFinalPrompt.value) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(longformVisualFinalPrompt.value);
+      } else {
+        longformVisualFinalPrompt.focus();
+        longformVisualFinalPrompt.select();
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+      setStatus("Longform Visual 프롬프트 복사 완료", "ready");
+    }
+
+    function clearLongformVisualFields() {
+      longformVisualFullTtsResult.value = "";
+      longformVisualTtsReadyInput.value = "";
+      longformVisualVideoTitle.value = "";
+      longformVisualTimestamps.value = "";
+      longformVisualFinalPrompt.value = "";
+      copyLongformVisualPromptBtn.disabled = true;
+      updateCounts();
+      longformVisualTtsReadyInput.focus();
+    }
+
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         sourceIdea.value = chip.textContent.trim();
@@ -3706,6 +4015,13 @@ ${englishScriptInput}
     koreanReviewEnglishInput.addEventListener("input", updateCounts);
     koreanReviewTemplateEditor.addEventListener("input", updateCounts);
     koreanReviewFinalPrompt.addEventListener("input", updateCounts);
+    longformVisualFullTtsResult.addEventListener("input", updateCounts);
+    longformVisualTtsReadyInput.addEventListener("input", updateCounts);
+    longformVisualVideoTitle.addEventListener("input", updateCounts);
+    longformVisualTimestamps.addEventListener("input", updateCounts);
+    extractLongformVisualTtsReadyBtn.addEventListener("click", extractLongformVisualTtsReadyScript);
+    longformVisualTemplateEditor.addEventListener("input", updateCounts);
+    longformVisualFinalPrompt.addEventListener("input", updateCounts);
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -3825,6 +4141,17 @@ ${englishScriptInput}
     generateKoreanReviewPromptBtn.addEventListener("click", generateKoreanReviewPrompt);
     clearKoreanReviewBtn.addEventListener("click", clearKoreanReviewFields);
     copyKoreanReviewPromptBtn.addEventListener("click", copyKoreanReviewPrompt);
+    saveLongformVisualTemplateBtn.addEventListener("click", saveLongformVisualTemplate);
+    resetLongformVisualTemplateBtn.addEventListener("click", resetLongformVisualTemplate);
+    importLongformVisualTemplateBtn.addEventListener("click", () => importLongformVisualTemplateFile.click());
+    exportLongformVisualTemplateBtn.addEventListener("click", exportLongformVisualTemplate);
+    importLongformVisualTemplateFile.addEventListener("change", () => {
+      importLongformVisualTemplate(importLongformVisualTemplateFile.files[0]);
+      importLongformVisualTemplateFile.value = "";
+    });
+    generateLongformVisualPromptBtn.addEventListener("click", generateLongformVisualPrompt);
+    clearLongformVisualBtn.addEventListener("click", clearLongformVisualFields);
+    copyLongformVisualPromptBtn.addEventListener("click", copyLongformVisualPrompt);
 
     loadPromptTemplate();
     loadEpisodeTemplate();
@@ -3836,6 +4163,7 @@ ${englishScriptInput}
     loadTtsTemplate();
     loadPackagingTemplate();
     loadKoreanReviewTemplate();
+    loadLongformVisualTemplate();
     updateCounts();
   </script>
 </body>
