@@ -1933,7 +1933,7 @@
           </div>
           <div class="input-area">
             <div class="info-band">
-              <p>이 탭은 이전 단계의 영어 대본이나 결과물을 Korean Review Translation Generator v1.0에 넣을 최종 프롬프트로 준비합니다.</p>
+              <p>이 탭은 Step 8. TTS Adaptation Generator 결과값을 Korean Review Translation Generator v1.0에 넣을 최종 프롬프트로 준비합니다.</p>
               <p>앱은 AI API를 호출하지 않으며, 입력 내용을 요약, 수정, 번역, 분석하지 않습니다. 입력 원문을 프롬프트 템플릿에 삽입만 합니다.</p>
             </div>
           </div>
@@ -1944,11 +1944,17 @@
             <h2 id="koreanReviewInputTitle">한국어 검수 입력</h2>
           </div>
           <div class="input-area">
-            <label for="koreanReviewEnglishInput">한국어 검수할 영어 대본 또는 결과물</label>
-            <textarea id="koreanReviewEnglishInput" spellcheck="false" placeholder="한국어로 번역하고 검수할 영어 대본, TTS-ready script, 패키징 결과물, 또는 Moonlit Eastern Tales 결과물을 붙여 넣으세요."></textarea>
+            <label for="koreanReviewEnglishInput">Step 8 TTS Adaptation Generator 결과값</label>
+            <div class="actions">
+              <button id="importStep8ToKoreanReviewBtn" class="btn" type="button">Step 8 결과 가져오기</button>
+            </div>
+            <textarea id="koreanReviewEnglishInput" spellcheck="false" placeholder="Step 8에서 생성된 TTS Adaptation Generator 전체 결과값을 붙여 넣으세요. TTS-READY SCRIPT와 ADAPTATION LOG가 포함된 결과물을 그대로 사용합니다."></textarea>
+            <div class="actions">
+              <button id="copyKoreanReviewInputWithTitleBtn" class="btn" type="button">Step 8 TTS Adaptation Generator 결과 제목 포함 복사</button>
+            </div>
 
             <div class="info-band">
-              <p>이 입력란에는 한국어 검수 번역이 필요한 영어 원문을 그대로 붙여 넣으세요. 앱은 이 내용을 직접 번역하거나 검수하지 않습니다.</p>
+              <p>이 입력란에는 Step 8. TTS Adaptation Generator에서 생성된 전체 결과값을 그대로 붙여 넣으세요. 앱은 이 내용을 직접 번역하거나 검수하지 않고 프롬프트 템플릿에 삽입만 합니다.</p>
             </div>
           </div>
         </section>
@@ -2007,6 +2013,25 @@
 
             <div class="actions">
               <button id="copyKoreanReviewPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
+
+            <div class="info-band">
+              <strong>Step 10 결과값 저장</strong>
+              <span>AI에서 생성된 Step 10 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep10">Step 10 AI 결과물</label>
+            <textarea id="pipelineResultStep10" spellcheck="false" placeholder="Paste Step 10 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep10Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep10Btn" class="btn warn" type="button">Step 10 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep10Btn" class="btn" type="button">Step 10 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep10Btn" class="btn" type="button">Step 10 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep10File" class="file-input" type="file" accept=".json,application/json">
             </div>
 
             <div class="info-band">
@@ -3042,6 +3067,8 @@
     const importPipelineResultStep9Btn = document.querySelector("#importPipelineResultStep9Btn");
     const importPipelineResultStep9File = document.querySelector("#importPipelineResultStep9File");
     const koreanReviewEnglishInput = document.querySelector("#koreanReviewEnglishInput");
+    const importStep8ToKoreanReviewBtn = document.querySelector("#importStep8ToKoreanReviewBtn");
+    const copyKoreanReviewInputWithTitleBtn = document.querySelector("#copyKoreanReviewInputWithTitleBtn");
     const koreanReviewInputCount = document.querySelector("#koreanReviewInputCount");
     const koreanReviewTemplateEditor = document.querySelector("#koreanReviewTemplateEditor");
     const koreanReviewTemplateHeaderCount = document.querySelector("#koreanReviewTemplateHeaderCount");
@@ -3058,6 +3085,12 @@
     const generateKoreanReviewPromptBtn = document.querySelector("#generateKoreanReviewPromptBtn");
     const clearKoreanReviewBtn = document.querySelector("#clearKoreanReviewBtn");
     const copyKoreanReviewPromptBtn = document.querySelector("#copyKoreanReviewPromptBtn");
+    const pipelineResultStep10 = document.querySelector("#pipelineResultStep10");
+    const pipelineResultStep10Count = document.querySelector("#pipelineResultStep10Count");
+    const clearPipelineResultStep10Btn = document.querySelector("#clearPipelineResultStep10Btn");
+    const exportPipelineResultStep10Btn = document.querySelector("#exportPipelineResultStep10Btn");
+    const importPipelineResultStep10Btn = document.querySelector("#importPipelineResultStep10Btn");
+    const importPipelineResultStep10File = document.querySelector("#importPipelineResultStep10File");
     const longformVisualFullTtsResult = document.querySelector("#longformVisualFullTtsResult");
     const longformVisualTtsReadyInput = document.querySelector("#longformVisualTtsReadyInput");
     const longformVisualVideoTitle = document.querySelector("#longformVisualVideoTitle");
@@ -3268,6 +3301,7 @@
       pipelineResultStep7.value = loadPipelineResult(7);
       pipelineResultStep8.value = loadPipelineResult(8);
       pipelineResultStep9.value = loadPipelineResult(9);
+      pipelineResultStep10.value = loadPipelineResult(10);
       updateCounts();
     }
 
@@ -3432,6 +3466,7 @@
       koreanReviewInputCount.textContent = `${koreanReviewEnglishInput.value.length.toLocaleString("ko-KR")}자`;
       koreanReviewTemplateHeaderCount.textContent = `${koreanReviewTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       koreanReviewTemplateCount.textContent = `${koreanReviewTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep10Count.textContent = `${pipelineResultStep10.value.length.toLocaleString("ko-KR")}자`;
       const longformVisualInputLength = longformVisualFullTtsResult.value.length
         + longformVisualTtsReadyInput.value.length
         + longformVisualVideoTitle.value.length
@@ -5098,6 +5133,31 @@ ${englishScriptInput}
 <<< ENGLISH SCRIPT END >>>`;
     }
 
+    async function copyKoreanReviewInputWithTitle() {
+      const result = koreanReviewEnglishInput.value.trim();
+      if (!result) {
+        setStatus("복사할 Step 8 TTS Adaptation Generator 결과값이 없습니다.", "error");
+        return;
+      }
+
+      const copyText = `STEP 8 TTS ADAPTATION GENERATOR RESULT\n\n${result}`;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(copyText);
+      } else {
+        const temporaryTextarea = document.createElement("textarea");
+        temporaryTextarea.value = copyText;
+        temporaryTextarea.setAttribute("readonly", "");
+        temporaryTextarea.style.position = "fixed";
+        temporaryTextarea.style.opacity = "0";
+        document.body.appendChild(temporaryTextarea);
+        temporaryTextarea.focus();
+        temporaryTextarea.select();
+        document.execCommand("copy");
+        temporaryTextarea.remove();
+      }
+      setStatus("Step 8 TTS Adaptation Generator 결과 제목 포함 복사 완료", "ready");
+    }
+
     function generateKoreanReviewPrompt() {
       const englishScriptInput = koreanReviewEnglishInput.value;
       if (!englishScriptInput.trim()) {
@@ -5998,7 +6058,7 @@ Moonlit Eastern Tales`;
         step: "Step 10",
         missingMessage: "Step 10 결과물이 없습니다. Korean Review Translation Result는 직접 붙여 넣어주세요.",
         target: operationAKoreanReview,
-        getValue: () => firstNonEmptyValue([koreanReviewFinalPrompt]),
+        getValue: () => firstNonEmptyValue([pipelineResultStep10, koreanReviewFinalPrompt]),
       },
       {
         step: "Step 11",
@@ -6345,9 +6405,19 @@ ${valueOrEmpty(data.shortsPackaging)}
       importPipelineResultJson(9, pipelineResultStep9, importPipelineResultStep9File.files[0]);
       importPipelineResultStep9File.value = "";
     });
+    importStep8ToKoreanReviewBtn.addEventListener("click", () => importPipelineResultToField(8, koreanReviewEnglishInput, "Step 8 TTS Adaptation Generator 결과"));
     koreanReviewEnglishInput.addEventListener("input", updateCounts);
+    copyKoreanReviewInputWithTitleBtn.addEventListener("click", copyKoreanReviewInputWithTitle);
     koreanReviewTemplateEditor.addEventListener("input", updateCounts);
     koreanReviewFinalPrompt.addEventListener("input", updateCounts);
+    pipelineResultStep10.addEventListener("input", () => handlePipelineResultInput(10, pipelineResultStep10));
+    clearPipelineResultStep10Btn.addEventListener("click", () => clearPipelineResultField(10, pipelineResultStep10));
+    exportPipelineResultStep10Btn.addEventListener("click", () => exportPipelineResultJson(10, pipelineResultStep10));
+    importPipelineResultStep10Btn.addEventListener("click", () => importPipelineResultStep10File.click());
+    importPipelineResultStep10File.addEventListener("change", () => {
+      importPipelineResultJson(10, pipelineResultStep10, importPipelineResultStep10File.files[0]);
+      importPipelineResultStep10File.value = "";
+    });
     longformVisualFullTtsResult.addEventListener("input", updateCounts);
     longformVisualTtsReadyInput.addEventListener("input", updateCounts);
     longformVisualVideoTitle.addEventListener("input", updateCounts);
