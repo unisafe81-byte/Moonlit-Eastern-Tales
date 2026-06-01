@@ -1670,6 +1670,9 @@
 
             <label for="ttsFinalIntegratedInput">탭 7의 FINAL INTEGRATED SCRIPT 붙여넣기</label>
             <textarea id="ttsFinalIntegratedInput" spellcheck="false" placeholder="탭 7에서 생성된 FINAL INTEGRATED SCRIPT를 여기에 붙여 넣으세요. TTS 변환 입력에 포함하려는 경우가 아니라면 EDIT LOG는 넣지 마세요."></textarea>
+            <div class="actions">
+              <button id="copyTtsIntegratedScriptWithTitleBtn" class="btn" type="button">FINAL INTEGRATED SCRIPT 제목 포함 복사</button>
+            </div>
 
             <div class="info-band">
               <p>이 입력은 짧은 키워드나 요약이 아닙니다. 탭 7에서 완성된 최종 통합 대본 원문을 그대로 붙여 넣는 영역입니다. 앱은 이 내용을 요약, 수정, 번역, 분석하지 않습니다.</p>
@@ -2901,6 +2904,7 @@
     const ttsFullTab7Result = document.querySelector("#ttsFullTab7Result");
     const extractTtsIntegratedScriptBtn = document.querySelector("#extractTtsIntegratedScriptBtn");
     const ttsFinalIntegratedInput = document.querySelector("#ttsFinalIntegratedInput");
+    const copyTtsIntegratedScriptWithTitleBtn = document.querySelector("#copyTtsIntegratedScriptWithTitleBtn");
     const ttsInputCount = document.querySelector("#ttsInputCount");
     const ttsTemplateEditor = document.querySelector("#ttsTemplateEditor");
     const ttsTemplateHeaderCount = document.querySelector("#ttsTemplateHeaderCount");
@@ -4608,6 +4612,31 @@ ${finalIntegratedScript}
       updateCounts();
     }
 
+    async function copyTtsIntegratedScriptWithTitle() {
+      const script = ttsFinalIntegratedInput.value.trim();
+      if (!script) {
+        setStatus("복사할 FINAL INTEGRATED SCRIPT가 없습니다.", "error");
+        return;
+      }
+
+      const copyText = `FINAL INTEGRATED SCRIPT\n\n${script}`;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(copyText);
+      } else {
+        const temporaryTextarea = document.createElement("textarea");
+        temporaryTextarea.value = copyText;
+        temporaryTextarea.setAttribute("readonly", "");
+        temporaryTextarea.style.position = "fixed";
+        temporaryTextarea.style.opacity = "0";
+        document.body.appendChild(temporaryTextarea);
+        temporaryTextarea.focus();
+        temporaryTextarea.select();
+        document.execCommand("copy");
+        temporaryTextarea.remove();
+      }
+      setStatus("FINAL INTEGRATED SCRIPT 제목 포함 복사 완료", "ready");
+    }
+
     function generateTtsPrompt() {
       const finalIntegratedScript = ttsFinalIntegratedInput.value;
       if (!finalIntegratedScript.trim()) {
@@ -6106,6 +6135,7 @@ ${valueOrEmpty(data.shortsPackaging)}
     ttsFullTab7Result.addEventListener("input", updateCounts);
     extractTtsIntegratedScriptBtn.addEventListener("click", extractFinalIntegratedScriptFromTab7Result);
     ttsFinalIntegratedInput.addEventListener("input", updateCounts);
+    copyTtsIntegratedScriptWithTitleBtn.addEventListener("click", copyTtsIntegratedScriptWithTitle);
     ttsTemplateEditor.addEventListener("input", updateCounts);
     ttsFinalPrompt.addEventListener("input", updateCounts);
     packagingTtsReadyInput.addEventListener("input", updateCounts);
