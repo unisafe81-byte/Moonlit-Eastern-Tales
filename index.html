@@ -1778,6 +1778,9 @@
 
             <label for="packagingTtsReadyInput">Step 8의 TTS-READY SCRIPT</label>
             <textarea id="packagingTtsReadyInput" spellcheck="false" placeholder="Step 8에서 생성된 최종 TTS-READY SCRIPT를 붙여 넣으세요. 필요한 경우가 아니면 ADAPTATION LOG는 포함하지 마세요."></textarea>
+            <div class="actions">
+              <button id="copyPackagingTtsReadyWithTitleBtn" class="btn" type="button">TTS-READY SCRIPT 제목 포함 복사</button>
+            </div>
 
             <div class="info-band">
               <p>이 입력은 최종 TTS-ready script 원문을 그대로 붙여 넣는 영역입니다. 앱은 이 내용을 요약, 재작성, 번역, 분석하지 않습니다.</p>
@@ -2922,6 +2925,7 @@
     const clearTtsBtn = document.querySelector("#clearTtsBtn");
     const copyTtsPromptBtn = document.querySelector("#copyTtsPromptBtn");
     const packagingTtsReadyInput = document.querySelector("#packagingTtsReadyInput");
+    const copyPackagingTtsReadyWithTitleBtn = document.querySelector("#copyPackagingTtsReadyWithTitleBtn");
     const packagingInputCount = document.querySelector("#packagingInputCount");
     const packagingTemplateEditor = document.querySelector("#packagingTemplateEditor");
     const packagingTemplateHeaderCount = document.querySelector("#packagingTemplateHeaderCount");
@@ -4794,6 +4798,31 @@ ${ttsReadyScript}
       updateCounts();
     }
 
+    async function copyPackagingTtsReadyWithTitle() {
+      const script = packagingTtsReadyInput.value.trim();
+      if (!script) {
+        setStatus("복사할 TTS-READY SCRIPT가 없습니다.", "error");
+        return;
+      }
+
+      const copyText = `TTS-READY SCRIPT\n\n${script}`;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(copyText);
+      } else {
+        const temporaryTextarea = document.createElement("textarea");
+        temporaryTextarea.value = copyText;
+        temporaryTextarea.setAttribute("readonly", "");
+        temporaryTextarea.style.position = "fixed";
+        temporaryTextarea.style.opacity = "0";
+        document.body.appendChild(temporaryTextarea);
+        temporaryTextarea.focus();
+        temporaryTextarea.select();
+        document.execCommand("copy");
+        temporaryTextarea.remove();
+      }
+      setStatus("TTS-READY SCRIPT 제목 포함 복사 완료", "ready");
+    }
+
     function generatePackagingPrompt() {
       const ttsReadyScript = packagingTtsReadyInput.value;
       if (!ttsReadyScript.trim()) {
@@ -6139,6 +6168,7 @@ ${valueOrEmpty(data.shortsPackaging)}
     ttsTemplateEditor.addEventListener("input", updateCounts);
     ttsFinalPrompt.addEventListener("input", updateCounts);
     packagingTtsReadyInput.addEventListener("input", updateCounts);
+    copyPackagingTtsReadyWithTitleBtn.addEventListener("click", copyPackagingTtsReadyWithTitle);
     packagingFullTtsResult.addEventListener("input", updateCounts);
     extractPackagingTtsReadyBtn.addEventListener("click", extractTtsReadyScriptFromTab8Result);
     packagingTemplateEditor.addEventListener("input", updateCounts);
