@@ -285,7 +285,8 @@
     #longformVisualFinalPrompt,
     #shortsMomentFinalPrompt,
     #shortsScriptFinalPrompt,
-    #shortsPackagingFinalPrompt {
+    #shortsPackagingFinalPrompt,
+    #operationAFinalPrompt {
       min-height: 540px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 13px;
@@ -416,6 +417,13 @@
 
     .info-band p + p {
       margin-top: 8px;
+    }
+
+    .field-help {
+      margin: -8px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
     }
 
     .prompt-editor {
@@ -582,7 +590,8 @@
     #longformVisualFinalPrompt,
     #shortsMomentFinalPrompt,
     #shortsScriptFinalPrompt,
-    #shortsPackagingFinalPrompt {
+    #shortsPackagingFinalPrompt,
+    #operationAFinalPrompt {
       min-height: 270px;
     }
 
@@ -658,7 +667,8 @@
       #longformVisualFinalPrompt,
       #shortsMomentFinalPrompt,
       #shortsScriptFinalPrompt,
-      #shortsPackagingFinalPrompt {
+      #shortsPackagingFinalPrompt,
+      #operationAFinalPrompt {
         min-height: 420px;
       }
 
@@ -715,7 +725,8 @@
       #longformVisualFinalPrompt,
       #shortsMomentFinalPrompt,
       #shortsScriptFinalPrompt,
-      #shortsPackagingFinalPrompt {
+      #shortsPackagingFinalPrompt,
+      #operationAFinalPrompt {
         min-height: 210px;
       }
 
@@ -2202,6 +2213,68 @@
           </div>
         </section>
 
+        <section class="workspace" aria-labelledby="operationABasicInfoTitle">
+          <div class="panel-head">
+            <h2 id="operationABasicInfoTitle">에피소드 기본 정보</h2>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>현재 에피소드의 기본 정보를 입력합니다. 선택 입력이지만, QC 결과를 정리할 때 도움이 됩니다.</p>
+            </div>
+
+            <label for="operationAEpisodeNumber">Episode Number</label>
+            <textarea id="operationAEpisodeNumber" spellcheck="false" placeholder="예: Episode 001"></textarea>
+
+            <label for="operationACoreKeyword">Core Keyword / Source Idea</label>
+            <textarea id="operationACoreKeyword" spellcheck="false" placeholder="핵심 키워드 또는 원본 소재 아이디어를 붙여 넣으세요."></textarea>
+
+            <label for="operationAFinalTitle">Final Episode Title</label>
+            <textarea id="operationAFinalTitle" spellcheck="false" placeholder="최종 에피소드 제목을 붙여 넣으세요."></textarea>
+
+            <label for="operationAShortConcept">Short Concept Note</label>
+            <textarea id="operationAShortConcept" spellcheck="false" placeholder="짧은 콘셉트 메모가 있으면 붙여 넣으세요."></textarea>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="operationAQcInputTitle">
+          <div class="panel-head">
+            <h2 id="operationAQcInputTitle">최종 검수 입력</h2>
+          </div>
+          <div class="input-area">
+            <label for="operationAFinalTtsScript">Final TTS-ready Script</label>
+            <p class="field-help">Step 8에서 생성된 최종 TTS-ready script를 붙여 넣습니다.</p>
+            <textarea id="operationAFinalTtsScript" spellcheck="false"></textarea>
+
+            <label for="operationAYoutubePackaging">YouTube Packaging Result</label>
+            <p class="field-help">Step 9에서 생성된 YouTube Packaging 결과물을 붙여 넣습니다.</p>
+            <textarea id="operationAYoutubePackaging" spellcheck="false"></textarea>
+
+            <label for="operationAKoreanReview">Korean Review Translation Result</label>
+            <p class="field-help">Step 10 결과물입니다. 선택 입력이며, 영어 원문의 검수 판단을 대체하지 않습니다.</p>
+            <textarea id="operationAKoreanReview" spellcheck="false"></textarea>
+
+            <label for="operationALongformVisual">Longform Visual Cut Plan Result</label>
+            <p class="field-help">Step 11에서 생성된 롱폼 시각 컷 및 이미지 프롬프트 결과물을 붙여 넣습니다.</p>
+            <textarea id="operationALongformVisual" spellcheck="false"></textarea>
+
+            <label for="operationAShortsMoment">Shorts Moment Extractor Result</label>
+            <p class="field-help">Step 12에서 생성된 쇼츠 순간 후보 추출 결과물을 붙여 넣습니다.</p>
+            <textarea id="operationAShortsMoment" spellcheck="false"></textarea>
+
+            <label for="operationAShortsScript">Shorts Script Result</label>
+            <p class="field-help">Step 13에서 생성된 쇼츠 내레이션 대본 결과물을 붙여 넣습니다.</p>
+            <textarea id="operationAShortsScript" spellcheck="false"></textarea>
+
+            <label for="operationAShortsPackaging">Shorts Packaging Result</label>
+            <p class="field-help">Step 14에서 생성된 쇼츠 업로드 패키징 결과물을 붙여 넣습니다.</p>
+            <textarea id="operationAShortsPackaging" spellcheck="false"></textarea>
+
+            <div class="info-band">
+              <p>모든 입력값이 반드시 필요한 것은 아닙니다. 제공되지 않은 항목은 QC 템플릿에서 입력 없음 / 완전 검수 불가로 처리됩니다. 다만 최종 QC 정확도를 높이려면 Step 8, Step 9, Step 11, Step 14 결과를 우선 입력하는 것이 좋습니다.</p>
+            </div>
+          </div>
+        </section>
+
         <section class="workspace wide" aria-labelledby="operationATemplateTitle">
           <div class="panel-head">
             <h2 id="operationATemplateTitle">프롬프트 템플릿</h2>
@@ -2245,6 +2318,24 @@
                 </div>
               </div>
             </details>
+
+            <div class="actions">
+              <button id="generateOperationAPromptBtn" class="btn primary" type="button">A 실행 프롬프트 생성</button>
+              <button id="clearOperationABtn" class="btn warn" type="button">초기화</button>
+            </div>
+
+            <label for="operationAFinalPrompt">최종 실행 프롬프트</label>
+            <textarea id="operationAFinalPrompt" spellcheck="false"></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>최종 실행 프롬프트 길이</strong>
+                <span id="operationAFinalPromptCount">0자</span>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button id="copyOperationAPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
           </div>
         </section>
       </section>
@@ -2310,6 +2401,7 @@
     ];
     const OPERATION_A_CONFIG = operationTools[0];
     const OPERATION_A_TEMPLATE_STORAGE_KEY = "operation-template-A";
+    const OPERATION_A_INPUT_STORAGE_KEY = "operation-input-A";
     const OPERATION_A_FINAL_PROMPT_STORAGE_KEY = "operation-final-prompt-A";
     const OPERATION_A_RESULT_STORAGE_KEY = "operation-result-A";
     const OPERATION_A_SOURCE_STORAGE_KEY = "operation-template-source-A";
@@ -2675,6 +2767,22 @@
     const importOperationATemplateBtn = document.querySelector("#importOperationATemplateBtn");
     const exportOperationATemplateBtn = document.querySelector("#exportOperationATemplateBtn");
     const importOperationATemplateFile = document.querySelector("#importOperationATemplateFile");
+    const operationAEpisodeNumber = document.querySelector("#operationAEpisodeNumber");
+    const operationACoreKeyword = document.querySelector("#operationACoreKeyword");
+    const operationAFinalTitle = document.querySelector("#operationAFinalTitle");
+    const operationAShortConcept = document.querySelector("#operationAShortConcept");
+    const operationAFinalTtsScript = document.querySelector("#operationAFinalTtsScript");
+    const operationAYoutubePackaging = document.querySelector("#operationAYoutubePackaging");
+    const operationAKoreanReview = document.querySelector("#operationAKoreanReview");
+    const operationALongformVisual = document.querySelector("#operationALongformVisual");
+    const operationAShortsMoment = document.querySelector("#operationAShortsMoment");
+    const operationAShortsScript = document.querySelector("#operationAShortsScript");
+    const operationAShortsPackaging = document.querySelector("#operationAShortsPackaging");
+    const operationAFinalPrompt = document.querySelector("#operationAFinalPrompt");
+    const operationAFinalPromptCount = document.querySelector("#operationAFinalPromptCount");
+    const generateOperationAPromptBtn = document.querySelector("#generateOperationAPromptBtn");
+    const clearOperationABtn = document.querySelector("#clearOperationABtn");
+    const copyOperationAPromptBtn = document.querySelector("#copyOperationAPromptBtn");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -2706,6 +2814,19 @@
     let builtInShortsPackagingTemplate = "";
     let operationATemplate = "";
     let builtInOperationATemplate = "";
+    const operationAInputFields = [
+      ["episodeNumber", operationAEpisodeNumber],
+      ["coreKeyword", operationACoreKeyword],
+      ["finalTitle", operationAFinalTitle],
+      ["shortConcept", operationAShortConcept],
+      ["finalTtsScript", operationAFinalTtsScript],
+      ["youtubePackaging", operationAYoutubePackaging],
+      ["koreanReview", operationAKoreanReview],
+      ["longformVisual", operationALongformVisual],
+      ["shortsMoment", operationAShortsMoment],
+      ["shortsScript", operationAShortsScript],
+      ["shortsPackaging", operationAShortsPackaging],
+    ];
 
     function setStatus(text, type = "") {
       statusText.textContent = text;
@@ -2785,6 +2906,7 @@
       shortsPackagingTemplateCount.textContent = `${shortsPackagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       operationATemplateHeaderCount.textContent = `${operationATemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       operationATemplateCount.textContent = `${operationATemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      operationAFinalPromptCount.textContent = `${operationAFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
     }
 
     function switchTab(tabName) {
@@ -5202,6 +5324,170 @@ Moonlit Eastern Tales`;
       reader.readAsText(file, "utf-8");
     }
 
+    function getOperationAInputData() {
+      return Object.fromEntries(operationAInputFields.map(([key, field]) => [key, field.value]));
+    }
+
+    function saveOperationAState() {
+      localStorage.setItem(OPERATION_A_INPUT_STORAGE_KEY, JSON.stringify(getOperationAInputData()));
+      localStorage.setItem(OPERATION_A_FINAL_PROMPT_STORAGE_KEY, operationAFinalPrompt.value);
+    }
+
+    function restoreOperationAState() {
+      try {
+        const savedInputs = JSON.parse(localStorage.getItem(OPERATION_A_INPUT_STORAGE_KEY) || "{}");
+        operationAInputFields.forEach(([key, field]) => {
+          field.value = typeof savedInputs[key] === "string" ? savedInputs[key] : "";
+        });
+      } catch (error) {
+        operationAInputFields.forEach(([, field]) => {
+          field.value = "";
+        });
+      }
+      operationAFinalPrompt.value = localStorage.getItem(OPERATION_A_FINAL_PROMPT_STORAGE_KEY) || "";
+      copyOperationAPromptBtn.disabled = !operationAFinalPrompt.value;
+      updateCounts();
+    }
+
+    function buildOperationAInputBlock() {
+      const data = getOperationAInputData();
+      const valueOrEmpty = (value) => value.trim() || "입력 없음";
+
+      return `EPISODE BASIC INFO
+
+Episode Number:
+${valueOrEmpty(data.episodeNumber)}
+
+Core Keyword / Source Idea:
+${valueOrEmpty(data.coreKeyword)}
+
+Final Episode Title:
+${valueOrEmpty(data.finalTitle)}
+
+Short Concept Note:
+${valueOrEmpty(data.shortConcept)}
+
+
+FINAL TTS-READY SCRIPT
+
+<<< FINAL TTS-READY SCRIPT START >>>
+
+${valueOrEmpty(data.finalTtsScript)}
+
+<<< FINAL TTS-READY SCRIPT END >>>
+
+
+YOUTUBE PACKAGING RESULT
+
+<<< YOUTUBE PACKAGING RESULT START >>>
+
+${valueOrEmpty(data.youtubePackaging)}
+
+<<< YOUTUBE PACKAGING RESULT END >>>
+
+
+KOREAN REVIEW TRANSLATION RESULT
+
+<<< KOREAN REVIEW RESULT START >>>
+
+${valueOrEmpty(data.koreanReview)}
+
+<<< KOREAN REVIEW RESULT END >>>
+
+
+LONGFORM VISUAL CUT PLAN RESULT
+
+<<< LONGFORM VISUAL CUT PLAN RESULT START >>>
+
+${valueOrEmpty(data.longformVisual)}
+
+<<< LONGFORM VISUAL CUT PLAN RESULT END >>>
+
+
+SHORTS MOMENT EXTRACTOR RESULT
+
+<<< SHORTS MOMENT EXTRACTOR RESULT START >>>
+
+${valueOrEmpty(data.shortsMoment)}
+
+<<< SHORTS MOMENT EXTRACTOR RESULT END >>>
+
+
+SHORTS SCRIPT RESULT
+
+<<< SHORTS SCRIPT RESULT START >>>
+
+${valueOrEmpty(data.shortsScript)}
+
+<<< SHORTS SCRIPT RESULT END >>>
+
+
+SHORTS PACKAGING RESULT
+
+<<< SHORTS PACKAGING RESULT START >>>
+
+${valueOrEmpty(data.shortsPackaging)}
+
+<<< SHORTS PACKAGING RESULT END >>>`;
+    }
+
+    function mergeOperationATemplateWithInputs(template, inputBlock) {
+      if (template.includes("{{OPERATION_A_INPUTS}}")) {
+        return template.replace("{{OPERATION_A_INPUTS}}", () => inputBlock);
+      }
+
+      const inputSectionPattern = /# INPUTS[\s\S]*?---\s*# PRIMARY QC TASK/;
+      if (inputSectionPattern.test(template)) {
+        return template.replace(inputSectionPattern, `# INPUTS\n\n${inputBlock}\n\n---\n\n# PRIMARY QC TASK`);
+      }
+
+      return `${template.trimEnd()}\n\n---\n\n# INPUTS\n\n${inputBlock}`;
+    }
+
+    function generateOperationAPrompt() {
+      if (!operationATemplateEditor.value.trim()) {
+        setStatus("Episode Quality Control Checker 템플릿이 비어 있어 프롬프트를 생성할 수 없습니다.", "error");
+        return;
+      }
+
+      const hasAnyInput = operationAInputFields.some(([, field]) => field.value.trim());
+      if (!hasAnyInput) {
+        setStatus("A 실행 프롬프트를 생성하려면 최소 한 개 이상의 입력값을 넣어주세요.", "error");
+        return;
+      }
+
+      const inputBlock = buildOperationAInputBlock();
+      operationAFinalPrompt.value = mergeOperationATemplateWithInputs(operationATemplateEditor.value, inputBlock);
+      copyOperationAPromptBtn.disabled = !operationAFinalPrompt.value;
+      saveOperationAState();
+      setStatus("Episode Quality Control Checker 최종 실행 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function copyOperationAPrompt() {
+      if (!operationAFinalPrompt.value) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(operationAFinalPrompt.value);
+      } else {
+        operationAFinalPrompt.focus();
+        operationAFinalPrompt.select();
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+      setStatus("Episode Quality Control Checker 프롬프트 복사 완료", "ready");
+    }
+
+    function clearOperationAFields() {
+      operationAInputFields.forEach(([, field]) => {
+        field.value = "";
+      });
+      operationAFinalPrompt.value = "";
+      copyOperationAPromptBtn.disabled = true;
+      saveOperationAState();
+      updateCounts();
+      operationAEpisodeNumber.focus();
+    }
+
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         sourceIdea.value = chip.textContent.trim();
@@ -5295,6 +5581,17 @@ Moonlit Eastern Tales`;
     shortsPackagingTemplateEditor.addEventListener("input", updateCounts);
     shortsPackagingFinalPrompt.addEventListener("input", updateCounts);
     operationATemplateEditor.addEventListener("input", updateCounts);
+    operationAInputFields.forEach(([, field]) => {
+      field.addEventListener("input", () => {
+        saveOperationAState();
+        updateCounts();
+      });
+    });
+    operationAFinalPrompt.addEventListener("input", () => {
+      saveOperationAState();
+      copyOperationAPromptBtn.disabled = !operationAFinalPrompt.value;
+      updateCounts();
+    });
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -5466,6 +5763,9 @@ Moonlit Eastern Tales`;
       importOperationATemplate(importOperationATemplateFile.files[0]);
       importOperationATemplateFile.value = "";
     });
+    generateOperationAPromptBtn.addEventListener("click", generateOperationAPrompt);
+    clearOperationABtn.addEventListener("click", clearOperationAFields);
+    copyOperationAPromptBtn.addEventListener("click", copyOperationAPrompt);
 
     loadPromptTemplate();
     loadEpisodeTemplate();
@@ -5482,6 +5782,7 @@ Moonlit Eastern Tales`;
     loadShortsScriptTemplate();
     loadShortsPackagingTemplate();
     loadOperationATemplate();
+    restoreOperationAState();
     updateCounts();
   </script>
 </body>
