@@ -42,6 +42,7 @@
 
     button,
     textarea,
+    select,
     input {
       font: inherit;
     }
@@ -260,7 +261,18 @@
       outline: none;
     }
 
-    textarea:focus {
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--input);
+      color: var(--ink);
+      padding: 10px 12px;
+      outline: none;
+    }
+
+    textarea:focus,
+    select:focus {
       border-color: rgba(63, 199, 181, 0.82);
       box-shadow: 0 0 0 3px rgba(63, 199, 181, 0.16);
     }
@@ -424,6 +436,17 @@
       color: var(--muted);
       font-size: 12px;
       line-height: 1.5;
+    }
+
+    .checklist {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .checklist li {
+      margin: 2px 0;
     }
 
     .prompt-editor {
@@ -2241,6 +2264,17 @@
             <h2 id="operationAQcInputTitle">최종 검수 입력</h2>
           </div>
           <div class="input-area">
+            <div class="actions">
+              <button id="importOperationAStep8Btn" class="btn" type="button">Step 8 TTS 결과 가져오기</button>
+              <button id="importOperationAStep9Btn" class="btn" type="button">Step 9 Packaging 결과 가져오기</button>
+              <button id="importOperationAStep10Btn" class="btn" type="button">Step 10 Korean Review 결과 가져오기</button>
+              <button id="importOperationAStep11Btn" class="btn" type="button">Step 11 Visual Cut Plan 결과 가져오기</button>
+              <button id="importOperationAStep12Btn" class="btn" type="button">Step 12 Shorts Moment 결과 가져오기</button>
+              <button id="importOperationAStep13Btn" class="btn" type="button">Step 13 Shorts Script 결과 가져오기</button>
+              <button id="importOperationAStep14Btn" class="btn" type="button">Step 14 Shorts Packaging 결과 가져오기</button>
+              <button id="importAllOperationAResultsBtn" class="btn primary" type="button">전체 결과 한 번에 가져오기</button>
+            </div>
+
             <label for="operationAFinalTtsScript">Final TTS-ready Script</label>
             <p class="field-help">Step 8에서 생성된 최종 TTS-ready script를 붙여 넣습니다.</p>
             <textarea id="operationAFinalTtsScript" spellcheck="false"></textarea>
@@ -2338,6 +2372,84 @@
             </div>
           </div>
         </section>
+
+        <section class="workspace" aria-labelledby="operationAResultTitle">
+          <div class="panel-head">
+            <h2 id="operationAResultTitle">A 결과물 붙여넣기</h2>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>AI에서 생성된 Episode Quality Control Report를 여기에 붙여 넣습니다. 이 결과는 현재 에피소드의 최종 품질 검수 기록으로 저장됩니다.</p>
+            </div>
+            <textarea id="operationAResult" spellcheck="false" placeholder="Paste the Episode Quality Control Checker result here."></textarea>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="operationASummaryTitle">
+          <div class="panel-head">
+            <h2 id="operationASummaryTitle">QC 판정 요약 저장</h2>
+          </div>
+          <div class="input-area">
+            <label for="operationAQcJudgment">Final QC Judgment</label>
+            <select id="operationAQcJudgment">
+              <option value="">선택 안 함</option>
+              <option value="통과">통과</option>
+              <option value="조건부 통과">조건부 통과</option>
+              <option value="재작업 필요">재작업 필요</option>
+              <option value="패치 필요 후보">패치 필요 후보</option>
+            </select>
+
+            <label for="operationAProductionReadiness">Production Readiness</label>
+            <select id="operationAProductionReadiness">
+              <option value="">선택 안 함</option>
+              <option value="바로 제작 가능">바로 제작 가능</option>
+              <option value="소수 수정 후 제작 가능">소수 수정 후 제작 가능</option>
+              <option value="재작업 후 제작 가능">재작업 후 제작 가능</option>
+              <option value="제작 보류">제작 보류</option>
+            </select>
+
+            <label for="operationAPatchStatus">Patch Candidate Status</label>
+            <select id="operationAPatchStatus">
+              <option value="">선택 안 함</option>
+              <option value="패치 후보 없음">패치 후보 없음</option>
+              <option value="관찰 필요">관찰 필요</option>
+              <option value="패치 필요 후보">패치 필요 후보</option>
+            </select>
+
+            <label for="operationAQcSummary">QC Summary Memo</label>
+            <textarea id="operationAQcSummary" spellcheck="false"></textarea>
+          </div>
+        </section>
+
+        <section class="workspace wide" aria-labelledby="operationAChecklistTitle">
+          <div class="panel-head">
+            <h2 id="operationAChecklistTitle">A 기능 체크리스트</h2>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>A 기능 사용 전 확인</strong>
+                <ul class="checklist">
+                  <li>□ Step 8 Final TTS-ready Script가 준비되었는가?</li>
+                  <li>□ Step 9 YouTube Packaging 결과가 준비되었는가?</li>
+                  <li>□ Step 11 Longform Visual Cut Plan 결과가 준비되었는가?</li>
+                  <li>□ Step 14 Shorts Packaging 결과가 준비되었는가?</li>
+                  <li>□ 선택적으로 Step 10, Step 12, Step 13 결과도 붙여 넣었는가?</li>
+                </ul>
+              </div>
+              <div class="meta-box">
+                <strong>A 결과 확인 기준</strong>
+                <ul class="checklist">
+                  <li>□ 최종 판정이 통과 / 조건부 통과 / 재작업 필요 / 패치 필요 후보 중 하나로 나왔는가?</li>
+                  <li>□ 현재 에피소드 수정 권장 사항이 명확한가?</li>
+                  <li>□ 패치 후보 판단이 과도하지 않은가?</li>
+                  <li>□ 제작 진행 가능 여부가 명확한가?</li>
+                  <li>□ 다음 행동이 구체적으로 제시되었는가?</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
       </section>
     </main>
   </div>
@@ -2405,6 +2517,10 @@
     const OPERATION_A_FINAL_PROMPT_STORAGE_KEY = "operation-final-prompt-A";
     const OPERATION_A_RESULT_STORAGE_KEY = "operation-result-A";
     const OPERATION_A_SOURCE_STORAGE_KEY = "operation-template-source-A";
+    const OPERATION_A_QC_JUDGMENT_STORAGE_KEY = "operation-qc-judgment-A";
+    const OPERATION_A_PRODUCTION_READINESS_STORAGE_KEY = "operation-production-readiness-A";
+    const OPERATION_A_PATCH_STATUS_STORAGE_KEY = "operation-patch-status-A";
+    const OPERATION_A_QC_SUMMARY_STORAGE_KEY = "operation-qc-summary-A";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
@@ -2783,6 +2899,19 @@
     const generateOperationAPromptBtn = document.querySelector("#generateOperationAPromptBtn");
     const clearOperationABtn = document.querySelector("#clearOperationABtn");
     const copyOperationAPromptBtn = document.querySelector("#copyOperationAPromptBtn");
+    const importOperationAStep8Btn = document.querySelector("#importOperationAStep8Btn");
+    const importOperationAStep9Btn = document.querySelector("#importOperationAStep9Btn");
+    const importOperationAStep10Btn = document.querySelector("#importOperationAStep10Btn");
+    const importOperationAStep11Btn = document.querySelector("#importOperationAStep11Btn");
+    const importOperationAStep12Btn = document.querySelector("#importOperationAStep12Btn");
+    const importOperationAStep13Btn = document.querySelector("#importOperationAStep13Btn");
+    const importOperationAStep14Btn = document.querySelector("#importOperationAStep14Btn");
+    const importAllOperationAResultsBtn = document.querySelector("#importAllOperationAResultsBtn");
+    const operationAResult = document.querySelector("#operationAResult");
+    const operationAQcJudgment = document.querySelector("#operationAQcJudgment");
+    const operationAProductionReadiness = document.querySelector("#operationAProductionReadiness");
+    const operationAPatchStatus = document.querySelector("#operationAPatchStatus");
+    const operationAQcSummary = document.querySelector("#operationAQcSummary");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -5333,6 +5462,14 @@ Moonlit Eastern Tales`;
       localStorage.setItem(OPERATION_A_FINAL_PROMPT_STORAGE_KEY, operationAFinalPrompt.value);
     }
 
+    function saveOperationAResultState() {
+      localStorage.setItem(OPERATION_A_RESULT_STORAGE_KEY, operationAResult.value);
+      localStorage.setItem(OPERATION_A_QC_JUDGMENT_STORAGE_KEY, operationAQcJudgment.value);
+      localStorage.setItem(OPERATION_A_PRODUCTION_READINESS_STORAGE_KEY, operationAProductionReadiness.value);
+      localStorage.setItem(OPERATION_A_PATCH_STATUS_STORAGE_KEY, operationAPatchStatus.value);
+      localStorage.setItem(OPERATION_A_QC_SUMMARY_STORAGE_KEY, operationAQcSummary.value);
+    }
+
     function restoreOperationAState() {
       try {
         const savedInputs = JSON.parse(localStorage.getItem(OPERATION_A_INPUT_STORAGE_KEY) || "{}");
@@ -5346,7 +5483,104 @@ Moonlit Eastern Tales`;
       }
       operationAFinalPrompt.value = localStorage.getItem(OPERATION_A_FINAL_PROMPT_STORAGE_KEY) || "";
       copyOperationAPromptBtn.disabled = !operationAFinalPrompt.value;
+      operationAResult.value = localStorage.getItem(OPERATION_A_RESULT_STORAGE_KEY) || "";
+      operationAQcJudgment.value = localStorage.getItem(OPERATION_A_QC_JUDGMENT_STORAGE_KEY) || "";
+      operationAProductionReadiness.value = localStorage.getItem(OPERATION_A_PRODUCTION_READINESS_STORAGE_KEY) || "";
+      operationAPatchStatus.value = localStorage.getItem(OPERATION_A_PATCH_STATUS_STORAGE_KEY) || "";
+      operationAQcSummary.value = localStorage.getItem(OPERATION_A_QC_SUMMARY_STORAGE_KEY) || "";
       updateCounts();
+    }
+
+    function firstNonEmptyValue(fields) {
+      for (const field of fields) {
+        if (field && typeof field.value === "string" && field.value.trim()) {
+          return field.value;
+        }
+      }
+      return "";
+    }
+
+    const operationAResultSources = [
+      {
+        step: "Step 8",
+        missingMessage: "Step 8 결과물이 없습니다. Final TTS-ready Script는 직접 붙여 넣어주세요.",
+        target: operationAFinalTtsScript,
+        getValue: () => firstNonEmptyValue([packagingTtsReadyInput, longformVisualTtsReadyInput, ttsFinalPrompt]),
+      },
+      {
+        step: "Step 9",
+        missingMessage: "Step 9 결과물이 없습니다. YouTube Packaging Result는 직접 붙여 넣어주세요.",
+        target: operationAYoutubePackaging,
+        getValue: () => firstNonEmptyValue([koreanReviewEnglishInput, packagingFinalPrompt]),
+      },
+      {
+        step: "Step 10",
+        missingMessage: "Step 10 결과물이 없습니다. Korean Review Translation Result는 직접 붙여 넣어주세요.",
+        target: operationAKoreanReview,
+        getValue: () => firstNonEmptyValue([koreanReviewFinalPrompt]),
+      },
+      {
+        step: "Step 11",
+        missingMessage: "Step 11 결과물이 없습니다. Longform Visual Cut Plan은 직접 붙여 넣어주세요.",
+        target: operationALongformVisual,
+        getValue: () => firstNonEmptyValue([longformVisualFinalPrompt]),
+      },
+      {
+        step: "Step 12",
+        missingMessage: "Step 12 결과물이 없습니다. Shorts Moment Extractor Result는 직접 붙여 넣어주세요.",
+        target: operationAShortsMoment,
+        getValue: () => firstNonEmptyValue([shortsScriptFullStep12Result, shortsMomentFinalPrompt]),
+      },
+      {
+        step: "Step 13",
+        missingMessage: "Step 13 결과물이 없습니다. Shorts Script Result는 직접 붙여 넣어주세요.",
+        target: operationAShortsScript,
+        getValue: () => firstNonEmptyValue([shortsPackagingFullStep13Result, shortsScriptFinalPrompt]),
+      },
+      {
+        step: "Step 14",
+        missingMessage: "Step 14 결과물이 없습니다. Shorts Packaging Result는 직접 붙여 넣어주세요.",
+        target: operationAShortsPackaging,
+        getValue: () => firstNonEmptyValue([shortsPackagingFinalPrompt]),
+      },
+    ];
+
+    function importOperationAResult(source, shouldReport = true) {
+      const value = source.getValue();
+      if (!value.trim()) {
+        if (shouldReport) {
+          setStatus(source.missingMessage, "error");
+        }
+        return false;
+      }
+
+      source.target.value = value;
+      saveOperationAState();
+      updateCounts();
+      if (shouldReport) {
+        setStatus(`${source.step} 결과 가져오기 완료`, "ready");
+      }
+      return true;
+    }
+
+    function importAllOperationAResults() {
+      const missing = [];
+      let importedCount = 0;
+
+      operationAResultSources.forEach((source) => {
+        if (importOperationAResult(source, false)) {
+          importedCount += 1;
+        } else {
+          missing.push(source.missingMessage);
+        }
+      });
+
+      if (missing.length) {
+        setStatus(`${importedCount}개 결과를 가져왔습니다. ${missing.join(" ")}`, importedCount ? "ready" : "error");
+        return;
+      }
+
+      setStatus("Step 8~14 전체 결과 가져오기 완료", "ready");
     }
 
     function buildOperationAInputBlock() {
@@ -5592,6 +5826,11 @@ ${valueOrEmpty(data.shortsPackaging)}
       copyOperationAPromptBtn.disabled = !operationAFinalPrompt.value;
       updateCounts();
     });
+    operationAResult.addEventListener("input", saveOperationAResultState);
+    operationAQcJudgment.addEventListener("change", saveOperationAResultState);
+    operationAProductionReadiness.addEventListener("change", saveOperationAResultState);
+    operationAPatchStatus.addEventListener("change", saveOperationAResultState);
+    operationAQcSummary.addEventListener("input", saveOperationAResultState);
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -5766,6 +6005,14 @@ ${valueOrEmpty(data.shortsPackaging)}
     generateOperationAPromptBtn.addEventListener("click", generateOperationAPrompt);
     clearOperationABtn.addEventListener("click", clearOperationAFields);
     copyOperationAPromptBtn.addEventListener("click", copyOperationAPrompt);
+    importOperationAStep8Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[0]));
+    importOperationAStep9Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[1]));
+    importOperationAStep10Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[2]));
+    importOperationAStep11Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[3]));
+    importOperationAStep12Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[4]));
+    importOperationAStep13Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[5]));
+    importOperationAStep14Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[6]));
+    importAllOperationAResultsBtn.addEventListener("click", importAllOperationAResults);
 
     loadPromptTemplate();
     loadEpisodeTemplate();
