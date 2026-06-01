@@ -258,7 +258,8 @@
     #ttsFinalPrompt,
     #packagingFinalPrompt,
     #koreanReviewFinalPrompt,
-    #longformVisualFinalPrompt {
+    #longformVisualFinalPrompt,
+    #shortsMomentFinalPrompt {
       min-height: 540px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 13px;
@@ -539,14 +540,16 @@
     }
 
     #koreanReviewTemplateEditor,
-    #longformVisualTemplateEditor {
+    #longformVisualTemplateEditor,
+    #shortsMomentTemplateEditor {
       min-height: 340px;
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
     }
 
     #koreanReviewFinalPrompt,
-    #longformVisualFinalPrompt {
+    #longformVisualFinalPrompt,
+    #shortsMomentFinalPrompt {
       min-height: 270px;
     }
 
@@ -603,7 +606,8 @@
       #ttsFinalPrompt,
       #packagingFinalPrompt,
       #koreanReviewFinalPrompt,
-      #longformVisualFinalPrompt {
+      #longformVisualFinalPrompt,
+      #shortsMomentFinalPrompt {
         min-height: 420px;
       }
 
@@ -646,12 +650,14 @@
       }
 
       #koreanReviewTemplateEditor,
-      #longformVisualTemplateEditor {
+      #longformVisualTemplateEditor,
+      #shortsMomentTemplateEditor {
         min-height: 300px;
       }
 
       #koreanReviewFinalPrompt,
-      #longformVisualFinalPrompt {
+      #longformVisualFinalPrompt,
+      #shortsMomentFinalPrompt {
         min-height: 210px;
       }
 
@@ -690,6 +696,7 @@
       <button class="tab" type="button" data-tab="packaging">9. 유튜브 패키징 생성</button>
       <button class="tab" type="button" data-tab="koreanReview">10. 한국어 검수 번역</button>
       <button class="tab" type="button" data-tab="longformVisual">11. Longform Visual</button>
+      <button class="tab" type="button" data-tab="shortsMoment">12. Shorts Moment</button>
     </nav>
 
     <main>
@@ -1787,6 +1794,101 @@
           </div>
         </section>
       </section>
+
+      <section id="tabShortsMoment" class="tab-panel" data-panel="shortsMoment">
+        <section class="workspace wide" aria-labelledby="shortsMomentTitle">
+          <div class="panel-head">
+            <h2 id="shortsMomentTitle">Shorts Moment Extractor v1.0.2</h2>
+            <span id="shortsMomentInputCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>이 단계는 완성된 롱폼 에피소드 대본에서 쇼츠로 만들 수 있는 quiet, visually strong, softly mysterious moment candidates를 추출하기 위한 프롬프트를 준비합니다. 쇼츠 대본, 제목, 썸네일 문구, 해시태그, 이미지 프롬프트를 만들지 않습니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="shortsMomentInputTitle">
+          <div class="panel-head">
+            <h2 id="shortsMomentInputTitle">Completed Long-form Episode Script Input</h2>
+          </div>
+          <div class="input-area">
+            <label for="shortsMomentEpisodeScript">Completed Long-form Episode Script</label>
+            <textarea id="shortsMomentEpisodeScript" spellcheck="false" placeholder="Paste the completed long-form episode script here."></textarea>
+
+            <div class="info-band">
+              <p>완성된 롱폼 에피소드 대본 원문을 그대로 붙여 넣는 영역입니다. 앱은 이 내용을 요약, 수정, 번역, 분석하지 않습니다.</p>
+            </div>
+
+            <label for="shortsMomentEpisodeTitle">Optional Full Episode Title</label>
+            <textarea id="shortsMomentEpisodeTitle" spellcheck="false" placeholder="Optional full episode title"></textarea>
+
+            <label for="shortsMomentCoreKeyword">Optional Core Keyword</label>
+            <textarea id="shortsMomentCoreKeyword" spellcheck="false" placeholder="Optional core keyword"></textarea>
+
+            <label for="shortsMomentLongformConcept">Optional Long-form Video Concept</label>
+            <textarea id="shortsMomentLongformConcept" spellcheck="false" placeholder="Optional long-form video concept"></textarea>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="shortsMomentTemplateTitle">
+          <div class="panel-head">
+            <h2 id="shortsMomentTemplateTitle">프롬프트 템플릿</h2>
+            <span id="shortsMomentTemplateHeaderCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>프롬프트 템플릿 버전</strong>
+                <span id="shortsMomentTemplateFileName">12. Shorts Moment Extractor v1.0.2.txt</span>
+              </div>
+              <div class="meta-box">
+                <strong>저장 방식</strong>
+                <span id="shortsMomentTemplateSaveModeSummary">기본 템플릿 사용 중</span>
+              </div>
+            </div>
+
+            <details class="prompt-editor" open>
+              <summary>프롬프트 업데이트</summary>
+              <div class="prompt-editor-body">
+                <label for="shortsMomentTemplateEditor">현재 저장된 실행 프롬프트 원문</label>
+                <textarea id="shortsMomentTemplateEditor" spellcheck="false"></textarea>
+
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>저장 방식</strong>
+                    <span id="shortsMomentTemplateSaveMode">기본 템플릿 사용 중</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>프롬프트 길이</strong>
+                    <span id="shortsMomentTemplateCount">0자</span>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <button id="saveShortsMomentTemplateBtn" class="btn primary" type="button">수정한 프롬프트 저장</button>
+                  <button id="resetShortsMomentTemplateBtn" class="btn warn" type="button">내장 원본으로 복원</button>
+                  <button id="importShortsMomentTemplateBtn" class="btn" type="button">텍스트 파일 불러오기</button>
+                  <button id="exportShortsMomentTemplateBtn" class="btn" type="button">현재 프롬프트 내보내기</button>
+                  <input id="importShortsMomentTemplateFile" class="file-input" type="file" accept=".txt,text/plain">
+                </div>
+              </div>
+            </details>
+
+            <div class="actions">
+              <button id="generateShortsMomentPromptBtn" class="btn primary" type="button">Generate Prompt</button>
+              <button id="clearShortsMomentBtn" class="btn warn" type="button">Clear</button>
+            </div>
+
+            <label for="shortsMomentFinalPrompt">Final Prompt</label>
+            <textarea id="shortsMomentFinalPrompt" spellcheck="false"></textarea>
+
+            <div class="actions">
+              <button id="copyShortsMomentPromptBtn" class="btn primary" type="button" disabled>Copy Prompt</button>
+            </div>
+          </div>
+        </section>
+      </section>
     </main>
   </div>
 
@@ -1827,12 +1929,16 @@
     const LONGFORM_VISUAL_PROMPT_FILE = "11. Longform Visual Cut Planner & Image Prompt Generator v1.0.2a.txt";
     const LONGFORM_VISUAL_STORAGE_KEY = "moonlit_longform_visual_template_v102a";
     const LONGFORM_VISUAL_SOURCE_STORAGE_KEY = "moonlit_longform_visual_template_source";
+    const SHORTS_MOMENT_PROMPT_FILE = "12. Shorts Moment Extractor v1.0.2.txt";
+    const SHORTS_MOMENT_STORAGE_KEY = "moonlit_shorts_moment_template_v102";
+    const SHORTS_MOMENT_SOURCE_STORAGE_KEY = "moonlit_shorts_moment_template_source";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
     const PACKAGING_PLACEHOLDER = "{{TTS_READY_SCRIPT_INPUT}}";
     const KOREAN_REVIEW_PLACEHOLDER = "{{ENGLISH_SCRIPT_INPUT}}";
     const LONGFORM_VISUAL_PLACEHOLDER = "{{LONGFORM_VISUAL_INPUT}}";
+    const SHORTS_MOMENT_PLACEHOLDER = "{{SHORTS_MOMENT_INPUT}}";
     const OPENING_FIELD_LABELS = [
       "이번 영상의 핵심 소재",
       "첫 장면 또는 첫 문장 방향",
@@ -2108,6 +2214,26 @@
     const generateLongformVisualPromptBtn = document.querySelector("#generateLongformVisualPromptBtn");
     const clearLongformVisualBtn = document.querySelector("#clearLongformVisualBtn");
     const copyLongformVisualPromptBtn = document.querySelector("#copyLongformVisualPromptBtn");
+    const shortsMomentEpisodeScript = document.querySelector("#shortsMomentEpisodeScript");
+    const shortsMomentEpisodeTitle = document.querySelector("#shortsMomentEpisodeTitle");
+    const shortsMomentCoreKeyword = document.querySelector("#shortsMomentCoreKeyword");
+    const shortsMomentLongformConcept = document.querySelector("#shortsMomentLongformConcept");
+    const shortsMomentInputCount = document.querySelector("#shortsMomentInputCount");
+    const shortsMomentTemplateEditor = document.querySelector("#shortsMomentTemplateEditor");
+    const shortsMomentTemplateHeaderCount = document.querySelector("#shortsMomentTemplateHeaderCount");
+    const shortsMomentTemplateCount = document.querySelector("#shortsMomentTemplateCount");
+    const shortsMomentTemplateSaveModeSummary = document.querySelector("#shortsMomentTemplateSaveModeSummary");
+    const shortsMomentTemplateSaveMode = document.querySelector("#shortsMomentTemplateSaveMode");
+    const shortsMomentTemplateFileName = document.querySelector("#shortsMomentTemplateFileName");
+    const saveShortsMomentTemplateBtn = document.querySelector("#saveShortsMomentTemplateBtn");
+    const resetShortsMomentTemplateBtn = document.querySelector("#resetShortsMomentTemplateBtn");
+    const importShortsMomentTemplateBtn = document.querySelector("#importShortsMomentTemplateBtn");
+    const exportShortsMomentTemplateBtn = document.querySelector("#exportShortsMomentTemplateBtn");
+    const importShortsMomentTemplateFile = document.querySelector("#importShortsMomentTemplateFile");
+    const shortsMomentFinalPrompt = document.querySelector("#shortsMomentFinalPrompt");
+    const generateShortsMomentPromptBtn = document.querySelector("#generateShortsMomentPromptBtn");
+    const clearShortsMomentBtn = document.querySelector("#clearShortsMomentBtn");
+    const copyShortsMomentPromptBtn = document.querySelector("#copyShortsMomentPromptBtn");
 
     let promptTemplate = "";
     let builtInPromptTemplate = "";
@@ -2131,6 +2257,8 @@
     let builtInKoreanReviewTemplate = "";
     let longformVisualTemplate = "";
     let builtInLongformVisualTemplate = "";
+    let shortsMomentTemplate = "";
+    let builtInShortsMomentTemplate = "";
 
     function setStatus(text, type = "") {
       statusText.textContent = text;
@@ -2183,6 +2311,13 @@
       longformVisualInputCount.textContent = `${longformVisualInputLength.toLocaleString("ko-KR")}자`;
       longformVisualTemplateHeaderCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       longformVisualTemplateCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      const shortsMomentInputLength = shortsMomentEpisodeScript.value.length
+        + shortsMomentEpisodeTitle.value.length
+        + shortsMomentCoreKeyword.value.length
+        + shortsMomentLongformConcept.value.length;
+      shortsMomentInputCount.textContent = `${shortsMomentInputLength.toLocaleString("ko-KR")}자`;
+      shortsMomentTemplateHeaderCount.textContent = `${shortsMomentTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      shortsMomentTemplateCount.textContent = `${shortsMomentTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
     }
 
     function switchTab(tabName) {
@@ -3955,6 +4090,146 @@ ${englishScriptInput}
       longformVisualTtsReadyInput.focus();
     }
 
+    function prepareShortsMomentTemplate(template) {
+      if (!template) return "";
+      if (template.includes(SHORTS_MOMENT_PLACEHOLDER)) return template;
+      return `${template.trimEnd()}\n\n---\n\n${SHORTS_MOMENT_PLACEHOLDER}\n`;
+    }
+
+    function syncShortsMomentTemplateEditor() {
+      shortsMomentTemplateEditor.value = shortsMomentTemplate;
+      shortsMomentTemplateSaveMode.textContent = localStorage.getItem(SHORTS_MOMENT_STORAGE_KEY) ? "브라우저 저장소에 저장됨" : "기본 템플릿 사용 중";
+      shortsMomentTemplateSaveModeSummary.textContent = shortsMomentTemplateSaveMode.textContent;
+      shortsMomentTemplateFileName.textContent = getTemplateSourceLabel(SHORTS_MOMENT_STORAGE_KEY, SHORTS_MOMENT_SOURCE_STORAGE_KEY, SHORTS_MOMENT_PROMPT_FILE);
+      updateCounts();
+    }
+
+    async function loadShortsMomentTemplate() {
+      try {
+        const sourceTemplate = window.SHORTS_MOMENT_EXTRACTOR_PROMPT || await fetch(encodeURI(SHORTS_MOMENT_PROMPT_FILE), { cache: "no-store" }).then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+          }
+          return response.text();
+        });
+        builtInShortsMomentTemplate = prepareShortsMomentTemplate(sourceTemplate);
+        shortsMomentTemplate = localStorage.getItem(SHORTS_MOMENT_STORAGE_KEY) || builtInShortsMomentTemplate;
+        syncShortsMomentTemplateEditor();
+        setStatus(shortsMomentTemplate ? "Shorts Moment 템플릿 로드됨" : "Shorts Moment 템플릿을 찾을 수 없음", shortsMomentTemplate ? "ready" : "error");
+      } catch (error) {
+        builtInShortsMomentTemplate = "";
+        shortsMomentTemplate = "";
+        syncShortsMomentTemplateEditor();
+        setStatus("Shorts Moment 템플릿 파일을 찾을 수 없음", "error");
+      }
+    }
+
+    function saveShortsMomentTemplate(sourceLabel = "") {
+      const nextTemplate = shortsMomentTemplateEditor.value;
+      if (!nextTemplate.trim()) {
+        setStatus("저장할 프롬프트가 비어 있음", "error");
+        return;
+      }
+      shortsMomentTemplate = nextTemplate;
+      localStorage.setItem(SHORTS_MOMENT_STORAGE_KEY, shortsMomentTemplate);
+      setTemplateSourceLabel(SHORTS_MOMENT_SOURCE_STORAGE_KEY, SHORTS_MOMENT_PROMPT_FILE, sourceLabel);
+      syncShortsMomentTemplateEditor();
+      setStatus("Shorts Moment 프롬프트 저장 완료", "ready");
+    }
+
+    function resetShortsMomentTemplate() {
+      if (!builtInShortsMomentTemplate) {
+        setStatus("복원할 Shorts Moment 기본 프롬프트가 없음", "error");
+        return;
+      }
+      shortsMomentTemplate = builtInShortsMomentTemplate;
+      localStorage.setItem(SHORTS_MOMENT_STORAGE_KEY, shortsMomentTemplate);
+      localStorage.setItem(SHORTS_MOMENT_SOURCE_STORAGE_KEY, SHORTS_MOMENT_PROMPT_FILE);
+      syncShortsMomentTemplateEditor();
+      setStatus("Shorts Moment 프롬프트 내장 원본 복원 완료", "ready");
+    }
+
+    function exportShortsMomentTemplate() {
+      if (!shortsMomentTemplateEditor.value) return;
+      const blob = new Blob([shortsMomentTemplateEditor.value], { type: "text/plain;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "shorts-moment-extractor-prompt-template.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function importShortsMomentTemplate(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        shortsMomentTemplateEditor.value = String(reader.result || "");
+        updateCounts();
+        saveShortsMomentTemplate(`가져온 파일: ${file.name}`);
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function buildShortsMomentInputBlock(episodeScript, episodeTitle, coreKeyword, longformConcept) {
+      const title = episodeTitle.trim() || "Not provided.";
+      const keyword = coreKeyword.trim() || "Not provided.";
+      const concept = longformConcept.trim() || "Not provided.";
+
+      return `<<< FULL EPISODE SCRIPT START >>>\n${episodeScript}\n<<< FULL EPISODE SCRIPT END >>>\n\nFULL EPISODE TITLE:\n${title}\n\nCORE KEYWORD:\n${keyword}\n\nLONG-FORM VIDEO CONCEPT:\n${concept}`;
+    }
+
+    function generateShortsMomentPrompt() {
+      const episodeScript = shortsMomentEpisodeScript.value;
+      if (!episodeScript.trim()) {
+        setStatus("Please paste the completed long-form episode script before generating the Shorts Moment prompt.", "error");
+        shortsMomentFinalPrompt.value = "";
+        copyShortsMomentPromptBtn.disabled = true;
+        updateCounts();
+        return;
+      }
+
+      const inputBlock = buildShortsMomentInputBlock(
+        episodeScript,
+        shortsMomentEpisodeTitle.value,
+        shortsMomentCoreKeyword.value,
+        shortsMomentLongformConcept.value
+      );
+      const currentTemplate = shortsMomentTemplateEditor.value;
+      shortsMomentFinalPrompt.value = currentTemplate.includes(SHORTS_MOMENT_PLACEHOLDER)
+        ? currentTemplate.replace(SHORTS_MOMENT_PLACEHOLDER, () => inputBlock)
+        : `${currentTemplate.trimEnd()}\n\n${inputBlock}`;
+      copyShortsMomentPromptBtn.disabled = !shortsMomentFinalPrompt.value;
+      setStatus("Shorts Moment 최종 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function copyShortsMomentPrompt() {
+      if (!shortsMomentFinalPrompt.value) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(shortsMomentFinalPrompt.value);
+      } else {
+        shortsMomentFinalPrompt.focus();
+        shortsMomentFinalPrompt.select();
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+      }
+      setStatus("Shorts Moment 프롬프트 복사 완료", "ready");
+    }
+
+    function clearShortsMomentFields() {
+      shortsMomentEpisodeScript.value = "";
+      shortsMomentEpisodeTitle.value = "";
+      shortsMomentCoreKeyword.value = "";
+      shortsMomentLongformConcept.value = "";
+      shortsMomentFinalPrompt.value = "";
+      copyShortsMomentPromptBtn.disabled = true;
+      updateCounts();
+      shortsMomentEpisodeScript.focus();
+    }
+
     document.querySelectorAll(".chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         sourceIdea.value = chip.textContent.trim();
@@ -4022,6 +4297,12 @@ ${englishScriptInput}
     extractLongformVisualTtsReadyBtn.addEventListener("click", extractLongformVisualTtsReadyScript);
     longformVisualTemplateEditor.addEventListener("input", updateCounts);
     longformVisualFinalPrompt.addEventListener("input", updateCounts);
+    shortsMomentEpisodeScript.addEventListener("input", updateCounts);
+    shortsMomentEpisodeTitle.addEventListener("input", updateCounts);
+    shortsMomentCoreKeyword.addEventListener("input", updateCounts);
+    shortsMomentLongformConcept.addEventListener("input", updateCounts);
+    shortsMomentTemplateEditor.addEventListener("input", updateCounts);
+    shortsMomentFinalPrompt.addEventListener("input", updateCounts);
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
@@ -4152,6 +4433,17 @@ ${englishScriptInput}
     generateLongformVisualPromptBtn.addEventListener("click", generateLongformVisualPrompt);
     clearLongformVisualBtn.addEventListener("click", clearLongformVisualFields);
     copyLongformVisualPromptBtn.addEventListener("click", copyLongformVisualPrompt);
+    saveShortsMomentTemplateBtn.addEventListener("click", saveShortsMomentTemplate);
+    resetShortsMomentTemplateBtn.addEventListener("click", resetShortsMomentTemplate);
+    importShortsMomentTemplateBtn.addEventListener("click", () => importShortsMomentTemplateFile.click());
+    exportShortsMomentTemplateBtn.addEventListener("click", exportShortsMomentTemplate);
+    importShortsMomentTemplateFile.addEventListener("change", () => {
+      importShortsMomentTemplate(importShortsMomentTemplateFile.files[0]);
+      importShortsMomentTemplateFile.value = "";
+    });
+    generateShortsMomentPromptBtn.addEventListener("click", generateShortsMomentPrompt);
+    clearShortsMomentBtn.addEventListener("click", clearShortsMomentFields);
+    copyShortsMomentPromptBtn.addEventListener("click", copyShortsMomentPrompt);
 
     loadPromptTemplate();
     loadEpisodeTemplate();
@@ -4164,6 +4456,7 @@ ${englishScriptInput}
     loadPackagingTemplate();
     loadKoreanReviewTemplate();
     loadLongformVisualTemplate();
+    loadShortsMomentTemplate();
     updateCounts();
   </script>
 </body>
