@@ -1,0 +1,2382 @@
+Create the main story narration script for a global YouTube channel called **“Moonlit Eastern Tales.”**
+
+This channel creates calm bedtime stories for adults, inspired by old Korean folklore, Korean night imagery, and quiet Eastern tales.
+
+The channel’s core positioning is:
+
+**Calm bedtime stories from old Korea and the East.**
+
+The purpose of this step is to write the full main story narration based on the provided Main Story Structure.
+
+This script comes after the Opening Sleep-Descent section and before the later Sleep Fade section.
+
+The main story should feel:
+
+* calm
+* slow
+* atmospheric
+* adult
+* emotionally gentle
+* rooted in old Korean / Eastern imagery
+* mysterious but not scary
+* suitable for bedtime listening
+* naturally connected to the Opening Sleep-Descent ending
+* naturally prepared for a later Sleep Fade section
+* spacious enough to support long-form adult bedtime narration
+* expanded through sensory lingering, quiet atmosphere, and small emotional or perceptual shifts rather than additional plot
+* fully developed as a long-form main story, not summarized
+
+The main story should not feel like:
+
+* a horror story
+* a dramatic fantasy plot
+* a children’s fairy tale
+* a Korean culture lecture
+* a history explanation
+* an adventure quest
+* a mystery thriller
+* a moral lesson
+* a fast-paced narrative
+* an atmosphere-only description loop
+* a forced long-form script
+* a summarized outline
+* a compressed short story
+* a short test draft
+* a production plan for a fixed runtime
+* a meditation script
+* a body-scan exercise
+* an ASMR relaxation script
+* a direct sleep hypnosis script
+* a therapeutic or healing narration
+
+The core emotional principle is:
+
+**Curious, but not anxious.**
+
+The main story should contain a quiet sense of wonder or mystery, but it should never create fear, danger, urgency, shock, strong suspense, or dramatic revelation.
+
+The story may be long and spacious, but it must remain gentle, coherent, and sleep-friendly.
+
+Length should come from slow attention to place, object, light, sound, texture, weather, distance, physical material, spatial placement, and emotional softening.
+
+Length must not come from adding new major events, new characters, new mysteries, dramatic backstory, explanations, twists, or conflict.
+
+Length must not come from direct body relaxation, breathing instruction, mental release, or repeated statements about the listener’s inner state.
+
+---
+
+# MAIN STORY STRUCTURE INPUT
+
+Paste the full output from the stabilized Main Story Structure Generator below.
+
+The input should be an English structure blueprint.
+
+This prompt will use that structure blueprint to write the actual English narration script.
+
+The final output must include only:
+
+1. the final English main story narration script
+2. the next-step Sleep Fade input block
+
+Do not output Korean translation.
+
+Do not include TTS tags.
+
+Do not include analysis or commentary.
+
+Do not include scene headings in the narration.
+
+The structure input should contain a 7-scene main story flow and a long-form sensory expansion guide.
+
+The long-form sensory expansion guide is not a command to add more plot.
+
+It is a pacing, sensory lingering, motif variation, and scene-depth guide.
+
+Use it to make the existing 7-scene structure deeper and slower.
+
+Do not use it to create new events, new characters, new mysteries, new explanations, or new backstory.
+
+<<< MAIN STORY STRUCTURE START >>>
+
+[Paste the full stabilized Main Story Structure Generator output here.]
+
+<<< MAIN STORY STRUCTURE END >>>
+
+---
+
+# PRIMARY GENERATION TASK
+
+Use the Main Story Structure above as the only creative foundation for the main story script.
+
+Do not invent a completely different premise.
+
+Do not change the core mystery.
+
+Do not change the ending direction.
+
+Do not add new major characters.
+
+Do not add new dramatic events.
+
+Do not add a twist.
+
+Do not add a moral lesson.
+
+Do not turn the story into a lecture.
+
+Do not turn the story into a horror story.
+
+Do not turn the story into a fantasy adventure.
+
+Do not turn the long-form expansion map into permission to add more story events.
+
+Do not summarize the Main Story Structure.
+
+Do not compress the 7-scene flow into a short outline-like narration.
+
+Do not output a short test draft.
+
+Expand the structure into a calm, complete, long-form main story narration.
+
+Use the story foundation, emotional movement, point of view, sensory motif map, risk controls, ending direction, and long-form sensory expansion guidance from the Main Story Structure.
+
+---
+
+# LONG-FORM RUNTIME REQUIREMENT
+
+Write a slow, complete, long-form main story narration.
+
+Target length:
+
+**Approximately 4,000–6,000 words for public-upload main story narration.**
+
+The narration should normally be at least **3,800 words** before the Sleep Fade Input block.
+
+A narration below **3,500 words** is underdeveloped unless the user explicitly asks for a short version.
+
+A narration near **1,000–2,000 words** is a failed output.
+
+Do not use filler.
+
+Do not stretch the story with repeated phrases.
+
+Do not add plot to reach the word count.
+
+Do not add new characters, new objects, new mysteries, new backstory, or new explanations to increase length.
+
+Increase length only by:
+
+* deeper sensory residence
+* longer attention to surfaces and distance
+* richer motif variation
+* slower movement from object to meaning
+* allowing recognition to settle across the space
+* letting each scene complete its sensory residency before moving on
+* using developed paragraphs instead of summary paragraphs
+* showing spatial relationships through physical placement
+* showing calm through material conditions rather than direct reassurance
+
+The narration should usually contain at least **42 developed paragraphs** before the Sleep Fade Input block.
+
+A narration with fewer than **38 developed paragraphs** is considered compressed.
+
+Most developed paragraphs should contain **4–6 sentences**.
+
+One-sentence or two-sentence paragraphs should be used rarely, mainly near the final drift or for very gentle rhythm.
+
+The main body should not rely on short lines to appear longer.
+
+The story should feel long because the listener remains inside the world, not because the formatting is loose.
+
+---
+
+# CRITICAL LONG-FORM COMPLIANCE RULE
+
+The goal is not to “write longer” in a vague way.
+
+The goal is to **remain inside each scene long enough for its sensory beats to become full narration.**
+
+Do not merely mention a beat.
+
+Stay with it.
+
+A beat is not satisfied by one sentence.
+
+A beat is not satisfied by being included in a list-like paragraph with several other beats.
+
+A beat should usually become at least one developed paragraph.
+
+A developed paragraph should usually contain 4–6 sentences.
+
+Each developed paragraph should linger on at least one of the following:
+
+* physical space
+* sound
+* light
+* texture
+* weather
+* temperature
+* distance
+* physical cover from rain or wind
+* dry shade
+* roofline
+* object placement
+* quiet emotional softening
+* small perceptual change
+
+The script must not treat the 7-scene structure as a checklist.
+
+The script must not move quickly from:
+
+* opening image → object
+* object → written words
+* written words → meaning
+* meaning → emotional recognition
+* recognition → ending
+
+Before any letter, object, trace, message, or emotional meaning becomes clear, the narration must first establish the surrounding sensory world.
+
+For a rainy hanok / letter / lantern / maru episode, the script must spend meaningful time with:
+
+* the roofline
+* curved roof tiles
+* deep eaves
+* the dry threshold
+* the maru
+* lantern light
+* paper doors
+* paper texture
+* spatial distance between rain and object
+* silence around the object
+* the object’s placement in relation to dry shade
+
+For other episode types, apply the same principle to the equivalent sensory world.
+
+For example:
+
+* sea / Yongwang: tide, wet stone, shell, boat wood, moonlight, sea air, distance between shore and object
+* mountain / Sanshin: pine wind, mist, stone path, old tree bark, hut light, distant bell
+* dokkaebi: pale blue glow, road dust, lantern pools, low stones, mist, harmless traces of light
+* gumiho: moonlit mist, silver grass, distant presence, fox tracks, quiet restraint
+* imugi: river mist, reeds, slow water, rain clouds, waiting, cool air
+
+The script must create length through **sensory lingering**, not plot expansion.
+
+Do not solve the story too quickly.
+
+Do not rush to the letter’s meaning.
+
+Do not rush to the written message.
+
+Do not rush to emotional recognition.
+
+Do not rush to lowering.
+
+Each scene should feel like a quiet room the listener remains inside for a while.
+
+---
+
+# SCENE RESIDENCY REQUIREMENT
+
+Before writing the narration, silently allocate the 7 scenes into developed paragraph groups.
+
+Do not output this allocation.
+
+Do not show scene headings.
+
+Do not show paragraph counts.
+
+However, the final narration must clearly reflect this internal allocation.
+
+The following minimum scene residency rules must be followed:
+
+* Scene 1 must contain at least 8 developed paragraphs.
+* Scene 2 must contain at least 7 developed paragraphs.
+* Scene 3 must contain at least 8 developed paragraphs.
+* Scene 4 must contain at least 7 developed paragraphs.
+* Scene 5 must contain at least 7 developed paragraphs.
+* Scene 6 must contain at least 5 developed paragraphs.
+* Scene 7 must contain at least 5 developed paragraphs.
+
+These are minimums, not maximums.
+
+Scenes 1–5 should carry most of the long-form expansion.
+
+Scenes 6–7 should gradually reduce narrative specificity and prepare for Sleep Fade.
+
+If any of Scenes 1–5 has fewer than 7 developed paragraphs, the output fails.
+
+If Scene 1 or Scene 3 has fewer than 8 developed paragraphs, the output fails.
+
+If Scene 6 or Scene 7 has fewer than 5 developed paragraphs, the output feels too abrupt and should be regenerated.
+
+If the entire main story narration feels close to 1,000–2,000 words, the output fails.
+
+If the entire main story narration is under 3,500 words, the output is underdeveloped unless the user explicitly requested a short version.
+
+If the story reaches the written message, emotional meaning, or soft understanding before the sensory world has been fully established, the output fails.
+
+If most internal sensory beats are handled in one sentence each, the output fails.
+
+If multiple beats are compressed into a single summary paragraph without lingering, the output fails.
+
+---
+
+# SCENE COMPLETION GATE
+
+Do not move from one internal scene to the next until the scene has completed its sensory residency.
+
+A scene is not complete just because the required object, motif, or emotional shift has been mentioned.
+
+A scene is complete only when:
+
+1. the sensory anchor has been established,
+2. at least 5–6 internal sensory beats have received developed paragraph treatment in Scenes 1–5,
+3. at least 4–5 internal sensory beats have received developed paragraph treatment in Scenes 6–7,
+4. the scene’s primary shift has arrived gently,
+5. the narration has allowed that shift to settle,
+6. the next scene can begin without feeling rushed.
+
+Do not complete a scene after mentioning its required beats.
+
+Each selected beat must become a developed paragraph before the scene may move to its emotional shift.
+
+Do not use visible scene labels.
+
+Do not announce the scene transition.
+
+Let one scene dissolve softly into the next.
+
+---
+
+# MOTIF FUNCTION VARIATION FOR LONG-FORM LENGTH
+
+Do not increase length by repeating the same sensory phrase.
+
+Do not repeat the same rain description, lantern description, paper description, roofline description, object description, mist description, tide description, or light description without changing its function.
+
+Increase length by changing the role of each motif as the story moves.
+
+A motif may return many times, but each return should do something slightly different.
+
+For example:
+
+Rain may first establish the place, then define distance, then soften curiosity, then surround the written trace, then carry the recognition, then fade toward the final quiet.
+
+Lantern light may first reveal the threshold, then touch the object, then soften the written words, then spread across the room, then lower toward the ending.
+
+Wood may first ground the visitor, then guide attention toward the object, then hold the recognition, then become part of the final quiet.
+
+Paper may first hold mystery, then show texture, then hold a small trace of care, then rest without needing attention.
+
+Eaves may first define the distance between rain and wood, then create dry shade, then carry the rain outward, then become one of the final remaining images.
+
+Tide may first define the shore, then reveal the object, then soften the distance between water and stone, then lower into a background hum.
+
+Pale blue light may first touch a surface, then reveal a texture, then remain low in mist, then thin into another nearby light or dimness without becoming a character.
+
+Do not copy earlier sentences with only small word changes.
+
+Do not rely on the same adjectives repeatedly.
+
+Gentle repetition is allowed for sleep rhythm, but mechanical repetition is not.
+
+The repeated motif should feel like a lullaby-like return, not duplicated text.
+
+---
+
+# RELATION TO THE OPENING SECTION
+
+The main story must continue naturally from the Opening Sleep-Descent ending image described in the Main Story Structure.
+
+Do not restart the story.
+
+Do not begin with:
+
+* “Once upon a time…”
+* “Long ago…”
+* “The story begins…”
+* “There was once…”
+* “In an old Korean village…”
+
+The listener should feel that they have already arrived at the threshold during the Opening Sleep-Descent section.
+
+The main story should begin softly from that threshold image.
+
+If the opening ended with:
+
+* an old letter
+* a lantern
+* a gate
+* a path
+* a shell
+* a paper door
+* a quiet room
+* a courtyard
+* a small light
+
+then the main story must begin by staying close to that image.
+
+The first paragraph should feel like a continuation, not a new introduction.
+
+Do not reintroduce the whole setting.
+
+Do not explain the premise.
+
+Do not give background information.
+
+Do not introduce a strong protagonist.
+
+Begin inside the already-established sensory moment.
+
+---
+
+# REQUIRED INTERNAL STORY FLOW
+
+Follow the 7-scene structure from the Main Story Structure input.
+
+The later script should clearly move through these scenes, but do not use visible scene labels in the final narration unless specifically requested.
+
+The final narration should read as one continuous bedtime story.
+
+The required internal flow is:
+
+1. Quiet Continuation from Opening
+2. First Small Detail
+3. Gentle Approach
+4. Trace of an Old Promise
+5. Soft Understanding
+6. Peaceful Lowering
+7. Drift Toward Sleep Fade
+
+Do not skip any of these internal movements.
+
+Do not use “Peaceful Release” as a scene name or conceptual output.
+
+Do not overemphasize the scene boundaries.
+
+Let one scene dissolve softly into the next.
+
+The listener should feel a gentle movement from:
+
+**arrival → noticing → closeness → quiet trace → softened recognition → lowering → quiet sensory handoff**
+
+This movement should remain subtle.
+
+Do not turn these shifts into explicit labels.
+
+Do not explain the emotional movement directly.
+
+Let the sensory details carry the shift.
+
+---
+
+# INTERNAL SENSORY BEAT CONTROL
+
+Each scene must unfold through internal sensory beats.
+
+These beats are not visible scene labels.
+
+Do not write beat headings.
+
+Use them silently to develop each scene before moving to the next.
+
+A scene should not move to its emotional point too quickly.
+
+Stay with physical space, sound, light, texture, temperature, distance, dry shade, roofline, material surfaces, and atmosphere before reaching the scene’s small shift.
+
+Use the beat pattern that best matches the Main Story Structure input.
+
+---
+
+## Scene 1. Quiet Continuation from Opening
+
+Scene 1 should unfold through at least 6 of these beats:
+
+* continuing the exact final image from the Opening Sleep-Descent section
+* rain sound on curved roof tiles, or the equivalent low sound from the structure
+* the deep eaves, roofline, shore edge, stone path, gate, or other physical boundary
+* the dry threshold, maru, shore stone, path surface, or equivalent grounding material
+* lantern light, moonlight, pale blue glow, paper window light, or equivalent low illumination
+* wet courtyard / dry wood contrast, water / stone contrast, mist / path contrast, or equivalent spatial contrast
+* old pinewood scent, damp earth, cool night air, sea air, or other grounded sensory atmosphere
+* quiet human presence becoming still and less active without body-scan language
+
+Each selected beat must receive developed paragraph treatment.
+
+Do not move toward the unusual object too quickly.
+
+The primary shift should be a deeper grounding in the same quiet place, not a new beginning.
+
+The scene should spend enough time with the threshold, roofline, weather, surface, and light before narrowing attention toward the object.
+
+Avoid direct body or mind language in this scene.
+
+Do not write:
+
+* slow breath
+* breathing
+* the mind settles
+* the body relaxes
+* the listener’s attention
+* the body becomes heavy
+* thoughts dissolve
+
+Use physical scene details instead.
+
+---
+
+## Scene 2. First Small Detail
+
+Scene 2 should unfold through at least 6 of these beats:
+
+* wide awareness of the night
+* attention narrowing toward the small object or detail
+* spatial relationship between weather, light, surface, and object
+* texture of the object without sharp preservation language
+* variation in light or shadow around the object
+* gentle curiosity without questioning or solving
+* the detail feeling quietly placed or lightly cared for without sounding impossible
+
+Each selected beat must receive developed paragraph treatment.
+
+The primary shift should be from general quiet to gentle curiosity.
+
+The object should feel quietly present, not impossible, alarming, supernatural, or overly symbolic.
+
+Do not make the object sharper, stranger, or more supernatural as the scene expands.
+
+Do not describe the object as “perfectly,” “precisely,” or “exactly” placed.
+
+Prefer:
+
+* near the center
+* left in place
+* resting on the surface
+* held in low light
+* set slightly above the wet ground
+* remaining where the water does not reach
+* catching a little of the moonlight
+
+---
+
+## Scene 3. Gentle Approach
+
+Scene 3 should unfold through at least 6 of these beats:
+
+* slow attention moving closer
+* the surface between the human presence and the object
+* wood grain, paper texture, light, scent, temperature, stone, sand, mist, or water
+* the object becoming clearer without becoming more suspenseful
+* touch or nearness only if the structure supports it
+* any opening or reading handled gently and minimally
+* no reveal, no clue-solving, no dramatic action
+
+Each selected beat must receive developed paragraph treatment.
+
+The primary shift should be from distant noticing to closer, more intimate attention.
+
+Stay with the surfaces before moving into meaning.
+
+Stay with the distance between the hand and the object before touching or opening it.
+
+If the story includes a letter, the approach to the letter should take longer than the act of reading it.
+
+The reading should not feel like a reveal.
+
+Do not write the approach as a body-scan or relaxation sequence.
+
+Avoid:
+
+* your breath
+* your skin
+* your chest
+* your shoulders
+* your limbs
+* the mind lets go
+* the body settles
+* physical relaxation
+* a meditative rhythm
+
+Prefer:
+
+* the wood remains dry beneath the eaves
+* the light stays low along the paper
+* the stone keeps a cool surface
+* the sand darkens near the waterline
+* the mist softens the edge of the path
+* the sound grows less distinct behind the object
+
+---
+
+## Scene 4. Trace of an Old Promise
+
+Scene 4 should unfold through at least 6 of these beats:
+
+* the first impression of written words or a quiet trace
+* the spacing, ink, fading, softness, or silence around the words
+* the smallness of the message
+* the warmth, dry shade, or physical placement implied by the trace
+* the space around the words mattering as much as the words
+* the trace suggesting care without explaining origin
+* reassurance emerging through atmosphere, not direct reassurance language
+
+Each selected beat must receive developed paragraph treatment.
+
+The primary shift should be from curiosity toward quiet recognition.
+
+If written words appear, do not reach their meaning too quickly.
+
+Before emotional recognition, linger on:
+
+* spacing of words
+* ink
+* silence around the words
+* paper texture
+* object placement
+* lantern light near the writing
+* rain outside the dry shade
+
+The written words should not carry too much plot information.
+
+The space around the words should carry much of the feeling.
+
+Do not overuse “old promise.”
+
+Do not write “ancient greeting.”
+
+Do not write that the object “asks for nothing,” “asks for nothing more,” “offers,” “reassures,” or “guides.”
+
+If the structure contains the idea of an old promise, keep it quiet and sensory.
+
+Prefer:
+
+* the trace remains small
+* the words stay low on the page
+* the ink leaves more silence than explanation
+* the object remains without telling who left it
+* the care is felt through placement, light, and distance
+* the written line stays close to the wood and the rain
+
+---
+
+## Scene 5. Soft Understanding
+
+Scene 5 should unfold through at least 6 of these beats:
+
+* the same motifs feeling slightly different after the trace
+* the rain, water, wind, mist, or tide becoming more familiar or distant
+* the light feeling lower, warmer, cooler, thinner, or less focused
+* the place feeling less empty and more quietly held through physical detail
+* the object becoming less like a question and more like a small trace of care
+* the human presence receiving the feeling without analysis
+* recognition settling across the room, wood, air, stone, water, or sound
+
+Each selected beat must receive developed paragraph treatment.
+
+The primary shift should be from gentle curiosity to quiet recognition.
+
+Do not state the full emotional meaning too directly.
+
+Let the recognition settle across the sensory world before moving into lowering.
+
+Do not rush from soft understanding directly into lowering.
+
+The same motifs should feel slightly changed, not newly explained.
+
+Avoid direct emotional conclusions such as:
+
+* deep peaceful acceptance
+* profound ease
+* the meaning is understood
+* the promise is complete
+* the message is received
+* the old greeting is honored
+* everything is clear
+* the mind lets go
+
+Prefer:
+
+* the object begins to feel less separate from the surrounding light
+* the written words become less important than the sound outside
+* the shell remains in the same low moonlight
+* the pale blue glow stays close to the damp ground
+* the letter keeps its folded shape on the wood
+* the house, shore, path, or room holds the trace without explaining it
+
+---
+
+## Scene 6. Peaceful Lowering
+
+Scene 6 should unfold through at least 5 of these beats:
+
+* the object being allowed to remain where it is
+* attention moving away from meaning
+* human presence loosening from focus without body or mind language
+* rain, light, wind, tide, mist, or water continuing without needing explanation
+* the place returning to a lower quiet
+* one or two motifs becoming dominant
+* lowering without closure or finality
+
+Each selected beat must receive developed paragraph treatment.
+
+The primary shift should be from recognition into lowering.
+
+Do not close the story too firmly.
+
+Do not make the object’s purpose feel completed.
+
+Do not use “Peaceful Release.”
+
+Do not use release language as a hard emotional conclusion.
+
+Do not write:
+
+* the object has fulfilled its purpose
+* the journey is complete
+* the message is complete
+* the mystery has been met
+* the story is finished
+* the final meaning is understood
+* the visitor lets go
+* the body relaxes
+* the mind empties
+* everything settles completely
+
+The place and atmosphere should begin carrying more of the narration than the human presence.
+
+Prefer:
+
+* the paper remains in the low light
+* the shell stays on the dry stone
+* the pale blue trace thins near the mist
+* the water grows farther in sound
+* the light lowers along the wood
+* fewer details ask for notice
+* the sound outside becomes easier to hear than the object’s meaning
+
+---
+
+## Scene 7. Drift Toward Sleep Fade
+
+Scene 7 should unfold through at least 5 of these beats:
+
+* fewer images remaining
+* rain, lantern, eaves, maru, paper doors, shell, tide, mist, path, stone, paper window, or the resting object becoming quieter
+* human presence becoming less noticeable
+* written meaning, object meaning, or mystery meaning becoming less important
+* sensory motifs lowering in intensity
+* final image staying story-world focused
+* no new objects, no new thoughts, no final explanation
+
+Each selected beat must receive developed paragraph treatment, though the paragraphs may become slightly softer and less specific near the end.
+
+The primary shift should be from story awareness into a quiet sensory handoff, expressed only through story-world images.
+
+Do not use direct sleep commands.
+
+Do not begin a body scan.
+
+Do not write the Sleep Fade narration.
+
+The final image should leave the Sleep Fade Generator with physical story-world material only.
+
+The final image should not include:
+
+* direct sleep language
+* hard closure
+* final explanation
+* a lesson
+* a direct statement that the story is over
+* a direct statement that the listener can sleep
+* a direct statement that the place provides rest
+
+---
+
+# ADAPTATION FOR OTHER EPISODE TYPES
+
+For other episode types, adapt the beat categories to the actual Main Story Structure input.
+
+Examples:
+
+* sea / Yongwang episodes may use tide, shell, wet stone, boat wood, distant water, moonlight, and sea air
+* mountain / Sanshin episodes may use pine wind, mist, old tree bark, stone path, hut light, and distant bell
+* dokkaebi episodes may use pale blue glow, road dust, lantern pools, low stones, damp earth, soft mischief, harmless traces of light
+* gumiho episodes may use moonlit mist, silver grass, distant figure, fox tracks, and quiet restraint
+* imugi episodes may use river mist, rain clouds, slow water, reeds, and waiting
+
+Always keep the beat development sensory, calm, and low-conflict.
+
+Do not turn beats into plot events.
+
+Do not make the folklore figure visible in a dramatic way unless the Main Story Structure very gently requires it.
+
+Do not turn folklore into spectacle.
+
+Do not explain folklore academically.
+
+---
+
+# DO NOT SUMMARIZE THE STRUCTURE
+
+Do not summarize the Main Story Structure.
+
+Fully unfold it as calm narration through:
+
+* sensory presence
+* slow observation
+* tactile detail
+* atmosphere
+* quiet emotional movement
+* gentle transitions
+* motif variation
+* small perceptual shifts
+* internal sensory beats
+* developed paragraphs
+
+Bad compressed style:
+
+“The visitor notices the letter, reads a few words, understands its kindness, and returns it to the sill.”
+
+Good expanded style:
+
+The narration remains with the rain, the roofline, the wooden sill, the texture of paper, the low lantern light, the quiet distance between wet stone and dry maru, and the gradual softening of attention before the letter’s meaning becomes faintly clear.
+
+Do not move directly from object to meaning.
+
+Do not move directly from meaning to ending.
+
+Do not move directly from opening image to mystery.
+
+Do not move directly from reading a few words to emotional recognition.
+
+Let the listener experience the space before the emotional recognition arrives.
+
+Let the listener experience the sensory shift before the story moves to the next internal scene.
+
+---
+
+# POINT OF VIEW CONTROL
+
+Follow the point of view defined in the Main Story Structure input.
+
+If the structure chooses soft observational third-person, write in that mode.
+
+If the structure chooses second-person, keep it minimal, gentle, and not body-centered.
+
+If the structure chooses a lightly implied visitor, keep the visitor minimal and calm.
+
+Do not make the visitor an active protagonist.
+
+Do not name the visitor.
+
+Do not give the visitor a detailed backstory.
+
+Do not give the visitor strong inner conflict.
+
+Do not overuse “the traveler.”
+
+Do not overuse “you.”
+
+Do not directly describe the listener’s body, breathing, thoughts, or mental state.
+
+If a human presence is needed, prefer:
+
+* a quiet visitor
+* someone near the maru
+* a quiet presence beneath the eaves
+* the one who has come in from the rain
+* a figure at the edge of the path
+* a presence near the shore
+
+However, avoid repeating these phrases too often.
+
+The focus should remain on:
+
+* the place
+* the object
+* the weather
+* the light
+* the texture
+* the quiet emotional trace
+
+The story should feel gently observed, not actively pursued.
+
+Avoid sudden shifts between:
+
+* second-person listener immersion
+* third-person protagonist narration
+* omniscient historical explanation
+
+Keep the perspective consistent.
+
+As the story moves toward the ending, allow the human presence to become less prominent.
+
+By the final scene, the focus should rest mainly on the sensory world.
+
+---
+
+# TENSE CONTROL
+
+Follow the tense strategy defined in the Main Story Structure input.
+
+Preferred default:
+
+**present tense.**
+
+Present tense works well when the opening ends in present-tense sensory immersion.
+
+Avoid sudden tense shifts.
+
+Do not move abruptly from present-tense sensory narration into past-tense folklore storytelling.
+
+If past tense is used, it must be used gently and consistently, and only if the structure clearly calls for it.
+
+The story should not feel like it resets into a separate “once long ago” tale after the opening.
+
+---
+
+# META-LANGUAGE FILTER
+
+The narration must remain fully inside the story world.
+
+Do not use meta-language inside the main narration.
+
+Avoid the following words and phrases inside the narration:
+
+* narrative
+* plot
+* scene
+* narrative focus
+* story awareness
+* story meaning
+* story world
+* the story no longer requires
+* the story gives way
+* the story hands itself over
+* the narrative hands itself over
+* the story fades
+* the story dissolves
+* the narrative fades
+* the scene becomes
+* the focus shifts
+* the listener transitions
+* the atmosphere takes over
+* the narration lowers
+* the story has found its place of rest
+* Sleep Fade handoff
+* production-use block
+* structure input
+* sensory continuity strategy
+* long-form strategy
+* micro-perceptual shift
+
+Do not describe the story as if it is moving, fading, handing itself over, or ending.
+
+Do not write:
+
+* “The story no longer requires an observer.”
+* “The narrative hands itself over to the rain and wood.”
+* “The story gives way entirely to sensory experience.”
+* “The story meaning fades away.”
+* “The focus shifts from narrative to atmosphere.”
+* “The scene dissolves into stillness.”
+* “The story becomes sleep-ready.”
+
+Instead, write through the story world:
+
+* The visitor becomes less noticeable beneath the eaves.
+* The rain and wood remain.
+* Attention drifts from the written words back toward the water.
+* The letter becomes less important than the low sound of rain.
+* The ink grows harder to notice in the dim light.
+* The maru remains cool and steady.
+* The lantern leaves a low warmth along the paper doors.
+* The old house settles into a lower quiet.
+* The sound of water stays just outside the dry shade.
+
+If the narration needs to show that the meaning is fading, do not mention “story.”
+
+Use objects, sound, light, and distance instead.
+
+Correct direction:
+
+* The written words grow less important.
+* The paper rests without needing to be read again.
+* The visitor becomes only a dim presence beneath the eaves.
+* The rain grows more noticeable than the ink.
+* The house remains with only rain, wood, and low lantern light.
+
+Incorrect direction:
+
+* The story fades.
+* The narrative focus loosens.
+* The plot gives way to atmosphere.
+* The story hands itself over to the rain.
+* The story world becomes pure atmosphere.
+
+---
+
+# MYSTERY CONTROL
+
+The mystery must remain soft.
+
+It should create curiosity without anxiety.
+
+Do not turn the mystery into:
+
+* a puzzle
+* a secret
+* a curse
+* a warning
+* a ghost reveal
+* a supernatural proof
+* a shocking truth
+* a physical impossibility
+* a hidden message that must be decoded
+* a symbolic lesson
+
+Avoid overemphasizing:
+
+* perfectly dry
+* impossibly preserved
+* countless rainy nights
+* untouched by time
+* no natural explanation
+* impossible to explain
+* crisp for countless years
+* safely dry in a miraculous way
+* perfectly preserved by the house
+* physically impossible condition
+
+When describing hanji, old paper, letters, fabric, shells, stones, lights, or small objects near water or rain, do not use:
+
+* crisp
+* crisp, dry texture
+* perfectly dry
+* impossibly dry
+* perfectly preserved
+* impossibly preserved
+* untouched by time
+* perfectly placed
+* precisely centered
+* exactly centered
+* exact placement
+* flawless finish
+* miraculous condition
+
+Prefer:
+
+* untouched by the damp night
+* resting just beyond the reach of rain
+* resting beneath the deep eaves
+* resting in lantern light
+* lightly textured
+* fibrous and pale
+* dry beneath the eaves
+* kept just beyond the reach of rain
+* softened by lantern light
+* resting in a warmer pocket of low light
+* resting where the rain cannot reach
+* remaining above the tide line
+* left on the dry face of the stone
+* a small trace of care
+* quiet hope
+* gentle care
+* old memory
+* waiting that has become quiet
+
+The mystery should feel emotionally meaningful, not mechanically solvable.
+
+Do not make the narration ask too many questions about the mystery.
+
+Do not make the listener feel invited to solve it.
+
+Do not repeat the same mystery phrase many times.
+
+Even approved phrases should be varied gently.
+
+---
+
+# SAFETY AND CALMNESS EXPRESSION CONTROL
+
+Do not reassure the listener by naming danger, fear, tension, thunder, frightening movement, impossible puzzles, or other threatening possibilities unless absolutely necessary.
+
+Avoid lines like:
+
+* “There is no thunder.”
+* “There is no sudden movement.”
+* “It does not feel scary.”
+* “It does not bring any tension.”
+* “It is not an impossible puzzle.”
+* “There is nothing frightening here.”
+* “The place is safe.”
+* “The object is protected.”
+
+These phrases can accidentally remind the listener of the very feelings the script should avoid.
+
+Instead, create calm through low, steady sensory details.
+
+Prefer:
+
+* The rain stays low and even.
+* The night remains soft around the old roof.
+* The detail asks for no answer.
+* The letter simply rests there, quiet and cared for.
+* The lantern keeps a small circle of warmth.
+* The sound of water continues in a patient rhythm.
+* The shadows remain soft in the dim light.
+
+The script should feel calm through atmosphere, not through explanation.
+
+---
+
+# DIRECT SAFETY LANGUAGE FILTER
+
+The narration should feel calm through sensory details, not through direct safety explanation.
+
+Do not overuse or rely on the words:
+
+* safe
+* safely
+* safety
+* secure
+* secured
+* protected
+* protection
+* protective
+* refuge
+* haven
+* sanctuary
+* barrier
+* shield
+* defensive
+* guarded
+* threat
+* no threat
+* poses no threat
+* danger
+* no danger
+
+Avoid direct safety phrases such as:
+
+* held safely
+* kept safely
+* safely inside
+* safely beyond
+* safe from everything
+* completely safe
+* entirely safe
+* absolutely safe
+* protected by the house
+* protected from the night
+* a reliable haven
+* a place of refuge
+* a comforting barrier
+* a boundary keeping the quiet in
+* keeping the outside world away
+* keeping the quiet in
+* closing the house in warmth
+* shielding the porch
+* guarding the threshold
+* no threat to the dry shade
+
+The narration should not reassure the listener by naming danger, threat, fear, or safety.
+
+Instead, express calm through physical placement and material conditions.
+
+Prefer:
+
+* kept away from the rain
+* resting beneath the eaves
+* resting in dry shade
+* resting where the rain cannot reach
+* the rain remains at a gentle distance
+* the sound of water stays just outside
+* the dry shade continues beneath the roofline
+* the maru remains dry beneath the deep eaves
+* the old roof keeps the rain at a quiet remove
+* the sill rests in a warmer pocket of low light
+* the courtyard remains wet beyond the edge of the wood
+* the paper rests just beyond the reach of rain
+* the lantern keeps a small warmth along the paper doors
+* the shell rests above the highest line of the tide
+* the water stops below the stone
+* the mist stays beyond the threshold
+
+The listener should feel calm because of the rain, eaves, wood, water, stone, mist, and light.
+
+Do not explain that the listener, visitor, house, object, or path is safe.
+
+Let the sensory world show it.
+
+---
+
+# SHELTER / ROOFLINE / DRY SHADE LANGUAGE CONTROL
+
+When describing eaves, roofs, rooms, courtyards, shrines, old houses, boats, caves, pavilions, shore stones, or other places of quiet distance from rain or water, use physical material language.
+
+Use “shelter” rarely.
+
+Avoid “sheltered,” “sheltering,” and “physical shelter” as default phrasing.
+
+The repeated test outputs showed that direct shelter language can become too explanatory, defensive, or comfort-focused.
+
+Prefer physical alternatives:
+
+* dry shade
+* beneath the eaves
+* under the roofline
+* where the rain cannot reach
+* the roofline leaves the wood dry
+* the eaves carry the rain outward
+* the rain stays beyond the wooden edge
+* the mist remains beyond the threshold
+* the wet stones remain outside the edge of the wood
+* the damp air stays near the courtyard
+* the maru remains dry beneath the deep eaves
+* the sound of water stays just outside
+* the paper rests in low window light
+* the dry rock sits above the tide line
+* the tide stops below the stone
+* the cool air gathers beyond the pillars
+* the old roof keeps the water beyond the threshold
+
+Avoid:
+
+* sheltered calm
+* sheltered space
+* sheltered wood
+* sheltering wood
+* quiet shelter
+* physical shelter
+* visual promise of physical shelter
+* promise of shelter
+* protective shadow
+* protective architecture
+* protection
+* protected
+* defensive
+* guarded
+* shielded
+* protective wall
+* wall of sound
+* low wall of sound
+* barrier
+* comforting barrier
+* boundary keeping the quiet in
+* keeping the quiet in
+* closing the house in warmth
+* protective architecture
+* architecture of protection
+* protected by the house
+* spiritually protected
+* sacred shelter
+* divine protection
+* mystical protection
+* a shield against darkness
+* haven
+* refuge
+* sanctuary
+* reliable haven
+* place of refuge
+
+The roofline should feel physical, ordinary, and sensory.
+
+It should not feel symbolic, defensive, spiritual, religious, heroic, or enclosed against danger.
+
+The old house simply keeps rain, mist, or damp air at a quiet distance.
+
+The shore stone simply sits above the line of water.
+
+The path simply remains visible in low light.
+
+---
+
+# INDIRECT DEFENSIVE SHELTER FILTER
+
+Avoid shelter language that still feels like defense, enclosure, or separation, even if it does not use the words “barrier” or “protection.”
+
+Avoid:
+
+* poses no issue
+* poses no problem
+* causes no issue
+* causes no problem
+* no issue to the dry shade
+* no problem for the shelter
+* reliable cover
+* enduring cover
+* comforting curtain
+* curtain falling around
+* curtain around the house
+* curtain around the wood
+* closing around the house
+* closing the house in warmth
+* keeping the quiet in
+* keeping the outside world away
+* weather becomes the house’s lullaby
+* house’s lullaby
+* boundary
+* edge against the weather
+
+Prefer sensory distance and material placement:
+
+* the rain softens the edges of the house
+* the rain gathers around the courtyard
+* the sound of water stays just outside
+* the wet stones remain beyond the edge of the wood
+* the dry shade continues beneath the roofline
+* the maru remains dry beneath the deep eaves
+* the eaves carry the rain outward
+* the rain stays at a gentle distance
+* the old roof keeps the water beyond the threshold
+* the cool air lingers beyond the pillars while the dry shade remains beneath the roofline
+* the damp air stays near the courtyard, and the maru remains dry beneath the eaves
+
+The house should not feel like it is defending, enclosing, sealing, or closing the listener inside.
+
+The house should simply hold a quiet distance between rain and wood.
+
+---
+
+# BODY / BREATH / MIND REDUCTION PATCH
+
+The Main Story is not a body-scan, meditation, ASMR relaxation script, or direct sleep-induction script.
+
+Do not use body, breath, or mind language to create calm.
+
+Avoid:
+
+* breath
+* breathing
+* breathe
+* exhalation
+* slow breath
+* every slow breath
+* the room breathes
+* the forest breathes
+* the sea breathes
+* skin
+* chest
+* shoulders
+* limbs
+* body
+* physical relaxation
+* heavier posture
+* body becomes heavy
+* body settles
+* the mind settles
+* the mind lets go
+* thoughts dissolve
+* thoughts fade
+* lingering thoughts
+* emptying the mind
+* meditative rhythm
+* physical meditation
+* the listener’s attention
+* the listener feels
+* your body
+* your thoughts
+* your breath
+* your mind
+* your eyes grow heavy
+* your breathing slows
+
+Replace body/mind/breath calm with story-world details.
+
+Prefer:
+
+* the air remains cool near the path
+* the pine scent stays low over the damp earth
+* the sound of footsteps grows less distinct
+* the mist softens the edge of the trees
+* the dry wood remains beneath the eaves
+* the moonlight rests on the stone
+* the paper keeps its shape in the low light
+* the water pulls softly through the pebbles
+* the lantern light lowers along the floorboards
+* the distant wind grows thinner among the pines
+* the sound outside becomes easier to hear than the object’s meaning
+
+If the input structure uses second-person point of view, second-person may remain, but it must not become body-based relaxation.
+
+Acceptable second-person usage:
+
+* You remain near the edge of the porch.
+* You notice the low light on the wood.
+* You see the shell resting above the tide line.
+* You follow the curve of the path in the pale light.
+
+Avoid second-person body instruction:
+
+* You breathe in slowly.
+* Your shoulders relax.
+* Your body becomes heavy.
+* Your thoughts dissolve.
+* Your mind grows empty.
+
+---
+
+# GUIDE-LANGUAGE SENSORY CONVERSION PATCH
+
+Do not describe light, mist, stones, paths, objects, or weather as an active guide unless the Main Story Structure explicitly requires that word.
+
+Even when the structure contains a guide-like feeling, convert it into physical visibility.
+
+Avoid:
+
+* guide
+* guides
+* guided
+* guiding
+* guidance
+* quiet guide
+* gentle guide
+* unspoken guide
+* patient guidance
+* showing the way
+* lead the way
+* leading
+* the path is known
+* guide your steps
+* guide the visitor
+* guiding line
+* path has been prepared
+* the light understands the path
+* the light knows where to go
+* the light waits for you
+* the light returns to its resting place
+* the light becomes a companion
+* companion
+* steady companion
+* quiet companion
+
+Prefer:
+
+* the light touches the next visible stone
+* the moonlight reaches the edge of the path
+* the mist thins near the ground
+* the damp stone becomes easier to see
+* the pale blue edge remains low over the dirt
+* the next surface catches the light
+* the curve of the path remains visible
+* the tide line stays clear along the sand
+* the shell remains where the water does not reach
+* the paper window keeps a low glow above the porch
+* the lantern light falls across the threshold
+* the stones appear one by one in the low light
+
+The feeling may be quietly helpful, but the language must remain physical.
+
+Do not make the light or path seem to have intention, knowledge, personality, or agency.
+
+---
+
+# OBJECT INTENTION / ANCIENT GREETING / ASKING NOTHING PATCH
+
+Objects, lights, paths, houses, shells, letters, stones, and weather should not be over-personified.
+
+They may carry a quiet trace of care, but they should not become active emotional agents.
+
+Avoid:
+
+* ancient greeting
+* old greeting
+* greeting from the sea
+* greeting from the water
+* silent greeting
+* old promise kept by the mountain
+* promise kept
+* asks for nothing
+* asking nothing
+* asks for nothing more
+* expects no reply
+* offers rest
+* offers comfort
+* offers kindness
+* offers reassurance
+* invites
+* reassures
+* understands
+* waits for you
+* waits patiently for whoever might need it
+* the house offers
+* the path offers
+* the shell offers
+* the light offers
+* the object wants to be seen
+* the object asks to be noticed
+* the sea intends
+* the mountain intends
+* the forest prepares the path
+* the shore has prepared this
+* the place has been waiting
+
+Prefer:
+
+* the shell remains on the dry rock without explanation
+* the folded paper rests in the low window light
+* the pale blue glow stays near the damp stone
+* the water stops below the rock
+* the letter keeps its folded shape on the wood
+* the trace remains small
+* the path curves through low mist
+* the roofline leaves the porch dry
+* the object stays where it was left
+* the ink remains close to the paper
+* the sound outside continues at a distance
+* the light touches the surface and then grows thinner
+
+The mystery may suggest care, but do not explain who cared, why they cared, or what the object means.
+
+Do not make the object’s purpose feel fulfilled.
+
+Do not make the mystery feel solved.
+
+---
+
+# HARD-CLOSURE / PRECISION LANGUAGE PATCH
+
+The story should not feel sealed, solved, perfected, completed, or closed.
+
+Avoid hard-closure words and phrases such as:
+
+* absolute
+* absolutely
+* complete
+* completed
+* completely
+* entire
+* entirely
+* final
+* finally
+* fully
+* perfect
+* perfectly
+* precise
+* precisely
+* exact
+* exactly
+* pure
+* purely
+* profound
+* profoundly
+* ultimate
+* total
+* totally
+* wholly
+* motionless
+* unmoving
+* permanent
+* permanently
+* timeless
+* endless
+* countless
+* vast
+* expansive
+* unbroken
+* flawless
+* untouched by time
+* deepest hours
+* deep rest
+* uninterrupted rest
+* perfect peace
+* absolute calm
+* complete stillness
+* motionless quiet
+* profound silence
+* profound stillness
+* deep peaceful acceptance
+* profound sense of ease
+* deep environmental ease
+* final stillness
+* finished with its journey
+* finding their rest
+* the journey is complete
+* the message is complete
+* the promise is complete
+* the mystery has been met
+* everything is understood
+* everything is clear
+
+Prefer softer alternatives:
+
+* quiet
+* low
+* slow
+* dim
+* steady
+* near the center
+* left in place
+* slightly clearer
+* less distinct
+* farther back
+* remaining
+* softened
+* almost still
+* quietly
+* gradually
+* little by little
+* in the low light
+* in the dimness
+* with less need for attention
+* close to the wood
+* near the edge of the stone
+* where the water does not reach
+
+Do not use precision language to make an object feel supernatural.
+
+Instead of:
+
+* perfectly centered
+* precisely placed
+* exactly where it should be
+
+Prefer:
+
+* near the middle of the stone
+* left on the dry surface
+* resting in the low light
+* placed where the tide does not reach
+* close to the center without drawing attention to itself
+
+---
+
+# DIRECT SLEEP LANGUAGE CONTROL
+
+The Main Story should prepare for Sleep Fade, but it should not become Sleep Fade.
+
+Avoid direct sleep-state language such as:
+
+* sleep
+* asleep
+* falling asleep
+* drift to sleep
+* drifting to sleep
+* sleep-ready
+* sleepy
+* drowsy
+* deep rest
+* deepest rest
+* uninterrupted rest
+* pure rest
+* final rest
+* rest completely
+* body grows heavy
+* eyes grow heavy
+* breathing slows
+* breath by breath
+* let your body
+* your thoughts
+* your breathing
+* your eyes
+* worries fade
+* thoughts dissolve
+
+Use the story world instead:
+
+* rain
+* lantern
+* maru
+* paper doors
+* old house
+* deep eaves
+* folded paper
+* cool air
+* old pinewood scent
+* low warmth
+* patient rhythm of water
+* the later quiet of the night
+* the lower quiet beneath the eaves
+* rain, wood, dim light, and cool air remain
+* the final motifs continue in a softer rhythm
+
+The main story should end in a story-world image, not a sleep instruction.
+
+---
+
+# FUNCTIONAL REST LANGUAGE FILTER
+
+Do not describe the house, object, light, weather, path, pavilion, shore, or environment as if it exists to provide rest.
+
+Avoid:
+
+* providing rest
+* providing a space for rest
+* given to providing a space for rest
+* task of providing rest
+* quiet task of providing rest
+* place of rest
+* space for rest
+* source of comfort
+* soft anchor
+* unmoving presence
+* guiding toward deeper quiet
+* guiding the environment toward rest
+* guiding the environment toward deeper quiet
+* environment continues the quiet task
+* environment provides rest
+* the house offers rest
+* the house exists to comfort
+* the words offer the house as a place of rest
+* the space is allowed to empty itself
+* the mind is allowed to empty itself
+* emotional weight dissolves
+* emotional weight diffuses
+* emotional weight diffuses into the damp air
+
+The narration should not explain what the atmosphere is doing for the listener.
+
+The narration should remain inside physical details:
+
+* rain
+* wood
+* dim light
+* dry shade
+* paper
+* ink
+* eaves
+* maru
+* cool air
+* old pinewood scent
+* tide
+* stone
+* mist
+* shell
+* path
+* lantern
+* paper window
+
+Preferred direction:
+
+* The rain and wood settle into the same quiet rhythm.
+* The lantern leaves a low warmth along the paper doors.
+* The folded paper rests without needing to be read again.
+* The dry maru remains beneath the deep eaves.
+* The ink stays close to the wood and the light.
+* The old house settles into a lower quiet.
+* Rain, wood, dim light, and cool air remain.
+* The written words grow less important beside the cool air and the low sound of water.
+* The ink rests farther back in the dimness while the rain becomes easier to notice.
+
+---
+
+# KOREAN / EASTERN CULTURAL TEXTURE CONTROL
+
+Use Korean / Eastern cultural textures from the Main Story Structure input.
+
+Do not erase Korean texture by replacing everything with generic English terms.
+
+When naturally appropriate, use:
+
+* hanok
+* hanji paper
+* maru
+* bojagi
+* dokkaebi
+* gumiho
+* Sanshin
+* Yongwang
+* Imugi
+* curved roof tiles
+* deep eaves
+* paper doors
+* paper window
+* low wooden table
+* old pinewood
+* quiet courtyard
+* stone wall
+* lantern light
+* folded bojagi
+* temple bell
+* pine wind
+* village gate
+* tide
+* shell
+* old shrine
+
+Use these terms sparingly and naturally.
+
+Do not overload the script with unfamiliar cultural terms.
+
+Usually 2–6 Korean / Eastern texture words are enough in the main story, depending on length and structure.
+
+Do not explain these terms academically.
+
+Do not write:
+
+* “Hanok is a traditional Korean house…”
+* “Hanji is Korean paper…”
+* “In Korean folklore…”
+* “This symbolizes…”
+
+Do not describe Korean objects as cultural artifacts, museum objects, or examples of traditional craft.
+
+Avoid phrases such as:
+
+* traditional craft
+* ancient Korean craft
+* cultural artifact
+* historic object
+* traditional item
+* symbolic object
+
+Let the listener understand through sensory context.
+
+Describe:
+
+* texture
+* weight
+* sound
+* scent
+* temperature
+* light
+* touch
+* material presence
+
+Prefer:
+
+* quiet old hanok
+* old rain-softened house
+* thick hanji paper
+* fibrous hanji paper
+* smooth maru
+* curved roof tiles
+* deep eaves
+* paper doors
+* dim lantern light
+* old pinewood scent
+* fibrous paper edge
+* cool wooden floor
+* soft glow against paper doors
+
+Avoid:
+
+* empty hanok
+* abandoned house
+* deserted house
+* clay roof tiles
+* dark clay roof tiles
+* generic traditional house
+* traditional paper
+
+unless the Main Story Structure explicitly requires them.
+
+Use “curved roof tiles” for consistency.
+
+Do not use “clay roof tiles” in the narration unless the Main Story Structure explicitly requires that exact material for a specific reason.
+
+---
+
+# FOLKLORE PRESENCE CONTROL
+
+If the story involves folklore elements, keep them indirect and calm.
+
+Do not turn folklore figures into visible monsters, heroes, romantic supernatural beings, guides, companions, or fantasy characters.
+
+Preferred handling:
+
+* Dokkaebi: pale blue glow, harmless trace, low road light, soft mischief softened into a physical glimmer, no direct guide language
+* Gumiho: silver mist, moonlight, distant presence, no seduction, no horror
+* Sanshin: mountain protection expressed as pine wind, mist clearing, old tree, hut light, and dry shade rather than deity explanation
+* Yongwang: tide, shell, calm sea, underwater light suggested only through water and reflection, no underwater palace
+* Imugi: rain clouds, slow river, waiting, cool air, no monster imagery
+
+Avoid:
+
+* monster descriptions
+* heroic appearances
+* romantic supernatural framing
+* battle
+* divine command
+* religious tone
+* cultural lecture
+* fantasy spectacle
+* transformation scene
+* test of humans
+* punishment
+* underwater court politics
+* giant sea creatures
+* violent storms
+* active supernatural guide behavior
+* a folklore figure giving signs
+* a folklore figure delivering a message
+
+---
+
+# SENSORY MOTIF CONTROL
+
+Use the Sensory Motif Map from the Main Story Structure input.
+
+Repeat the core motifs softly and naturally.
+
+Do not introduce too many new motifs late in the story.
+
+Sensory motifs should create continuity and sleep-friendly atmosphere.
+
+Possible motif categories:
+
+* sound
+* sight
+* touch
+* scent
+* temperature
+* movement
+* light
+* texture
+* space
+* distance
+* material placement
+
+Good motif use:
+
+* rain on curved roof tiles as a steady background rhythm
+* dim lantern light during quiet transitions
+* thick hanji paper near the letter
+* smooth maru wood as a grounding texture
+* old pinewood scent under the eaves
+* deep eaves keeping the rain at a distance
+* tide and shell as a slow returning rhythm
+* mist and pine wind as soft distance
+* pale blue glow touching a low stone
+* moonlight resting on damp sand
+* distant water becoming less distinct
+
+The motifs should return gently, not mechanically.
+
+Avoid making the script feel like a list of sensory details.
+
+Each motif should deepen the atmosphere or emotional softness.
+
+Repeated motifs should vary through:
+
+* distance
+* light level
+* sound intensity
+* temperature
+* texture
+* movement
+* emotional association
+* position in the scene
+* relationship to dry shade, rain distance, tide line, or surface
+* the level of attention given to the object
+
+Repeated motifs should feel like lullaby-like returns, not copied phrases.
+
+Even when motifs repeat often, vary their function.
+
+For example:
+
+* rain can first define place, then soften distance, then surround the trace, then become easier to hear than the object
+* lantern light can first reveal the threshold, then touch the object, then soften written words, then lower along the floor
+* wood can first ground the space, then hold the object, then become one of the final remaining textures
+* paper can first hold curiosity, then show texture, then rest without needing interpretation
+* tide can first mark the shore, then leave the shell above the waterline, then become a distant hum
+* pale blue light can first reveal a stone, then touch mist, then thin into low shadow or window light without acting as a guide
+
+---
+
+# ABSTRACT CALMNESS CONTROL
+
+Do not rely on abstract calmness language to create the mood.
+
+Avoid phrases such as:
+
+* a wave of calm
+* a single wave of calm
+* pure calm
+* perfect peace
+* absolute calm
+* complete stillness
+* total silence
+* pure stillness
+* motionless quiet
+* profound quiet
+* perfect quiet
+* uninterrupted rest
+* deep rest
+* pure rest
+* profound sense of ease
+* deep peaceful acceptance
+* environmental ease
+* peaceful readiness
+
+Prefer sensory reduction:
+
+* the details grow softer
+* the last shapes become less clear
+* the sound of rain remains
+* the low light stays near the paper doors
+* the room becomes quiet
+* the water keeps its rhythm
+* the house settles into a lower quiet
+* rain, wood, dim light, and cool air remain
+* fewer images remain
+* the final motifs continue in a softer rhythm
+* the shore grows less distinct beneath the low moonlight
+* the path keeps only the damp stone and thin mist
+
+Let calm be felt through physical detail, not abstract declaration.
+
+---
+
+# RELIGIOUS AND SPIRITUAL LANGUAGE CONTROL
+
+Avoid religious or spiritualized language unless explicitly required by the Main Story Structure input.
+
+The channel should feel folkloric, atmospheric, and emotionally gentle.
+
+It should not feel like:
+
+* a religious meditation
+* a spiritual ritual
+* a devotional narration
+* a mystical teaching
+
+Do not use:
+
+* blessing
+* blessed
+* sacred
+* divine
+* holy
+* celestial
+* prayerful
+* sanctuary
+* spirit realm
+* mystical power
+* miracle
+* heavenly
+* worship
+
+Replace these with neutral sensory or emotional language:
+
+* resting beneath the eaves
+* held in low warmth
+* resting in lantern light
+* kept beyond the reach of rain
+* softened by night
+* kept by the old roof
+* settled in low light
+* quiet care
+* warm hope
+* gentle hope
+* small trace of care
+* the rain kept at a gentle distance
+* the dry shade beneath the old roof
+
+---
+
+# ENGLISH-ONLY OUTPUT CONTROL
+
+The final narration script must be entirely in English, except for approved Korean / Eastern cultural terms used naturally in English narration.
+
+Approved cultural terms may include:
+
+* hanok
+* hanji
+* maru
+* bojagi
+* dokkaebi
+* gumiho
+* Sanshin
+* Yongwang
+* Imugi
+
+Do not include ordinary Korean words, particles, conjunctions, or mixed-language fragments.
+
+Do not include words such as:
+
+* 하지만
+* 그리고
+* 그래서
+* 그러나
+* 그런데
+* 한옥은
+* 이것은
+* 의미한다
+
+Do not include Korean explanatory phrases.
+
+Do not include Korean translation.
+
+Before finalizing, check that no non-English words appear except approved cultural terms from the story context.
+
+---
+
+# TTS MASTER SCRIPT CLEANNESS
+
+This output is the Master Script, not the final ElevenLabs adaptation script.
+
+Do not include TTS performance tags or voice-direction tags.
+
+Do not include:
+
+* [pause]
+* [long pause]
+* [slow breath]
+* [inhale]
+* [exhale]
+* [whisper]
+* [softly]
+* [breathe]
+* [silence]
+* SSML tags
+* pronunciation notes inside the script
+* parenthetical performance notes
+
+Do not write stage directions.
+
+Do not write narrator directions.
+
+The Master Script should remain clean, natural, and literary.
+
+Use line breaks and sentence rhythm to suggest pacing naturally.
+
+Actual pause, breath, voice, and pronunciation adjustments will be handled later in a separate TTS Adaptation stage.
+
+---
+
+# OUTPUT FORMAT
+
+Output exactly two parts in this order:
+
+1. The final English main story narration script.
+2. A separate production-use block titled:
+
+**[SLEEP FADE INPUT — COPY TO NEXT PROMPT]**
+
+Do not include:
+
+* analysis
+* commentary
+* Korean translation
+* title suggestions
+* thumbnail suggestions
+* metadata
+* production notes outside the required next-step input block
+* section labels inside the narration script
+* bullet points inside the narration script
+* explanations of the structure
+* notes to the user
+* scene headings
+* TTS direction tags
+* pause tags
+* breath tags
+
+The main story narration script should be clean and ready as a Master Script.
+
+Use line breaks to support slow pacing and TTS readability.
+
+Do not include the Main Story Structure input in the output.
+
+Do not write the Sleep Fade narration script.
+
+The main story script should end in a way that naturally prepares for Sleep Fade, but it should not write the Sleep Fade yet.
+
+After the main story narration script, output only one separate production-use block:
+
+**[SLEEP FADE INPUT — COPY TO NEXT PROMPT]**
+
+This block is not part of the narration script.
+
+This block will be copied into Sleep Fade Generator v1.0.2 or later Sleep Fade Generator versions.
+
+---
+
+# SLEEP FADE INPUT OUTPUT
+
+After writing the final English main story narration script, also generate a separate production-use block titled:
+
+**[SLEEP FADE INPUT — COPY TO NEXT PROMPT]**
+
+This block should be based only on:
+
+* the actual final image of the generated main story script
+* the core sensory motifs used near the end of the main story
+* the story elements that should fade away before Sleep Fade
+* the intended emotional direction for the Sleep Fade
+* the risks that must be avoided in the Sleep Fade
+
+Do not write the Sleep Fade narration here.
+
+Do not continue the story here.
+
+Do not add new plot events.
+
+Do not add new characters.
+
+Do not add new objects or motifs that were not present near the end of the main story.
+
+Do not explain the story meaning.
+
+Do not include structure-planning language from the Main Story Structure.
+
+Do not include production terminology except for the required block headings.
+
+Only prepare the input material for the Sleep Fade Generator.
+
+Use the following exact format:
+
+[SLEEP FADE INPUT — COPY TO NEXT PROMPT]
+
+Main Story 마지막 이미지:
+[Quote or closely summarize the final 3–6 lines / final sensory image of the generated main story script. Keep it focused on the remaining atmosphere, not explanation.]
+
+남겨야 할 핵심 감각 모티프:
+[List 5–8 core sensory motifs that should remain in the Sleep Fade. Do not exceed 8 motifs. Prefer motifs already used near the end of the main story, such as soft rain, dim lantern light, curved roof tiles, deep eaves, paper doors, still maru, old letter resting, quiet house, cool night air, patient rhythm of water, pale shell on dry stone, distant tide, low mist, damp path, paper window glow, or other final motifs actually present near the ending.]
+
+마지막에 사라져야 할 이야기 요소:
+[List the story elements that should fade away before Sleep Fade, such as human presence, visitor attention, letter meaning, old promise, written words, mystery explanation, who left the object, why the object remained, any remaining plot attention, any remaining active interpretation, and any remaining attention to event meaning.]
+
+Sleep Fade의 정서 방향:
+[Summarize how the Sleep Fade should feel. It should become quieter, slower, and less specific. The meaning of the object, letter, shell, light, trace, or placement should no longer be explained or recalled. Only the remaining sensory atmosphere should continue: rain, wood, dim light, cool air, dry shade, distant water, mist, stone, paper, or any final motifs present near the ending. Avoid direct sleep-state language such as “deep rest,” “falling asleep,” “sleep-ready,” “wakefulness,” “uninterrupted rest,” “place of rest,” or “providing rest.” Avoid grand or absolute words such as “profoundly,” “pure,” “absolute,” “perfectly,” “completely,” “entirely,” “final,” “motionless,” or “deepest hours.” Avoid direct guide, safety, shelter, body, breath, and mind language.]
+
+반드시 피해야 할 요소:
+[List what Sleep Fade must avoid, such as new plot, new objects, new mystery, new explanation, moral lesson, strong emotion, religious or spiritualized language, horror imagery, body-scan repetition, direct sleep commands, TTS tags such as [pause] or [slow breath], meta planning language, production terminology, and additional sensory motifs not present near the ending. Avoid “protection,” “safe,” “safely,” “refuge,” “haven,” “barrier,” “shield,” “guide,” “guiding,” “guidance,” “breath,” “breathing,” “body,” “mind,” “thoughts,” “listener,” “ancient greeting,” “asks for nothing,” “asking nothing,” “pure atmosphere,” “pure rest,” “motionless quiet,” “complete silence,” “absolute calm,” “profoundly slow,” “deep rest,” “uninterrupted rest,” “sleep-ready,” “poses no issue,” “comforting curtain,” “place of rest,” “providing rest,” “given to providing a space for rest,” “entirely grounded,” “completely ordinary,” “entirely like,” “yields entirely,” “deepest hours,” and similar overly absolute, grand, functional, defensive, body-based, guide-like, or direct sleep-state phrases.]
+
+---
+
+# FINAL OPERATING PRINCIPLE
+
+The final output should remain:
+
+* long-form
+* slow
+* adult
+* calm
+* sensory
+* story-world focused
+* emotionally soft
+* curious but not anxious
+* suitable for bedtime narration
+
+The final output should not contain:
+
+* meta-language
+* direct safety explanation
+* direct shelter explanation
+* defensive shelter language
+* indirect defensive shelter language
+* direct guide language
+* object over-personification
+* ancient greeting / asks nothing formulas
+* direct sleep-state language
+* body-scan language
+* breath-based calming
+* mind/thought-release language
+* functional rest language
+* hard-closure language
+* overly grand rest language
+* over-explained object meaning
+* over-explained letter meaning
+
+Do not weaken the long-form length requirement.
+
+Do not weaken the paragraph-count requirement.
+
+Do not weaken the 7-scene flow.
+
+Do not weaken the scene residency requirement.
+
+Do not weaken the internal sensory beat requirement.
+
+Only strengthen expression control while preserving long-form scene depth.
+
+---
+
+# FINAL QUALITY CHECK BEFORE OUTPUT
+
+Before finalizing, silently check that:
+
+1. The script follows the Main Story Structure input.
+2. The script uses the 7-scene structure from the Main Story Structure.
+3. The long-form sensory expansion guide is used as a pacing and sensory lingering guide, not as permission to add plot.
+4. The script continues naturally from the Opening Sleep-Descent ending image.
+5. The script does not restart the story.
+6. The script internally follows the 7-scene flow.
+7. The 7-scene flow is fully unfolded, not summarized.
+8. Each scene is meaningfully developed through multiple paragraphs.
+9. No required scene is compressed into only one or two short paragraphs.
+10. Scene 1 contains at least 8 developed paragraphs.
+11. Scene 2 contains at least 7 developed paragraphs.
+12. Scene 3 contains at least 8 developed paragraphs.
+13. Scene 4 contains at least 7 developed paragraphs.
+14. Scene 5 contains at least 7 developed paragraphs.
+15. Scene 6 contains at least 5 developed paragraphs.
+16. Scene 7 contains at least 5 developed paragraphs.
+17. The narration contains at least 42 developed paragraphs before the Sleep Fade Input block.
+18. If the narration has fewer than 38 developed paragraphs, it is compressed and fails.
+19. The narration should normally be at least 3,800 words before the Sleep Fade Input block.
+20. If the narration is under 3,500 words, it is underdeveloped unless the user explicitly requested a shorter version.
+21. Each scene uses internal sensory beats before moving to its emotional point.
+22. Each internal sensory beat is developed into paragraph-level narration rather than merely mentioned.
+23. A beat is not treated as complete if it appears only as one sentence.
+24. A beat is not treated as complete if it is compressed into a checklist-like paragraph with several other beats.
+25. Each scene has one primary emotional, sensory, or perceptual shift.
+26. Each scene may contain small supporting sensory variations, but not multiple new story turns.
+27. Most developed paragraphs contain 4–6 sentences.
+28. The script does not look long only because of line breaks.
+29. The script is substantially longer than a 1,000–2,000 word short story unless the user explicitly requested a short version.
+30. If the script feels like a short test draft, it fails.
+31. Length comes from sensory lingering and motif function variation, not repeated phrasing.
+32. The point of view is consistent.
+33. The tense is consistent.
+34. The mystery is gentle, not threatening.
+35. The mystery is not framed as an impossible supernatural puzzle.
+36. The script avoids horror, curses, ghosts, warnings, revenge, danger, and shock.
+37. The script does not name danger or fear in order to reassure the listener.
+38. The script avoids direct safety language such as “safe,” “safely,” “safety,” “secure,” “protected,” “protection,” “protective,” “refuge,” “haven,” “sanctuary,” “barrier,” or “shield.”
+39. The script avoids direct shelter formulas such as “sheltered calm,” “sheltered space,” “sheltering wood,” “physical shelter,” or “promise of shelter.”
+40. The script expresses distance from rain, mist, tide, or wind through physical placement, dry shade, roofline, eaves, stone, threshold, or waterline.
+41. The script avoids guide language such as “guide,” “guides,” “guided,” “guiding,” “guidance,” “showing the way,” “lead the way,” or “path is known.”
+42. If a guide-like feeling appears, it is converted into physical visibility, such as light touching a surface, mist thinning, or a stone becoming visible.
+43. The script avoids body-based calming such as “breath,” “breathing,” “breathe,” “skin,” “chest,” “shoulders,” “limbs,” “body,” “physical relaxation,” or “heavy posture.”
+44. The script avoids mind/thought-release phrases such as “mind lets go,” “thoughts dissolve,” “mind settles,” “emptying the mind,” or “lingering thoughts.”
+45. The script avoids “listener’s attention” and direct listener-state language.
+46. The script avoids meditation-like phrasing such as “physical meditation,” “meditative rhythm,” or “body-scan.”
+47. The script avoids object over-personification.
+48. Objects do not “ask,” “offer,” “invite,” “reassure,” “understand,” “wait for you,” or “keep a promise.”
+49. The script avoids “ancient greeting,” “old greeting,” “asks for nothing,” “asking nothing,” and “asks for nothing more.”
+50. The script does not make a shell, letter, path, light, house, mountain, sea, or forest sound like an intentional emotional agent.
+51. If a pale blue dokkaebi light appears, it remains a low, harmless glow or trace, not a guide, companion, protector, or character.
+52. If a shell appears, it remains on the stone or shore without explaining who left it or why.
+53. If a letter appears, it rests in light, rain-distance, wood, or paper texture without becoming an explanation device.
+54. If written words appear, they carry little plot information.
+55. The spaces around written words matter as much as the words themselves.
+56. The script avoids explaining Korean culture academically.
+57. The script avoids religious or spiritualized language such as “blessing,” “sacred,” “divine,” “holy,” “celestial,” “sanctuary,” or “spirit realm.”
+58. The script avoids fantasy spectacle, battles, tests, transformations, punishments, underwater palaces, monsters, or heroic supernatural appearances.
+59. The script avoids late introduction of new motifs.
+60. The script uses repeated motifs with varied function, not copied phrasing.
+61. The script avoids abstract calmness phrases such as “pure calm,” “perfect peace,” “absolute calm,” “complete stillness,” “motionless quiet,” “profound silence,” or “deep peaceful acceptance.”
+62. The script avoids hard-closure language such as “absolute,” “completely,” “entirely,” “pure,” “motionless,” “perfectly,” “precisely,” “exactly,” “finally,” “fully,” “finished,” “complete,” “permanent,” “timeless,” “endless,” “countless,” “vast,” “unbroken,” and “profound.”
+63. The script avoids making the story feel sealed, solved, perfected, completed, or closed.
+64. The script avoids direct sleep-state language such as “sleep,” “asleep,” “falling asleep,” “sleep-ready,” “deep rest,” “uninterrupted rest,” or “drowsy.”
+65. The script avoids functional rest phrases such as “place of rest,” “providing rest,” “space for rest,” “quiet task,” or “environment provides rest.”
+66. The human figure, if present, remains lightly implied and not over-centered.
+67. The human presence becomes less prominent near the ending.
+68. The ending lowers the energy and prepares for Sleep Fade.
+69. The ending does not become a full Sleep Fade or body-scan section.
+70. The final lines do not feel like a hard conclusion.
+71. The final lines remain story-world focused.
+72. The script contains no TTS performance tags such as [pause] or [slow breath].
+73. The script contains no structure-planning language inside the narration.
+74. The script is entirely in English except for approved Korean / Eastern cultural terms.
+75. The script contains no ordinary Korean words, particles, conjunctions, or mixed-language fragments.
+76. The script is suitable for calm adult bedtime narration.
+77. The output includes exactly two parts: the final English Master Script and the separate [SLEEP FADE INPUT — COPY TO NEXT PROMPT] block.
+78. The Sleep Fade input block is based only on the generated main story ending.
+79. The Sleep Fade input block does not write the Sleep Fade narration.
+80. The Sleep Fade input block does not introduce new plot, new characters, new objects, or new motifs.
+81. The Sleep Fade input block lists 5–8 remaining sensory motifs only and does not exceed 8.
+82. The Sleep Fade input block clearly identifies what should remain and what should fade away.
+83. The Sleep Fade input block avoids meta-language, direct safety language, direct guide language, body/breath/mind language, direct sleep-state language, and hard-closure language.
+84. The Sleep Fade input block avoids “profoundly,” “pure,” “absolute,” “motionless,” “complete silence,” “uninterrupted rest,” “perfectly,” “precisely,” “exactly,” “completely,” “entirely,” and similar overly absolute or grand phrases.
+85. The Sleep Fade input block avoids “guide,” “guiding,” “guidance,” “safe,” “safely,” “protected,” “protection,” “refuge,” “haven,” “barrier,” and “shield.”
+86. The Sleep Fade input block avoids “breath,” “breathing,” “body,” “mind,” “thoughts,” “listener,” and body-scan phrasing.
+87. The Sleep Fade input block avoids “ancient greeting,” “asks for nothing,” “asking nothing,” “old promise kept,” and object-intention formulas.
+88. If any forbidden expression appears in the final script or Sleep Fade Input block, revise internally before output.
+
+Now write the full Main Story narration script and the required Sleep Fade Input block using the provided Main Story Structure.

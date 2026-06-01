@@ -1,0 +1,1234 @@
+Create the opening sleep-descent narration script for a global YouTube channel called “Moonlit Eastern Tales.”
+
+This channel creates calm bedtime stories for adults, inspired by old Korean folklore, Korean night imagery, and quiet Eastern tales.
+
+The channel’s core positioning is:
+
+Calm bedtime stories from old Korea and the East.
+
+The purpose of this opening section is to help the listener gently settle before the main story begins.
+
+This should feel like a slow, atmospheric entrance into a moonlit story world.
+
+It should not feel like a normal YouTube intro.
+
+It should not feel like a generic meditation script, therapy script, body-scan script, breathing exercise, or ASMR introduction.
+
+The opening should guide the listener toward quietness through atmosphere, sensory images, and the gradual appearance of the story world.
+
+The opening should not rely on direct sleep commands, direct body relaxation instructions, direct worry-release language, or direct therapeutic claims.
+
+---
+
+# VERSION PURPOSE
+
+This version, **v1.2.5**, applies the **Soft Pre-Sleep Settling Patch**.
+
+The purpose of this patch is to let the opening briefly signal that the video is a bedtime listening experience, while still protecting the channel from becoming a generic meditation, breathwork, ASMR, therapy, or body-scan channel.
+
+The opening may include a very short, optional pre-sleep settling moment near the beginning, such as:
+
+* settling into a comfortable position
+* allowing the room to grow quieter
+* remembering that nothing needs to be hurried
+* allowing one soft breath to pass if it feels natural
+
+This settling moment must be brief, gentle, and optional.
+
+It must not become a repeated formula.
+
+It must not become a direct sleep instruction.
+
+It must not become a breathing exercise.
+
+It must not become a body scan.
+
+It must not become a therapy-style relaxation sequence.
+
+After this brief initial settling moment, the opening should move into environmental softening and story-world imagery.
+
+Main Story and Sleep Fade should still avoid direct body, breath, mind, and sleep-state language.
+
+
+---
+
+EPISODE MATERIAL:
+
+※ 아래 5개 항목만 매 영상마다 직접 수정하면 됩니다.
+※ 나머지 프롬프트는 그대로 유지해도 됩니다.
+※ 입력은 한글로 해도 되고, 영어로 해도 됩니다.
+※ 단, 최종 대본은 영어 내레이션으로 작성해야 합니다.
+※ 한국적 질감이 필요한 경우 hanok, hanji paper, maru, curved roof tiles, paper window 같은 구체어를 입력해도 됩니다.
+※ 단, 최종 대본에서는 문화 설명 없이 감각적으로만 반영해야 합니다.
+
+이번 영상의 핵심 소재:
+[  ]
+
+첫 장면 또는 첫 문장 방향:
+[  ]
+
+이번 영상의 핵심 분위기:
+[  ]
+
+이번 영상의 잔잔한 미스터리:
+[  ]
+
+결말의 감정 방향:
+[  ]
+
+---
+
+Use the EPISODE MATERIAL above as the creative foundation for this opening.
+
+Begin immediately with a soft, atmospheric story image based on the episode material.
+
+The opening should lead naturally into the main story described in the EPISODE MATERIAL section.
+
+The story image should feel intriguing, but not scary.
+
+It should create curiosity, not tension.
+
+It should feel mysterious, but not threatening.
+
+Because this is an early-stage channel, the opening should gently signal that the video is meant for rest and sleep, without using a normal YouTube greeting or channel introduction.
+
+Do not begin with greetings or channel introductions such as:
+
+“Welcome to…”
+“Hello everyone…”
+“Today we will…”
+“In this episode…”
+“Don’t forget to subscribe…”
+
+Do not introduce the narrator.
+
+Do not introduce the channel.
+
+Do not explain the concept of the channel.
+
+The first line should create mood right away while still giving the listener a gentle sense that this is a quiet bedtime story.
+
+Use a structure inspired by successful adult bedtime story channels such as Get Sleepy.
+
+However, do not copy the wording, style, or exact phrasing of any existing channel.
+
+Only use the broad sleep-story structure.
+
+---
+
+STRUCTURE:
+
+0. Soft Pre-Sleep Settling Permission
+
+Near the beginning of the opening, before the story-world image becomes too specific, you may include a brief pre-sleep settling moment.
+
+This is optional but recommended for early channel clarity.
+
+This moment should help the listener understand that the video is meant for quiet bedtime listening.
+
+It may include one or two gentle lines such as:
+
+“Before the story begins, let yourself settle into a comfortable position.”
+
+“There is nothing to hurry toward now.”
+
+“If it feels natural, allow one slow breath to pass, and let the room grow a little quieter around you.”
+
+“The day can remain outside this small circle of night.”
+
+Use this type of language sparingly.
+
+Do not repeat the same settling wording every episode.
+
+Do not use this moment as a full meditation opening.
+
+Do not use it as a full guided breathing exercise.
+
+Do not extend it into body scanning.
+
+Do not write:
+
+“Lie flat on your back.”
+“Inhale deeply through your nose.”
+“Exhale through your mouth.”
+“Relax your shoulders.”
+“Let your chest soften.”
+“Feel your arms and legs becoming heavy.”
+“Let your thoughts disappear.”
+“Now drift into sleep.”
+“Fall asleep now.”
+
+A single soft breath reference may appear only here, near the beginning, and only as an optional, non-instructional line.
+
+After this brief settling moment, the opening must shift into environmental quieting:
+
+the room growing quieter,
+the sound outside lowering,
+the light becoming softer,
+the old roofline or path beginning to appear,
+or the first story-world image gathering gently in the dark.
+
+Do not let body, breath, or mind language continue into the later opening sections.
+
+1. Sleep-Oriented Atmospheric Hook
+
+Start without a greeting or channel introduction.
+
+However, because this is an early-stage channel, give the listener a gentle sense that this is a quiet nighttime story meant for rest.
+
+Do this without sounding like a normal YouTube intro, meditation prompt, or therapy script.
+
+Begin with a soft sentence that combines night, quietness, and the first image of the story.
+
+The opening should make the listener understand three things immediately:
+
+this is quiet,
+the mood is calm,
+and a moonlit story world is waiting.
+
+Do not say:
+
+“Welcome to…”
+“Hello everyone…”
+“Today we will…”
+“In this episode…”
+
+Do not repeatedly begin every opening with the exact same sentence pattern.
+
+The phrase “Tonight…” may be used, but do not always default to:
+
+“Tonight, you can let the day become quiet,
+and drift slowly toward…”
+
+Vary the hook naturally across episodes.
+
+Possible hook patterns include:
+
+“Tonight, the room can grow quiet around you,
+as a low light waits somewhere beyond the dark.”
+
+“As the night lowers,
+the day can fall a little farther away,
+and a quiet path begins to appear under the moon.”
+
+“In the soft dark,
+there is no need to hurry,
+only the faint sound of rain beyond the roofline.”
+
+“Somewhere in the night,
+a small light rests on wet stone,
+and the world begins to grow quiet.”
+
+“The evening can become quieter now,
+as moonlight gathers along the edge of an old road.”
+
+The hook should feel like an invitation into a quiet story, not a dramatic story opening.
+
+It should create gentle curiosity, not tension.
+
+It should feel mysterious, but not unsafe.
+
+Do not explain the story.
+
+Do not summarize the plot.
+
+Do not use a loud hook.
+
+Do not create fear, danger, or suspense.
+
+The hook should feel like a small candle being lit in the dark.
+
+2. Anchored Rest Permission
+
+Gently let the listener feel that nothing more needs to be done right now.
+
+This section may include light rest-permission language, but it must not become a generic sleep meditation.
+
+Do not overuse direct phrases such as:
+
+nothing to solve,
+nothing to answer,
+nothing to carry,
+nothing more to finish,
+release the day,
+let go of everything,
+worries fade,
+stress leaves,
+the body relaxes,
+the mind becomes quiet.
+
+Use these ideas sparingly.
+
+When possible, express rest permission through the story world itself.
+
+Use one or two subtle sensory images from old Korea or the quiet East, such as:
+
+rain gathering at the edge of an old roof,
+cool night air near a wooden gate,
+soft darkness beyond a paper window,
+wet stone walls,
+a quiet hanok courtyard,
+bamboo leaves moving in the rain,
+moonlight resting on roof tiles,
+the faint glow of a lantern under the eaves,
+a wooden maru cooling in the night air,
+or a low desk touched by lamplight.
+
+Do not over-explain these images.
+
+Do not describe them as cultural objects.
+
+Do not teach the listener about Korean culture.
+
+Let these images appear naturally inside the relaxation language.
+
+Good direction:
+
+“The roofline holds the last sound of rain.
+The stones outside are dark and wet.
+Inside, the lamp remains low.”
+
+Avoid:
+
+“You are safe here.”
+“This place protects you.”
+“Your worries disappear.”
+“Your body can finally relax.”
+
+3. Environmental Softening Instead of Direct Body Scan
+
+This section replaces the older direct Body Softening section.
+
+Do not perform a full body scan.
+
+Do not repeat the same direct body-relaxation sequence in every opening.
+
+Avoid repeatedly using:
+
+Your shoulders can soften now.
+The hands grow quiet.
+Breath by breath, the body begins to settle.
+The jaw relaxes.
+The body releases.
+The breathing slows.
+Your chest rises and falls.
+Follow the breath.
+Let your body become heavy.
+
+The opening may contain a very light physical reference if it feels natural, but do not make the body the focus.
+
+The main descent should happen through environment, sound, light, temperature, and texture.
+
+Preferred approach:
+
+the room grows quieter,
+the blanket lies warm,
+the floor holds a low warmth,
+the sound outside becomes softer,
+the light lowers,
+the air grows steady,
+the roofline keeps rain at a distance,
+the paper window glows faintly,
+the wind becomes slower,
+the present room grows dimmer.
+
+Examples:
+
+Instead of:
+“Your shoulders can soften now.
+Breath by breath, the body begins to settle.”
+
+Prefer:
+“The room grows quieter around you.
+The blanket keeps its low warmth.
+Outside, one small sound after another begins to fade.”
+
+Instead of:
+“As your breathing becomes softer…”
+
+Prefer:
+“As the room becomes quieter…”
+
+Or:
+
+“As the sound outside lowers…”
+
+Or:
+
+“As the night gathers around the edges of the room…”
+
+If breath is mentioned at all, it should appear only once, near the initial Soft Pre-Sleep Settling moment, and only as an optional, gentle line.
+
+Do not instruct the listener to follow it.
+
+Do not write guided breathing.
+
+Do not use breath as the main mechanism of the descent.
+
+Do not continue breath language after the opening has moved into environmental softening or story-world imagery.
+
+4. Soft Buffer Between Rest Permission and Image
+
+After the initial quieting, include one or two gentle bridging lines before introducing any new story-world image.
+
+The transition from the listener’s present room to the story world should not feel abrupt.
+
+Let the stillness of the present room become the doorway into the image.
+
+The script may move through a sequence like:
+
+the room grows quieter,
+the sound outside becomes clearer,
+the darkness near the window feels wider,
+a faint scent or sound appears,
+and only then does the first image of the story world begin to emerge.
+
+Do not suddenly move from rest permission into a courtyard, village, gate, lantern, forest, temple, shore, or old house without a sensory bridge.
+
+5. Soft Image Emergence
+
+Avoid abrupt transitions between relaxation and imagery.
+
+Do not suddenly ask the listener to imagine a completely new place.
+
+Do not abruptly say:
+
+“Imagine a courtyard at night.”
+
+Instead, let each image emerge gradually from the quiet environment.
+
+After the room becomes quieter, allow the story-world image to appear through sound, light, scent, weather, or texture.
+
+For example:
+
+“As the room becomes quieter,
+the edges of the night may feel wider.
+
+Somewhere inside that quiet,
+a small courtyard slowly gathers in the dark.”
+
+Or:
+
+“As the last sound of the day grows distant,
+a faint smell of wet pine begins to appear,
+and the outline of a mountain path becomes clearer beneath the moon.”
+
+Use this kind of gradual transition whenever moving from the listener’s room to the story world.
+
+Do not explain what the listener should feel.
+
+Do not end this section with direct explanatory lines such as:
+
+“The listener should feel that the story world is slowly appearing on its own.”
+
+Create the feeling through sound, image, and rhythm.
+
+6. Sensory Thought-Release Without Direct Worry Language
+
+This section replaces the older direct Thought Release section.
+
+The opening may gently suggest that the day is becoming distant, but do not repeatedly mention thoughts, worries, problems, solving, stress, release, or mental clearing.
+
+Avoid repeated phrases such as:
+
+Any remaining thoughts may drift away.
+Worries smooth out.
+Nothing needs to be solved.
+The mind becomes clear.
+The weight of the day releases.
+The heavy thoughts wash away.
+The listener lets go.
+The mind settles.
+
+When needed, translate the idea of release into sensory motion.
+
+Examples:
+
+Instead of:
+“Any remaining thoughts may drift like thin clouds across the night sky.”
+
+Prefer:
+“A few small sounds from the day may remain for a moment,
+then pass into the roof shadow,
+like water moving away from stone.”
+
+Instead of:
+“Worries smooth out, leaving only a calm surface.”
+
+Prefer:
+“The rainwater gathers beyond the eaves,
+and the stones keep their quiet shine.”
+
+Instead of:
+“Nothing needs to be solved.”
+
+Prefer:
+“The closed gate waits without asking anything.”
+
+Or:
+
+“The paper window glows without needing an answer.”
+
+This section should feel like sensory lowering, not emotional instruction.
+
+7. Continuity Link Between Sensory Release and Story Bridge
+
+Make sure the transition from the sensory release section to the Expanded Moonlit Story Bridge has visual and emotional continuity.
+
+If the earlier image uses rain, clouds, a distant path, a courtyard, a lantern, a shell, a stone, a blue light, or a paper window, the Story Bridge should grow naturally from that same image.
+
+Do not shift suddenly from watching a distant light to walking inside the village.
+
+Do not shift suddenly from a listener’s room to a fully active story event.
+
+Add one or two soft connecting lines that allow the distant image to become closer.
+
+For example:
+
+the far light becoming clearer,
+the rain sounding closer,
+the path slowly appearing beneath the moon,
+the present room fading gently behind the listener,
+the distant courtyard becoming near without effort,
+the shell’s pale edge catching more moonlight,
+the paper window glow becoming warmer,
+the blue light resting longer on the stone.
+
+The listener should not feel transported suddenly.
+
+The listener should feel softly drawn into the scene.
+
+Use transitions such as:
+
+the far light becoming clearer,
+the rain sounding closer,
+the path slowly appearing beneath the moon,
+the present room fading gently behind the listener,
+or the distant house becoming near without effort.
+
+The point of view should move gradually:
+
+from the listener’s quiet room,
+to a faint sensory sign,
+to a distant image,
+to the edge of the path or threshold,
+to the threshold of the main story.
+
+8. Expanded Moonlit Story Bridge
+
+This is one of the most important sections.
+
+Do not make the Story Bridge too short.
+
+This is the moment when the listener slowly moves from their own room into the story world described in the EPISODE MATERIAL section.
+
+The transition should be slow, sensory, and immersive.
+
+If needed, expand this section to 40–60 seconds or longer.
+
+Do not force the opening to fit exactly into 5 minutes.
+
+Aim for approximately 5 minutes, but prioritize natural sleep rhythm, immersion, and emotional softness over strict timing.
+
+During the Story Bridge, describe the transition gradually.
+
+Possible sensory details may include:
+
+the stillness of the room,
+the quiet weight of the blanket,
+the soft sound of rain outside,
+the feeling of the present world growing distant,
+moonlight behind thin clouds,
+a narrow village path,
+wet stone walls,
+a quiet hanok gate,
+a wooden maru cooling in the night air,
+paper windows glowing softly,
+a lantern reflected in a small puddle,
+a shell on a dry stone,
+a blue light pausing on a path,
+a folded paper beneath a window,
+a brush resting beside a dark stone,
+or a small light gradually appearing in the dark.
+
+Select only the details that match the EPISODE MATERIAL.
+
+Do not include every image at once.
+
+Do not make the transition dramatic or sudden.
+
+It should feel like gently slipping into a dreamlike story world, not like a direct sleep exercise.
+
+By the end of the bridge, the listener should feel as if they have arrived near the threshold of the main story, without being told that the story is beginning.
+
+---
+
+ENDING RULE:
+
+The opening should end at the threshold of the main story.
+
+It should not fully begin the main plot yet.
+
+Do not end with meta lines such as:
+
+“The story begins here.”
+“And now the story begins.”
+“This is where our story starts.”
+
+Do not include italicized final statements.
+
+Do not include production-note-like narration.
+
+Do not end by saying:
+
+“guiding the listener into sleep.”
+“preparing you for sleep.”
+“preparing the listener for sleep.”
+“and now you can sleep.”
+“as you drift into sleep.”
+
+Instead, end with a quiet image, a soft pause, or a threshold moment.
+
+The final lines should feel ready to dissolve into the main story.
+
+End with sensory stillness.
+
+For example:
+
+the lantern waiting beside the gate,
+rain falling softly around it,
+a narrow path disappearing into the old village,
+moonlight resting silently on wet roof tiles,
+a shell resting on a dry stone,
+a blue light waiting near the curve of the path,
+a folded letter beneath a paper window,
+ink drying on a dark stone,
+or another quiet threshold image from the EPISODE MATERIAL.
+
+The listener should feel as if they have arrived at the edge of the story, not as if the narrator is announcing the next section.
+
+---
+
+MICRO-PATCH LANGUAGE CONTROL:
+
+Apply the following language controls without changing the required structure or flow of this prompt.
+
+1. Korean Cultural Texture
+
+Do not erase Korean texture by replacing everything with generic English terms.
+
+When naturally appropriate, prefer specific Korean cultural texture words such as:
+
+hanok,
+hanji paper,
+maru,
+curved roof tiles,
+deep eaves,
+paper doors,
+paper window,
+low wooden table,
+old pinewood,
+quiet courtyard,
+stone wall,
+lantern light,
+folded bojagi.
+
+Do not explain these terms academically.
+
+Let the listener understand them through sensory context.
+
+Preferred substitutions:
+
+Instead of “traditional house,” use “old hanok.”
+Instead of “traditional paper,” use “thick hanji paper.”
+Instead of “wooden porch,” use “wooden maru” or “maru porch.”
+Instead of “clay roof tiles,” use “curved roof tiles” or “old hanok roof tiles.”
+
+Use Korean texture sparingly.
+
+Usually 1–3 specific Korean texture words are enough in one opening.
+
+2. Avoid Religious or Spiritualized Language
+
+Do not use language that may imply a specific religion, spiritual doctrine, or devotional tone unless the EPISODE MATERIAL explicitly requires it.
+
+Avoid words such as:
+
+blessing,
+blessed,
+sacred,
+divine,
+holy,
+celestial,
+prayerful,
+sanctuary,
+spirit realm,
+mystical power,
+miracle,
+heavenly,
+worship.
+
+Replace these with neutral sensory images, such as:
+
+beneath the deep eaves,
+kept dry by the old roof,
+quiet warmth near the floor,
+untouched by the rain,
+resting in lantern light,
+softened by the night.
+
+Do not write:
+
+“as if a quiet, lingering blessing has kept it safe.”
+
+Prefer:
+
+“beneath the deep eaves, where the rain does not reach.”
+
+3. Avoid Grand or Overly Abstract Phrasing
+
+Avoid grand, majestic, abstract, or overly polished phrases.
+
+Avoid phrases such as:
+
+timeless sanctuary,
+absolute coziness,
+profound silence,
+majestic night,
+vast ancient mystery,
+vast night,
+vast expanse,
+preserved space,
+eternal memory,
+magnificent stillness,
+divine hush,
+sacred quiet,
+enchanted realm,
+mythical world,
+deep silence.
+
+Prefer:
+
+quiet old house,
+old rain-softened house,
+quiet warmth,
+dim lantern light,
+smooth wood,
+soft rain,
+cool air,
+deep eaves,
+still courtyard,
+old pinewood,
+warm paper doors,
+slow water,
+distant bell,
+damp earth,
+dark water beyond the stones,
+wide dark water,
+low night,
+distant quiet.
+
+4. Avoid Direct Safety Statements and Repeated Shelter Language
+
+Do not overstate safety directly.
+
+Avoid:
+
+“You are perfectly safe here.”
+“Nothing can harm you.”
+“This place protects you completely.”
+“sheltered quietly”
+“sheltered gently”
+“held in quiet warmth”
+“held by the night”
+“protected by the light”
+“guarded by the forest.”
+
+Instead, imply safety through shelter, warmth, slowness, and sensory calm.
+
+Preferred alternatives:
+
+Here, nothing asks you to hurry.
+The deep eaves keep the rain at a distance.
+The old house keeps a low warmth near the floor.
+The lantern light rests softly against the paper doors.
+The roofline leaves the maru dry.
+The path remains visible under moonlight.
+The blue light touches the stone ahead.
+The paper window glows at the edge of the room.
+
+5. Maintain Sleep-Friendly Softness Without Direct Sleep Commands
+
+Use permissive, gentle language.
+
+Prefer:
+
+can,
+may,
+might,
+begins to,
+seems to,
+gently,
+slowly,
+softly.
+
+Avoid overly forceful or direct physical instructions such as:
+
+completely still,
+must relax,
+let go now,
+release everything,
+follow your breath,
+breathe deeply,
+fall asleep,
+drift into sleep,
+sleep now.
+
+Prefer sensory transitions:
+
+The room grows quiet.
+The light lowers.
+The last sound moves farther away.
+The floor keeps its warmth.
+The wind becomes faint beyond the roofline.
+
+6. Point of View and Tense Consistency
+
+Keep the point of view consistent throughout the opening.
+
+The opening should primarily guide the listener through a soft second-person sleep descent using “you,” “your,” or gentle impersonal imagery.
+
+Do not suddenly introduce a third-person protagonist such as “the traveler,” “the girl,” “the old man,” “the woman,” or “the villager” during the opening unless the EPISODE MATERIAL explicitly requires it.
+
+If the main story will later involve a protagonist, do not fully introduce that protagonist in the opening.
+
+The opening should bring the listener to the threshold of the story world, not shift suddenly into the main character’s plot.
+
+Keep the opening primarily in the present tense, especially during the sleep-descent, image-emergence, sensory-release, and story-bridge sections.
+
+Avoid sudden tense shifts such as moving from present-tense quieting into past-tense story narration.
+
+Do not shift abruptly from:
+
+“You can feel the warm weight of your blanket…”
+
+to:
+
+“The traveler stepped onto the porch…”
+
+Prefer:
+
+“The dry maru porch grows clearer in the dark.”
+
+or:
+
+“The rain falls softly over the curved roof tiles as the old house grows clearer in the dark.”
+
+Maintain the feeling that the listener is gently drawn into the scene, rather than being moved into a separate story too early.
+
+7. Avoid Over-Complete Closure Words
+
+Do not overuse words that make the image feel too final, sealed, or artificially perfect.
+
+Avoid repeated use of:
+
+perfectly,
+completely,
+entirely,
+absolute,
+fully,
+deepest,
+pure,
+unmoving,
+unchanged forever.
+
+Prefer:
+
+still,
+quiet,
+nearly still,
+dry,
+left untouched,
+settled,
+low,
+dim,
+faint,
+steady,
+unhurried,
+slowly coming to rest.
+
+Examples:
+
+Avoid:
+“completely dry.”
+
+Prefer:
+“dry.”
+
+Avoid:
+“perfectly still.”
+
+Prefer:
+“still.”
+
+Avoid:
+“entirely undisturbed.”
+
+Prefer:
+“quiet and undisturbed.”
+
+Avoid:
+“the air grows completely still.”
+
+Prefer:
+“the air grows still.”
+
+Avoid:
+“the drops stop entirely.”
+
+Prefer:
+“the drops grow farther apart.”
+
+8. Production-Use Block Sleep-Language Control
+
+In the [MAIN STORY STRUCTURE INPUT — COPY TO NEXT PROMPT] block, do not write direct sleep-purpose phrases in the “결말의 감정 방향” section.
+
+Avoid:
+
+guiding the listener into sleep,
+preparing the listener for sleep,
+inviting deep rest,
+leading into sleep,
+falling asleep,
+deep sleep,
+sleep safely.
+
+Instead, summarize the ending through sensory conditions suitable for Sleep Fade.
+
+Preferred alternatives:
+
+suitable for a soft fade-out through dim light, distant sound, and still objects,
+ending in lowered wind, dim light, and quiet texture,
+preparing for Sleep Fade through the final sensory image of rain, wood, paper, stone, light, or water,
+leaving the final image ready to fade into quiet sensory stillness.
+
+Even in the production-use block, the ending should be described through:
+
+light,
+sound,
+weather,
+objects,
+texture,
+space,
+and quiet movement.
+
+---
+
+WRITING REQUIREMENTS:
+
+Write the English opening narration script first.
+
+Do not provide Korean translation of the narration.
+
+Do not provide analysis.
+
+Do not explain your choices.
+
+Do not include production notes inside the narration script.
+
+Do not include section commentary inside the narration script.
+
+Do not include meta-commentary.
+
+After the opening narration script, output one separate production-use block titled:
+
+[MAIN STORY STRUCTURE INPUT — COPY TO NEXT PROMPT]
+
+You may include simple section labels in the narration script if helpful, but the narration itself should be clean and ready to use.
+
+Write the narration in natural, soft-spoken English.
+
+Use short, smooth sentences.
+
+Avoid complex grammar.
+
+Avoid overly poetic or difficult words.
+
+Avoid dramatic fantasy language.
+
+Avoid children’s story language.
+
+Avoid academic or explanatory language.
+
+Avoid modern slang.
+
+Avoid jokes.
+
+Avoid strong emotional peaks.
+
+Avoid horror.
+
+Avoid danger.
+
+Avoid fast pacing.
+
+Avoid shocking twists.
+
+Avoid cultural lectures.
+
+Avoid saying what hanok, temple bells, Korean villages, or Eastern objects are.
+
+Let Korean and Eastern elements appear naturally through imagery.
+
+Use line breaks to create a slow spoken rhythm.
+
+Use gentle repetition when helpful.
+
+Write as if the narrator is speaking slowly in a calm, warm voice.
+
+The narration script should be suitable for ElevenLabs or similar AI voice narration.
+
+The tone should be:
+
+calm,
+soft-spoken,
+elegant,
+moonlit,
+dreamy,
+quiet,
+mysterious but not scary,
+emotional but not dramatic,
+sleep-friendly.
+
+---
+
+NEXT-STEP INPUT OUTPUT:
+
+After writing the opening sleep-descent narration script, also generate a separate production-use block titled:
+
+[MAIN STORY STRUCTURE INPUT — COPY TO NEXT PROMPT]
+
+This block should be based only on:
+
+* the EPISODE MATERIAL
+* the actual final image of the generated opening script
+* the sensory motifs and cultural textures used in the opening
+
+This block will be copied into the Main Story Structure Generator v1.0.
+
+Do not write the main story structure here.
+
+Do not write the main story script here.
+
+Do not add new plot events.
+
+Do not invent a new premise.
+
+Only prepare the input material for the next generator.
+
+Use the following exact format:
+
+[MAIN STORY STRUCTURE INPUT — COPY TO NEXT PROMPT]
+
+이번 영상의 핵심 소재:
+[Write the core source idea in Korean or English, matching the EPISODE MATERIAL.]
+
+Opening Sleep-Descent의 마지막 이미지:
+[Quote or closely summarize the final 1–3 lines / final threshold image of the opening script.]
+
+이번 영상의 핵심 분위기:
+[Summarize the atmosphere, weather, setting, light, sound, scent, and texture used in the opening.]
+
+이번 영상의 잔잔한 미스터리:
+[Summarize the soft mystery implied by the EPISODE MATERIAL and opening. It must feel curious but not anxious.]
+
+이번 영상의 한국적 / 동양적 질감:
+[List the Korean / Eastern texture words and images that should carry into the main story.]
+
+결말의 감정 방향:
+[Summarize the intended emotional ending direction from the EPISODE MATERIAL. It should prepare for Sleep Fade through sensory conditions only. Do not write “guiding the listener into sleep,” “preparing the listener for sleep,” “deep sleep,” or similar direct sleep-purpose phrases.]
+
+금지하거나 피해야 할 요소:
+[List the forbidden elements from the EPISODE MATERIAL and any additional risks implied by the opening.]
+
+---
+
+SYNTACTIC RHYTHM CONTROL:
+
+Avoid making the quieting sections sound mechanically repetitive.
+
+Do not overuse the same sentence openings, such as:
+
+“Tonight, you can…”
+“Let your…”
+“Notice…”
+“If any thoughts…”
+“Allow…”
+“You may…”
+“Your shoulders…”
+“Breath by breath…”
+
+Gentle repetition is allowed, but the sentence pattern should not become too predictable.
+
+Vary the beginnings of sentences so the narration feels natural and dreamlike.
+
+Use a mixture of:
+
+simple sensory statements,
+soft invitations,
+passive-feeling descriptions,
+short fragments,
+quiet observations,
+and gentle movement from one image to another.
+
+For example, avoid repeating this pattern in every episode:
+
+“Your shoulders can soften now.
+The hands grow quiet.
+Breath by breath, the body begins to settle.
+Any remaining thoughts may drift…”
+
+Prefer a more varied, sensory rhythm, such as:
+
+“The room grows quiet around you.
+The floor keeps a low warmth.
+Outside, the last sound of rain moves farther away.
+A faint light waits beyond the paper window.”
+
+Do not make the listener feel like they are following instructions.
+
+Make the descent feel as if it is happening naturally through the room, the weather, and the first images of the story world.
+
+---
+
+TTS PRONUNCIATION SAFETY:
+
+The script will be used with ElevenLabs or a similar AI voice engine.
+
+Be careful with words that may be difficult for an English-language AI voice to pronounce naturally, especially Korean or East Asian cultural words.
+
+Use Korean terms only when they are important for atmosphere.
+
+Do not overuse unfamiliar cultural terms.
+
+If a Korean term appears, keep the surrounding sentence simple and slow.
+
+Avoid placing multiple unfamiliar words close together.
+
+For words such as “hanok,” write the master script naturally, but be aware that the TTS version may need pronunciation-safe spelling.
+
+Recommended TTS pronunciation guide:
+
+hanok → hah-nok
+Joseon → jo-sun
+dokebi → doh-keh-bee
+dokkaebi → doh-keh-bee
+gumiho → goo-mee-ho
+hanji → hahn-jee
+
+For English words that may sound awkward in AI narration, such as “eaves,” prefer simpler sentence structures.
+
+If “eaves” sounds unnatural in TTS, use alternatives such as:
+
+beneath the edge of the roof
+under the old roofline
+beneath the roof’s shadow
+
+Do not force rare or difficult words into the narration.
+
+Prioritize smooth, natural, soft-spoken audio over literary vocabulary.
+
+Keep a separate MASTER SCRIPT and TTS SCRIPT if needed.
+
+The MASTER SCRIPT may preserve natural spellings such as “hanok.”
+
+The TTS SCRIPT may replace difficult words with pronunciation-safe spellings such as “hah-nok.”
+
+Do not include pronunciation notes inside the final narration script.
+
+Do not write parenthetical pronunciation guides in the narration script.
+
+Do not output a pronunciation table unless specifically asked.
+
+The narration script should remain clean and ready for narration.
+
+The production-use block should remain clearly separated from the narration script.
+
+---
+
+CLICHÉ CONTROL:
+
+Be careful with common East Asian atmosphere clichés.
+
+A distant temple bell may be used only if it feels natural for the episode, but do not rely on it.
+
+Do not make the script sound generically “Asian.”
+
+Prefer specific, tactile, and quiet images, such as:
+
+rain at the eaves,
+wet stone walls,
+paper windows glowing softly,
+a wooden maru cooling in the night air,
+a lantern reflected in a small puddle,
+bamboo leaves brushing together,
+a folded letter resting inside an old wooden box,
+a persimmon tree leaning over a tiled roof,
+a narrow path darkened by rain,
+moonlight resting in the curve of a roof,
+cool air near a wooden gate,
+the soft darkness beyond a paper window,
+a brush beside a dark inkstone,
+a shell on a dry stone,
+a blue light touching wet stones,
+or ink drying in lamplight.
+
+Use these images only when they fit the EPISODE MATERIAL.
+
+Do not overload the script with too many atmosphere details.
+
+The goal is not to make the script sound exotic.
+
+The goal is to make the listener feel as if they are slowly entering a quiet, moonlit story from old Korea and the East.
+
+---
+
+SUGGESTED FLOW:
+
+Soft Pre-Sleep Settling Permission
+Sleep-Oriented Atmospheric Hook
+Anchored Rest Permission
+Environmental Softening
+Soft Buffer Between Rest Permission and Image
+Soft Image Emergence
+Sensory Thought-Release Without Direct Worry Language
+Continuity Link Between Sensory Release and Story Bridge
+Expanded Moonlit Story Bridge
+Quiet Threshold Ending
+
+The opening should prepare the listener to enter the main story.
+
+It should not fully begin the main plot yet.
+
+---
+
+FINAL OUTPUT FORMAT:
+
+Output exactly two parts in this order:
+
+1. The English opening sleep-descent narration script.
+2. The separate production-use block:
+
+[MAIN STORY STRUCTURE INPUT — COPY TO NEXT PROMPT]
+
+Do not include analysis.
+
+Do not include explanations.
+
+Do not include Korean translation of the narration.
+
+Do not include any extra sections beyond these two parts.
+
+Now write the opening sleep-descent narration script in this style, followed by the next-step input block.
+
+Please fully understand the entire prompt I provided and then output the result.

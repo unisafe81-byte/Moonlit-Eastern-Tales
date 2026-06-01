@@ -1,0 +1,688 @@
+You are developing episode concepts for a global adult sleep story YouTube channel called “Moonlit Eastern Tales.”
+
+The channel creates calm bedtime stories for adults, inspired by old Korean folklore, Korean night imagery, and quiet Eastern tales.
+
+The channel is not a Korean culture lecture channel.
+
+It is not a history explanation channel.
+
+It is not a horror channel.
+
+It is not a children’s fairy tale channel.
+
+It is not a fantasy battle or adventure channel.
+
+It is not an ASMR channel.
+
+It is not a meditation channel.
+
+It is not a therapy, healing, guided relaxation, or breathing-exercise channel.
+
+It is a soft-spoken bedtime story channel for adults.
+
+The core positioning is:
+
+Calm bedtime stories from old Korea and the East.
+
+Your task is to convert rough research keywords, trend ideas, or topic fragments into a complete EPISODE MATERIAL block that can be used in a sleep-story script prompt.
+
+The result should feel:
+
+calm,
+moonlit,
+dreamy,
+quiet,
+elegant,
+mysterious but not scary,
+emotional but not dramatic,
+sleep-friendly.
+
+However, do not describe the material with direct sleep-induction, therapeutic, ASMR, or safety-claim language.
+
+The episode concept should feel suitable for a bedtime story, but the output should express that through physical sensory details such as:
+
+dim light,
+low wind,
+distant rain,
+warm floor,
+dry wood,
+fading water drops,
+soft paper-window glow,
+moonlight on stones,
+a shell staying on a rock,
+ink drying on paper,
+or the last sound becoming distant.
+
+Avoid:
+
+strong horror,
+violent revenge,
+shock twists,
+fast-paced adventure,
+children’s fairy tale tone,
+educational explanations,
+generic fantasy,
+overly exotic “Asian” clichés,
+too many cultural terms at once,
+direct sleep commands,
+therapeutic claims,
+ASMR labels,
+meditation labels,
+overly grand emotional language,
+direct safety claims.
+
+Use Korean and Eastern elements naturally through atmosphere and story objects, not through explanation.
+
+---
+
+RESEARCH INPUT:
+
+Paste the research keywords, trend notes, reference titles, audience interests, or rough topic ideas below.
+
+[여기에 조사한 키워드, 트렌드, 제목 후보, 소재 메모를 자유롭게 입력]
+
+---
+
+TASK:
+
+Analyze the research input and create one strong episode concept for “Moonlit Eastern Tales.”
+
+Do not simply repeat the keywords.
+
+Refine them into a sleep-friendly story concept.
+
+If the input contains frightening, violent, or overly dramatic elements, soften them.
+
+If the input is too vague, make the concept more specific.
+
+If the input is too generic, add a quiet Korean or Eastern sensory anchor.
+
+If the input contains too many ideas, select the strongest one for a first-person listening experience before sleep.
+
+The episode concept should be suitable for a 30–45 minute adult bedtime story.
+
+The story should have a gentle mystery, but not fear.
+
+The story should create curiosity, but not tension.
+
+The emotional ending should feel quiet, reflective, and soft.
+
+Do not make the concept feel like a Korean culture lesson, history explanation, horror story, fantasy quest, children’s fairy tale, meditation script, therapy script, or ASMR concept.
+
+The EPISODE MATERIAL should give the next script prompt physical story material.
+
+It should not give the next script prompt direct relaxation instructions.
+
+---
+
+DIRECT SLEEP LANGUAGE CONTROL:
+
+Do not describe the episode as directly inducing sleep.
+
+Avoid phrases such as:
+
+deep sleep,
+deep rest,
+drift into sleep,
+fall asleep,
+sleep-inducing,
+sleep safely,
+deep and peaceful sleep,
+inviting deep rest,
+mind to rest,
+settle the wandering mind for sleep,
+encourages the mind to slow down,
+guides the listener into sleep.
+
+Instead, express the ending through sensory conditions.
+
+Use images such as:
+
+dim light,
+lowering wind,
+fading drops,
+warm floor,
+still paper window,
+distant waves,
+drying ink,
+moonlight remaining on wood,
+a shell staying on a stone,
+a path ending in quiet,
+a low lantern fading behind paper,
+forest sounds lowering beyond the roofline.
+
+Example correction:
+
+Avoid:
+“guiding the listener into a deep and peaceful sleep.”
+
+Prefer:
+“the small waves lower into a distant, steady hum while moonlight remains on the quiet stones.”
+
+Avoid:
+“inviting deep rest.”
+
+Prefer:
+“the porch grows still, and the sound of the forest lowers beyond the roofline.”
+
+Avoid:
+“allowing the adult listener’s mind to rest effortlessly.”
+
+Prefer:
+“the room narrows to lamplight, dry wood, and the faint scent of ink.”
+
+---
+
+DIRECT SAFETY / PROTECTION LANGUAGE CONTROL:
+
+Do not rely on direct safety words.
+
+Avoid overusing:
+
+safe,
+safety,
+safely,
+protected,
+sheltered,
+guarded,
+refuge,
+sanctuary,
+cocoon,
+safe harbor,
+safe and grounded,
+safe listening experience,
+ensures the listener feels safe.
+
+Instead, show comfort through physical conditions.
+
+Use details such as:
+
+dry stones,
+visible path,
+low wind,
+covered porch,
+warm floor,
+paper-window glow,
+distant rain,
+steady light,
+wide eaves,
+a clear threshold,
+a room remaining dry,
+a path staying visible under moonlight.
+
+Example correction:
+
+Avoid:
+“the light guides the traveler along the safe stones.”
+
+Prefer:
+“the light rests on the stones ahead, making each damp edge visible before the next step.”
+
+Avoid:
+“a deeply sheltered and safe listening experience.”
+
+Prefer:
+“a quiet room where the paper window glows low and the dry wooden floor holds the last warmth of evening.”
+
+Avoid:
+“the forest opens a safe and gentle way forward.”
+
+Prefer:
+“the mist thins between the trunks, leaving the next stones visible under the moonlight.”
+
+---
+
+GRAND / INTENSIFYING WORD CONTROL:
+
+Avoid grand or overly intensified emotional language.
+
+Do not overuse:
+
+profound,
+deeply,
+absolute,
+perfectly,
+immense,
+vast,
+majestic,
+powerful,
+grand,
+deeply peaceful,
+deeply calming,
+profound sense of closure,
+profound sense of arrival,
+absolute silence.
+
+Prefer smaller sensory words:
+
+low,
+quiet,
+still,
+dim,
+slow,
+warm,
+cool,
+dry,
+faint,
+steady,
+soft,
+narrow,
+distant,
+unhurried.
+
+Example correction:
+
+Avoid:
+“a profound sense of peaceful closure.”
+
+Prefer:
+“a quiet closing image of dim light, drying ink, and the window shadow remaining still on the floor.”
+
+Avoid:
+“absolute silence.”
+
+Prefer:
+“the last sound lowers until only the room’s stillness remains.”
+
+Avoid:
+“a deeply calming, post-rain stillness.”
+
+Prefer:
+“a low post-rain stillness shaped by damp air, wooden eaves, and slow drops on stone.”
+
+---
+
+META-CONTENT LABEL BAN:
+
+Do not use meta-content or platform-category labels inside the concept explanation.
+
+Avoid:
+
+ASMR-like,
+ASMR,
+meditative state,
+meditation,
+therapy,
+healing,
+guided relaxation,
+sleep aid,
+auditory anchor,
+sleep-inducing,
+hypnotic rhythm,
+breathing exercise,
+guided breathing.
+
+Describe the actual sensory detail instead.
+
+Example correction:
+
+Avoid:
+“the waves act as a natural, ASMR-like auditory anchor.”
+
+Prefer:
+“small waves pull back over pebbles in a low, even hush.”
+
+Avoid:
+“the sound creates a calm, meditative state.”
+
+Prefer:
+“the sound repeats slowly between the stones and the dark water.”
+
+Avoid:
+“ASMR-like paper sounds.”
+
+Prefer:
+“the faint dry rustle of thick paper.”
+
+---
+
+OUTPUT FORMAT:
+
+Always begin the output with exactly:
+
+EPISODE MATERIAL:
+
+Do not omit this label.
+
+Create the following EPISODE MATERIAL block.
+
+Write the labels in Korean exactly as shown below.
+
+The content may be written in Korean, English, or a natural mix of both.
+
+However, if you include a possible first line, write that first line in English.
+
+EPISODE MATERIAL:
+
+이번 영상의 핵심 소재:
+[Write one clear sentence describing the main story subject. Focus on the physical subject, setting, and sensory direction. Avoid direct sleep-induction or therapeutic language.]
+
+첫 장면 또는 첫 문장 방향:
+[Write one soft atmospheric opening image or one possible first line in English. The first image should begin with weather, light, sound, object, room, path, or landscape. Do not begin with direct relaxation, sleep, safety, or emotional instruction.]
+
+이번 영상의 핵심 분위기:
+[Write sensory atmosphere keywords and images. Include weather, place, light, sound, texture, and emotional tone when useful. Avoid vague emotional intensifiers such as “profound,” “deeply calming,” or “absolute silence.” Prefer physical details: damp stones, low mist, cool air, dim lamp, paper window, wet leaves, drying ink, smooth wood, faint breeze, distant water.]
+
+이번 영상의 잔잔한 미스터리:
+[Write the gentle mystery. It should be intriguing but not scary. The mystery should not demand solving. Do not make the mystery urgent, threatening, supernatural in a loud way, or character-reveal focused. Prefer small signs: a light pausing ahead, a shell placed on a dry stone, a letter resting under a window, mist parting at the path, ink left to dry.]
+
+결말의 감정 방향:
+[Write the emotional ending direction. It should suggest quiet release, remembrance, return, forgiveness, waiting, promise, or peaceful closure. However, do not write that the listener sleeps, rests deeply, feels safe, is reassured, or is protected. End with final sensory images: lamp dimming, rain slowing, ink drying, moonlight lowering, wind becoming distant, shell remaining on stone, paper window fading, porch growing still, forest sound lowering, water drops stopping, or the room becoming darker.]
+
+---
+
+Also provide:
+
+추천 영어 제목 후보 5개:
+1.
+2.
+3.
+4.
+5.
+
+선정 이유:
+[Briefly explain why this concept fits Moonlit Eastern Tales and why it is sleep-friendly. Explain fit through channel identity, low-stakes structure, sensory richness, quiet Korean/Eastern atmosphere, and object/weather/texture focus. Do not justify the concept with therapeutic effects, sleep induction, stress relief, mental calming, safety claims, ASMR-like qualities, or meditation-like effects.]
+
+주의할 점:
+[Briefly list anything that should be avoided when writing this episode, such as making it too scary, too educational, too dramatic, too fantasy-like, too therapeutic, too ASMR-like, or too directly sleep-inducing. If you mention banned terms such as ASMR-like, meditation, stress relief, deep sleep, safe, healing, or mental decluttering, mention them only here as things to avoid, not as positive qualities of the episode.]
+
+---
+
+SECTION-SPECIFIC RULES:
+
+1. 이번 영상의 핵심 소재
+
+The core material should be one clear concept.
+
+It should include:
+
+main object or setting,
+slow sensory direction,
+low-stakes story condition.
+
+Avoid:
+
+deep sleep,
+deep rest,
+safe,
+safely,
+protected,
+healing,
+stress relief,
+mental release,
+ASMR-like,
+meditative.
+
+Example:
+
+Avoid:
+“A peaceful walk that guides the listener into deep sleep.”
+
+Prefer:
+“A slow evening walk along a damp mountain path where moonlight reveals wet stones, low mist, and the last drops of rain.”
+
+2. 첫 장면 또는 첫 문장 방향
+
+The first image should be concrete and sensory.
+
+It may include:
+
+moonlight,
+rain,
+mist,
+wind,
+wood,
+paper window,
+lantern,
+stone,
+shell,
+ink,
+brush,
+pine,
+bamboo,
+courtyard,
+shore,
+path.
+
+Avoid opening with:
+
+You can relax,
+You are safe,
+The listener feels calm,
+The body softens,
+The mind becomes quiet,
+Breathe,
+Drift,
+Sleep.
+
+3. 이번 영상의 핵심 분위기
+
+This section should be rich in sensory material.
+
+Include:
+
+Weather,
+Place,
+Light,
+Sound,
+Texture,
+Emotional tone when useful.
+
+The emotional tone should be expressed through physical cues.
+
+Avoid writing:
+
+“deeply relaxing,”
+“deeply calming,”
+“profound stillness,”
+“absolute silence,”
+“safe atmosphere,”
+“meditative state,”
+“sleep-inducing mood.”
+
+Prefer:
+
+“cool air over wet stones,”
+“low mist between dark pines,”
+“a faint yellow glow behind paper,”
+“the dry texture of folded paper,”
+“the slow drip of water from eaves.”
+
+4. 이번 영상의 잔잔한 미스터리
+
+The gentle mystery should be:
+
+small,
+quiet,
+unhurried,
+not scary,
+not urgent,
+not something that must be solved.
+
+Avoid:
+
+danger,
+chasing,
+lost paths,
+curses,
+ghost messages,
+urgent letters,
+hidden threats,
+magical tests,
+dramatic destiny,
+loud supernatural events.
+
+Prefer:
+
+a light pausing near a stone,
+a shell placed just beyond the tide,
+a letter staying dry after rain,
+ink left on a stone,
+mist parting at the path,
+a lantern seen through paper.
+
+5. 결말의 감정 방향
+
+This section caused repeated issues in earlier outputs.
+
+Do not use direct phrases such as:
+
+deep sleep,
+deep rest,
+peaceful sleep,
+sleep-inducing shadows,
+safe arrival,
+safety,
+reassurance,
+protected by the night,
+inviting deep rest,
+drift into sleep.
+
+Instead, end with sensory conditions.
+
+Examples:
+
+Avoid:
+“A profound sense of arrival, safety, and deep rest.”
+
+Prefer:
+“The traveler reaches a dry wooden pavilion. The last drops from the trees fall farther apart, and the moonlight settles quietly across the floor.”
+
+Avoid:
+“A warm sense of reassurance, safety, and quiet closure.”
+
+Prefer:
+“The folded paper rests on the warm floor as the paper-window glow dims and the last drops from the eaves stop.”
+
+Avoid:
+“The sound guides the listener into deep sleep.”
+
+Prefer:
+“The sound lowers beyond the stones until only the moonlight and the cool air remain.”
+
+6. 선정 이유
+
+This section should explain why the concept fits the channel.
+
+Use:
+
+sensory richness,
+quiet object focus,
+low-stakes mystery,
+old Korean/Eastern atmosphere,
+lack of horror,
+lack of fantasy spectacle,
+simple emotional direction,
+slow story expansion potential.
+
+Avoid:
+
+stress relief,
+mental decluttering,
+healing,
+meditative state,
+safe listening experience,
+mind to rest,
+drift into sleep,
+ASMR-like quality,
+sleep-inducing effect,
+comforting psychological safety.
+
+Example:
+
+Avoid:
+“This naturally induces a calm, meditative state and allows the listener’s mind to rest.”
+
+Prefer:
+“This fits Moonlit Eastern Tales because it builds the episode around small physical details: wet stones, low moonlight, distant water, and a quiet object left in place.”
+
+7. 주의할 점
+
+This is the only section where banned terms may appear as things to avoid.
+
+It is acceptable to write:
+
+Avoid direct phrases such as “deep sleep,” “stress relief,” “ASMR-like,” “safe sanctuary,” or “mental decluttering.”
+
+But do not use those terms as positive descriptions in other sections.
+
+---
+
+TITLE RULES:
+
+Recommend 5 English title candidates.
+
+Titles should be calm and clear.
+
+Titles may include:
+
+Sleep Story,
+Bedtime Story,
+Korean Bedtime Story,
+Calm Korean Folklore,
+Moonlit,
+Quiet,
+Rain,
+Path,
+Window,
+Letter,
+Shell,
+Tide,
+Brush,
+Inkstone,
+Pines,
+Lantern,
+Old House.
+
+Avoid titles that suggest:
+
+horror,
+danger,
+survival,
+haunting,
+tragic romance,
+mystery thriller,
+fantasy battle,
+monster,
+curse,
+ghost story,
+children’s fairy tale.
+
+If the source contains a high-risk folklore term, avoid using frightening English translations.
+
+For dokkaebi, avoid:
+
+Goblin,
+Goblin Fire,
+Ghost Light,
+Monster,
+Trickster,
+Phantom.
+
+Prefer:
+
+Blue Light,
+Pale Glow,
+Quiet Light,
+Light in the Pines,
+Moonlit Path.
+
+---
+
+FINAL SELF-CHECK BEFORE OUTPUT:
+
+Before finalizing the EPISODE MATERIAL, check that:
+
+* The output begins with exactly “EPISODE MATERIAL:”
+* The Korean labels are written exactly as required.
+* The concept is calm, moonlit, quiet, and suitable for adult sleep storytelling.
+* The output does not become a Korean culture lecture, history explanation, horror story, fantasy adventure, or children’s fairy tale.
+* Korean and Eastern elements appear through atmosphere, objects, weather, light, sound, texture, architecture, paths, and small signs, not explanation.
+* The gentle mystery creates curiosity without fear.
+* The ending direction is expressed through physical sensory images, not direct sleep language.
+* The output does not rely on repeated words such as safe, safety, safely, protected, deep sleep, deep rest, sleep-inducing, drift into sleep, profound, deeply, absolute, ASMR-like, meditative state, stress relief, healing, or mental decluttering.
+* If those words appear, they should appear only in the “주의할 점” section as things to avoid, not as part of the concept’s positive description.
+* The “선정 이유” section explains fit through sensory richness, low-stakes structure, and Moonlit Eastern Tales identity, not through therapeutic or sleep-induction claims.
+* The final material gives the next script prompt physical story material, not direct relaxation instructions.
+
+Please fully understand the entire prompt I provided and then output the result.

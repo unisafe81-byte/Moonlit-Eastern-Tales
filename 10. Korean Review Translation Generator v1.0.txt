@@ -1,0 +1,638 @@
+Translate and review an English script for a global YouTube channel called **“Moonlit Eastern Tales.”**
+
+This channel creates calm bedtime stories for adults, inspired by old Korean folklore, Korean night imagery, and quiet Eastern tales.
+
+The channel’s core positioning is:
+
+**Calm bedtime stories from old Korea and the East.**
+
+The purpose of this prompt is to create a **Korean review translation** for the creator.
+
+This is not an upload-ready Korean script.
+
+This is not a rewritten Korean adaptation.
+
+This is not a literary Korean remake.
+
+This is not a Korean localization for Korean viewers.
+
+This is a **creator-facing Korean review translation** that helps the creator understand and inspect the English script accurately.
+
+The Korean translation should help the creator check:
+
+* story flow
+* emotional tone
+* sensory atmosphere
+* pacing
+* repetition
+* whether the story feels calm and adult
+* whether the script becomes too scary, too fantasy-like, too childish, too explanatory, or too meditation-like
+* whether direct safety, guide, body, breath, mind, hard-closure, or object-intention language remains
+* whether the final script still matches Moonlit Eastern Tales
+
+The translation must preserve the English script’s actual structure, rhythm, tone, and possible problems.
+
+Do not hide problems by making the Korean version smoother than the English.
+
+Do not improve the script creatively.
+
+Do not rewrite the script.
+
+Do not summarize the script.
+
+Do not shorten the script.
+
+Do not make it more emotional, more poetic, more dramatic, more literary, more Korean, or more beautiful than the original.
+
+The translation should be faithful enough that the creator can detect problems in the English source.
+
+---
+
+# INPUT
+
+Paste the English script below.
+
+The input may be one of the following:
+
+* Opening Sleep-Descent script
+* Main Story script
+* Sleep Fade script
+* TTS-ready script
+* YouTube Packaging output
+* complete full episode script
+* title / description / thumbnail copy
+* any combined Moonlit Eastern Tales output
+
+<<< ENGLISH SCRIPT START >>>
+
+[Paste the English script here.]
+
+<<< ENGLISH SCRIPT END >>>
+
+---
+
+# CORE TRANSLATION PRINCIPLE
+
+Translate the English script into Korean for review.
+
+The translation must be:
+
+* accurate
+* faithful
+* easy for the creator to understand
+* close to the original structure
+* close to the original sentence order
+* close to the original emotional intensity
+* close to the original pacing
+* close to the original repetition pattern
+* clear enough for review
+* not overly polished
+* not creatively rewritten
+* not localized for Korean viewers
+
+The translation should preserve the original’s strengths and weaknesses.
+
+If the English script is repetitive, the Korean translation may also feel repetitive.
+
+If the English script feels too explanatory, the Korean translation should reveal that.
+
+If the English script uses risky expressions such as “guide,” “safe,” “shelter,” “breath,” “mind,” “profound,” “perfectly,” or “ancient greeting,” the Korean translation should not hide or soften those problems.
+
+The goal is accurate review, not beautiful Korean prose.
+
+---
+
+# DO NOT REWRITE
+
+Do not rewrite the story.
+
+Do not improve the pacing.
+
+Do not remove repeated motifs.
+
+Do not remove problematic words.
+
+Do not make the script more Korean than the original.
+
+Do not add cultural explanation.
+
+Do not add new emotional meaning.
+
+Do not add missing context.
+
+Do not simplify the mystery.
+
+Do not solve the story.
+
+Do not add a moral lesson.
+
+Do not add sleep instructions.
+
+Do not add body-scan language.
+
+Do not add TTS tags.
+
+Do not add new section headings inside the translated script unless the source already has them.
+
+Do not remove existing structural blocks if they are part of the input.
+
+If the source contains:
+
+* [SLEEP FADE INPUT — COPY TO NEXT PROMPT]
+* title candidates
+* description
+* thumbnail text
+* tags
+* pinned comment
+* script sections
+* packaging sections
+
+preserve those sections in Korean translation, while keeping the original structural meaning clear.
+
+---
+
+# TRANSLATION STYLE
+
+Use natural Korean, but keep it review-oriented.
+
+The Korean should be readable and clear.
+
+Avoid overly ornate literary Korean.
+
+Avoid making the Korean sound like a finished Korean audiobook script.
+
+Avoid adding poetic intensity.
+
+Avoid adding dramatic emotion.
+
+Avoid making the tone more sentimental than the English.
+
+Avoid over-softening direct expressions.
+
+Avoid replacing repeated phrases with different expressions just to make the Korean prettier.
+
+The translation should feel like:
+
+**“정확한 검수용 한국어 번역본”**
+
+not:
+
+**“출판용 한국어 문학 번역본.”**
+
+---
+
+# PRESERVE MOONLIT EASTERN TALES IDENTITY
+
+While translating, preserve the intended channel identity:
+
+* calm
+* moonlit
+* soft-spoken
+* adult
+* quiet
+* sensory
+* mysterious but not scary
+* curious but not anxious
+* old Korea and the East
+* bedtime story for adults
+
+Do not make the translation feel like:
+
+* horror
+* thriller
+* fantasy adventure
+* children’s fairy tale
+* Korean culture lecture
+* history lecture
+* meditation guide
+* ASMR script
+* therapy script
+* breathing exercise
+* religious or spiritual teaching
+* moral lesson
+
+If the English source accidentally feels like one of these, preserve enough of that feeling so the creator can notice it, then mention it in the review memo.
+
+---
+
+# CULTURAL TERM HANDLING
+
+Keep important Korean / Eastern cultural terms visible.
+
+For example:
+
+* hanok → 한옥
+* hanji → 한지
+* maru → 마루
+* bojagi → 보자기
+* dokkaebi → 도깨비
+* gumiho → 구미호
+* Sanshin → 산신
+* Yongwang → 용왕
+* Imugi → 이무기
+* curved roof tiles → 굽은 기와 / 완만하게 굽은 기와
+* deep eaves → 깊은 처마
+* paper doors → 종이문 / 한지문
+* paper window → 한지 창
+* old pinewood → 오래된 소나무 목재 / 오래된 소나무결
+* quiet courtyard → 조용한 마당
+* lantern light → 등불빛
+
+Do not explain these terms unless the English source explains them.
+
+Do not add phrases such as:
+
+* “한국 전통 가옥인 한옥”
+* “한지는 한국의 전통 종이로”
+* “도깨비는 한국 민담 속 존재로”
+
+unless the English source itself includes such explanation.
+
+Moonlit Eastern Tales is not a Korean culture lecture channel.
+
+---
+
+# SENSORY TRANSLATION CONTROL
+
+Translate sensory details carefully.
+
+Preserve the physicality of:
+
+* rain
+* wood
+* paper
+* ink
+* eaves
+* maru
+* stone
+* tide
+* shell
+* mist
+* pine wind
+* moonlight
+* lantern light
+* paper window glow
+* dry shade
+* cool air
+* distant water
+* folded paper
+* old letter
+* quiet house
+
+Keep the sensory details grounded.
+
+Do not turn physical detail into abstract emotion.
+
+For example:
+
+English:
+“The rain stays beyond the eaves.”
+
+Good Korean review translation:
+“비는 처마 너머에 머물러 있다.”
+
+Avoid:
+“비는 마음을 평온하게 감싸며 멀어진다.”
+
+English:
+“The shell rests above the highest line of the tide.”
+
+Good Korean review translation:
+“조개껍데기는 가장 높이 올라온 조수선보다 위쪽에 놓여 있다.”
+
+Avoid:
+“조개껍데기는 바다의 보호를 받으며 안전하게 놓여 있다.”
+
+---
+
+# RISK EXPRESSION VISIBILITY
+
+Do not hide risky expressions in the translation.
+
+If the English script contains risky or unwanted terms, translate them visibly so the creator can notice them.
+
+Examples:
+
+safe / safely / protection / protected:
+Translate directly enough to reveal the issue.
+
+* safe → 안전한 / 안전하게
+* safely → 안전하게
+* protection → 보호
+* protected → 보호받는 / 보호된
+* secure → 안정적으로 / 안전하게
+
+guide / guided / guidance:
+Translate directly enough to reveal the issue.
+
+* guide → 안내하다 / 인도하다
+* guided → 안내된 / 이끌린
+* guidance → 안내 / 인도
+
+shelter / sheltered / refuge / haven:
+Translate directly enough to reveal the issue.
+
+* shelter → 피난처 / 안식처 / 보호 공간 / 쉼터
+* sheltered → 보호받는 / 가려진 / 피난처 같은
+* refuge → 피난처
+* haven → 안식처
+
+breath / breathing / body / mind / thoughts:
+Translate directly enough to reveal body-scan or meditation drift.
+
+* breath → 숨 / 호흡
+* breathing → 호흡
+* body → 몸
+* mind → 마음 / 정신
+* thoughts → 생각
+* shoulders → 어깨
+* chest → 가슴
+* limbs → 팔다리
+* skin → 피부
+
+hard-closure / abstract calmness:
+Translate directly enough to reveal over-completion.
+
+* profound → 깊고 심오한 / 깊은
+* perfectly → 완벽하게
+* precisely → 정확하게 / 정밀하게
+* exactly → 정확히
+* completely → 완전히
+* entirely → 전적으로 / 완전히
+* absolute → 절대적인
+* pure → 순수한
+* final → 마지막 / 최종의
+* motionless → 움직임 없는 / 미동도 없는
+* unmoving → 움직이지 않는
+* timeless → 시간을 초월한
+* endless → 끝없는
+* complete stillness → 완전한 정적
+* profound silence → 깊고 심오한 침묵
+
+object-intention expressions:
+Translate visibly.
+
+* ancient greeting → 오래된 인사 / 고대의 인사
+* asks for nothing → 아무것도 요구하지 않는다
+* offers → 제공한다 / 건넨다
+* invites → 초대한다
+* reassures → 안심시킨다
+* understands → 이해한다
+* waits for you → 당신을 기다린다
+* companion → 동반자
+
+The review translation should not conceal these expressions by making them sound harmless.
+
+---
+
+# OUTPUT FORMAT
+
+Output exactly the following sections.
+
+Do not omit any section.
+
+---
+
+## 1. 한국어 검수용 번역본
+
+Translate the full English input into Korean.
+
+Preserve paragraph structure as much as possible.
+
+If the source has long paragraphs, keep them as paragraphs.
+
+If the source has section headings or blocks, translate the headings clearly.
+
+If the source contains a production-use block, preserve its structure.
+
+If the input is very long, still translate fully.
+
+Do not summarize.
+
+Do not skip sections.
+
+Do not add notes inside the translated script.
+
+Do not insert comments inside the translated script.
+
+The translation should be clean and readable.
+
+---
+
+## 2. 검수 메모
+
+After the translation, provide a concise but useful review memo in Korean.
+
+The memo should identify whether the English source appears aligned with Moonlit Eastern Tales.
+
+Check the following categories:
+
+### A. 채널 정체성 적합성
+
+Assess whether it feels like:
+
+* calm bedtime story for adults
+* old Korea / Eastern atmosphere
+* curious but not anxious
+* mysterious but not scary
+* sensory rather than explanatory
+
+### B. 톤 위험 요소
+
+Check whether it drifts toward:
+
+* horror
+* fantasy adventure
+* children’s fairy tale
+* Korean culture lecture
+* history lecture
+* meditation / ASMR / therapy / breathing guide
+* moral lesson
+
+### C. 표현 리스크
+
+Check whether the source includes risky expressions such as:
+
+* safe / safely / protected / protection / secure
+* shelter / sheltered / refuge / haven
+* guide / guided / guidance / showing the way
+* breath / breathing / body / skin / chest / shoulders / limbs
+* mind / thoughts / listener’s attention
+* profound / perfectly / precisely / exactly / completely / entirely / absolute / pure / final / motionless / unmoving
+* ancient greeting / asks for nothing / offers / invites / reassures / companion / old promise kept
+* place of rest / providing rest / deep rest / uninterrupted rest / sleep-ready
+
+Do not overreact to one small occurrence.
+
+Classify each issue as:
+
+* 문제 없음
+* 약한 관찰
+* 반복 관찰
+* 수정 필요
+
+### D. 구조 및 흐름
+
+Check whether the script:
+
+* flows naturally
+* maintains slow pacing
+* avoids sudden plot expansion
+* avoids hard closure
+* preserves the final sensory image
+* prepares naturally for the next pipeline stage
+
+### E. 감각 모티프 보존
+
+Check whether the important motifs remain clear.
+
+Examples:
+
+* rain
+* light
+* wood
+* paper
+* eaves
+* maru
+* shell
+* tide
+* mist
+* stone
+* pine
+* lantern
+* paper window
+* quiet house
+* distant water
+
+### F. 한국어로 확인했을 때 어색한 부분
+
+Mention any parts that feel:
+
+* too repetitive
+* too abstract
+* too explanatory
+* too sentimental
+* too meditative
+* too direct
+* too grand
+* too closed
+* too similar to previous outputs
+* too strongly converging toward hanok / maru / eaves / paper window when the keyword does not require it
+
+---
+
+## 3. 최종 검수 판단
+
+Choose one of the following:
+
+* 통과
+* 조건부 통과
+* 수정 필요
+* 재생성 권장
+
+Then provide a short explanation.
+
+Use this judgment style:
+
+**최종 판단: [통과 / 조건부 통과 / 수정 필요 / 재생성 권장]**
+
+**이유:** [brief Korean explanation]
+
+---
+
+## 4. 수정 우선순위
+
+If there are issues, list the top 3–7 correction priorities.
+
+Do not rewrite the entire script.
+
+Do not provide a full corrected version unless the user asks.
+
+Focus on what should be fixed in the English source or earlier pipeline stage.
+
+Example format:
+
+1. guide/guidance 계열 표현을 물리적 가시성 표현으로 전환
+2. safe/shelter 계열 표현을 처마, 마른 나무, 비의 거리 같은 물리 조건으로 전환
+3. mind/breath/body 계열 표현 삭제 또는 장면 감각으로 대체
+4. profound/perfectly/completely/final 계열 완결 표현 약화
+5. ancient greeting / asks nothing 계열 사물 의도화 표현 제거
+
+If there are no meaningful issues, write:
+
+“현재 단계에서는 큰 수정 우선순위 없음.”
+
+---
+
+# REVIEW JUDGMENT RULES
+
+Use balanced judgment.
+
+Do not mark “수정 필요” for a single minor issue.
+
+Use:
+
+**통과**
+when the translation shows that the source is aligned with the channel and has no meaningful repeated issues.
+
+**조건부 통과**
+when the source is usable, but a few expression risks or minor tone issues should be cleaned later.
+
+**수정 필요**
+when repeated risky expressions, tone drift, structure problems, or meaning over-explanation are clearly present.
+
+**재생성 권장**
+when the script seriously fails the channel direction, becomes horror/fantasy/adventure/children’s story/meditation/lecture, or loses the intended structure.
+
+---
+
+# IMPORTANT LIMITS
+
+Do not improve the English script.
+
+Do not rewrite the English script.
+
+Do not create a corrected English version.
+
+Do not create a Korean upload script.
+
+Do not create titles unless the input is YouTube Packaging.
+
+Do not add thumbnail ideas unless the input is YouTube Packaging.
+
+Do not add new story ideas.
+
+Do not add cultural notes.
+
+Do not add production strategy.
+
+This prompt only produces:
+
+1. Korean review translation
+2. Korean review memo
+3. final review judgment
+4. correction priorities
+
+---
+
+# FINAL QUALITY CHECK BEFORE OUTPUT
+
+Before finalizing, silently check:
+
+1. The full English input has been translated.
+2. The translation preserves paragraph structure as much as practical.
+3. The translation does not summarize or skip sections.
+4. The translation does not creatively rewrite the script.
+5. The translation does not make the source smoother than it is.
+6. Repeated phrases remain visible enough for review.
+7. Risky expressions remain visible enough for review.
+8. Cultural terms are handled naturally without explanation.
+9. The Korean translation is clear and readable.
+10. No comments are inserted inside the translated script.
+11. The review memo is separate from the translation.
+12. The final judgment uses exactly one of: 통과 / 조건부 통과 / 수정 필요 / 재생성 권장.
+13. Correction priorities are practical and based only on the source text.
+14. The output does not contain a rewritten English script.
+15. The output does not contain an upload-ready Korean adaptation.
+
+Now translate and review the English input according to this system.

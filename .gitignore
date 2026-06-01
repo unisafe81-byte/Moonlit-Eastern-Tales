@@ -1,0 +1,14 @@
+# Local preview and tunnel logs
+*.log
+
+# Local preview helpers
+preview-server.js
+preview-server.ps1
+
+# Generated archives
+*.zip
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+.vscode/
