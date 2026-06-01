@@ -91,6 +91,21 @@
       white-space: nowrap;
     }
 
+    .header-reset-btn {
+      min-height: 32px;
+      padding: 6px 10px;
+      border-radius: var(--radius);
+      border-color: rgba(240, 139, 155, 0.5);
+      color: #ffd7de;
+      background: rgba(86, 26, 44, 0.72);
+      white-space: nowrap;
+    }
+
+    .header-reset-btn:hover {
+      border-color: rgba(240, 139, 155, 0.9);
+      background: rgba(116, 36, 58, 0.82);
+    }
+
     .status {
       display: inline-flex;
       align-items: center;
@@ -701,6 +716,7 @@
 
       .brand {
         flex-direction: column;
+        align-items: flex-start;
         gap: 4px;
       }
 
@@ -829,6 +845,7 @@
       <div class="brand">
         <h1>달빛 프롬프트 스튜디오</h1>
         <span>별도 키 없이 로컬에서 실행</span>
+        <button id="clearAllBtn" class="btn header-reset-btn" type="button">전체 초기화</button>
       </div>
       <div class="status" aria-live="polite">
         <span id="statusDot" class="dot"></span>
@@ -3486,6 +3503,7 @@
     const outputCount = document.querySelector("#outputCount");
     const statusDot = document.querySelector("#statusDot");
     const statusText = document.querySelector("#statusText");
+    const clearAllBtn = document.querySelector("#clearAllBtn");
     const promptEditor = document.querySelector("#promptEditor");
     const promptCount = document.querySelector("#promptCount");
     const promptSaveMode = document.querySelector("#promptSaveMode");
@@ -4166,6 +4184,51 @@
 
     function scheduleAutoSaveFields() {
       window.setTimeout(saveAutoSavedFields, 0);
+    }
+
+    function clearAllWorkspaceState() {
+      const confirmed = window.confirm(
+        "모든 단계의 입력값, 결과값, 최종 실행 프롬프트를 초기화할까요?\n\n프롬프트 템플릿 저장본은 유지됩니다."
+      );
+      if (!confirmed) return;
+
+      getAutoSaveFields().forEach((field) => {
+        if (field.matches("select")) {
+          field.selectedIndex = 0;
+        } else {
+          field.value = "";
+        }
+      });
+
+      localStorage.removeItem(AUTO_FIELD_STORAGE_KEY);
+      for (let stepNumber = 1; stepNumber <= 14; stepNumber += 1) {
+        clearPipelineResult(stepNumber);
+      }
+
+      [
+        OPERATION_A_INPUT_STORAGE_KEY,
+        OPERATION_A_FINAL_PROMPT_STORAGE_KEY,
+        OPERATION_A_RESULT_STORAGE_KEY,
+        OPERATION_A_QC_JUDGMENT_STORAGE_KEY,
+        OPERATION_A_PRODUCTION_READINESS_STORAGE_KEY,
+        OPERATION_A_PATCH_STATUS_STORAGE_KEY,
+        OPERATION_A_QC_SUMMARY_STORAGE_KEY,
+        OPERATION_B_INPUT_STORAGE_KEY,
+        OPERATION_B_FINAL_PROMPT_STORAGE_KEY,
+        OPERATION_C_INPUT_STORAGE_KEY,
+        OPERATION_C_FINAL_PROMPT_STORAGE_KEY,
+        OPERATION_D_INPUT_STORAGE_KEY,
+        OPERATION_D_FINAL_PROMPT_STORAGE_KEY,
+      ].forEach((key) => localStorage.removeItem(key));
+
+      document.querySelectorAll("button[id^='copy']").forEach((button) => {
+        button.disabled = true;
+      });
+      downloadBtn.disabled = true;
+
+      updateCounts();
+      setStatus("전체 입력값과 결과값 초기화 완료", "ready");
+      sourceIdea.focus();
     }
 
     function restorePipelineResults() {
@@ -8348,6 +8411,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     tabButtons.forEach((button) => {
       button.addEventListener("click", () => switchTab(button.dataset.tab));
     });
+    clearAllBtn.addEventListener("click", clearAllWorkspaceState);
     document.addEventListener("input", (event) => {
       if (shouldAutoSaveField(event.target)) {
         saveAutoSavedFields();
