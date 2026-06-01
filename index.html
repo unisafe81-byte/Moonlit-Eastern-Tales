@@ -1951,7 +1951,6 @@
             <textarea id="koreanReviewEnglishInput" spellcheck="false" placeholder="Step 8에서 생성된 TTS Adaptation Generator 전체 결과값을 붙여 넣으세요. TTS-READY SCRIPT와 ADAPTATION LOG가 포함된 결과물을 그대로 사용합니다."></textarea>
             <div class="actions">
               <button id="extractKoreanReviewTtsReadyBtn" class="btn" type="button">Final TTS-ready Script 본문 추출</button>
-              <button id="copyKoreanReviewInputWithTitleBtn" class="btn" type="button">Step 8 TTS Adaptation Generator 결과 제목 포함 복사</button>
             </div>
 
             <label for="koreanReviewExtractedTtsReadyInput">프롬프트에 넣을 Final TTS-ready Script 본문</label>
@@ -3076,7 +3075,6 @@
     const koreanReviewEnglishInput = document.querySelector("#koreanReviewEnglishInput");
     const importStep8ToKoreanReviewBtn = document.querySelector("#importStep8ToKoreanReviewBtn");
     const extractKoreanReviewTtsReadyBtn = document.querySelector("#extractKoreanReviewTtsReadyBtn");
-    const copyKoreanReviewInputWithTitleBtn = document.querySelector("#copyKoreanReviewInputWithTitleBtn");
     const koreanReviewExtractedTtsReadyInput = document.querySelector("#koreanReviewExtractedTtsReadyInput");
     const copyKoreanReviewExtractedTtsReadyBtn = document.querySelector("#copyKoreanReviewExtractedTtsReadyBtn");
     const koreanReviewInputCount = document.querySelector("#koreanReviewInputCount");
@@ -5143,31 +5141,6 @@ ${englishScriptInput}
 <<< ENGLISH SCRIPT END >>>`;
     }
 
-    async function copyKoreanReviewInputWithTitle() {
-      const result = koreanReviewEnglishInput.value.trim();
-      if (!result) {
-        setStatus("복사할 Step 8 TTS Adaptation Generator 결과값이 없습니다.", "error");
-        return;
-      }
-
-      const copyText = `STEP 8 TTS ADAPTATION GENERATOR RESULT\n\n${result}`;
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(copyText);
-      } else {
-        const temporaryTextarea = document.createElement("textarea");
-        temporaryTextarea.value = copyText;
-        temporaryTextarea.setAttribute("readonly", "");
-        temporaryTextarea.style.position = "fixed";
-        temporaryTextarea.style.opacity = "0";
-        document.body.appendChild(temporaryTextarea);
-        temporaryTextarea.focus();
-        temporaryTextarea.select();
-        document.execCommand("copy");
-        temporaryTextarea.remove();
-      }
-      setStatus("Step 8 TTS Adaptation Generator 결과 제목 포함 복사 완료", "ready");
-    }
-
     function extractKoreanReviewTtsReadyScript() {
       const extracted = extractTtsReadyScriptBlock(koreanReviewEnglishInput.value);
       if (!extracted) {
@@ -6456,7 +6429,6 @@ ${valueOrEmpty(data.shortsPackaging)}
     importStep8ToKoreanReviewBtn.addEventListener("click", () => importPipelineResultToField(8, koreanReviewEnglishInput, "Step 8 TTS Adaptation Generator 결과"));
     koreanReviewEnglishInput.addEventListener("input", updateCounts);
     extractKoreanReviewTtsReadyBtn.addEventListener("click", extractKoreanReviewTtsReadyScript);
-    copyKoreanReviewInputWithTitleBtn.addEventListener("click", copyKoreanReviewInputWithTitle);
     koreanReviewExtractedTtsReadyInput.addEventListener("input", updateCounts);
     copyKoreanReviewExtractedTtsReadyBtn.addEventListener("click", copyKoreanReviewExtractedTtsReadyWithTitle);
     koreanReviewTemplateEditor.addEventListener("input", updateCounts);
