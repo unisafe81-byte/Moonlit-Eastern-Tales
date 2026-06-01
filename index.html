@@ -895,6 +895,24 @@
             <button id="copyBtn" class="btn primary" type="button" disabled>복사</button>
             <button id="downloadBtn" class="btn" type="button" disabled>텍스트 파일 다운로드</button>
           </div>
+          <div class="info-band">
+            <strong>Step 1 결과값 저장</strong>
+            <span>AI에서 생성된 Step 1 결과물을 여기에 붙여 넣으면 브라우저에 저장되고, Step 2에서 불러올 수 있습니다.</span>
+          </div>
+          <label for="pipelineResultStep1">Step 1 AI 결과물</label>
+          <textarea id="pipelineResultStep1" spellcheck="false" placeholder="Paste Step 1 AI result here."></textarea>
+          <div class="meta-row">
+            <div class="meta-box">
+              <strong>저장된 결과 길이</strong>
+              <span id="pipelineResultStep1Count">0자</span>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="clearPipelineResultStep1Btn" class="btn warn" type="button">Step 1 저장 결과 지우기</button>
+            <button id="exportPipelineResultStep1Btn" class="btn" type="button">Step 1 결과 JSON 내보내기</button>
+            <button id="importPipelineResultStep1Btn" class="btn" type="button">Step 1 결과 JSON 불러오기</button>
+            <input id="importPipelineResultStep1File" class="file-input" type="file" accept=".json,application/json">
+          </div>
         </div>
       </section>
       </section>
@@ -907,6 +925,9 @@
           </div>
           <div class="input-area">
             <label for="episodeResearchInput">탭 1에서 생성한 리서치 입력</label>
+            <div class="actions">
+              <button id="importStep1ResultBtn" class="btn" type="button">Step 1 결과 가져오기</button>
+            </div>
             <textarea id="episodeResearchInput" spellcheck="false" placeholder="탭 1에서 생성한 전체 리서치 입력 블록을 여기에 붙여 넣으세요."></textarea>
 
             <div class="meta-row">
@@ -964,6 +985,24 @@
             <div class="actions">
               <button id="copyEpisodePromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
             </div>
+            <div class="info-band">
+              <strong>Step 2 결과값 저장</strong>
+              <span>AI에서 생성된 Step 2 결과물을 여기에 붙여 넣으면 브라우저에 저장되고, Step 3에서 불러올 수 있습니다.</span>
+            </div>
+            <label for="pipelineResultStep2">Step 2 AI 결과물</label>
+            <textarea id="pipelineResultStep2" spellcheck="false" placeholder="Paste Step 2 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep2Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep2Btn" class="btn warn" type="button">Step 2 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep2Btn" class="btn" type="button">Step 2 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep2Btn" class="btn" type="button">Step 2 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep2File" class="file-input" type="file" accept=".json,application/json">
+            </div>
           </div>
         </section>
       </section>
@@ -976,6 +1015,9 @@
           </div>
           <div class="input-area">
             <label for="openingFullMaterial">탭 2 전체 결과 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep2ResultBtn" class="btn" type="button">Step 2 결과 가져오기</button>
+            </div>
             <textarea id="openingFullMaterial" spellcheck="false" placeholder="탭 2에서 생성된 전체 에피소드 재료 결과물을 여기에 붙여 넣은 뒤, 아래 버튼을 누르세요."></textarea>
             <div class="actions">
               <button id="extractOpeningMaterialBtn" class="btn" type="button">다섯 항목 추출</button>
@@ -1054,6 +1096,24 @@
             <textarea id="openingFinalPrompt" spellcheck="false"></textarea>
             <div class="actions">
               <button id="copyOpeningPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
+            <div class="info-band">
+              <strong>Step 3 결과값 저장</strong>
+              <span>AI에서 생성된 Step 3 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep3">Step 3 AI 결과물</label>
+            <textarea id="pipelineResultStep3" spellcheck="false" placeholder="Paste Step 3 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep3Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep3Btn" class="btn warn" type="button">Step 3 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep3Btn" class="btn" type="button">Step 3 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep3Btn" class="btn" type="button">Step 3 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep3File" class="file-input" type="file" accept=".json,application/json">
             </div>
           </div>
         </section>
@@ -2521,6 +2581,8 @@
     const OPERATION_A_PRODUCTION_READINESS_STORAGE_KEY = "operation-production-readiness-A";
     const OPERATION_A_PATCH_STATUS_STORAGE_KEY = "operation-patch-status-A";
     const OPERATION_A_QC_SUMMARY_STORAGE_KEY = "operation-qc-summary-A";
+    const PIPELINE_RESULT_STORAGE_PREFIX = "pipeline-result-step-";
+    const PIPELINE_RESULT_UPDATED_PREFIX = "pipeline-result-updated-step-";
     const MAIN_SCRIPT_PLACEHOLDER = "[Paste the full stabilized Main Story Structure Generator output here.]";
     const POST_PROCESSOR_PLACEHOLDER = "{{FULL_EPISODE_SCRIPT_INPUT}}";
     const TTS_PLACEHOLDER = "{{FINAL_INTEGRATED_SCRIPT_INPUT}}";
@@ -2614,6 +2676,13 @@
     const importPromptFile = document.querySelector("#importPromptFile");
     const tabButtons = document.querySelectorAll("[data-tab]");
     const tabPanels = document.querySelectorAll("[data-panel]");
+    const pipelineResultStep1 = document.querySelector("#pipelineResultStep1");
+    const pipelineResultStep1Count = document.querySelector("#pipelineResultStep1Count");
+    const clearPipelineResultStep1Btn = document.querySelector("#clearPipelineResultStep1Btn");
+    const exportPipelineResultStep1Btn = document.querySelector("#exportPipelineResultStep1Btn");
+    const importPipelineResultStep1Btn = document.querySelector("#importPipelineResultStep1Btn");
+    const importPipelineResultStep1File = document.querySelector("#importPipelineResultStep1File");
+    const importStep1ResultBtn = document.querySelector("#importStep1ResultBtn");
     const episodeResearchInput = document.querySelector("#episodeResearchInput");
     const episodeTemplateEditor = document.querySelector("#episodeTemplateEditor");
     const episodeFinalPrompt = document.querySelector("#episodeFinalPrompt");
@@ -2630,6 +2699,13 @@
     const generateEpisodePromptBtn = document.querySelector("#generateEpisodePromptBtn");
     const clearEpisodeBtn = document.querySelector("#clearEpisodeBtn");
     const copyEpisodePromptBtn = document.querySelector("#copyEpisodePromptBtn");
+    const pipelineResultStep2 = document.querySelector("#pipelineResultStep2");
+    const pipelineResultStep2Count = document.querySelector("#pipelineResultStep2Count");
+    const clearPipelineResultStep2Btn = document.querySelector("#clearPipelineResultStep2Btn");
+    const exportPipelineResultStep2Btn = document.querySelector("#exportPipelineResultStep2Btn");
+    const importPipelineResultStep2Btn = document.querySelector("#importPipelineResultStep2Btn");
+    const importPipelineResultStep2File = document.querySelector("#importPipelineResultStep2File");
+    const importStep2ResultBtn = document.querySelector("#importStep2ResultBtn");
     const openingFullMaterial = document.querySelector("#openingFullMaterial");
     const extractOpeningMaterialBtn = document.querySelector("#extractOpeningMaterialBtn");
     const openingMaterialFields = Array.from(document.querySelectorAll(".opening-material"));
@@ -2649,6 +2725,12 @@
     const generateOpeningPromptBtn = document.querySelector("#generateOpeningPromptBtn");
     const clearOpeningBtn = document.querySelector("#clearOpeningBtn");
     const copyOpeningPromptBtn = document.querySelector("#copyOpeningPromptBtn");
+    const pipelineResultStep3 = document.querySelector("#pipelineResultStep3");
+    const pipelineResultStep3Count = document.querySelector("#pipelineResultStep3Count");
+    const clearPipelineResultStep3Btn = document.querySelector("#clearPipelineResultStep3Btn");
+    const exportPipelineResultStep3Btn = document.querySelector("#exportPipelineResultStep3Btn");
+    const importPipelineResultStep3Btn = document.querySelector("#importPipelineResultStep3Btn");
+    const importPipelineResultStep3File = document.querySelector("#importPipelineResultStep3File");
     const structureFullInput = document.querySelector("#structureFullInput");
     const extractStructureFieldsBtn = document.querySelector("#extractStructureFieldsBtn");
     const structureMaterialFields = Array.from(document.querySelectorAll(".structure-material"));
@@ -2962,17 +3044,123 @@
       statusDot.className = `dot ${type}`.trim();
     }
 
+    function getPipelineResultKey(stepNumber) {
+      return `${PIPELINE_RESULT_STORAGE_PREFIX}${stepNumber}`;
+    }
+
+    function getPipelineResultUpdatedKey(stepNumber) {
+      return `${PIPELINE_RESULT_UPDATED_PREFIX}${stepNumber}`;
+    }
+
+    function loadPipelineResult(stepNumber) {
+      return localStorage.getItem(getPipelineResultKey(stepNumber)) || "";
+    }
+
+    function savePipelineResult(stepNumber, value) {
+      localStorage.setItem(getPipelineResultKey(stepNumber), value);
+      localStorage.setItem(getPipelineResultUpdatedKey(stepNumber), new Date().toISOString());
+    }
+
+    function clearPipelineResult(stepNumber) {
+      localStorage.removeItem(getPipelineResultKey(stepNumber));
+      localStorage.removeItem(getPipelineResultUpdatedKey(stepNumber));
+    }
+
+    function restorePipelineResults() {
+      pipelineResultStep1.value = loadPipelineResult(1);
+      pipelineResultStep2.value = loadPipelineResult(2);
+      pipelineResultStep3.value = loadPipelineResult(3);
+      updateCounts();
+    }
+
+    function handlePipelineResultInput(stepNumber, field) {
+      savePipelineResult(stepNumber, field.value);
+      updateCounts();
+    }
+
+    function clearPipelineResultField(stepNumber, field) {
+      field.value = "";
+      clearPipelineResult(stepNumber);
+      updateCounts();
+      setStatus(`Step ${stepNumber} 저장 결과를 지웠습니다.`, "ready");
+      field.focus();
+    }
+
+    function importPipelineResultToField(stepNumber, targetField, successLabel) {
+      const savedResult = loadPipelineResult(stepNumber);
+      if (!savedResult.trim()) {
+        setStatus(`Step ${stepNumber} 저장 결과물이 없습니다. 직접 붙여 넣어주세요.`, "error");
+        return;
+      }
+
+      targetField.value = savedResult;
+      updateCounts();
+      setStatus(`${successLabel} 가져오기 완료`, "ready");
+      targetField.focus();
+    }
+
+    function exportPipelineResultJson(stepNumber, field) {
+      const result = field.value;
+      if (!result.trim()) {
+        setStatus(`Step ${stepNumber} 저장 결과물이 없습니다. 먼저 결과물을 붙여 넣어주세요.`, "error");
+        return;
+      }
+
+      const payload = {
+        type: "moonlit-pipeline-result",
+        step: stepNumber,
+        savedAt: localStorage.getItem(getPipelineResultUpdatedKey(stepNumber)) || new Date().toISOString(),
+        result,
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `moonlit-step-${stepNumber}-result.json`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      setStatus(`Step ${stepNumber} 결과 JSON 내보내기 완료`, "ready");
+    }
+
+    function importPipelineResultJson(stepNumber, field, file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        try {
+          const payload = JSON.parse(String(reader.result || "{}"));
+          const result = typeof payload.result === "string" ? payload.result : "";
+          if (!result.trim()) {
+            setStatus(`Step ${stepNumber} JSON 파일에 result 값이 없습니다.`, "error");
+            return;
+          }
+
+          field.value = result;
+          savePipelineResult(stepNumber, result);
+          updateCounts();
+          setStatus(`Step ${stepNumber} 결과 JSON 불러오기 완료`, "ready");
+        } catch (error) {
+          setStatus(`Step ${stepNumber} JSON 파일을 읽을 수 없습니다.`, "error");
+        }
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
     function updateCounts() {
       ideaCount.textContent = `${sourceIdea.value.length.toLocaleString("ko-KR")}자`;
       outputCount.textContent = `${finalPrompt.value.length.toLocaleString("ko-KR")}자`;
       promptCount.textContent = `${promptEditor.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep1Count.textContent = `${pipelineResultStep1.value.length.toLocaleString("ko-KR")}자`;
       episodeInputCount.textContent = `${episodeResearchInput.value.length.toLocaleString("ko-KR")}자`;
       episodeTemplateCount.textContent = `${episodeTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       episodeOutputCount.textContent = `${episodeFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep2Count.textContent = `${pipelineResultStep2.value.length.toLocaleString("ko-KR")}자`;
       const openingInputLength = openingFullMaterial.value.length + openingMaterialFields.reduce((total, field) => total + field.value.length, 0);
       openingInputCount.textContent = `${openingInputLength.toLocaleString("ko-KR")}자`;
       openingTemplateCount.textContent = `${openingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       openingOutputCount.textContent = `${openingFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep3Count.textContent = `${pipelineResultStep3.value.length.toLocaleString("ko-KR")}자`;
       const structureInputLength = structureFullInput.value.length + structureMaterialFields.reduce((total, field) => total + field.value.length, 0);
       structureInputCount.textContent = `${structureInputLength.toLocaleString("ko-KR")}자`;
       structureTemplateHeaderCount.textContent = `${structureTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
@@ -5738,13 +5926,39 @@ ${valueOrEmpty(data.shortsPackaging)}
       updateCounts();
     });
     promptEditor.addEventListener("input", updateCounts);
+    pipelineResultStep1.addEventListener("input", () => handlePipelineResultInput(1, pipelineResultStep1));
+    clearPipelineResultStep1Btn.addEventListener("click", () => clearPipelineResultField(1, pipelineResultStep1));
+    exportPipelineResultStep1Btn.addEventListener("click", () => exportPipelineResultJson(1, pipelineResultStep1));
+    importPipelineResultStep1Btn.addEventListener("click", () => importPipelineResultStep1File.click());
+    importPipelineResultStep1File.addEventListener("change", () => {
+      importPipelineResultJson(1, pipelineResultStep1, importPipelineResultStep1File.files[0]);
+      importPipelineResultStep1File.value = "";
+    });
+    importStep1ResultBtn.addEventListener("click", () => importPipelineResultToField(1, episodeResearchInput, "Step 1 결과"));
     episodeResearchInput.addEventListener("input", updateCounts);
     episodeTemplateEditor.addEventListener("input", updateCounts);
+    pipelineResultStep2.addEventListener("input", () => handlePipelineResultInput(2, pipelineResultStep2));
+    clearPipelineResultStep2Btn.addEventListener("click", () => clearPipelineResultField(2, pipelineResultStep2));
+    exportPipelineResultStep2Btn.addEventListener("click", () => exportPipelineResultJson(2, pipelineResultStep2));
+    importPipelineResultStep2Btn.addEventListener("click", () => importPipelineResultStep2File.click());
+    importPipelineResultStep2File.addEventListener("change", () => {
+      importPipelineResultJson(2, pipelineResultStep2, importPipelineResultStep2File.files[0]);
+      importPipelineResultStep2File.value = "";
+    });
+    importStep2ResultBtn.addEventListener("click", () => importPipelineResultToField(2, openingFullMaterial, "Step 2 결과"));
     openingFullMaterial.addEventListener("input", updateCounts);
     extractOpeningMaterialBtn.addEventListener("click", extractOpeningMaterials);
     openingMaterialFields.forEach((field) => field.addEventListener("input", updateCounts));
     copyOpeningFieldsBtn.addEventListener("click", copyOpeningFieldsWithTitles);
     openingTemplateEditor.addEventListener("input", updateCounts);
+    pipelineResultStep3.addEventListener("input", () => handlePipelineResultInput(3, pipelineResultStep3));
+    clearPipelineResultStep3Btn.addEventListener("click", () => clearPipelineResultField(3, pipelineResultStep3));
+    exportPipelineResultStep3Btn.addEventListener("click", () => exportPipelineResultJson(3, pipelineResultStep3));
+    importPipelineResultStep3Btn.addEventListener("click", () => importPipelineResultStep3File.click());
+    importPipelineResultStep3File.addEventListener("change", () => {
+      importPipelineResultJson(3, pipelineResultStep3, importPipelineResultStep3File.files[0]);
+      importPipelineResultStep3File.value = "";
+    });
     structureFullInput.addEventListener("input", updateCounts);
     extractStructureFieldsBtn.addEventListener("click", extractStructureFields);
     structureMaterialFields.forEach((field) => field.addEventListener("input", updateCounts));
@@ -6029,6 +6243,7 @@ ${valueOrEmpty(data.shortsPackaging)}
     loadShortsScriptTemplate();
     loadShortsPackagingTemplate();
     loadOperationATemplate();
+    restorePipelineResults();
     restoreOperationAState();
     updateCounts();
   </script>
