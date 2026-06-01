@@ -669,23 +669,23 @@
     </header>
 
     <nav class="tabs" aria-label="작업 단계 탭">
-      <button class="tab active" type="button" data-tab="research">1. 리서치 입력 빌더</button>
-      <button class="tab" type="button" data-tab="episode">2. 에피소드 재료</button>
-      <button class="tab" type="button" data-tab="opening">3. 오프닝</button>
-      <button class="tab" type="button" data-tab="structure">4. 구조</button>
-      <button class="tab" type="button" data-tab="mainScript">5. 본문 대본</button>
-      <button class="tab" type="button" data-tab="sleepFade">6. Sleep Fade</button>
-      <button class="tab" type="button" data-tab="postProcessor">7. Post-Processor</button>
-      <button class="tab" type="button" data-tab="tts">8. TTS</button>
-      <button class="tab" type="button" data-tab="packaging">9. Packaging</button>
-      <button class="tab" type="button" data-tab="koreanReview">10. Korean Review</button>
+      <button class="tab active" type="button" data-tab="research">1. 리서치 입력 생성</button>
+      <button class="tab" type="button" data-tab="episode">2. 에피소드 재료 생성</button>
+      <button class="tab" type="button" data-tab="opening">3. 수면 진입 오프닝 작성</button>
+      <button class="tab" type="button" data-tab="structure">4. 본문 구조 설계</button>
+      <button class="tab" type="button" data-tab="mainScript">5. 본문 대본 작성</button>
+      <button class="tab" type="button" data-tab="sleepFade">6. 수면 페이드 작성</button>
+      <button class="tab" type="button" data-tab="postProcessor">7. 통합 대본 후처리</button>
+      <button class="tab" type="button" data-tab="tts">8. TTS 낭독용 대본 정리</button>
+      <button class="tab" type="button" data-tab="packaging">9. 유튜브 패키징 생성</button>
+      <button class="tab" type="button" data-tab="koreanReview">10. 한국어 검수 번역</button>
     </nav>
 
     <main>
       <section id="tabResearch" class="tab-panel active" data-panel="research">
       <section class="workspace" aria-labelledby="inputTitle">
         <div class="panel-head">
-          <h2 id="inputTitle">소스 아이디어</h2>
+          <h2 id="inputTitle">소재 아이디어 입력</h2>
           <span id="ideaCount" class="counter">0자</span>
         </div>
         <div class="input-area">
@@ -745,7 +745,7 @@
 
       <section class="workspace" aria-labelledby="outputTitle">
         <div class="panel-head">
-          <h2 id="outputTitle">최종 실행 프롬프트</h2>
+          <h2 id="outputTitle">리서치 입력 생성 프롬프트</h2>
           <span id="outputCount" class="counter">0자</span>
         </div>
         <div class="output-area">
@@ -761,7 +761,7 @@
       <section id="tabEpisode" class="tab-panel" data-panel="episode">
         <section class="workspace" aria-labelledby="episodeInputTitle">
           <div class="panel-head">
-            <h2 id="episodeInputTitle">리서치 입력</h2>
+            <h2 id="episodeInputTitle">리서치 입력 붙여넣기</h2>
             <span id="episodeInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -815,7 +815,7 @@
 
         <section class="workspace" aria-labelledby="episodeOutputTitle">
           <div class="panel-head">
-            <h2 id="episodeOutputTitle">최종 프롬프트</h2>
+            <h2 id="episodeOutputTitle">에피소드 재료 생성 프롬프트</h2>
             <span id="episodeOutputCount" class="counter">0자</span>
           </div>
           <div class="output-area">
@@ -830,7 +830,7 @@
       <section id="tabOpening" class="tab-panel" data-panel="opening">
         <section class="workspace" aria-labelledby="openingInputTitle">
           <div class="panel-head">
-            <h2 id="openingInputTitle">에피소드 재료</h2>
+            <h2 id="openingInputTitle">에피소드 재료 붙여넣기</h2>
             <span id="openingInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -906,7 +906,7 @@
 
         <section class="workspace" aria-labelledby="openingOutputTitle">
           <div class="panel-head">
-            <h2 id="openingOutputTitle">최종 프롬프트</h2>
+            <h2 id="openingOutputTitle">수면 진입 오프닝 작성 프롬프트</h2>
             <span id="openingOutputCount" class="counter">0자</span>
           </div>
           <div class="output-area">
@@ -921,7 +921,7 @@
       <section id="tabStructure" class="tab-panel" data-panel="structure">
         <section class="workspace wide" aria-labelledby="structureTitle">
           <div class="panel-head">
-            <h2 id="structureTitle">Main Story Structure Generator v1.0.2</h2>
+            <h2 id="structureTitle">본문 구조 설계</h2>
             <span id="structureInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1037,7 +1037,7 @@
       <section id="tabMainScript" class="tab-panel" data-panel="mainScript">
         <section class="workspace wide" aria-labelledby="mainScriptTitle">
           <div class="panel-head">
-            <h2 id="mainScriptTitle">Main Story Script Generator v1.1.5a</h2>
+            <h2 id="mainScriptTitle">본문 대본 작성</h2>
             <span id="mainScriptInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1132,7 +1132,7 @@
       <section id="tabSleepFade" class="tab-panel" data-panel="sleepFade">
         <section class="workspace wide" aria-labelledby="sleepFadeTitle">
           <div class="panel-head">
-            <h2 id="sleepFadeTitle">Sleep Fade Generator v1.0.2</h2>
+            <h2 id="sleepFadeTitle">수면 페이드 작성</h2>
             <span id="sleepFadeInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1145,7 +1145,7 @@
 
         <section class="workspace" aria-labelledby="sleepFadeInputTitle">
           <div class="panel-head">
-            <h2 id="sleepFadeInputTitle">Sleep Fade 입력</h2>
+            <h2 id="sleepFadeInputTitle">수면 페이드 입력</h2>
           </div>
           <div class="input-area">
             <div class="info-band">
@@ -1248,7 +1248,7 @@
       <section id="tabPostProcessor" class="tab-panel" data-panel="postProcessor">
         <section class="workspace wide" aria-labelledby="postProcessorTitle">
           <div class="panel-head">
-            <h2 id="postProcessorTitle">Integrated Script Post-Processor v1.0.5c</h2>
+            <h2 id="postProcessorTitle">통합 대본 후처리</h2>
             <span id="postProcessorInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1378,7 +1378,7 @@
       <section id="tabTts" class="tab-panel" data-panel="tts">
         <section class="workspace wide" aria-labelledby="ttsTitle">
           <div class="panel-head">
-            <h2 id="ttsTitle">TTS Adaptation Generator v1.0.1</h2>
+            <h2 id="ttsTitle">TTS 낭독용 대본 정리</h2>
             <span id="ttsInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1392,7 +1392,7 @@
 
         <section class="workspace" aria-labelledby="ttsInputTitle">
           <div class="panel-head">
-            <h2 id="ttsInputTitle">Final Integrated Script Input</h2>
+            <h2 id="ttsInputTitle">최종 통합 대본 입력</h2>
           </div>
           <div class="input-area">
             <label for="ttsFullTab7Result">Paste full Tab 7 result</label>
@@ -1479,7 +1479,7 @@
       <section id="tabPackaging" class="tab-panel" data-panel="packaging">
         <section class="workspace wide" aria-labelledby="packagingTitle">
           <div class="panel-head">
-            <h2 id="packagingTitle">YouTube Packaging Generator v1.0.4</h2>
+            <h2 id="packagingTitle">유튜브 패키징 생성</h2>
             <span id="packagingInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1492,7 +1492,7 @@
 
         <section class="workspace" aria-labelledby="packagingInputTitle">
           <div class="panel-head">
-            <h2 id="packagingInputTitle">TTS-Ready Script Input</h2>
+            <h2 id="packagingInputTitle">TTS 낭독용 대본 입력</h2>
           </div>
           <div class="input-area">
             <details class="prompt-editor" open>
@@ -1582,7 +1582,7 @@
       <section id="tabKoreanReview" class="tab-panel" data-panel="koreanReview">
         <section class="workspace wide" aria-labelledby="koreanReviewTitle">
           <div class="panel-head">
-            <h2 id="koreanReviewTitle">Korean Review Translation Generator v1.0</h2>
+            <h2 id="koreanReviewTitle">한국어 검수 번역</h2>
             <span id="koreanReviewInputCount" class="counter">0자</span>
           </div>
           <div class="input-area">
@@ -1595,7 +1595,7 @@
 
         <section class="workspace" aria-labelledby="koreanReviewInputTitle">
           <div class="panel-head">
-            <h2 id="koreanReviewInputTitle">Korean Review Input</h2>
+            <h2 id="koreanReviewInputTitle">한국어 검수 입력</h2>
           </div>
           <div class="input-area">
             <label for="koreanReviewEnglishInput">Paste English Script or Output for Korean Review</label>
