@@ -5045,7 +5045,7 @@ ${keywordDirection.value.trim() || "없음"}`;
     }
 
     function extractBestFirstTestCandidates(text) {
-      const headingMatch = text.match(/^##\s*Best First-Test Candidates\s*$/im);
+      const headingMatch = text.match(/^##\s*(?:Best First-Test Candidates|첫 테스트 추천 후보)\s*$/im);
       if (!headingMatch) return [];
 
       const afterHeading = text.slice(headingMatch.index + headingMatch[0].length);
