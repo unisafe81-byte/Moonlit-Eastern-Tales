@@ -276,7 +276,8 @@
       outline: none;
     }
 
-    select {
+    select,
+    input[type="text"] {
       width: 100%;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -287,7 +288,8 @@
     }
 
     textarea:focus,
-    select:focus {
+    select:focus,
+    input[type="text"]:focus {
       border-color: rgba(63, 199, 181, 0.82);
       box-shadow: 0 0 0 3px rgba(63, 199, 181, 0.16);
     }
@@ -322,6 +324,7 @@
       min-height: 70px;
     }
 
+    #keywordFinalPrompt,
     #finalPrompt,
     #episodeFinalPrompt,
     #openingFinalPrompt,
@@ -352,6 +355,7 @@
       background: var(--input-2);
     }
 
+    #keywordFinalPrompt,
     #finalPrompt {
       min-height: 270px;
     }
@@ -734,6 +738,7 @@
         white-space: normal;
       }
 
+      #keywordFinalPrompt,
       #finalPrompt,
       #episodeFinalPrompt,
       #openingFinalPrompt,
@@ -756,6 +761,7 @@
         min-height: 420px;
       }
 
+      #keywordFinalPrompt,
       #finalPrompt {
         min-height: 210px;
       }
@@ -864,7 +870,8 @@
     </header>
 
     <nav class="tabs" aria-label="작업 단계 탭">
-      <button class="tab active" type="button" data-tab="research">1. 리서치 입력 생성</button>
+      <button class="tab active" type="button" data-tab="keyword">0. 키워드 생성</button>
+      <button class="tab" type="button" data-tab="research">1. 리서치 입력 생성</button>
       <button class="tab" type="button" data-tab="episode">2. 에피소드 재료 생성</button>
       <button class="tab" type="button" data-tab="opening">3. 수면 진입 오프닝 작성</button>
       <button class="tab" type="button" data-tab="structure">4. 본문 구조 설계</button>
@@ -891,7 +898,120 @@
     </section>
 
     <main>
-      <section id="tabResearch" class="tab-panel active" data-panel="research">
+      <section id="tabKeyword" class="tab-panel active" data-panel="keyword">
+        <section class="workspace" aria-labelledby="keywordInputTitle">
+          <div class="panel-head">
+            <h2 id="keywordInputTitle">세부 키워드 생성 입력</h2>
+            <span id="keywordInputCount" class="counter">0자</span>
+          </div>
+          <div class="input-area">
+            <label for="keywordCategory">대형 카테고리</label>
+            <select id="keywordCategory">
+              <option value="">대형 카테고리를 선택하세요</option>
+              <option>Quiet Korean Home Memory / 조용한 한국 집의 기억</option>
+              <option>Gentle Folklore Traces / 직접 나타나지 않는 한국 설화의 흔적</option>
+              <option>Old Korean Objects & Hidden Hands / 오래된 한국 사물과 보이지 않는 손길</option>
+              <option>Village Thresholds & Guardian Roads / 마을의 경계와 오래된 길</option>
+              <option>Temple Sound & Mountain Stillness / 절의 소리와 산의 정적</option>
+              <option>Sea, River & Returning Tide / 바다, 강, 나루터, 돌아오는 물때</option>
+              <option>Seasonal Korean Nights / 한국의 계절 밤</option>
+              <option>Modern Guest, Tea & Quiet Meals / 현대의 방문자, 차, 조용한 식사</option>
+            </select>
+
+            <label for="keywordCountInput">생성할 세부 키워드 개수</label>
+            <input id="keywordCountInput" type="text" inputmode="numeric" placeholder="예: 10 / 15 / 20">
+
+            <label for="keywordUsageTiming">사용 시점</label>
+            <select id="keywordUsageTiming">
+              <option value="">사용 시점을 선택하세요</option>
+              <option>초기</option>
+              <option>초기-중반</option>
+              <option>중반</option>
+              <option>후반</option>
+              <option>혼합</option>
+            </select>
+
+            <label for="keywordDirection">추가 방향</label>
+            <textarea id="keywordDirection" spellcheck="false">없음</textarea>
+
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>프롬프트 템플릿 버전</strong>
+                <span id="keywordTemplateFileName">0. Detailed Keyword Generator v1.0a.txt</span>
+              </div>
+              <div class="meta-box">
+                <strong>결합 위치</strong>
+                <span>[사용자 입력란]</span>
+              </div>
+            </div>
+
+            <details class="prompt-editor">
+              <summary>프롬프트 업데이트</summary>
+              <div class="prompt-editor-body">
+                <label for="keywordTemplateEditor">현재 저장된 실행 프롬프트 원문</label>
+                <textarea id="keywordTemplateEditor" spellcheck="false"></textarea>
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>저장 방식</strong>
+                    <span id="keywordTemplateSaveMode">브라우저 저장소</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>프롬프트 길이</strong>
+                    <span id="keywordTemplateCount">0자</span>
+                  </div>
+                </div>
+                <div class="actions">
+                  <button id="saveKeywordTemplateBtn" class="btn primary" type="button">수정한 프롬프트 저장</button>
+                  <button id="resetKeywordTemplateBtn" class="btn warn" type="button">내장 원본으로 복원</button>
+                  <button id="importKeywordTemplateBtn" class="btn" type="button">텍스트 파일 불러오기</button>
+                  <button id="exportKeywordTemplateBtn" class="btn" type="button">현재 프롬프트 내보내기</button>
+                  <input id="importKeywordTemplateFile" class="file-input" type="file" accept=".txt,text/plain">
+                </div>
+              </div>
+            </details>
+
+            <div class="actions">
+              <button id="generateKeywordPromptBtn" class="btn primary" type="button">프롬프트 생성</button>
+              <button id="copyKeywordInputBlockBtn" class="btn" type="button">4개 항목 제목 포함 복사</button>
+              <button id="clearKeywordBtn" class="btn warn" type="button">초기화</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace" aria-labelledby="keywordOutputTitle">
+          <div class="panel-head">
+            <h2 id="keywordOutputTitle">세부 키워드 생성 프롬프트</h2>
+            <span id="keywordOutputCount" class="counter">0자</span>
+          </div>
+          <div class="output-area">
+            <textarea id="keywordFinalPrompt" spellcheck="false"></textarea>
+            <div class="actions">
+              <button id="copyKeywordPromptBtn" class="btn primary" type="button" disabled>복사</button>
+              <button id="downloadKeywordPromptBtn" class="btn" type="button" disabled>텍스트 파일 다운로드</button>
+            </div>
+            <div class="info-band">
+              <strong>Step 0 결과값 저장</strong>
+              <span>AI에서 생성된 Step 0 키워드 결과물을 여기에 붙여 넣으면 브라우저에 저장되고, JSON으로 보관할 수 있습니다.</span>
+            </div>
+            <label for="pipelineResultStep0">Step 0 AI 결과물</label>
+            <textarea id="pipelineResultStep0" spellcheck="false" placeholder="Paste Step 0 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep0Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep0Btn" class="btn warn" type="button">Step 0 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep0Btn" class="btn" type="button">Step 0 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep0Btn" class="btn" type="button">Step 0 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep0File" class="file-input" type="file" accept=".json,application/json">
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section id="tabResearch" class="tab-panel" data-panel="research">
       <section class="workspace" aria-labelledby="inputTitle">
         <div class="panel-head">
           <h2 id="inputTitle">소재 아이디어 입력</h2>
@@ -3321,6 +3441,9 @@
 
   <script src="./prompt-data.js"></script>
   <script>
+    const KEYWORD_PROMPT_FILE = "0. Detailed Keyword Generator v1.0a.txt";
+    const KEYWORD_STORAGE_KEY = "moonlitDetailedKeywordGeneratorPrompt";
+    const KEYWORD_SOURCE_STORAGE_KEY = "moonlitDetailedKeywordGeneratorPromptSource";
     const PROMPT_FILE = "1. Research Input Builder v1.2.1.txt";
     const PLACEHOLDER = "[키워드 입력란]";
     const STORAGE_KEY = "moonlitResearchInputBuilderPrompt";
@@ -3515,6 +3638,33 @@
     const statusText = document.querySelector("#statusText");
     const selectEpisodeFolderBtn = document.querySelector("#selectEpisodeFolderBtn");
     const clearAllBtn = document.querySelector("#clearAllBtn");
+    const keywordCategory = document.querySelector("#keywordCategory");
+    const keywordCountInput = document.querySelector("#keywordCountInput");
+    const keywordUsageTiming = document.querySelector("#keywordUsageTiming");
+    const keywordDirection = document.querySelector("#keywordDirection");
+    const keywordInputCount = document.querySelector("#keywordInputCount");
+    const keywordTemplateEditor = document.querySelector("#keywordTemplateEditor");
+    const keywordTemplateCount = document.querySelector("#keywordTemplateCount");
+    const keywordTemplateSaveMode = document.querySelector("#keywordTemplateSaveMode");
+    const keywordTemplateFileName = document.querySelector("#keywordTemplateFileName");
+    const saveKeywordTemplateBtn = document.querySelector("#saveKeywordTemplateBtn");
+    const resetKeywordTemplateBtn = document.querySelector("#resetKeywordTemplateBtn");
+    const importKeywordTemplateBtn = document.querySelector("#importKeywordTemplateBtn");
+    const exportKeywordTemplateBtn = document.querySelector("#exportKeywordTemplateBtn");
+    const importKeywordTemplateFile = document.querySelector("#importKeywordTemplateFile");
+    const generateKeywordPromptBtn = document.querySelector("#generateKeywordPromptBtn");
+    const copyKeywordInputBlockBtn = document.querySelector("#copyKeywordInputBlockBtn");
+    const clearKeywordBtn = document.querySelector("#clearKeywordBtn");
+    const keywordFinalPrompt = document.querySelector("#keywordFinalPrompt");
+    const keywordOutputCount = document.querySelector("#keywordOutputCount");
+    const copyKeywordPromptBtn = document.querySelector("#copyKeywordPromptBtn");
+    const downloadKeywordPromptBtn = document.querySelector("#downloadKeywordPromptBtn");
+    const pipelineResultStep0 = document.querySelector("#pipelineResultStep0");
+    const pipelineResultStep0Count = document.querySelector("#pipelineResultStep0Count");
+    const clearPipelineResultStep0Btn = document.querySelector("#clearPipelineResultStep0Btn");
+    const exportPipelineResultStep0Btn = document.querySelector("#exportPipelineResultStep0Btn");
+    const importPipelineResultStep0Btn = document.querySelector("#importPipelineResultStep0Btn");
+    const importPipelineResultStep0File = document.querySelector("#importPipelineResultStep0File");
     const promptEditor = document.querySelector("#promptEditor");
     const promptCount = document.querySelector("#promptCount");
     const promptSaveMode = document.querySelector("#promptSaveMode");
@@ -4025,6 +4175,8 @@
     const importOperationDCResultBtn = document.querySelector("#importOperationDCResultBtn");
     const importAllOperationDResultsBtn = document.querySelector("#importAllOperationDResultsBtn");
 
+    let keywordTemplate = "";
+    let builtInKeywordTemplate = "";
     let promptTemplate = "";
     let builtInPromptTemplate = "";
     let episodeTemplate = "";
@@ -4188,6 +4340,191 @@
       return true;
     }
 
+    function getKeywordInputBlock() {
+      return `사용자 입력란:
+
+대형 카테고리:
+${keywordCategory.value.trim()}
+
+생성할 세부 키워드 개수:
+${keywordCountInput.value.trim()}
+
+사용 시점:
+${keywordUsageTiming.value.trim()}
+
+추가 방향:
+${keywordDirection.value.trim() || "없음"}`;
+    }
+
+    function hasKeywordRequiredInputs() {
+      return Boolean(keywordCategory.value.trim() && keywordCountInput.value.trim() && keywordUsageTiming.value.trim());
+    }
+
+    function syncKeywordTemplateEditor() {
+      keywordTemplateEditor.value = keywordTemplate;
+      const hasSavedPrompt = Boolean(localStorage.getItem(KEYWORD_STORAGE_KEY));
+      keywordTemplateSaveMode.textContent = hasSavedPrompt ? "브라우저 저장소에 저장됨" : "내장 원본 사용 중";
+      keywordTemplateFileName.textContent = hasSavedPrompt
+        ? localStorage.getItem(KEYWORD_SOURCE_STORAGE_KEY) || `브라우저 저장 수정본 (원본: ${KEYWORD_PROMPT_FILE})`
+        : KEYWORD_PROMPT_FILE;
+      updateCounts();
+    }
+
+    function applyKeywordTemplate(nextTemplate, shouldSave, sourceLabel = "") {
+      keywordTemplate = nextTemplate;
+      if (shouldSave) {
+        localStorage.setItem(KEYWORD_STORAGE_KEY, keywordTemplate);
+        localStorage.setItem(
+          KEYWORD_SOURCE_STORAGE_KEY,
+          typeof sourceLabel === "string" && sourceLabel
+            ? sourceLabel
+            : localStorage.getItem(KEYWORD_SOURCE_STORAGE_KEY) || `브라우저 저장 수정본 (원본: ${KEYWORD_PROMPT_FILE})`
+        );
+      }
+      syncKeywordTemplateEditor();
+      generateKeywordPromptBtn.disabled = !keywordTemplate;
+    }
+
+    async function loadKeywordTemplate() {
+      generateKeywordPromptBtn.disabled = true;
+      if (window.DETAILED_KEYWORD_GENERATOR_PROMPT) {
+        builtInKeywordTemplate = window.DETAILED_KEYWORD_GENERATOR_PROMPT;
+        keywordTemplate = localStorage.getItem(KEYWORD_STORAGE_KEY) || builtInKeywordTemplate;
+        setStatus(localStorage.getItem(KEYWORD_STORAGE_KEY) ? "저장된 키워드 프롬프트 로드됨" : "세부 키워드 생성기 내장 로드됨", "ready");
+        syncKeywordTemplateEditor();
+        generateKeywordPromptBtn.disabled = !keywordTemplate;
+        updateCounts();
+        return;
+      }
+
+      try {
+        const response = await fetch(encodeURI(KEYWORD_PROMPT_FILE), { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        builtInKeywordTemplate = await response.text();
+        keywordTemplate = localStorage.getItem(KEYWORD_STORAGE_KEY) || builtInKeywordTemplate;
+        setStatus(localStorage.getItem(KEYWORD_STORAGE_KEY) ? "저장된 키워드 프롬프트 로드됨" : "세부 키워드 생성기 로드됨", "ready");
+        syncKeywordTemplateEditor();
+      } catch (error) {
+        keywordTemplate = "";
+        keywordFinalPrompt.value = "";
+        setStatus("세부 키워드 생성기 프롬프트 파일을 찾을 수 없음", "error");
+      } finally {
+        generateKeywordPromptBtn.disabled = !keywordTemplate;
+        copyKeywordPromptBtn.disabled = !keywordFinalPrompt.value;
+        downloadKeywordPromptBtn.disabled = !keywordFinalPrompt.value;
+        updateCounts();
+      }
+    }
+
+    function buildKeywordPrompt() {
+      if (!keywordTemplate) {
+        setStatus("세부 키워드 생성기 프롬프트가 로드되지 않았습니다.", "error");
+        return;
+      }
+      if (!hasKeywordRequiredInputs()) {
+        setStatus("대형 카테고리, 키워드 개수, 사용 시점을 모두 입력하세요.", "error");
+        return;
+      }
+
+      const inputBlock = getKeywordInputBlock();
+      const inputTemplatePattern = /사용자 입력란:\s*\n\s*대형 카테고리:\s*\n\[위 8개 대형 카테고리 중 하나를 그대로 입력\]\s*\n\s*생성할 세부 키워드 개수:\s*\n\[예: 10 \/ 15 \/ 20\]\s*\n\s*사용 시점:\s*\n\[초기 \/ 초기-중반 \/ 중반 \/ 후반 \/ 혼합\]\s*\n\s*추가 방향:\s*\n\[이번 키워드 생성에서 특별히 원하는 조건 입력\. 없으면 “없음”이라고 입력\]/;
+      keywordFinalPrompt.value = keywordTemplate.match(inputTemplatePattern)
+        ? keywordTemplate.replace(inputTemplatePattern, inputBlock)
+        : `${keywordTemplate.trimEnd()}\n\n---\n\n${inputBlock}\n`;
+      copyKeywordPromptBtn.disabled = !keywordFinalPrompt.value;
+      downloadKeywordPromptBtn.disabled = !keywordFinalPrompt.value;
+      updateCounts();
+      setStatus("세부 키워드 생성 프롬프트 생성 완료", "ready");
+    }
+
+    async function copyTextToClipboard(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const helper = document.createElement("textarea");
+      helper.value = text;
+      helper.setAttribute("readonly", "");
+      helper.style.position = "fixed";
+      helper.style.opacity = "0";
+      document.body.appendChild(helper);
+      helper.select();
+      document.execCommand("copy");
+      helper.remove();
+    }
+
+    async function copyKeywordInputBlockWithTitles() {
+      if (!hasKeywordRequiredInputs()) {
+        setStatus("복사할 Step 0 입력 항목을 먼저 채우세요.", "error");
+        return;
+      }
+      await copyTextToClipboard(getKeywordInputBlock());
+      setStatus("Step 0 입력 항목 4개 제목 포함 복사 완료", "ready");
+    }
+
+    async function copyKeywordPrompt() {
+      if (!keywordFinalPrompt.value) return;
+      await copyTextToClipboard(keywordFinalPrompt.value);
+      setStatus("세부 키워드 생성 프롬프트 복사 완료", "ready");
+    }
+
+    function downloadKeywordPrompt() {
+      if (!keywordFinalPrompt.value) return;
+      const blob = new Blob([keywordFinalPrompt.value], { type: "text/plain;charset=utf-8" });
+      downloadBlob(blob, "keyword-generator-final-prompt.txt");
+    }
+
+    function saveKeywordTemplate(sourceLabel = "") {
+      if (!keywordTemplateEditor.value.trim()) {
+        setStatus("저장할 키워드 프롬프트가 비어 있음", "error");
+        return;
+      }
+      applyKeywordTemplate(keywordTemplateEditor.value, true, sourceLabel || `브라우저 저장 수정본 (원본: ${KEYWORD_PROMPT_FILE})`);
+      setStatus("세부 키워드 프롬프트 저장 완료", "ready");
+    }
+
+    function resetKeywordTemplate() {
+      if (!builtInKeywordTemplate) {
+        setStatus("복원할 세부 키워드 기본 프롬프트가 없음", "error");
+        return;
+      }
+      localStorage.removeItem(KEYWORD_STORAGE_KEY);
+      localStorage.removeItem(KEYWORD_SOURCE_STORAGE_KEY);
+      applyKeywordTemplate(builtInKeywordTemplate, false);
+      setStatus("세부 키워드 프롬프트 내장 원본 복원 완료", "ready");
+    }
+
+    function exportKeywordTemplate() {
+      const blob = new Blob([keywordTemplateEditor.value], { type: "text/plain;charset=utf-8" });
+      downloadBlob(blob, "detailed-keyword-generator-prompt-template.txt");
+    }
+
+    function importKeywordTemplate(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        keywordTemplateEditor.value = String(reader.result || "");
+        saveKeywordTemplate(`가져온 파일: ${file.name}`);
+        importKeywordTemplateFile.value = "";
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function clearKeywordWorkspace() {
+      keywordCategory.value = "";
+      keywordCountInput.value = "";
+      keywordUsageTiming.value = "";
+      keywordDirection.value = "없음";
+      keywordFinalPrompt.value = "";
+      copyKeywordPromptBtn.disabled = true;
+      downloadKeywordPromptBtn.disabled = true;
+      updateCounts();
+      setStatus("Step 0 입력값 초기화 완료", "ready");
+      keywordCategory.focus();
+    }
+
     function getPipelineResultKey(stepNumber) {
       return `${PIPELINE_RESULT_STORAGE_PREFIX}${stepNumber}`;
     }
@@ -4267,9 +4604,10 @@
       });
 
       localStorage.removeItem(AUTO_FIELD_STORAGE_KEY);
-      for (let stepNumber = 1; stepNumber <= 14; stepNumber += 1) {
+      for (let stepNumber = 0; stepNumber <= 14; stepNumber += 1) {
         clearPipelineResult(stepNumber);
       }
+      keywordDirection.value = "없음";
 
       [
         OPERATION_A_INPUT_STORAGE_KEY,
@@ -4291,6 +4629,7 @@
         button.disabled = true;
       });
       downloadBtn.disabled = true;
+      downloadKeywordPromptBtn.disabled = true;
 
       updateCounts();
       setStatus("전체 입력값과 결과값 초기화 완료", "ready");
@@ -4298,6 +4637,7 @@
     }
 
     function restorePipelineResults() {
+      pipelineResultStep0.value = loadPipelineResult(0);
       pipelineResultStep1.value = loadPipelineResult(1);
       pipelineResultStep2.value = loadPipelineResult(2);
       pipelineResultStep3.value = loadPipelineResult(3);
@@ -4433,6 +4773,14 @@
     }
 
     function updateCounts() {
+      const keywordInputLength = keywordCategory.value.length
+        + keywordCountInput.value.length
+        + keywordUsageTiming.value.length
+        + keywordDirection.value.length;
+      keywordInputCount.textContent = `${keywordInputLength.toLocaleString("ko-KR")}자`;
+      keywordTemplateCount.textContent = `${keywordTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      keywordOutputCount.textContent = `${keywordFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep0Count.textContent = `${pipelineResultStep0.value.length.toLocaleString("ko-KR")}자`;
       ideaCount.textContent = `${sourceIdea.value.length.toLocaleString("ko-KR")}자`;
       outputCount.textContent = `${finalPrompt.value.length.toLocaleString("ko-KR")}자`;
       promptCount.textContent = `${promptEditor.value.length.toLocaleString("ko-KR")}자`;
@@ -8498,6 +8846,34 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       }
     });
     document.addEventListener("click", scheduleAutoSaveFields);
+    keywordCategory.addEventListener("change", updateCounts);
+    keywordCountInput.addEventListener("input", updateCounts);
+    keywordUsageTiming.addEventListener("change", updateCounts);
+    keywordDirection.addEventListener("input", updateCounts);
+    keywordTemplateEditor.addEventListener("input", updateCounts);
+    generateKeywordPromptBtn.addEventListener("click", buildKeywordPrompt);
+    copyKeywordInputBlockBtn.addEventListener("click", copyKeywordInputBlockWithTitles);
+    clearKeywordBtn.addEventListener("click", clearKeywordWorkspace);
+    copyKeywordPromptBtn.addEventListener("click", copyKeywordPrompt);
+    downloadKeywordPromptBtn.addEventListener("click", downloadKeywordPrompt);
+    saveKeywordTemplateBtn.addEventListener("click", saveKeywordTemplate);
+    resetKeywordTemplateBtn.addEventListener("click", resetKeywordTemplate);
+    importKeywordTemplateBtn.addEventListener("click", () => importKeywordTemplateFile.click());
+    exportKeywordTemplateBtn.addEventListener("click", exportKeywordTemplate);
+    importKeywordTemplateFile.addEventListener("change", () => importKeywordTemplate(importKeywordTemplateFile.files[0]));
+    keywordFinalPrompt.addEventListener("input", () => {
+      copyKeywordPromptBtn.disabled = !keywordFinalPrompt.value;
+      downloadKeywordPromptBtn.disabled = !keywordFinalPrompt.value;
+      updateCounts();
+    });
+    pipelineResultStep0.addEventListener("input", () => handlePipelineResultInput(0, pipelineResultStep0));
+    clearPipelineResultStep0Btn.addEventListener("click", () => clearPipelineResultField(0, pipelineResultStep0));
+    exportPipelineResultStep0Btn.addEventListener("click", () => exportPipelineResultJson(0, pipelineResultStep0));
+    importPipelineResultStep0Btn.addEventListener("click", () => importPipelineResultStep0File.click());
+    importPipelineResultStep0File.addEventListener("change", () => {
+      importPipelineResultJson(0, pipelineResultStep0, importPipelineResultStep0File.files[0]);
+      importPipelineResultStep0File.value = "";
+    });
     sourceIdea.addEventListener("input", () => {
       buildPrompt();
       updateCounts();
@@ -8973,6 +9349,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importOperationDCResultBtn.addEventListener("click", () => importOperationDResult(operationDResultSources[9]));
     importAllOperationDResultsBtn.addEventListener("click", importAllOperationDResults);
 
+    loadKeywordTemplate();
     loadPromptTemplate();
     loadEpisodeTemplate();
     loadOpeningTemplate();
