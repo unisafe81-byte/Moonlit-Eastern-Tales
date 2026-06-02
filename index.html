@@ -6374,18 +6374,75 @@ ${finalIntegratedScript}
 [FINAL INTEGRATED SCRIPT END]`;
     }
 
+    function unwrapPipelineResultText(source) {
+      const trimmed = source.trim();
+      if (!trimmed.startsWith("{")) return source;
+
+      try {
+        const parsed = JSON.parse(trimmed);
+        return typeof parsed.result === "string" ? parsed.result : source;
+      } catch (error) {
+        return source;
+      }
+    }
+
+    function stripFinalIntegratedTrailingSections(text) {
+      const stopMatch = text.match(/(?:^|\n)\s*#{0,6}\s*(?:EDIT LOG|ADAPTATION LOG|RISK CHECK SUMMARY|REMAINING RISK TERMS CHECK)\s*:?\s*(?:\n|$)/i);
+      return (stopMatch ? text.slice(0, stopMatch.index) : text).trim();
+    }
+
+    function stripSleepFadeInputBlock(text) {
+      const sleepFadeInputMatch = text.match(/(?:^|\n)\s*\[\s*SLEEP FADE INPUT[^\]]*\]/i);
+      const headingMatch = text.match(/(?:^|\n)\s*#{1,6}\s*SLEEP FADE INPUT\s*:?\s*(?:\n|$)|(?:^|\n)\s*SLEEP FADE INPUT\s*:/i);
+      const cutIndexes = [sleepFadeInputMatch, headingMatch]
+        .filter((match) => match)
+        .map((match) => match.index);
+      const cutIndex = cutIndexes.length ? Math.min(...cutIndexes) : -1;
+      return (cutIndex >= 0 ? text.slice(0, cutIndex) : text).trim();
+    }
+
+    function stripLikelyAiIntro(text) {
+      const lines = text.trim().split(/\r?\n/);
+      const firstScriptLineIndex = lines.findIndex((line) => {
+        const trimmedLine = line.trim();
+        return /^[A-Z"'\u201c\u2018]/.test(trimmedLine)
+          && /[.!?]$/.test(trimmedLine)
+          && trimmedLine.length >= 24
+          && !/^(Here is|Below is|The following|FINAL INTEGRATED SCRIPT|EDIT LOG)/i.test(trimmedLine);
+      });
+
+      return firstScriptLineIndex > 0 ? lines.slice(firstScriptLineIndex).join("\n").trim() : text.trim();
+    }
+
+    function extractFinalIntegratedScriptBlock(source) {
+      const normalizedSource = unwrapPipelineResultText(source);
+      const markerMatch = normalizedSource.match(/(?:^|\n)\s*(?:\[|<<<)\s*FINAL INTEGRATED SCRIPT START\s*(?:\]|>>>)\s*(?:\n|$)/i);
+      if (markerMatch) {
+        const contentStart = markerMatch.index + markerMatch[0].length;
+        const rest = normalizedSource.slice(contentStart);
+        const endMatch = rest.match(/(?:^|\n)\s*(?:\[|<<<)\s*FINAL INTEGRATED SCRIPT END\s*(?:\]|>>>)\s*(?:\n|$)/i);
+        return (endMatch ? rest.slice(0, endMatch.index) : rest).trim();
+      }
+
+      const headingMatch = normalizedSource.match(/(?:^|\n)\s*#{0,6}\s*FINAL INTEGRATED SCRIPT\s*:?\s*(?:\n|$)/i);
+      if (!headingMatch) {
+        const fallback = stripSleepFadeInputBlock(stripFinalIntegratedTrailingSections(stripLikelyAiIntro(normalizedSource)));
+        return fallback.length >= 500 ? fallback : "";
+      }
+
+      const contentStart = headingMatch.index + headingMatch[0].length;
+      const rest = normalizedSource.slice(contentStart);
+      return stripFinalIntegratedTrailingSections(rest);
+    }
+
     function extractFinalIntegratedScriptFromTab7Result() {
       const source = ttsFullTab7Result.value;
-      const headingMatch = source.match(/(?:^|\n)\s*#{0,3}\s*FINAL INTEGRATED SCRIPT\s*\n/i);
-      if (!headingMatch) {
+      const extracted = extractFinalIntegratedScriptBlock(source);
+      if (!extracted) {
         setStatus("FINAL INTEGRATED SCRIPT 제목을 찾을 수 없습니다. 최종 통합 대본을 직접 붙여 넣어주세요.", "error");
         return;
       }
 
-      const contentStart = headingMatch.index + headingMatch[0].length;
-      const rest = source.slice(contentStart);
-      const stopMatch = rest.match(/(?:^|\n)\s*#{0,3}\s*(?:EDIT LOG|ADAPTATION LOG|RISK CHECK SUMMARY|REMAINING RISK TERMS CHECK)\s*(?:\n|$)/i);
-      const extracted = (stopMatch ? rest.slice(0, stopMatch.index) : rest).trim();
       ttsFinalIntegratedInput.value = extracted;
       setStatus("FINAL INTEGRATED SCRIPT 추출 완료", "ready");
       updateCounts();
