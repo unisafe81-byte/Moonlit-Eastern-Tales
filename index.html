@@ -5049,21 +5049,32 @@ ${keywordDirection.value.trim() || "없음"}`;
       if (!headingMatch) return [];
 
       const afterHeading = text.slice(headingMatch.index + headingMatch[0].length);
-      const nextHeadingMatch = afterHeading.match(/^##\s+/m);
-      const section = (nextHeadingMatch ? afterHeading.slice(0, nextHeadingMatch.index) : afterHeading).trim();
-      if (!section) return [];
-
-      const lines = section.split(/\r?\n/);
+      const lines = afterHeading.split(/\r?\n/);
       const blocks = [];
       let current = [];
+      let hasStarted = false;
+      let hasStopped = false;
 
       lines.forEach((line) => {
-        const isCandidateStart = /^\s*(?:\d+[\).\:]|\-\s+(?:\*\*)?Candidate\s+\d+|\-\s+\*\*)/i.test(line);
+        if (hasStopped) return;
+        const trimmed = line.trim();
+        if (!hasStarted && /^##\s*첫 테스트 추천 후보\s*$/i.test(trimmed)) {
+          return;
+        }
+        if (hasStarted && /^##\s+/.test(trimmed)) {
+          hasStopped = true;
+          return;
+        }
+
+        const isCandidateStart = /^\s*\d+\s*[\).\:]\s+/.test(line);
+        if (isCandidateStart) {
+          hasStarted = true;
+        }
         if (isCandidateStart && current.length) {
           blocks.push(current.join("\n").trim());
           current = [];
         }
-        if (line.trim() || current.length) {
+        if (hasStarted && (trimmed || current.length)) {
           current.push(line);
         }
       });
@@ -5074,10 +5085,11 @@ ${keywordDirection.value.trim() || "없음"}`;
 
       if (blocks.length >= 3) return blocks.slice(0, 3);
 
-      return section
+      return afterHeading
+        .replace(/^##\s*첫 테스트 추천 후보\s*$/im, "")
         .split(/\n\s*\n/)
         .map((block) => block.trim())
-        .filter(Boolean)
+        .filter((block) => /^\d+\s*[\).\:]\s+/.test(block))
         .slice(0, 3);
     }
 
