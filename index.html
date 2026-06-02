@@ -2266,6 +2266,9 @@
               <summary>Step 8 전체 TTS 결과 붙여넣기</summary>
               <div class="prompt-editor-body">
                 <label for="longformVisualFullTtsResult">Step 8 전체 결과</label>
+                <div class="actions">
+                  <button id="importStep8ToLongformVisualBtn" class="btn" type="button">Step 8 결과 가져오기</button>
+                </div>
                 <textarea id="longformVisualFullTtsResult" spellcheck="false" placeholder="Step 8의 TTS-READY SCRIPT 또는 전체 TTS 결과물을 붙여 넣으세요."></textarea>
                 <div class="actions">
                   <button id="extractLongformVisualTtsReadyBtn" class="btn" type="button">TTS-READY SCRIPT 추출</button>
@@ -2346,6 +2349,25 @@
 
             <div class="actions">
               <button id="copyLongformVisualPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
+            </div>
+
+            <div class="info-band">
+              <strong>Step 11 결과값 저장</strong>
+              <span>AI에서 생성된 Step 11 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep11">Step 11 AI 결과물</label>
+            <textarea id="pipelineResultStep11" spellcheck="false" placeholder="Paste Step 11 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep11Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep11Btn" class="btn warn" type="button">Step 11 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep11Btn" class="btn" type="button">Step 11 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep11Btn" class="btn" type="button">Step 11 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep11File" class="file-input" type="file" accept=".json,application/json">
             </div>
           </div>
         </section>
@@ -3951,6 +3973,7 @@
     const importPipelineResultStep10Btn = document.querySelector("#importPipelineResultStep10Btn");
     const importPipelineResultStep10File = document.querySelector("#importPipelineResultStep10File");
     const longformVisualFullTtsResult = document.querySelector("#longformVisualFullTtsResult");
+    const importStep8ToLongformVisualBtn = document.querySelector("#importStep8ToLongformVisualBtn");
     const longformVisualTtsReadyInput = document.querySelector("#longformVisualTtsReadyInput");
     const longformVisualVideoTitle = document.querySelector("#longformVisualVideoTitle");
     const longformVisualTimestamps = document.querySelector("#longformVisualTimestamps");
@@ -3971,6 +3994,12 @@
     const generateLongformVisualPromptBtn = document.querySelector("#generateLongformVisualPromptBtn");
     const clearLongformVisualBtn = document.querySelector("#clearLongformVisualBtn");
     const copyLongformVisualPromptBtn = document.querySelector("#copyLongformVisualPromptBtn");
+    const pipelineResultStep11 = document.querySelector("#pipelineResultStep11");
+    const pipelineResultStep11Count = document.querySelector("#pipelineResultStep11Count");
+    const clearPipelineResultStep11Btn = document.querySelector("#clearPipelineResultStep11Btn");
+    const exportPipelineResultStep11Btn = document.querySelector("#exportPipelineResultStep11Btn");
+    const importPipelineResultStep11Btn = document.querySelector("#importPipelineResultStep11Btn");
+    const importPipelineResultStep11File = document.querySelector("#importPipelineResultStep11File");
     const shortsMomentEpisodeScript = document.querySelector("#shortsMomentEpisodeScript");
     const shortsMomentEpisodeTitle = document.querySelector("#shortsMomentEpisodeTitle");
     const shortsMomentCoreKeyword = document.querySelector("#shortsMomentCoreKeyword");
@@ -4681,6 +4710,7 @@ ${keywordDirection.value.trim() || "없음"}`;
       pipelineResultStep8.value = loadPipelineResult(8);
       pipelineResultStep9.value = loadPipelineResult(9);
       pipelineResultStep10.value = loadPipelineResult(10);
+      pipelineResultStep11.value = loadPipelineResult(11);
       updateCounts();
     }
 
@@ -4869,6 +4899,7 @@ ${keywordDirection.value.trim() || "없음"}`;
       longformVisualInputCount.textContent = `${longformVisualInputLength.toLocaleString("ko-KR")}자`;
       longformVisualTemplateHeaderCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       longformVisualTemplateCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep11Count.textContent = `${pipelineResultStep11.value.length.toLocaleString("ko-KR")}자`;
       const shortsMomentInputLength = shortsMomentEpisodeScript.value.length
         + shortsMomentEpisodeTitle.value.length
         + shortsMomentCoreKeyword.value.length
@@ -9134,12 +9165,21 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       importPipelineResultStep10File.value = "";
     });
     longformVisualFullTtsResult.addEventListener("input", updateCounts);
+    importStep8ToLongformVisualBtn.addEventListener("click", () => importPipelineResultToField(8, longformVisualFullTtsResult, "Step 8 TTS Adaptation Generator 결과"));
     longformVisualTtsReadyInput.addEventListener("input", updateCounts);
     longformVisualVideoTitle.addEventListener("input", updateCounts);
     longformVisualTimestamps.addEventListener("input", updateCounts);
     extractLongformVisualTtsReadyBtn.addEventListener("click", extractLongformVisualTtsReadyScript);
     longformVisualTemplateEditor.addEventListener("input", updateCounts);
     longformVisualFinalPrompt.addEventListener("input", updateCounts);
+    pipelineResultStep11.addEventListener("input", () => handlePipelineResultInput(11, pipelineResultStep11));
+    clearPipelineResultStep11Btn.addEventListener("click", () => clearPipelineResultField(11, pipelineResultStep11));
+    exportPipelineResultStep11Btn.addEventListener("click", () => exportPipelineResultJson(11, pipelineResultStep11));
+    importPipelineResultStep11Btn.addEventListener("click", () => importPipelineResultStep11File.click());
+    importPipelineResultStep11File.addEventListener("change", () => {
+      importPipelineResultJson(11, pipelineResultStep11, importPipelineResultStep11File.files[0]);
+      importPipelineResultStep11File.value = "";
+    });
     shortsMomentEpisodeScript.addEventListener("input", updateCounts);
     shortsMomentEpisodeTitle.addEventListener("input", updateCounts);
     shortsMomentCoreKeyword.addEventListener("input", updateCounts);
