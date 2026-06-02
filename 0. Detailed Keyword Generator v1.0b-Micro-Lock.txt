@@ -6,23 +6,27 @@
 
 # 0. 버전 설명
 
-This is **v1.0b Avoid Field Neutralization Lock Patch**, a universal stability micro-patch of **Detailed Keyword Generator v1.0b**.
+This is **v1.0b Output Format Micro-Lock**, a universal output-format micro-patch of **Detailed Keyword Generator v1.0b Avoid Field Neutralization Lock Patch**.
 
 This is not a Modern Guest-specific prompt.
 
 This version must work across all 8 main categories.
 
-This version keeps the v1.0b structure and adds one universal output-stability control:
+This version keeps the v1.0b structure and adds one small universal output-format control:
 
-**Avoid Field Neutralization Lock / Avoid 필드 중립화 잠금**
+**Best First-Test Candidate Translation Lock / 첫 테스트 추천 후보 번역 잠금**
 
-The patch focuses only on preventing the **Avoid** field from directly repeating banned positioning terms.
+The patch ensures that each **Best First-Test Candidate** title is written as:
+
+**English Detailed Keyword (Korean Translation)**
+
+The Korean translation must be a short, faithful review translation of the English keyword.
 
 This patch does not change the 8-category system.
 
 This patch does not add category-specific content rules.
 
-This patch does not overfit the prompt to Temple Sound & Mountain Stillness, Modern Guest, or any single test category.
+This patch does not overfit the prompt to Modern Guest, Temple Sound & Mountain Stillness, or any single test category.
 
 The full v1.0b stability controls are:
 
@@ -31,7 +35,8 @@ The full v1.0b stability controls are:
 3. **Strong Intensifier Softening Rule / 강한 표현 완화 규칙**
 4. **Risk / Judgment Consistency Rule / 리스크와 판정 일치 규칙**
 5. **Avoid Field Neutralization Lock / Avoid 필드 중립화 잠금**
-6. **Final Output Self-Check Lock / 최종 출력 자체 점검 잠금**
+6. **Best First-Test Candidate Translation Lock / 첫 테스트 추천 후보 번역 잠금**
+7. **Final Output Self-Check Lock / 최종 출력 자체 점검 잠금**
 
 Modern Guest-specific rules must remain only inside the **Category-Specific Control Rules** section.
 
@@ -658,6 +663,20 @@ Then include:
 Recommend 3 keywords from the generated set that would be best for testing in the production pipeline.
 
 For each recommendation, briefly explain why it is suitable.
+
+For each Best First-Test Candidate, write the candidate title in the following format:
+
+**English Detailed Keyword (Korean Translation)**
+
+The Korean translation should be a natural review translation of the English keyword, not a new title, not a YouTube title, and not a rewritten concept.
+
+Keep the Korean translation short, clear, and faithful to the original keyword.
+
+Example format:
+
+1. **Fading Steam from a Barley Tea Cup (보리차 잔에서 흩어지는 옅은 김)**
+
+* **추천 이유:** ...
 
 For Best First-Test Candidates:
 
@@ -1479,6 +1498,8 @@ Apply the Strong Intensifier Softening Rule to the entire output.
 
 Apply the Risk / Judgment Consistency Rule to every keyword.
 
+Apply the Best First-Test Candidate Translation Lock to the Best First-Test Candidates section.
+
 The final output must be stable across all 8 main categories, not overfitted to one category.
 
 ---
@@ -1501,6 +1522,10 @@ Check every section, including:
 * One-Line Judgment
 * Overall Test Judgment
 * Best First-Test Candidates
+
+Check that each Best First-Test Candidate title includes both the English Detailed Keyword and a short Korean translation in parentheses.
+
+If any Best First-Test Candidate title does not include a Korean translation in parentheses, add a short and faithful Korean review translation before finalizing the output.
 
 If any forbidden English or Korean positioning term appears, rewrite that sentence before output.
 
