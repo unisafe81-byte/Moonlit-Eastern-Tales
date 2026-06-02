@@ -1022,19 +1022,25 @@
           <label for="step0Candidate1">Best First-Test Candidate 1</label>
           <textarea id="step0Candidate1" class="candidate-output" spellcheck="false"></textarea>
           <div class="actions">
-            <button id="copyStep0Candidate1Btn" class="btn" type="button">Candidate 1 복사</button>
+            <button class="btn primary" type="button" data-build-research-prompt="1">실행 프롬프트 생성</button>
+            <button class="btn warn" type="button" data-clear-research-inputs>초기화</button>
+            <button class="btn" type="button" data-reload-research-template>프롬프트 다시 읽기</button>
           </div>
 
           <label for="step0Candidate2">Best First-Test Candidate 2</label>
           <textarea id="step0Candidate2" class="candidate-output" spellcheck="false"></textarea>
           <div class="actions">
-            <button id="copyStep0Candidate2Btn" class="btn" type="button">Candidate 2 복사</button>
+            <button class="btn primary" type="button" data-build-research-prompt="2">실행 프롬프트 생성</button>
+            <button class="btn warn" type="button" data-clear-research-inputs>초기화</button>
+            <button class="btn" type="button" data-reload-research-template>프롬프트 다시 읽기</button>
           </div>
 
           <label for="step0Candidate3">Best First-Test Candidate 3</label>
           <textarea id="step0Candidate3" class="candidate-output" spellcheck="false"></textarea>
           <div class="actions">
-            <button id="copyStep0Candidate3Btn" class="btn" type="button">Candidate 3 복사</button>
+            <button class="btn primary" type="button" data-build-research-prompt="3">실행 프롬프트 생성</button>
+            <button class="btn warn" type="button" data-clear-research-inputs>초기화</button>
+            <button class="btn" type="button" data-reload-research-template>프롬프트 다시 읽기</button>
           </div>
 
           <div class="meta-row">
@@ -1046,12 +1052,6 @@
               <strong>결합 위치</strong>
               <span>[키워드 입력란]</span>
             </div>
-          </div>
-
-          <div class="actions">
-            <button id="buildBtn" class="btn primary" type="button">실행 프롬프트 생성</button>
-            <button id="clearBtn" class="btn warn" type="button">초기화</button>
-            <button id="reloadBtn" class="btn" type="button">프롬프트 다시 읽기</button>
           </div>
 
           <details class="prompt-editor">
@@ -3668,17 +3668,14 @@
 
     const sourceIdea = document.querySelector("#sourceIdea");
     const finalPrompt = document.querySelector("#finalPrompt");
-    const buildBtn = document.querySelector("#buildBtn");
-    const clearBtn = document.querySelector("#clearBtn");
-    const reloadBtn = document.querySelector("#reloadBtn");
+    const buildResearchPromptBtns = document.querySelectorAll("[data-build-research-prompt]");
+    const clearResearchInputBtns = document.querySelectorAll("[data-clear-research-inputs]");
+    const reloadResearchTemplateBtns = document.querySelectorAll("[data-reload-research-template]");
     const importStep0ResultToResearchBtn = document.querySelector("#importStep0ResultToResearchBtn");
     const extractStep0CandidatesBtn = document.querySelector("#extractStep0CandidatesBtn");
     const step0Candidate1 = document.querySelector("#step0Candidate1");
     const step0Candidate2 = document.querySelector("#step0Candidate2");
     const step0Candidate3 = document.querySelector("#step0Candidate3");
-    const copyStep0Candidate1Btn = document.querySelector("#copyStep0Candidate1Btn");
-    const copyStep0Candidate2Btn = document.querySelector("#copyStep0Candidate2Btn");
-    const copyStep0Candidate3Btn = document.querySelector("#copyStep0Candidate3Btn");
     const copyBtn = document.querySelector("#copyBtn");
     const downloadBtn = document.querySelector("#downloadBtn");
     const ideaCount = document.querySelector("#ideaCount");
@@ -4958,6 +4955,12 @@ ${keywordDirection.value.trim() || "없음"}`;
       updateCounts();
     }
 
+    function setResearchBuildButtonsDisabled(disabled) {
+      buildResearchPromptBtns.forEach((button) => {
+        button.disabled = disabled;
+      });
+    }
+
     function applyPromptTemplate(nextTemplate, shouldSave, sourceLabel = "") {
       promptTemplate = nextTemplate;
       if (shouldSave) {
@@ -4970,19 +4973,19 @@ ${keywordDirection.value.trim() || "없음"}`;
         );
       }
       syncPromptEditor();
-      buildBtn.disabled = !promptTemplate;
+      setResearchBuildButtonsDisabled(!promptTemplate);
       buildPrompt();
     }
 
     async function loadPromptTemplate() {
       setStatus("프롬프트 파일 확인 중");
-      buildBtn.disabled = true;
+      setResearchBuildButtonsDisabled(true);
       if (window.RESEARCH_INPUT_BUILDER_PROMPT) {
         builtInPromptTemplate = window.RESEARCH_INPUT_BUILDER_PROMPT;
         promptTemplate = localStorage.getItem(STORAGE_KEY) || builtInPromptTemplate;
         setStatus(localStorage.getItem(STORAGE_KEY) ? "저장된 프롬프트 로드됨" : "리서치 입력 빌더 버전 1.2 내장 로드됨", "ready");
         syncPromptEditor();
-        buildBtn.disabled = !promptTemplate;
+        setResearchBuildButtonsDisabled(!promptTemplate);
         buildPrompt();
         updateCounts();
         return;
@@ -5002,7 +5005,7 @@ ${keywordDirection.value.trim() || "없음"}`;
         finalPrompt.value = "";
         setStatus("내장 프롬프트 파일을 찾을 수 없음", "error");
       } finally {
-        buildBtn.disabled = !promptTemplate;
+        setResearchBuildButtonsDisabled(!promptTemplate);
         copyBtn.disabled = !finalPrompt.value;
         downloadBtn.disabled = !finalPrompt.value;
         updateCounts();
@@ -5041,6 +5044,52 @@ ${keywordDirection.value.trim() || "없음"}`;
       buildPrompt();
       updateCounts();
       setStatus("Step 0 결과를 Step 1 입력란으로 가져오기 완료", "ready");
+      sourceIdea.focus();
+    }
+
+    function getStep0CandidateField(candidateNumber) {
+      return {
+        "1": step0Candidate1,
+        "2": step0Candidate2,
+        "3": step0Candidate3,
+      }[String(candidateNumber)] || null;
+    }
+
+    function getCandidateKeywordInput(candidateBlock) {
+      const firstLine = candidateBlock
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .find(Boolean) || "";
+      return firstLine
+        .replace(/^\d+\s*[\).:]\s*/, "")
+        .replace(/^\*\*/, "")
+        .replace(/\*\*$/, "")
+        .trim();
+    }
+
+    function buildPromptFromStep0Candidate(candidateNumber) {
+      const candidateField = getStep0CandidateField(candidateNumber);
+      const candidate = candidateField ? candidateField.value.trim() : "";
+      if (!candidate) {
+        setStatus(`Candidate ${candidateNumber} 내용이 없습니다. 먼저 후보를 추출하세요.`, "error");
+        return;
+      }
+
+      sourceIdea.value = getCandidateKeywordInput(candidate);
+      buildPrompt();
+      setStatus(`Candidate ${candidateNumber}로 Step 1 실행 프롬프트 생성 완료`, "ready");
+      finalPrompt.focus();
+    }
+
+    function clearResearchInputs() {
+      sourceIdea.value = "";
+      step0Candidate1.value = "";
+      step0Candidate2.value = "";
+      step0Candidate3.value = "";
+      finalPrompt.value = "";
+      copyBtn.disabled = true;
+      downloadBtn.disabled = true;
+      updateCounts();
       sourceIdea.focus();
     }
 
@@ -5112,17 +5161,6 @@ ${keywordDirection.value.trim() || "없음"}`;
       updateCounts();
       setStatus("Best First-Test Candidates 3개 추출 완료", "ready");
       step0Candidate1.focus();
-    }
-
-    async function copyStep0Candidate(field, label) {
-      const value = field.value.trim();
-      if (!value) {
-        setStatus(`${label} 내용이 없습니다. 먼저 후보를 추출하세요.`, "error");
-        return;
-      }
-
-      await copyTextToClipboard(value);
-      setStatus(`${label} 복사 완료`, "ready");
     }
 
     async function copyOutput() {
@@ -9031,9 +9069,15 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     });
     importStep0ResultToResearchBtn.addEventListener("click", importStep0ResultToResearchInput);
     extractStep0CandidatesBtn.addEventListener("click", extractStep0CandidatesToFields);
-    copyStep0Candidate1Btn.addEventListener("click", () => copyStep0Candidate(step0Candidate1, "Candidate 1"));
-    copyStep0Candidate2Btn.addEventListener("click", () => copyStep0Candidate(step0Candidate2, "Candidate 2"));
-    copyStep0Candidate3Btn.addEventListener("click", () => copyStep0Candidate(step0Candidate3, "Candidate 3"));
+    buildResearchPromptBtns.forEach((button) => {
+      button.addEventListener("click", () => buildPromptFromStep0Candidate(button.dataset.buildResearchPrompt));
+    });
+    clearResearchInputBtns.forEach((button) => {
+      button.addEventListener("click", clearResearchInputs);
+    });
+    reloadResearchTemplateBtns.forEach((button) => {
+      button.addEventListener("click", loadPromptTemplate);
+    });
     promptEditor.addEventListener("input", updateCounts);
     pipelineResultStep1.addEventListener("input", () => handlePipelineResultInput(1, pipelineResultStep1));
     clearPipelineResultStep1Btn.addEventListener("click", () => clearPipelineResultField(1, pipelineResultStep1));
@@ -9270,19 +9314,6 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       copyOperationDPromptBtn.disabled = !operationDFinalPrompt.value;
       updateCounts();
     });
-    buildBtn.addEventListener("click", buildPrompt);
-    clearBtn.addEventListener("click", () => {
-      sourceIdea.value = "";
-      step0Candidate1.value = "";
-      step0Candidate2.value = "";
-      step0Candidate3.value = "";
-      finalPrompt.value = "";
-      copyBtn.disabled = true;
-      downloadBtn.disabled = true;
-      updateCounts();
-      sourceIdea.focus();
-    });
-    reloadBtn.addEventListener("click", loadPromptTemplate);
     copyBtn.addEventListener("click", copyOutput);
     downloadBtn.addEventListener("click", downloadOutput);
     savePromptBtn.addEventListener("click", savePromptTemplate);
