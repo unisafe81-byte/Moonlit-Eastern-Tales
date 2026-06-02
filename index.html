@@ -4344,8 +4344,22 @@
       statusDot.className = `dot ${type}`.trim();
     }
 
+    function sanitizeFileNamePart(value, fallback = "Keyword") {
+      const cleaned = String(value || "")
+        .trim()
+        .replace(/[\\/:*?"<>|]/g, "-")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "");
+      return cleaned || fallback;
+    }
+
+    function getPipelineResultFilePrefix() {
+      return sanitizeFileNamePart(episodeDirectoryHandle && episodeDirectoryHandle.name, "Keyword");
+    }
+
     function getPipelineResultFileName(stepNumber) {
-      return `Keyword-step-${stepNumber}-result.json`;
+      return `${getPipelineResultFilePrefix()}-step-${stepNumber}-result.json`;
     }
 
     function downloadBlob(blob, fileName) {
@@ -4368,7 +4382,7 @@
       try {
         episodeDirectoryHandle = await window.showDirectoryPicker({ mode: "readwrite" });
         selectEpisodeFolderBtn.textContent = "저장 폴더 선택됨";
-        setStatus("에피소드 저장 폴더 선택 완료", "ready");
+        setStatus(`${getPipelineResultFilePrefix()} 파일명으로 저장 폴더 선택 완료`, "ready");
       } catch (error) {
         if (error && error.name === "AbortError") {
           setStatus("에피소드 저장 폴더 선택 취소", "ready");
