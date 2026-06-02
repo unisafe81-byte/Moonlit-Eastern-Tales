@@ -360,26 +360,6 @@
       min-height: 270px;
     }
 
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .chip {
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--panel-2);
-      color: var(--ink);
-      padding: 7px 10px;
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-    .chip:hover {
-      border-color: rgba(63, 199, 181, 0.76);
-    }
-
     .actions {
       display: flex;
       flex-wrap: wrap;
@@ -1019,13 +999,11 @@
         </div>
         <div class="input-area">
           <label for="sourceIdea">키워드 / 장면 / 민담 소재</label>
-          <textarea id="sourceIdea" spellcheck="false" placeholder="한국 도깨비&#10;달 아래 구미호&#10;비 내리는 한국 마을&#10;종이창가의 부드러운 그림자"></textarea>
+          <textarea id="sourceIdea" spellcheck="false" placeholder="Step 0에서 생성한 키워드 결과 또는 직접 작성한 소재를 붙여 넣으세요."></textarea>
 
-          <div class="chips" aria-label="예시">
-            <button class="chip" type="button">한국 도깨비</button>
-            <button class="chip" type="button">달 아래 구미호</button>
-            <button class="chip" type="button">비 내리는 한국 마을</button>
-            <button class="chip" type="button">종이창가의 부드러운 그림자</button>
+          <div class="actions">
+            <button id="importStep0ResultToResearchBtn" class="btn" type="button">Step 0 결과 가져오기</button>
+            <button id="copySourceIdeaWithTitleBtn" class="btn" type="button">제목 포함 복사</button>
           </div>
 
           <div class="meta-row">
@@ -3630,6 +3608,8 @@
     const buildBtn = document.querySelector("#buildBtn");
     const clearBtn = document.querySelector("#clearBtn");
     const reloadBtn = document.querySelector("#reloadBtn");
+    const importStep0ResultToResearchBtn = document.querySelector("#importStep0ResultToResearchBtn");
+    const copySourceIdeaWithTitleBtn = document.querySelector("#copySourceIdeaWithTitleBtn");
     const copyBtn = document.querySelector("#copyBtn");
     const downloadBtn = document.querySelector("#downloadBtn");
     const ideaCount = document.querySelector("#ideaCount");
@@ -4964,6 +4944,31 @@ ${keywordDirection.value.trim() || "없음"}`;
       copyBtn.disabled = false;
       downloadBtn.disabled = false;
       updateCounts();
+    }
+
+    function importStep0ResultToResearchInput() {
+      const savedResult = loadPipelineResult(0);
+      if (!savedResult.trim()) {
+        setStatus("Step 0 저장 결과물이 없습니다. Step 0 결과를 먼저 붙여 넣거나 JSON을 불러오세요.", "error");
+        return;
+      }
+
+      sourceIdea.value = savedResult;
+      buildPrompt();
+      updateCounts();
+      setStatus("Step 0 결과를 Step 1 입력란으로 가져오기 완료", "ready");
+      sourceIdea.focus();
+    }
+
+    async function copySourceIdeaWithTitle() {
+      const value = sourceIdea.value.trim();
+      if (!value) {
+        setStatus("복사할 Step 1 입력 내용이 없습니다.", "error");
+        return;
+      }
+
+      await copyTextToClipboard(`키워드 / 장면 / 민담 소재:\n${value}`);
+      setStatus("Step 1 입력 내용 제목 포함 복사 완료", "ready");
     }
 
     async function copyOutput() {
@@ -8822,14 +8827,6 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       operationDEpisodeNumber.focus();
     }
 
-    document.querySelectorAll(".chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
-        sourceIdea.value = chip.textContent.trim();
-        buildPrompt();
-        sourceIdea.focus();
-      });
-    });
-
     tabButtons.forEach((button) => {
       button.addEventListener("click", () => switchTab(button.dataset.tab));
     });
@@ -8878,6 +8875,8 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       buildPrompt();
       updateCounts();
     });
+    importStep0ResultToResearchBtn.addEventListener("click", importStep0ResultToResearchInput);
+    copySourceIdeaWithTitleBtn.addEventListener("click", copySourceIdeaWithTitle);
     promptEditor.addEventListener("input", updateCounts);
     pipelineResultStep1.addEventListener("input", () => handlePipelineResultInput(1, pipelineResultStep1));
     clearPipelineResultStep1Btn.addEventListener("click", () => clearPipelineResultField(1, pipelineResultStep1));
