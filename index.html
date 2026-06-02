@@ -854,6 +854,7 @@
       <div class="brand">
         <h1>달빛 프롬프트 스튜디오</h1>
         <span>별도 키 없이 로컬에서 실행</span>
+        <button id="selectEpisodeFolderBtn" class="btn" type="button">에피소드 저장 폴더 선택</button>
         <button id="clearAllBtn" class="btn header-reset-btn" type="button">전체 초기화</button>
       </div>
       <div class="status" aria-live="polite">
@@ -3512,6 +3513,7 @@
     const outputCount = document.querySelector("#outputCount");
     const statusDot = document.querySelector("#statusDot");
     const statusText = document.querySelector("#statusText");
+    const selectEpisodeFolderBtn = document.querySelector("#selectEpisodeFolderBtn");
     const clearAllBtn = document.querySelector("#clearAllBtn");
     const promptEditor = document.querySelector("#promptEditor");
     const promptCount = document.querySelector("#promptCount");
@@ -4126,9 +4128,64 @@
       ["uploadPerformanceNotes", operationDUploadPerformanceNotes],
     ];
 
+    let episodeDirectoryHandle = null;
+
     function setStatus(text, type = "") {
       statusText.textContent = text;
       statusDot.className = `dot ${type}`.trim();
+    }
+
+    function getPipelineResultFileName(stepNumber) {
+      return `Keyword-step-${stepNumber}-result.json`;
+    }
+
+    function downloadBlob(blob, fileName) {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    async function selectEpisodeExportFolder() {
+      if (!window.showDirectoryPicker) {
+        setStatus("현재 브라우저는 폴더 선택 저장을 지원하지 않습니다. 기존 다운로드 방식을 사용하세요.", "error");
+        return;
+      }
+
+      try {
+        episodeDirectoryHandle = await window.showDirectoryPicker({ mode: "readwrite" });
+        selectEpisodeFolderBtn.textContent = "저장 폴더 선택됨";
+        setStatus("에피소드 저장 폴더 선택 완료", "ready");
+      } catch (error) {
+        if (error && error.name === "AbortError") {
+          setStatus("에피소드 저장 폴더 선택 취소", "ready");
+          return;
+        }
+        setStatus("에피소드 저장 폴더를 선택할 수 없습니다.", "error");
+      }
+    }
+
+    async function writeBlobToEpisodeFolder(fileName, blob) {
+      if (!episodeDirectoryHandle) return false;
+
+      let permission = "granted";
+      if (episodeDirectoryHandle.queryPermission) {
+        permission = await episodeDirectoryHandle.queryPermission({ mode: "readwrite" });
+      }
+      if (permission !== "granted" && episodeDirectoryHandle.requestPermission) {
+        permission = await episodeDirectoryHandle.requestPermission({ mode: "readwrite" });
+      }
+      if (permission !== "granted") return false;
+
+      const fileHandle = await episodeDirectoryHandle.getFileHandle(fileName, { create: true });
+      const writable = await fileHandle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return true;
     }
 
     function getPipelineResultKey(stepNumber) {
@@ -4319,7 +4376,7 @@
       setStatus("Step 3, 5, 6 결과 가져오기 완료", "ready");
     }
 
-    function exportPipelineResultJson(stepNumber, field) {
+    async function exportPipelineResultJson(stepNumber, field) {
       const result = field.value;
       if (!result.trim()) {
         setStatus(`Step ${stepNumber} 저장 결과물이 없습니다. 먼저 결과물을 붙여 넣어주세요.`, "error");
@@ -4332,16 +4389,24 @@
         savedAt: localStorage.getItem(getPipelineResultUpdatedKey(stepNumber)) || new Date().toISOString(),
         result,
       };
+      const fileName = getPipelineResultFileName(stepNumber);
       const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = `moonlit-step-${stepNumber}-result.json`;
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-      setStatus(`Step ${stepNumber} 결과 JSON 내보내기 완료`, "ready");
+
+      if (episodeDirectoryHandle) {
+        try {
+          const savedToFolder = await writeBlobToEpisodeFolder(fileName, blob);
+          if (savedToFolder) {
+            setStatus(`${fileName} 선택 폴더 저장 완료`, "ready");
+            return;
+          }
+          setStatus("폴더 저장 권한이 없어 기존 다운로드 방식으로 저장합니다.", "error");
+        } catch (error) {
+          setStatus("선택 폴더 저장 실패. 기존 다운로드 방식으로 저장합니다.", "error");
+        }
+      }
+
+      downloadBlob(blob, fileName);
+      setStatus(`${fileName} 다운로드 완료`, "ready");
     }
 
     function importPipelineResultJson(stepNumber, field, file) {
@@ -8420,6 +8485,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     tabButtons.forEach((button) => {
       button.addEventListener("click", () => switchTab(button.dataset.tab));
     });
+    selectEpisodeFolderBtn.addEventListener("click", selectEpisodeExportFolder);
     clearAllBtn.addEventListener("click", clearAllWorkspaceState);
     document.addEventListener("input", (event) => {
       if (shouldAutoSaveField(event.target)) {
