@@ -308,6 +308,12 @@
       height: 70px;
     }
 
+    .candidate-output {
+      flex: 0 0 auto;
+      min-height: 92px;
+      height: 92px;
+    }
+
     #operationAEpisodeNumber,
     #operationACoreKeyword,
     #operationAFinalTitle,
@@ -1005,11 +1011,28 @@
         </div>
         <div class="input-area">
           <label for="sourceIdea">키워드 / 장면 / 민담 소재</label>
-          <textarea id="sourceIdea" spellcheck="false" placeholder="Step 0에서 생성한 키워드 결과 또는 직접 작성한 소재를 붙여 넣으세요."></textarea>
-
           <div class="actions">
             <button id="importStep0ResultToResearchBtn" class="btn" type="button">Step 0 결과 가져오기</button>
-            <button id="copySourceIdeaWithTitleBtn" class="btn" type="button">제목 포함 복사</button>
+            <button id="extractStep0CandidatesBtn" class="btn" type="button">Best First-Test Candidates 3개 추출</button>
+          </div>
+          <textarea id="sourceIdea" spellcheck="false" placeholder="Step 0에서 생성한 키워드 결과 또는 직접 작성한 소재를 붙여 넣으세요."></textarea>
+
+          <label for="step0Candidate1">Best First-Test Candidate 1</label>
+          <textarea id="step0Candidate1" class="candidate-output" spellcheck="false"></textarea>
+          <div class="actions">
+            <button id="copyStep0Candidate1Btn" class="btn" type="button">Candidate 1 복사</button>
+          </div>
+
+          <label for="step0Candidate2">Best First-Test Candidate 2</label>
+          <textarea id="step0Candidate2" class="candidate-output" spellcheck="false"></textarea>
+          <div class="actions">
+            <button id="copyStep0Candidate2Btn" class="btn" type="button">Candidate 2 복사</button>
+          </div>
+
+          <label for="step0Candidate3">Best First-Test Candidate 3</label>
+          <textarea id="step0Candidate3" class="candidate-output" spellcheck="false"></textarea>
+          <div class="actions">
+            <button id="copyStep0Candidate3Btn" class="btn" type="button">Candidate 3 복사</button>
           </div>
 
           <div class="meta-row">
@@ -3625,7 +3648,13 @@
     const clearBtn = document.querySelector("#clearBtn");
     const reloadBtn = document.querySelector("#reloadBtn");
     const importStep0ResultToResearchBtn = document.querySelector("#importStep0ResultToResearchBtn");
-    const copySourceIdeaWithTitleBtn = document.querySelector("#copySourceIdeaWithTitleBtn");
+    const extractStep0CandidatesBtn = document.querySelector("#extractStep0CandidatesBtn");
+    const step0Candidate1 = document.querySelector("#step0Candidate1");
+    const step0Candidate2 = document.querySelector("#step0Candidate2");
+    const step0Candidate3 = document.querySelector("#step0Candidate3");
+    const copyStep0Candidate1Btn = document.querySelector("#copyStep0Candidate1Btn");
+    const copyStep0Candidate2Btn = document.querySelector("#copyStep0Candidate2Btn");
+    const copyStep0Candidate3Btn = document.querySelector("#copyStep0Candidate3Btn");
     const copyBtn = document.querySelector("#copyBtn");
     const downloadBtn = document.querySelector("#downloadBtn");
     const ideaCount = document.querySelector("#ideaCount");
@@ -4982,15 +5011,73 @@ ${keywordDirection.value.trim() || "없음"}`;
       sourceIdea.focus();
     }
 
-    async function copySourceIdeaWithTitle() {
-      const value = sourceIdea.value.trim();
-      if (!value) {
-        setStatus("복사할 Step 1 입력 내용이 없습니다.", "error");
+    function extractBestFirstTestCandidates(text) {
+      const headingMatch = text.match(/^##\s*Best First-Test Candidates\s*$/im);
+      if (!headingMatch) return [];
+
+      const afterHeading = text.slice(headingMatch.index + headingMatch[0].length);
+      const nextHeadingMatch = afterHeading.match(/^##\s+/m);
+      const section = (nextHeadingMatch ? afterHeading.slice(0, nextHeadingMatch.index) : afterHeading).trim();
+      if (!section) return [];
+
+      const lines = section.split(/\r?\n/);
+      const blocks = [];
+      let current = [];
+
+      lines.forEach((line) => {
+        const isCandidateStart = /^\s*(?:\d+[\).\:]|\-\s+(?:\*\*)?Candidate\s+\d+|\-\s+\*\*)/i.test(line);
+        if (isCandidateStart && current.length) {
+          blocks.push(current.join("\n").trim());
+          current = [];
+        }
+        if (line.trim() || current.length) {
+          current.push(line);
+        }
+      });
+
+      if (current.length) {
+        blocks.push(current.join("\n").trim());
+      }
+
+      if (blocks.length >= 3) return blocks.slice(0, 3);
+
+      return section
+        .split(/\n\s*\n/)
+        .map((block) => block.trim())
+        .filter(Boolean)
+        .slice(0, 3);
+    }
+
+    function extractStep0CandidatesToFields() {
+      const sourceText = loadPipelineResult(0).trim() || sourceIdea.value.trim();
+      if (!sourceText) {
+        setStatus("Step 0 결과물이 없습니다. Step 0 결과를 먼저 저장하거나 Step 1 입력란에 붙여 넣으세요.", "error");
         return;
       }
 
-      await copyTextToClipboard(`키워드 / 장면 / 민담 소재:\n${value}`);
-      setStatus("Step 1 입력 내용 제목 포함 복사 완료", "ready");
+      const candidates = extractBestFirstTestCandidates(sourceText);
+      if (candidates.length < 3) {
+        setStatus("Best First-Test Candidates 3개를 찾지 못했습니다. Step 0 결과 형식을 확인하세요.", "error");
+        return;
+      }
+
+      [step0Candidate1, step0Candidate2, step0Candidate3].forEach((field, index) => {
+        field.value = candidates[index] || "";
+      });
+      updateCounts();
+      setStatus("Best First-Test Candidates 3개 추출 완료", "ready");
+      step0Candidate1.focus();
+    }
+
+    async function copyStep0Candidate(field, label) {
+      const value = field.value.trim();
+      if (!value) {
+        setStatus(`${label} 내용이 없습니다. 먼저 후보를 추출하세요.`, "error");
+        return;
+      }
+
+      await copyTextToClipboard(value);
+      setStatus(`${label} 복사 완료`, "ready");
     }
 
     async function copyOutput() {
@@ -8898,7 +8985,10 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       updateCounts();
     });
     importStep0ResultToResearchBtn.addEventListener("click", importStep0ResultToResearchInput);
-    copySourceIdeaWithTitleBtn.addEventListener("click", copySourceIdeaWithTitle);
+    extractStep0CandidatesBtn.addEventListener("click", extractStep0CandidatesToFields);
+    copyStep0Candidate1Btn.addEventListener("click", () => copyStep0Candidate(step0Candidate1, "Candidate 1"));
+    copyStep0Candidate2Btn.addEventListener("click", () => copyStep0Candidate(step0Candidate2, "Candidate 2"));
+    copyStep0Candidate3Btn.addEventListener("click", () => copyStep0Candidate(step0Candidate3, "Candidate 3"));
     promptEditor.addEventListener("input", updateCounts);
     pipelineResultStep1.addEventListener("input", () => handlePipelineResultInput(1, pipelineResultStep1));
     clearPipelineResultStep1Btn.addEventListener("click", () => clearPipelineResultField(1, pipelineResultStep1));
@@ -9129,6 +9219,9 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     buildBtn.addEventListener("click", buildPrompt);
     clearBtn.addEventListener("click", () => {
       sourceIdea.value = "";
+      step0Candidate1.value = "";
+      step0Candidate2.value = "";
+      step0Candidate3.value = "";
       finalPrompt.value = "";
       copyBtn.disabled = true;
       downloadBtn.disabled = true;
