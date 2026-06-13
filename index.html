@@ -298,6 +298,31 @@
       color: #7890a8;
     }
 
+    input::placeholder {
+      color: #7890a8;
+    }
+
+    .control-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .control-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .audio-player {
+      width: 100%;
+    }
+
+    .tts-generator-source {
+      min-height: 220px;
+    }
+
     #sourceIdea {
       min-height: 47px;
     }
@@ -699,6 +724,10 @@
         grid-template-columns: 1fr;
       }
 
+      .control-grid {
+        grid-template-columns: 1fr;
+      }
+
       .tabs {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         padding: 0 16px 2px;
@@ -877,6 +906,7 @@
       <button class="tab" type="button" data-tab="shortsMoment">12. 쇼츠 순간 후보 추출</button>
       <button class="tab" type="button" data-tab="shortsScript">13. 쇼츠 대본 생성</button>
       <button class="tab" type="button" data-tab="shortsPackaging">14. 쇼츠 패키징 생성</button>
+      <button class="tab" type="button" data-tab="supertoneTts">15. Supertonic 로컬 TTS 생성</button>
     </nav>
 
     <section class="operations-nav" aria-label="운영 보조 도구">
@@ -1997,6 +2027,179 @@
         </section>
       </section>
 
+      <section id="tabSupertoneTts" class="tab-panel" data-panel="supertoneTts">
+        <section class="workspace wide" aria-labelledby="supertoneTtsTitle">
+          <div class="panel-head">
+            <h2 id="supertoneTtsTitle">Supertonic 로컬 TTS 생성</h2>
+            <span id="supertoneTtsChunkCount" class="counter">0개</span>
+          </div>
+          <div class="input-area">
+            <div class="info-band">
+              <p>Step 8에서 완성한 TTS-READY SCRIPT를 로컬 Supertonic 서버로 보내 WAV 음성 파일로 생성합니다.</p>
+              <p>API 키와 크레딧을 쓰지 않습니다. 먼저 별도 터미널에서 supertonic serve를 실행해야 합니다.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="workspace wide" aria-labelledby="supertoneTtsInputTitle">
+          <div class="panel-head">
+            <h2 id="supertoneTtsInputTitle">음성 생성 입력</h2>
+          </div>
+          <div class="input-area">
+            <label for="supertoneTtsText">음성으로 만들 대본</label>
+            <div class="actions">
+              <button id="extractSupertoneTtsReadyBtn" class="btn" type="button">Step 8에서 TTS-READY SCRIPT 추출</button>
+              <button id="importSupertoneStep8JsonBtn" class="btn" type="button">Step 8 JSON 파일 불러와 추출</button>
+              <button id="clearSupertoneTtsInputBtn" class="btn warn" type="button">생성 입력 초기화</button>
+              <input id="importSupertoneStep8JsonFile" class="file-input" type="file" accept=".json,application/json">
+            </div>
+            <textarea id="supertoneTtsText" class="tts-generator-source" spellcheck="false" placeholder="Step 8 AI 결과물에서 TTS-READY SCRIPT를 추출하거나, 음성으로 만들 대본을 직접 붙여 넣으세요."></textarea>
+
+            <div class="info-band">
+              <strong>문단 기준 제작 파트</strong>
+              <span>긴 대본은 글자 수로 자르지 않고 빈 줄로 구분된 문단을 유지한 채 Part를 만듭니다. 선택한 Part를 생성 입력에 올려 WAV를 따로 만들 수 있습니다.</span>
+            </div>
+            <div class="control-grid">
+              <div class="control-field">
+                <label for="supertonicPartTarget">목표 Part 길이</label>
+                <select id="supertonicPartTarget">
+                  <option value="8000">8,000자</option>
+                  <option value="10000">10,000자</option>
+                  <option value="12000">12,000자</option>
+                </select>
+              </div>
+              <div class="control-field">
+                <label for="supertonicSleepFadeSplit">Sleep Fade 처리</label>
+                <select id="supertonicSleepFadeSplit">
+                  <option value="separate">별도 Part로 분리</option>
+                  <option value="keep">본문 흐름에 포함</option>
+                </select>
+              </div>
+              <div class="control-field">
+                <label for="supertonicPartSelect">생성할 Part</label>
+                <select id="supertonicPartSelect"></select>
+              </div>
+              <div class="control-field">
+                <label for="supertonicPartPreviewMode">미리보기</label>
+                <select id="supertonicPartPreviewMode">
+                  <option value="edge">시작/끝 문단</option>
+                  <option value="full">전체 Part</option>
+                </select>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="createSupertonicPartsBtn" class="btn" type="button">문단 기준 Part 만들기</button>
+              <button id="loadSupertonicPartBtn" class="btn primary" type="button" disabled>선택 Part를 생성 입력에 넣기</button>
+              <button id="copySupertonicPartBtn" class="btn" type="button" disabled>선택 Part 복사</button>
+            </div>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>Part 개수</strong>
+                <span id="supertonicPartCount">0개</span>
+              </div>
+              <div class="meta-box">
+                <strong>선택 Part 길이</strong>
+                <span id="supertonicSelectedPartLength">0자</span>
+              </div>
+            </div>
+            <label for="supertonicPartPreview">선택 Part 미리보기</label>
+            <textarea id="supertonicPartPreview" spellcheck="false" readonly placeholder="문단 기준 Part를 만들면 선택한 Part의 시작/끝 문단이 표시됩니다."></textarea>
+
+            <div class="control-grid">
+              <div class="control-field">
+                <label for="supertonicMoodPreset">분위기 프리셋</label>
+                <select id="supertonicMoodPreset">
+                  <option value="sleep">수면 내레이션</option>
+                  <option value="warm">따뜻한 낮은 톤</option>
+                  <option value="story">차분한 이야기</option>
+                  <option value="clear">또렷한 검수용</option>
+                  <option value="fade">아주 느린 페이드</option>
+                  <option value="custom">사용자 설정</option>
+                </select>
+              </div>
+              <div class="control-field">
+                <label for="supertoneServerUrl">로컬 서버 URL</label>
+                <input id="supertoneServerUrl" type="text" spellcheck="false" placeholder="http://127.0.0.1:7788">
+              </div>
+              <div class="control-field">
+                <label for="supertoneLanguage">언어</label>
+                <select id="supertoneLanguage">
+                  <option value="na">자동</option>
+                  <option value="en">English</option>
+                  <option value="ko">Korean</option>
+                  <option value="ja">Japanese</option>
+                </select>
+              </div>
+              <div class="control-field">
+                <label for="supertoneModel">Voice</label>
+                <select id="supertoneModel">
+                  <optgroup label="남성 목소리">
+                    <option value="M1">남성 M1</option>
+                    <option value="M2">남성 M2</option>
+                    <option value="M3">남성 M3</option>
+                    <option value="M4">남성 M4</option>
+                    <option value="M5">남성 M5</option>
+                  </optgroup>
+                  <optgroup label="여성 목소리">
+                    <option value="F1">여성 F1</option>
+                    <option value="F2">여성 F2</option>
+                    <option value="F3">여성 F3</option>
+                    <option value="F4">여성 F4</option>
+                    <option value="F5">여성 F5</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="control-field">
+                <label for="supertoneStyle">속도</label>
+                <input id="supertoneStyle" type="text" spellcheck="false" placeholder="1.0">
+              </div>
+              <div class="control-field">
+                <label for="supertonicSteps">품질 steps</label>
+                <select id="supertonicSteps">
+                  <option value="6">6 빠름</option>
+                  <option value="8">8 기본</option>
+                  <option value="10">10 고품질</option>
+                  <option value="12">12 느리지만 부드럽게</option>
+                </select>
+              </div>
+              <div class="control-field">
+                <label for="supertonicSilence">문단 쉼</label>
+                <select id="supertonicSilence">
+                  <option value="0.2">0.2초</option>
+                  <option value="0.35">0.35초</option>
+                  <option value="0.5">0.5초</option>
+                  <option value="0.7">0.7초</option>
+                  <option value="0.9">0.9초</option>
+                </select>
+              </div>
+            </div>
+
+            <label for="supertoneSampleText">샘플 문장</label>
+            <textarea id="supertoneSampleText" spellcheck="false">Tonight, the room grows quiet, and the story begins in a soft, steady voice.</textarea>
+            <div class="actions">
+              <button id="generateSupertoneSampleBtn" class="btn" type="button">선택 목소리 샘플 듣기</button>
+            </div>
+            <audio id="supertoneSamplePlayer" class="audio-player" controls></audio>
+
+            <div class="actions">
+              <button id="generateSupertoneTtsBtn" class="btn primary" type="button">Supertonic 로컬 음성 생성</button>
+              <button id="downloadSupertoneAudioBtn" class="btn" type="button" disabled>WAV 다운로드</button>
+            </div>
+            <audio id="supertoneAudioPlayer" class="audio-player" controls></audio>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>생성 상태</strong>
+                <span id="supertoneTtsStatus">대기 중</span>
+              </div>
+              <div class="meta-box">
+                <strong>예상 분할</strong>
+                <span id="supertoneTtsChunkSummary">0개</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
       <section id="tabPackaging" class="tab-panel" data-panel="packaging">
         <section class="workspace wide" aria-labelledby="packagingTitle">
           <div class="panel-head">
@@ -2287,9 +2490,16 @@
             </div>
 
             <label for="longformVisualVideoTitle">선택 입력: 영상 제목</label>
+            <div class="actions">
+              <button id="extractTitleFromStep9Btn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="longformVisualVideoTitle" spellcheck="false" placeholder="영상 제목이 있으면 붙여 넣으세요."></textarea>
 
             <label for="longformVisualTimestamps">선택 입력: 정확한 오디오 타임스탬프</label>
+            <div class="actions">
+              <button id="generateTimestampsFromWavBtn" class="btn" type="button">WAV 파일로 타임스탬프 생성</button>
+              <input id="generateTimestampsFromWavFile" class="file-input" type="file" accept=".wav,audio/wav" multiple>
+            </div>
             <textarea id="longformVisualTimestamps" spellcheck="false" placeholder="정확한 오디오 타임스탬프가 있을 때만 입력하세요. 없으면 비워두세요."></textarea>
 
             <div class="info-band">
@@ -2395,6 +2605,9 @@
           </div>
           <div class="input-area">
             <label for="shortsMomentEpisodeScript">완성된 롱폼 에피소드 대본</label>
+            <div class="actions">
+              <button id="importStep8ToShortsMomentBtn" class="btn" type="button">Step 8 결과 가져오기</button>
+            </div>
             <textarea id="shortsMomentEpisodeScript" spellcheck="false" placeholder="완성된 롱폼 에피소드 대본 원문을 붙여 넣으세요."></textarea>
 
             <div class="info-band">
@@ -2402,12 +2615,21 @@
             </div>
 
             <label for="shortsMomentEpisodeTitle">선택 입력: 전체 에피소드 제목</label>
+            <div class="actions">
+              <button id="extractStep12TitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="shortsMomentEpisodeTitle" spellcheck="false" placeholder="전체 에피소드 제목이 있으면 붙여 넣으세요."></textarea>
 
             <label for="shortsMomentCoreKeyword">선택 입력: 핵심 키워드</label>
+            <div class="actions">
+              <button id="extractStep12KeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="shortsMomentCoreKeyword" spellcheck="false" placeholder="핵심 키워드가 있으면 붙여 넣으세요."></textarea>
 
             <label for="shortsMomentLongformConcept">선택 입력: 롱폼 영상 콘셉트</label>
+            <div class="actions">
+              <button id="extractStep12ConceptBtn" class="btn" type="button">Step 1에서 콘셉트 추출</button>
+            </div>
             <textarea id="shortsMomentLongformConcept" spellcheck="false" placeholder="롱폼 영상 콘셉트가 있으면 붙여 넣으세요."></textarea>
           </div>
         </section>
@@ -2467,6 +2689,25 @@
             <div class="actions">
               <button id="copyShortsMomentPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
             </div>
+
+            <div class="info-band">
+              <strong>Step 12 결과값 저장</strong>
+              <span>AI에서 생성된 Step 12 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep12">Step 12 AI 결과물</label>
+            <textarea id="pipelineResultStep12" spellcheck="false" placeholder="Paste Step 12 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep12Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep12Btn" class="btn warn" type="button">Step 12 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep12Btn" class="btn" type="button">Step 12 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep12Btn" class="btn" type="button">Step 12 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep12File" class="file-input" type="file" accept=".json,application/json">
+            </div>
           </div>
         </section>
       </section>
@@ -2490,12 +2731,18 @@
           </div>
           <div class="input-area">
             <label for="shortsScriptFullStep12Result">Step 12 전체 결과 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep12ToShortsScriptBtn" class="btn" type="button">Step 12 결과 가져오기</button>
+            </div>
             <textarea id="shortsScriptFullStep12Result" spellcheck="false" placeholder="Step 12의 전체 Shorts Moment Extractor 결과물을 여기에 붙여 넣으세요. 추천 1순위 영어 블록만 추출할 수 있습니다."></textarea>
             <div class="actions">
               <button id="extractShortsScriptMomentBtn" class="btn" type="button">추천 1순위 영어 블록 추출</button>
             </div>
 
             <label for="shortsScriptSelectedMoment">선택한 쇼츠 후보</label>
+            <div class="actions">
+              <button id="importAndExtractStep12Btn" class="btn" type="button">Step 12에서 바로 추출</button>
+            </div>
             <textarea id="shortsScriptSelectedMoment" spellcheck="false" placeholder="Step 12에서 선택한 English Copy Block 또는 추천 1순위 영어 블록을 그대로 붙여 넣으세요."></textarea>
 
             <div class="info-band">
@@ -2503,12 +2750,21 @@
             </div>
 
             <label for="shortsScriptEpisodeTitle">선택 입력: 전체 에피소드 제목</label>
+            <div class="actions">
+              <button id="extractStep13TitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="shortsScriptEpisodeTitle" spellcheck="false" placeholder="전체 에피소드 제목이 있으면 붙여 넣으세요."></textarea>
 
             <label for="shortsScriptCoreKeyword">선택 입력: 핵심 키워드</label>
+            <div class="actions">
+              <button id="extractStep13KeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="shortsScriptCoreKeyword" spellcheck="false" placeholder="핵심 키워드가 있으면 붙여 넣으세요."></textarea>
 
             <label for="shortsScriptLongformConcept">선택 입력: 롱폼 영상 콘셉트</label>
+            <div class="actions">
+              <button id="extractStep13ConceptBtn" class="btn" type="button">Step 1에서 콘셉트 추출</button>
+            </div>
             <textarea id="shortsScriptLongformConcept" spellcheck="false" placeholder="롱폼 영상 콘셉트가 있으면 붙여 넣으세요."></textarea>
           </div>
         </section>
@@ -2568,6 +2824,25 @@
             <div class="actions">
               <button id="copyShortsScriptPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
             </div>
+
+            <div class="info-band">
+              <strong>Step 13 결과값 저장</strong>
+              <span>AI에서 생성된 Step 13 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep13">Step 13 AI 결과물</label>
+            <textarea id="pipelineResultStep13" spellcheck="false" placeholder="Paste Step 13 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep13Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep13Btn" class="btn warn" type="button">Step 13 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep13Btn" class="btn" type="button">Step 13 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep13Btn" class="btn" type="button">Step 13 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep13File" class="file-input" type="file" accept=".json,application/json">
+            </div>
           </div>
         </section>
       </section>
@@ -2591,12 +2866,18 @@
           </div>
           <div class="input-area">
             <label for="shortsPackagingFullStep13Result">Step 13 전체 결과 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep13ToShortsPackagingBtn" class="btn" type="button">Step 13 결과 가져오기</button>
+            </div>
             <textarea id="shortsPackagingFullStep13Result" spellcheck="false" placeholder="Step 13의 전체 Shorts Script Generator 결과물을 여기에 붙여 넣으세요. 추천된 20초, 30초, 40초 버전의 영어 쇼츠 대본을 추출할 수 있습니다."></textarea>
             <div class="actions">
               <button id="extractShortsPackagingScriptBtn" class="btn" type="button">추천 쇼츠 대본 추출</button>
             </div>
 
             <label for="shortsPackagingFinalScript">최종 쇼츠 내레이션 대본</label>
+            <div class="actions">
+              <button id="importAndExtractStep13ForPackagingBtn" class="btn" type="button">Step 13에서 바로 추출</button>
+            </div>
             <textarea id="shortsPackagingFinalScript" spellcheck="false" placeholder="Step 13에서 최종 선택한 영어 쇼츠 내레이션 대본을 그대로 붙여 넣으세요."></textarea>
 
             <div class="info-band">
@@ -2604,18 +2885,30 @@
             </div>
 
             <label for="shortsPackagingFullStep12Result">선택 입력: Step 12 전체 결과 붙여넣기</label>
+            <div class="actions">
+              <button id="importStep12ToShortsPackagingBtn" class="btn" type="button">Step 12 결과 가져오기</button>
+            </div>
             <textarea id="shortsPackagingFullStep12Result" spellcheck="false" placeholder="Step 12의 전체 Shorts Moment Extractor 결과물이 있으면 붙여 넣으세요. 추천 1순위 영어 블록만 추출할 수 있습니다."></textarea>
             <div class="actions">
               <button id="extractShortsPackagingMomentBtn" class="btn" type="button">선택 쇼츠 후보 영어 블록 추출</button>
             </div>
 
             <label for="shortsPackagingSelectedMoment">선택 입력: Step 12 선택 쇼츠 후보</label>
+            <div class="actions">
+              <button id="importAndExtractStep12ForPackagingBtn" class="btn" type="button">Step 12에서 바로 추출</button>
+            </div>
             <textarea id="shortsPackagingSelectedMoment" spellcheck="false" placeholder="Step 12의 SELECTED SHORTS MOMENT 영어 블록이 있으면 붙여 넣으세요. 비주얼 프롬프트가 원래 후보의 Visual Anchor를 벗어나지 않도록 돕는 보조 입력입니다."></textarea>
 
             <label for="shortsPackagingEpisodeTitle">선택 입력: 전체 에피소드 제목</label>
+            <div class="actions">
+              <button id="extractStep14TitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="shortsPackagingEpisodeTitle" spellcheck="false" placeholder="전체 에피소드 제목이 있으면 붙여 넣으세요."></textarea>
 
             <label for="shortsPackagingCoreKeyword">선택 입력: 핵심 키워드</label>
+            <div class="actions">
+              <button id="extractStep14KeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="shortsPackagingCoreKeyword" spellcheck="false" placeholder="핵심 키워드가 있으면 붙여 넣으세요."></textarea>
 
             <label for="shortsPackagingVideoUrl">선택 입력: 롱폼 영상 URL 또는 placeholder</label>
@@ -2678,6 +2971,25 @@
             <div class="actions">
               <button id="copyShortsPackagingPromptBtn" class="btn primary" type="button" disabled>프롬프트 복사</button>
             </div>
+
+            <div class="info-band">
+              <strong>Step 14 결과값 저장</strong>
+              <span>AI에서 생성된 Step 14 결과물을 여기에 붙여 넣으면 브라우저에 저장됩니다.</span>
+            </div>
+            <label for="pipelineResultStep14">Step 14 AI 결과물</label>
+            <textarea id="pipelineResultStep14" spellcheck="false" placeholder="Paste Step 14 AI result here."></textarea>
+            <div class="meta-row">
+              <div class="meta-box">
+                <strong>저장된 결과 길이</strong>
+                <span id="pipelineResultStep14Count">0자</span>
+              </div>
+            </div>
+            <div class="actions">
+              <button id="clearPipelineResultStep14Btn" class="btn warn" type="button">Step 14 저장 결과 지우기</button>
+              <button id="exportPipelineResultStep14Btn" class="btn" type="button">Step 14 결과 JSON 내보내기</button>
+              <button id="importPipelineResultStep14Btn" class="btn" type="button">Step 14 결과 JSON 불러오기</button>
+              <input id="importPipelineResultStep14File" class="file-input" type="file" accept=".json,application/json">
+            </div>
           </div>
         </section>
       </section>
@@ -2704,15 +3016,27 @@
             </div>
 
             <label for="operationAEpisodeNumber">Episode Number</label>
+            <div class="actions">
+              <button id="fillOperationAEpisodeNumberBtn" class="btn" type="button">폴더명으로 채우기</button>
+            </div>
             <textarea id="operationAEpisodeNumber" spellcheck="false" placeholder="예: Episode 001"></textarea>
 
             <label for="operationACoreKeyword">Core Keyword / Source Idea</label>
+            <div class="actions">
+              <button id="extractOperationAKeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="operationACoreKeyword" spellcheck="false" placeholder="핵심 키워드 또는 원본 소재 아이디어를 붙여 넣으세요."></textarea>
 
             <label for="operationAFinalTitle">Final Episode Title</label>
+            <div class="actions">
+              <button id="extractOperationATitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="operationAFinalTitle" spellcheck="false" placeholder="최종 에피소드 제목을 붙여 넣으세요."></textarea>
 
             <label for="operationAShortConcept">Short Concept Note</label>
+            <div class="actions">
+              <button id="extractOperationAConceptBtn" class="btn" type="button">Step 1에서 콘셉트 추출</button>
+            </div>
             <textarea id="operationAShortConcept" spellcheck="false" placeholder="짧은 콘셉트 메모가 있으면 붙여 넣으세요."></textarea>
           </div>
         </section>
@@ -2929,12 +3253,21 @@
           </div>
           <div class="input-area">
             <label for="operationBEpisodeNumber">Episode Number</label>
+            <div class="actions">
+              <button id="fillOperationBEpisodeNumberBtn" class="btn" type="button">폴더명으로 채우기</button>
+            </div>
             <textarea id="operationBEpisodeNumber" spellcheck="false" placeholder="예: Episode 001"></textarea>
 
             <label for="operationBFinalTitle">Episode Title</label>
+            <div class="actions">
+              <button id="extractOperationBTitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="operationBFinalTitle" spellcheck="false" placeholder="최종 에피소드 제목 또는 작업 제목을 붙여 넣으세요."></textarea>
 
             <label for="operationBCoreKeyword">Core Keyword / Source Idea</label>
+            <div class="actions">
+              <button id="extractOperationBKeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="operationBCoreKeyword" spellcheck="false" placeholder="핵심 키워드 또는 원본 소재 아이디어를 붙여 넣으세요."></textarea>
 
             <label for="operationBProductionStatus">Current Production Status</label>
@@ -3109,15 +3442,27 @@
           </div>
           <div class="input-area">
             <label for="operationCEpisodeNumber">Episode Number</label>
+            <div class="actions">
+              <button id="fillOperationCEpisodeNumberBtn" class="btn" type="button">폴더명으로 채우기</button>
+            </div>
             <textarea id="operationCEpisodeNumber" spellcheck="false" placeholder="예: Episode 001"></textarea>
 
             <label for="operationCCoreKeyword">Core Keyword / Source Idea</label>
+            <div class="actions">
+              <button id="extractOperationCKeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="operationCCoreKeyword" spellcheck="false" placeholder="핵심 키워드 또는 원본 소재 아이디어를 붙여 넣으세요."></textarea>
 
             <label for="operationCFinalTitle">Final Episode Title</label>
+            <div class="actions">
+              <button id="extractOperationCTitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="operationCFinalTitle" spellcheck="false" placeholder="최종 에피소드 제목을 붙여 넣으세요."></textarea>
 
             <label for="operationCShortConcept">Short Concept Note</label>
+            <div class="actions">
+              <button id="extractOperationCConceptBtn" class="btn" type="button">Step 1에서 콘셉트 추출</button>
+            </div>
             <textarea id="operationCShortConcept" spellcheck="false" placeholder="짧은 콘셉트 메모가 있으면 붙여 넣으세요."></textarea>
           </div>
         </section>
@@ -3296,18 +3641,33 @@
           </div>
           <div class="input-area">
             <label for="operationDEpisodeNumber">Episode Number</label>
+            <div class="actions">
+              <button id="fillOperationDEpisodeNumberBtn" class="btn" type="button">폴더명으로 채우기</button>
+            </div>
             <textarea id="operationDEpisodeNumber" spellcheck="false" placeholder="예: Episode 001"></textarea>
 
             <label for="operationDProductionDate">Production Date</label>
+            <div class="actions">
+              <button id="fillOperationDTodayBtn" class="btn" type="button">오늘 날짜 입력</button>
+            </div>
             <textarea id="operationDProductionDate" spellcheck="false" placeholder="예: 2026-06-02"></textarea>
 
             <label for="operationDCoreKeyword">Core Keyword / Source Idea</label>
+            <div class="actions">
+              <button id="extractOperationDKeywordBtn" class="btn" type="button">Step 1에서 키워드 추출</button>
+            </div>
             <textarea id="operationDCoreKeyword" spellcheck="false" placeholder="핵심 키워드 또는 원본 소재 아이디어를 붙여 넣으세요."></textarea>
 
             <label for="operationDFinalTitle">Final Episode Title</label>
+            <div class="actions">
+              <button id="extractOperationDTitleBtn" class="btn" type="button">Step 9에서 제목 추출</button>
+            </div>
             <textarea id="operationDFinalTitle" spellcheck="false" placeholder="최종 에피소드 제목을 붙여 넣으세요."></textarea>
 
             <label for="operationDShortConcept">Short Concept Note</label>
+            <div class="actions">
+              <button id="extractOperationDConceptBtn" class="btn" type="button">Step 1에서 콘셉트 추출</button>
+            </div>
             <textarea id="operationDShortConcept" spellcheck="false" placeholder="짧은 콘셉트 메모가 있으면 붙여 넣으세요."></textarea>
 
             <label for="operationDEpisodeStatus">Episode Status</label>
@@ -3504,6 +3864,16 @@
     const TTS_PROMPT_FILE = "8. TTS Adaptation Generator v1.0.1.txt";
     const TTS_STORAGE_KEY = "moonlit_tts_adaptation_template_v101";
     const TTS_SOURCE_STORAGE_KEY = "moonlit_tts_adaptation_template_source";
+    const SUPERTONIC_SERVER_STORAGE_KEY = "moonlit_supertonic_server_url";
+    const SUPERTONE_LANGUAGE_STORAGE_KEY = "moonlit_supertonic_language";
+    const SUPERTONE_MODEL_STORAGE_KEY = "moonlit_supertonic_voice";
+    const SUPERTONE_STYLE_STORAGE_KEY = "moonlit_supertonic_speed";
+    const SUPERTONIC_MOOD_STORAGE_KEY = "moonlit_supertonic_mood";
+    const SUPERTONIC_STEPS_STORAGE_KEY = "moonlit_supertonic_steps";
+    const SUPERTONIC_SILENCE_STORAGE_KEY = "moonlit_supertonic_silence";
+    const SUPERTONIC_PART_TARGET_STORAGE_KEY = "moonlit_supertonic_part_target";
+    const SUPERTONIC_SLEEP_FADE_SPLIT_STORAGE_KEY = "moonlit_supertonic_sleep_fade_split";
+    const SUPERTONE_CHUNK_SIZE = 1500;
     const PACKAGING_PROMPT_FILE = "9. YouTube Packaging Generator v1.0.4.txt";
     const PACKAGING_STORAGE_KEY = "moonlit_youtube_packaging_template_v104";
     const PACKAGING_SOURCE_STORAGE_KEY = "moonlit_youtube_packaging_template_source";
@@ -3560,6 +3930,38 @@
         templateFile: "D. Episode Archive - Learning Log Generator v1.0.txt"
       }
     ];
+    const SUPERTONIC_MOOD_PRESETS = {
+      sleep: {
+        speed: "0.88",
+        steps: "10",
+        silence: "0.7",
+        sample: "Tonight, the room grows quiet, and the story begins in a soft, steady voice."
+      },
+      warm: {
+        speed: "0.92",
+        steps: "10",
+        silence: "0.5",
+        sample: "The lantern light rests low against the wood, warm and unhurried."
+      },
+      story: {
+        speed: "0.96",
+        steps: "8",
+        silence: "0.35",
+        sample: "A quiet path appears under the moon, and the old story begins slowly."
+      },
+      clear: {
+        speed: "1.05",
+        steps: "8",
+        silence: "0.2",
+        sample: "This voice is clear, steady, and easy to review before final narration."
+      },
+      fade: {
+        speed: "0.78",
+        steps: "12",
+        silence: "0.9",
+        sample: "The last sound of rain becomes softer, until only the night remains."
+      }
+    };
     const OPERATION_A_CONFIG = operationTools[0];
     const OPERATION_B_CONFIG = operationTools[1];
     const OPERATION_C_CONFIG = operationTools[2];
@@ -3919,6 +4321,37 @@
     const exportPipelineResultStep8Btn = document.querySelector("#exportPipelineResultStep8Btn");
     const importPipelineResultStep8Btn = document.querySelector("#importPipelineResultStep8Btn");
     const importPipelineResultStep8File = document.querySelector("#importPipelineResultStep8File");
+    const supertoneTtsText = document.querySelector("#supertoneTtsText");
+    const extractSupertoneTtsReadyBtn = document.querySelector("#extractSupertoneTtsReadyBtn");
+    const importSupertoneStep8JsonBtn = document.querySelector("#importSupertoneStep8JsonBtn");
+    const importSupertoneStep8JsonFile = document.querySelector("#importSupertoneStep8JsonFile");
+    const clearSupertoneTtsInputBtn = document.querySelector("#clearSupertoneTtsInputBtn");
+    const supertonicPartTarget = document.querySelector("#supertonicPartTarget");
+    const supertonicSleepFadeSplit = document.querySelector("#supertonicSleepFadeSplit");
+    const supertonicPartSelect = document.querySelector("#supertonicPartSelect");
+    const supertonicPartPreviewMode = document.querySelector("#supertonicPartPreviewMode");
+    const createSupertonicPartsBtn = document.querySelector("#createSupertonicPartsBtn");
+    const loadSupertonicPartBtn = document.querySelector("#loadSupertonicPartBtn");
+    const copySupertonicPartBtn = document.querySelector("#copySupertonicPartBtn");
+    const supertonicPartCount = document.querySelector("#supertonicPartCount");
+    const supertonicSelectedPartLength = document.querySelector("#supertonicSelectedPartLength");
+    const supertonicPartPreview = document.querySelector("#supertonicPartPreview");
+    const supertonicMoodPreset = document.querySelector("#supertonicMoodPreset");
+    const supertoneServerUrl = document.querySelector("#supertoneServerUrl");
+    const supertoneLanguage = document.querySelector("#supertoneLanguage");
+    const supertoneModel = document.querySelector("#supertoneModel");
+    const supertoneStyle = document.querySelector("#supertoneStyle");
+    const supertonicSteps = document.querySelector("#supertonicSteps");
+    const supertonicSilence = document.querySelector("#supertonicSilence");
+    const supertoneSampleText = document.querySelector("#supertoneSampleText");
+    const generateSupertoneSampleBtn = document.querySelector("#generateSupertoneSampleBtn");
+    const supertoneSamplePlayer = document.querySelector("#supertoneSamplePlayer");
+    const generateSupertoneTtsBtn = document.querySelector("#generateSupertoneTtsBtn");
+    const downloadSupertoneAudioBtn = document.querySelector("#downloadSupertoneAudioBtn");
+    const supertoneAudioPlayer = document.querySelector("#supertoneAudioPlayer");
+    const supertoneTtsStatus = document.querySelector("#supertoneTtsStatus");
+    const supertoneTtsChunkCount = document.querySelector("#supertoneTtsChunkCount");
+    const supertoneTtsChunkSummary = document.querySelector("#supertoneTtsChunkSummary");
     const packagingTtsReadyInput = document.querySelector("#packagingTtsReadyInput");
     const copyPackagingTtsReadyWithTitleBtn = document.querySelector("#copyPackagingTtsReadyWithTitleBtn");
     const packagingInputCount = document.querySelector("#packagingInputCount");
@@ -3977,6 +4410,9 @@
     const importStep8ToLongformVisualBtn = document.querySelector("#importStep8ToLongformVisualBtn");
     const longformVisualTtsReadyInput = document.querySelector("#longformVisualTtsReadyInput");
     const longformVisualVideoTitle = document.querySelector("#longformVisualVideoTitle");
+    const extractTitleFromStep9Btn = document.querySelector("#extractTitleFromStep9Btn");
+    const generateTimestampsFromWavBtn = document.querySelector("#generateTimestampsFromWavBtn");
+    const generateTimestampsFromWavFile = document.querySelector("#generateTimestampsFromWavFile");
     const longformVisualTimestamps = document.querySelector("#longformVisualTimestamps");
     const longformVisualInputCount = document.querySelector("#longformVisualInputCount");
     const longformVisualTemplateEditor = document.querySelector("#longformVisualTemplateEditor");
@@ -3999,12 +4435,34 @@
     const pipelineResultStep11Count = document.querySelector("#pipelineResultStep11Count");
     const clearPipelineResultStep11Btn = document.querySelector("#clearPipelineResultStep11Btn");
     const exportPipelineResultStep11Btn = document.querySelector("#exportPipelineResultStep11Btn");
+    const pipelineResultStep12 = document.querySelector("#pipelineResultStep12");
+    const pipelineResultStep12Count = document.querySelector("#pipelineResultStep12Count");
+    const clearPipelineResultStep12Btn = document.querySelector("#clearPipelineResultStep12Btn");
+    const exportPipelineResultStep12Btn = document.querySelector("#exportPipelineResultStep12Btn");
+    const importPipelineResultStep12Btn = document.querySelector("#importPipelineResultStep12Btn");
+    const importPipelineResultStep12File = document.querySelector("#importPipelineResultStep12File");
+    const pipelineResultStep13 = document.querySelector("#pipelineResultStep13");
+    const pipelineResultStep13Count = document.querySelector("#pipelineResultStep13Count");
+    const clearPipelineResultStep13Btn = document.querySelector("#clearPipelineResultStep13Btn");
+    const pipelineResultStep14 = document.querySelector("#pipelineResultStep14");
+    const pipelineResultStep14Count = document.querySelector("#pipelineResultStep14Count");
+    const clearPipelineResultStep14Btn = document.querySelector("#clearPipelineResultStep14Btn");
+    const exportPipelineResultStep14Btn = document.querySelector("#exportPipelineResultStep14Btn");
+    const importPipelineResultStep14Btn = document.querySelector("#importPipelineResultStep14Btn");
+    const importPipelineResultStep14File = document.querySelector("#importPipelineResultStep14File");
+    const exportPipelineResultStep13Btn = document.querySelector("#exportPipelineResultStep13Btn");
+    const importPipelineResultStep13Btn = document.querySelector("#importPipelineResultStep13Btn");
+    const importPipelineResultStep13File = document.querySelector("#importPipelineResultStep13File");
     const importPipelineResultStep11Btn = document.querySelector("#importPipelineResultStep11Btn");
     const importPipelineResultStep11File = document.querySelector("#importPipelineResultStep11File");
     const shortsMomentEpisodeScript = document.querySelector("#shortsMomentEpisodeScript");
+    const importStep8ToShortsMomentBtn = document.querySelector("#importStep8ToShortsMomentBtn");
     const shortsMomentEpisodeTitle = document.querySelector("#shortsMomentEpisodeTitle");
+    const extractStep12TitleBtn = document.querySelector("#extractStep12TitleBtn");
     const shortsMomentCoreKeyword = document.querySelector("#shortsMomentCoreKeyword");
+    const extractStep12KeywordBtn = document.querySelector("#extractStep12KeywordBtn");
     const shortsMomentLongformConcept = document.querySelector("#shortsMomentLongformConcept");
+    const extractStep12ConceptBtn = document.querySelector("#extractStep12ConceptBtn");
     const shortsMomentInputCount = document.querySelector("#shortsMomentInputCount");
     const shortsMomentTemplateEditor = document.querySelector("#shortsMomentTemplateEditor");
     const shortsMomentTemplateHeaderCount = document.querySelector("#shortsMomentTemplateHeaderCount");
@@ -4022,8 +4480,13 @@
     const clearShortsMomentBtn = document.querySelector("#clearShortsMomentBtn");
     const copyShortsMomentPromptBtn = document.querySelector("#copyShortsMomentPromptBtn");
     const shortsScriptFullStep12Result = document.querySelector("#shortsScriptFullStep12Result");
+    const importStep12ToShortsScriptBtn = document.querySelector("#importStep12ToShortsScriptBtn");
     const extractShortsScriptMomentBtn = document.querySelector("#extractShortsScriptMomentBtn");
     const shortsScriptSelectedMoment = document.querySelector("#shortsScriptSelectedMoment");
+    const importAndExtractStep12Btn = document.querySelector("#importAndExtractStep12Btn");
+    const extractStep13TitleBtn = document.querySelector("#extractStep13TitleBtn");
+    const extractStep13KeywordBtn = document.querySelector("#extractStep13KeywordBtn");
+    const extractStep13ConceptBtn = document.querySelector("#extractStep13ConceptBtn");
     const shortsScriptEpisodeTitle = document.querySelector("#shortsScriptEpisodeTitle");
     const shortsScriptCoreKeyword = document.querySelector("#shortsScriptCoreKeyword");
     const shortsScriptLongformConcept = document.querySelector("#shortsScriptLongformConcept");
@@ -4044,13 +4507,19 @@
     const clearShortsScriptBtn = document.querySelector("#clearShortsScriptBtn");
     const copyShortsScriptPromptBtn = document.querySelector("#copyShortsScriptPromptBtn");
     const shortsPackagingFullStep13Result = document.querySelector("#shortsPackagingFullStep13Result");
+    const importStep13ToShortsPackagingBtn = document.querySelector("#importStep13ToShortsPackagingBtn");
     const extractShortsPackagingScriptBtn = document.querySelector("#extractShortsPackagingScriptBtn");
     const shortsPackagingFinalScript = document.querySelector("#shortsPackagingFinalScript");
+    const importAndExtractStep13ForPackagingBtn = document.querySelector("#importAndExtractStep13ForPackagingBtn");
     const shortsPackagingFullStep12Result = document.querySelector("#shortsPackagingFullStep12Result");
+    const importStep12ToShortsPackagingBtn = document.querySelector("#importStep12ToShortsPackagingBtn");
     const extractShortsPackagingMomentBtn = document.querySelector("#extractShortsPackagingMomentBtn");
     const shortsPackagingSelectedMoment = document.querySelector("#shortsPackagingSelectedMoment");
+    const importAndExtractStep12ForPackagingBtn = document.querySelector("#importAndExtractStep12ForPackagingBtn");
     const shortsPackagingEpisodeTitle = document.querySelector("#shortsPackagingEpisodeTitle");
+    const extractStep14TitleBtn = document.querySelector("#extractStep14TitleBtn");
     const shortsPackagingCoreKeyword = document.querySelector("#shortsPackagingCoreKeyword");
+    const extractStep14KeywordBtn = document.querySelector("#extractStep14KeywordBtn");
     const shortsPackagingVideoUrl = document.querySelector("#shortsPackagingVideoUrl");
     const shortsPackagingInputCount = document.querySelector("#shortsPackagingInputCount");
     const shortsPackagingTemplateEditor = document.querySelector("#shortsPackagingTemplateEditor");
@@ -4103,6 +4572,10 @@
     const importOperationAStep13Btn = document.querySelector("#importOperationAStep13Btn");
     const importOperationAStep14Btn = document.querySelector("#importOperationAStep14Btn");
     const importAllOperationAResultsBtn = document.querySelector("#importAllOperationAResultsBtn");
+    const fillOperationAEpisodeNumberBtn = document.querySelector("#fillOperationAEpisodeNumberBtn");
+    const extractOperationATitleBtn = document.querySelector("#extractOperationATitleBtn");
+    const extractOperationAKeywordBtn = document.querySelector("#extractOperationAKeywordBtn");
+    const extractOperationAConceptBtn = document.querySelector("#extractOperationAConceptBtn");
     const operationAResult = document.querySelector("#operationAResult");
     const operationAQcJudgment = document.querySelector("#operationAQcJudgment");
     const operationAProductionReadiness = document.querySelector("#operationAProductionReadiness");
@@ -4146,6 +4619,9 @@
     const importOperationBStep14Btn = document.querySelector("#importOperationBStep14Btn");
     const importOperationBAResultBtn = document.querySelector("#importOperationBAResultBtn");
     const importAllOperationBResultsBtn = document.querySelector("#importAllOperationBResultsBtn");
+    const fillOperationBEpisodeNumberBtn = document.querySelector("#fillOperationBEpisodeNumberBtn");
+    const extractOperationBTitleBtn = document.querySelector("#extractOperationBTitleBtn");
+    const extractOperationBKeywordBtn = document.querySelector("#extractOperationBKeywordBtn");
     const operationCTemplateEditor = document.querySelector("#operationCTemplateEditor");
     const operationCTemplateHeaderCount = document.querySelector("#operationCTemplateHeaderCount");
     const operationCTemplateCount = document.querySelector("#operationCTemplateCount");
@@ -4185,6 +4661,10 @@
     const importOperationCAResultBtn = document.querySelector("#importOperationCAResultBtn");
     const importOperationCBResultBtn = document.querySelector("#importOperationCBResultBtn");
     const importAllOperationCResultsBtn = document.querySelector("#importAllOperationCResultsBtn");
+    const fillOperationCEpisodeNumberBtn = document.querySelector("#fillOperationCEpisodeNumberBtn");
+    const extractOperationCTitleBtn = document.querySelector("#extractOperationCTitleBtn");
+    const extractOperationCKeywordBtn = document.querySelector("#extractOperationCKeywordBtn");
+    const extractOperationCConceptBtn = document.querySelector("#extractOperationCConceptBtn");
     const operationDTemplateEditor = document.querySelector("#operationDTemplateEditor");
     const operationDTemplateHeaderCount = document.querySelector("#operationDTemplateHeaderCount");
     const operationDTemplateCount = document.querySelector("#operationDTemplateCount");
@@ -4231,6 +4711,11 @@
     const importOperationDBResultBtn = document.querySelector("#importOperationDBResultBtn");
     const importOperationDCResultBtn = document.querySelector("#importOperationDCResultBtn");
     const importAllOperationDResultsBtn = document.querySelector("#importAllOperationDResultsBtn");
+    const fillOperationDEpisodeNumberBtn = document.querySelector("#fillOperationDEpisodeNumberBtn");
+    const fillOperationDTodayBtn = document.querySelector("#fillOperationDTodayBtn");
+    const extractOperationDTitleBtn = document.querySelector("#extractOperationDTitleBtn");
+    const extractOperationDKeywordBtn = document.querySelector("#extractOperationDKeywordBtn");
+    const extractOperationDConceptBtn = document.querySelector("#extractOperationDConceptBtn");
 
     let keywordTemplate = "";
     let builtInKeywordTemplate = "";
@@ -4250,6 +4735,9 @@
     let builtInPostProcessorTemplate = "";
     let ttsTemplate = "";
     let builtInTtsTemplate = "";
+    let supertoneAudioUrl = "";
+    let supertoneSampleAudioUrl = "";
+    let supertonicParts = [];
     let packagingTemplate = "";
     let builtInPackagingTemplate = "";
     let koreanReviewTemplate = "";
@@ -4614,6 +5102,42 @@ ${keywordDirection.value.trim() || "없음"}`;
       return localStorage.getItem(getPipelineResultKey(stepNumber)) || "";
     }
 
+    async function readPipelineResultFromEpisodeFolder(stepNumber) {
+      if (!episodeDirectoryHandle) return "";
+
+      let permission = "granted";
+      if (episodeDirectoryHandle.queryPermission) {
+        permission = await episodeDirectoryHandle.queryPermission({ mode: "read" });
+      }
+      if (permission !== "granted" && episodeDirectoryHandle.requestPermission) {
+        permission = await episodeDirectoryHandle.requestPermission({ mode: "read" });
+      }
+      if (permission !== "granted") return "";
+
+      const fileName = getPipelineResultFileName(stepNumber);
+      const fileHandle = await episodeDirectoryHandle.getFileHandle(fileName);
+      const file = await fileHandle.getFile();
+      const payload = JSON.parse(await file.text());
+      return typeof payload.result === "string" ? payload.result : "";
+    }
+
+    async function loadPipelineResultForUse(stepNumber) {
+      const savedResult = loadPipelineResult(stepNumber);
+      if (savedResult.trim()) return savedResult;
+
+      try {
+        const folderResult = await readPipelineResultFromEpisodeFolder(stepNumber);
+        if (folderResult.trim()) {
+          savePipelineResult(stepNumber, folderResult);
+          return folderResult;
+        }
+      } catch (error) {
+        return "";
+      }
+
+      return "";
+    }
+
     function savePipelineResult(stepNumber, value) {
       localStorage.setItem(getPipelineResultKey(stepNumber), value);
       localStorage.setItem(getPipelineResultUpdatedKey(stepNumber), new Date().toISOString());
@@ -4726,6 +5250,9 @@ ${keywordDirection.value.trim() || "없음"}`;
       pipelineResultStep9.value = loadPipelineResult(9);
       pipelineResultStep10.value = loadPipelineResult(10);
       pipelineResultStep11.value = loadPipelineResult(11);
+      pipelineResultStep12.value = loadPipelineResult(12);
+      pipelineResultStep13.value = loadPipelineResult(13);
+      pipelineResultStep14.value = loadPipelineResult(14);
       updateCounts();
     }
 
@@ -4742,8 +5269,8 @@ ${keywordDirection.value.trim() || "없음"}`;
       field.focus();
     }
 
-    function importPipelineResultToField(stepNumber, targetField, successLabel) {
-      const savedResult = loadPipelineResult(stepNumber);
+    async function importPipelineResultToField(stepNumber, targetField, successLabel) {
+      const savedResult = await loadPipelineResultForUse(stepNumber);
       if (!savedResult.trim()) {
         setStatus(`Step ${stepNumber} 저장 결과물이 없습니다. 직접 붙여 넣어주세요.`, "error");
         return;
@@ -4899,6 +5426,12 @@ ${keywordDirection.value.trim() || "없음"}`;
       ttsTemplateHeaderCount.textContent = `${ttsTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       ttsTemplateCount.textContent = `${ttsTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       pipelineResultStep8Count.textContent = `${pipelineResultStep8.value.length.toLocaleString("ko-KR")}자`;
+      const supertoneChunkLabel = `${estimateSupertoneChunkCount(supertoneTtsText.value).toLocaleString("ko-KR")}개`;
+      supertoneTtsChunkCount.textContent = supertoneChunkLabel;
+      supertoneTtsChunkSummary.textContent = supertoneChunkLabel;
+      if (supertonicParts.length) {
+        updateSelectedSupertonicPartInfo();
+      }
       packagingInputCount.textContent = `${(packagingFullTtsResult.value.length + packagingTtsReadyInput.value.length).toLocaleString("ko-KR")}자`;
       packagingTemplateHeaderCount.textContent = `${packagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       packagingTemplateCount.textContent = `${packagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
@@ -4915,6 +5448,9 @@ ${keywordDirection.value.trim() || "없음"}`;
       longformVisualTemplateHeaderCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       longformVisualTemplateCount.textContent = `${longformVisualTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       pipelineResultStep11Count.textContent = `${pipelineResultStep11.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep12Count.textContent = `${pipelineResultStep12.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep13Count.textContent = `${pipelineResultStep13.value.length.toLocaleString("ko-KR")}자`;
+      pipelineResultStep14Count.textContent = `${pipelineResultStep14.value.length.toLocaleString("ko-KR")}자`;
       const shortsMomentInputLength = shortsMomentEpisodeScript.value.length
         + shortsMomentEpisodeTitle.value.length
         + shortsMomentCoreKeyword.value.length
@@ -6515,6 +7051,362 @@ ${finalIntegratedScript}
       ttsFinalIntegratedInput.focus();
     }
 
+    function estimateSupertoneChunkCount(text) {
+      const trimmedText = text.trim();
+      if (!trimmedText) return 0;
+      return Math.ceil(trimmedText.length / SUPERTONE_CHUNK_SIZE);
+    }
+
+    function loadSupertoneSettings() {
+      supertonicMoodPreset.value = localStorage.getItem(SUPERTONIC_MOOD_STORAGE_KEY) || "sleep";
+      supertoneServerUrl.value = localStorage.getItem(SUPERTONIC_SERVER_STORAGE_KEY) || "http://127.0.0.1:7788";
+      supertoneLanguage.value = localStorage.getItem(SUPERTONE_LANGUAGE_STORAGE_KEY) || "na";
+      supertoneModel.value = localStorage.getItem(SUPERTONE_MODEL_STORAGE_KEY) || "M1";
+      supertoneStyle.value = localStorage.getItem(SUPERTONE_STYLE_STORAGE_KEY) || "0.88";
+      supertonicSteps.value = localStorage.getItem(SUPERTONIC_STEPS_STORAGE_KEY) || "10";
+      supertonicSilence.value = localStorage.getItem(SUPERTONIC_SILENCE_STORAGE_KEY) || "0.7";
+      supertonicPartTarget.value = localStorage.getItem(SUPERTONIC_PART_TARGET_STORAGE_KEY) || "10000";
+      supertonicSleepFadeSplit.value = localStorage.getItem(SUPERTONIC_SLEEP_FADE_SPLIT_STORAGE_KEY) || "separate";
+    }
+
+    function saveSupertoneSettings() {
+      localStorage.setItem(SUPERTONIC_MOOD_STORAGE_KEY, supertonicMoodPreset.value);
+      localStorage.setItem(SUPERTONIC_SERVER_STORAGE_KEY, supertoneServerUrl.value.trim());
+      localStorage.setItem(SUPERTONE_LANGUAGE_STORAGE_KEY, supertoneLanguage.value);
+      localStorage.setItem(SUPERTONE_MODEL_STORAGE_KEY, supertoneModel.value);
+      localStorage.setItem(SUPERTONE_STYLE_STORAGE_KEY, supertoneStyle.value.trim());
+      localStorage.setItem(SUPERTONIC_STEPS_STORAGE_KEY, supertonicSteps.value);
+      localStorage.setItem(SUPERTONIC_SILENCE_STORAGE_KEY, supertonicSilence.value);
+      localStorage.setItem(SUPERTONIC_PART_TARGET_STORAGE_KEY, supertonicPartTarget.value);
+      localStorage.setItem(SUPERTONIC_SLEEP_FADE_SPLIT_STORAGE_KEY, supertonicSleepFadeSplit.value);
+    }
+
+    function applySupertonicMoodPreset() {
+      const preset = SUPERTONIC_MOOD_PRESETS[supertonicMoodPreset.value];
+      if (!preset) {
+        saveSupertoneSettings();
+        return;
+      }
+      supertoneStyle.value = preset.speed;
+      supertonicSteps.value = preset.steps;
+      supertonicSilence.value = preset.silence;
+      if (!supertoneSampleText.value.trim()) {
+        supertoneSampleText.value = preset.sample;
+      } else {
+        supertoneSampleText.value = preset.sample;
+      }
+      saveSupertoneSettings();
+      updateCounts();
+      setStatus("Supertonic 분위기 프리셋 적용 완료", "ready");
+    }
+
+    async function extractSupertoneTtsReadyScript() {
+      const step8Result = pipelineResultStep8.value.trim()
+        ? pipelineResultStep8.value
+        : await loadPipelineResultForUse(8);
+      if (step8Result.trim() && !pipelineResultStep8.value.trim()) {
+        pipelineResultStep8.value = step8Result;
+      }
+
+      const extracted = extractTtsReadyScriptBlock(step8Result);
+      if (!extracted) {
+        setStatus("Step 8 결과에서 TTS-READY SCRIPT 제목을 찾을 수 없습니다. 대본을 직접 붙여 넣어주세요.", "error");
+        return;
+      }
+      supertoneTtsText.value = extracted;
+      supertoneTtsStatus.textContent = "TTS-ready script 추출 완료";
+      setStatus("Supertonic 생성용 TTS-READY SCRIPT 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function importSupertoneStep8Json(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", async () => {
+        try {
+          const payload = JSON.parse(String(reader.result || "{}"));
+          const result = typeof payload.result === "string" ? payload.result : "";
+          if (!result.trim()) {
+            setStatus("Step 8 JSON 파일에 result 값이 없습니다.", "error");
+            return;
+          }
+
+          pipelineResultStep8.value = result;
+          savePipelineResult(8, result);
+          await extractSupertoneTtsReadyScript();
+        } catch (error) {
+          setStatus("Step 8 JSON 파일을 읽을 수 없습니다.", "error");
+        }
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function clearSupertoneTtsInput() {
+      supertoneTtsText.value = "";
+      supertonicParts = [];
+      renderSupertonicParts();
+      resetSupertoneAudio();
+      supertoneTtsStatus.textContent = "생성 입력 초기화 완료";
+      updateCounts();
+      setStatus("Supertonic 생성 입력과 Part 목록 초기화 완료", "ready");
+      supertoneTtsText.focus();
+    }
+
+    function splitTextIntoParagraphs(text) {
+      return text
+        .replace(/\r\n/g, "\n")
+        .split(/\n{2,}/)
+        .map((paragraph) => paragraph.trim())
+        .filter(Boolean);
+    }
+
+    function findSleepFadeParagraphIndex(paragraphs) {
+      return paragraphs.findIndex((paragraph) => {
+        const firstLine = paragraph.split(/\n/).find((line) => line.trim()) || "";
+        return /\bSLEEP\s+FADE\b|수면\s*페이드/i.test(firstLine);
+      });
+    }
+
+    function buildPartsFromParagraphs(paragraphs, targetLength, labelPrefix) {
+      const parts = [];
+      let currentParagraphs = [];
+      let currentLength = 0;
+
+      paragraphs.forEach((paragraph) => {
+        const nextLength = currentLength + (currentParagraphs.length ? 2 : 0) + paragraph.length;
+        if (currentParagraphs.length && nextLength > targetLength) {
+          parts.push(currentParagraphs.join("\n\n"));
+          currentParagraphs = [paragraph];
+          currentLength = paragraph.length;
+          return;
+        }
+        currentParagraphs.push(paragraph);
+        currentLength = nextLength;
+      });
+
+      if (currentParagraphs.length) {
+        parts.push(currentParagraphs.join("\n\n"));
+      }
+
+      return parts.map((text, index) => ({
+        label: `${labelPrefix} ${index + 1}`,
+        text
+      }));
+    }
+
+    function createSupertonicParts() {
+      const sourceText = supertoneTtsText.value.trim();
+      if (!sourceText) {
+        setStatus("먼저 전체 TTS-ready 대본을 입력하거나 Step 8에서 추출하세요.", "error");
+        return;
+      }
+
+      const targetLength = Number(supertonicPartTarget.value || 10000);
+      const paragraphs = splitTextIntoParagraphs(sourceText);
+      if (!paragraphs.length) {
+        setStatus("문단을 찾을 수 없습니다. 대본의 빈 줄 구분을 확인하세요.", "error");
+        return;
+      }
+
+      const sleepFadeIndex = supertonicSleepFadeSplit.value === "separate"
+        ? findSleepFadeParagraphIndex(paragraphs)
+        : -1;
+      const mainParagraphs = sleepFadeIndex >= 0 ? paragraphs.slice(0, sleepFadeIndex) : paragraphs;
+      const fadeParagraphs = sleepFadeIndex >= 0 ? paragraphs.slice(sleepFadeIndex) : [];
+      const nextParts = [];
+
+      nextParts.push(...buildPartsFromParagraphs(mainParagraphs, targetLength, "Part"));
+      if (fadeParagraphs.length) {
+        nextParts.push(...buildPartsFromParagraphs(fadeParagraphs, targetLength, "Sleep Fade"));
+      }
+
+      supertonicParts = nextParts.map((part, index) => ({
+        ...part,
+        label: `${String(index + 1).padStart(2, "0")}. ${part.label}`,
+        length: part.text.length,
+        paragraphs: splitTextIntoParagraphs(part.text).length
+      }));
+
+      renderSupertonicParts();
+      setStatus(`문단 기준 Part ${supertonicParts.length}개 생성 완료`, "ready");
+      updateCounts();
+    }
+
+    function getSelectedSupertonicPart() {
+      const index = Number(supertonicPartSelect.value);
+      return Number.isInteger(index) ? supertonicParts[index] : null;
+    }
+
+    function buildPartPreview(part) {
+      if (!part) return "";
+      const paragraphs = splitTextIntoParagraphs(part.text);
+      if (supertonicPartPreviewMode.value === "full" || paragraphs.length <= 2) {
+        return part.text;
+      }
+      return `[시작 문단]\n${paragraphs[0]}\n\n[끝 문단]\n${paragraphs[paragraphs.length - 1]}`;
+    }
+
+    function renderSupertonicParts() {
+      supertonicPartSelect.innerHTML = "";
+      supertonicParts.forEach((part, index) => {
+        const option = document.createElement("option");
+        option.value = String(index);
+        option.textContent = `${part.label} · ${part.length.toLocaleString("ko-KR")}자 · ${part.paragraphs}문단`;
+        supertonicPartSelect.appendChild(option);
+      });
+
+      const hasParts = supertonicParts.length > 0;
+      loadSupertonicPartBtn.disabled = !hasParts;
+      copySupertonicPartBtn.disabled = !hasParts;
+      supertonicPartCount.textContent = `${supertonicParts.length.toLocaleString("ko-KR")}개`;
+      updateSelectedSupertonicPartInfo();
+    }
+
+    function updateSelectedSupertonicPartInfo() {
+      const part = getSelectedSupertonicPart();
+      supertonicSelectedPartLength.textContent = part ? `${part.length.toLocaleString("ko-KR")}자` : "0자";
+      supertonicPartPreview.value = buildPartPreview(part);
+    }
+
+    function loadSelectedSupertonicPart() {
+      const part = getSelectedSupertonicPart();
+      if (!part) return;
+      supertoneTtsText.value = part.text;
+      updateCounts();
+      setStatus(`${part.label}을 생성 입력에 넣었습니다.`, "ready");
+      supertoneTtsText.focus();
+    }
+
+    async function copySelectedSupertonicPart() {
+      const part = getSelectedSupertonicPart();
+      if (!part) return;
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(part.text);
+      } else {
+        supertonicPartPreview.value = part.text;
+        supertonicPartPreview.focus();
+        supertonicPartPreview.select();
+        document.execCommand("copy");
+        window.getSelection().removeAllRanges();
+        updateSelectedSupertonicPartInfo();
+      }
+      setStatus(`${part.label} 복사 완료`, "ready");
+    }
+
+    function resetSupertoneAudio() {
+      if (supertoneAudioUrl) {
+        URL.revokeObjectURL(supertoneAudioUrl);
+        supertoneAudioUrl = "";
+      }
+      supertoneAudioPlayer.removeAttribute("src");
+      downloadSupertoneAudioBtn.disabled = true;
+    }
+
+    function resetSupertoneSampleAudio() {
+      if (supertoneSampleAudioUrl) {
+        URL.revokeObjectURL(supertoneSampleAudioUrl);
+        supertoneSampleAudioUrl = "";
+      }
+      supertoneSamplePlayer.removeAttribute("src");
+    }
+
+    async function requestSupertonicAudio(text) {
+      const serverUrl = supertoneServerUrl.value.trim();
+      if (!serverUrl) {
+        setStatus("Supertonic 로컬 서버 URL을 입력하세요.", "error");
+        supertoneTtsStatus.textContent = "서버 URL 필요";
+        supertoneServerUrl.focus();
+        throw new Error("Supertonic 로컬 서버 URL이 필요합니다.");
+      }
+
+      saveSupertoneSettings();
+      const response = await fetch("/api/supertonic/tts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            text,
+            serverUrl,
+            language: supertoneLanguage.value,
+            voice: supertoneModel.value,
+            speed: supertoneStyle.value.trim(),
+            steps: supertonicSteps.value,
+            silenceDuration: supertonicSilence.value
+          })
+        });
+
+      if (!response.ok) {
+        const errorPayload = await response.json().catch(() => ({}));
+        throw new Error(errorPayload.error || `HTTP ${response.status}`);
+      }
+
+      return response.blob();
+    }
+
+    async function generateSupertoneSample() {
+      const text = supertoneSampleText.value.trim();
+      if (!text) {
+        setStatus("샘플 문장을 먼저 입력하세요.", "error");
+        supertoneTtsStatus.textContent = "샘플 문장 없음";
+        return;
+      }
+
+      resetSupertoneSampleAudio();
+      generateSupertoneSampleBtn.disabled = true;
+      supertoneTtsStatus.textContent = `${supertoneModel.value} 샘플 생성 중`;
+      setStatus(`${supertoneModel.value} 샘플 음성 생성 중...`, "ready");
+
+      try {
+        const audioBlob = await requestSupertonicAudio(text);
+        supertoneSampleAudioUrl = URL.createObjectURL(audioBlob);
+        supertoneSamplePlayer.src = supertoneSampleAudioUrl;
+        supertoneTtsStatus.textContent = `${supertoneModel.value} 샘플 완료`;
+        setStatus(`${supertoneModel.value} 샘플 음성 생성 완료`, "ready");
+      } catch (error) {
+        supertoneTtsStatus.textContent = "샘플 실패";
+        setStatus(`샘플 생성 실패: ${error.message}`, "error");
+      } finally {
+        generateSupertoneSampleBtn.disabled = false;
+      }
+    }
+
+    async function generateSupertoneTts() {
+      const text = supertoneTtsText.value.trim();
+      if (!text) {
+        setStatus("음성으로 만들 대본을 먼저 입력하세요.", "error");
+        supertoneTtsStatus.textContent = "대본 없음";
+        return;
+      }
+
+      resetSupertoneAudio();
+      generateSupertoneTtsBtn.disabled = true;
+      supertoneTtsStatus.textContent = "생성 중";
+      setStatus("Supertonic 로컬 음성 생성 중...", "ready");
+
+      try {
+        const audioBlob = await requestSupertonicAudio(text);
+        supertoneAudioUrl = URL.createObjectURL(audioBlob);
+        supertoneAudioPlayer.src = supertoneAudioUrl;
+        downloadSupertoneAudioBtn.disabled = false;
+        supertoneTtsStatus.textContent = "생성 완료";
+        setStatus("Supertonic 로컬 WAV 음성 생성 완료", "ready");
+      } catch (error) {
+        supertoneTtsStatus.textContent = "생성 실패";
+        setStatus(`Supertonic 생성 실패: ${error.message}`, "error");
+      } finally {
+        generateSupertoneTtsBtn.disabled = false;
+      }
+    }
+
+    function downloadSupertoneAudio() {
+      if (!supertoneAudioUrl) return;
+      const link = document.createElement("a");
+      link.href = supertoneAudioUrl;
+      link.download = "supertonic-local-tts.wav";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    }
+
     function preparePackagingTemplate(template) {
       if (!template) return "";
       if (template.includes(PACKAGING_PLACEHOLDER)) return template;
@@ -7017,6 +7909,69 @@ ${englishScriptInput}
       longformVisualTtsReadyInput.focus();
     }
 
+    function extractTitleFromStep9() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) {
+        setStatus("Step 9 결과가 없습니다. Step 9 결과를 먼저 저장해주세요.", "error");
+        return;
+      }
+      // "최종 추천 제목" 섹션을 먼저 찾고, 그 안에서 "업로드용 영어 제목:" 다음 줄 추출
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) {
+        setStatus("Step 9 결과에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error");
+        return;
+      }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) {
+        setStatus("Step 9 결과에서 제목을 찾을 수 없습니다. 영상 제목을 직접 붙여 넣어주세요.", "error");
+        return;
+      }
+      longformVisualVideoTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 영상 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function formatTimestampHMS(totalSeconds) {
+      const m = Math.floor(totalSeconds / 60);
+      const s = Math.floor(totalSeconds % 60);
+      return `${m}:${String(s).padStart(2, "0")}`;
+    }
+
+    async function generateTimestampsFromWav(files) {
+      if (!files || files.length === 0) return;
+      setStatus("WAV 파일 분석 중...", "ready");
+      try {
+        const ctx = new AudioContext();
+        const sorted = Array.from(files).sort((a, b) => a.name.localeCompare(b.name));
+        const durations = [];
+        for (const file of sorted) {
+          const buf = await file.arrayBuffer();
+          const decoded = await ctx.decodeAudioData(buf);
+          durations.push({ name: file.name, seconds: decoded.duration });
+        }
+        ctx.close();
+
+        let cum = 0;
+        const lines = [];
+        if (durations.length === 1) {
+          lines.push(`0:00 - 시작`);
+          cum = durations[0].seconds;
+        } else {
+          for (let i = 0; i < durations.length; i++) {
+            lines.push(`${formatTimestampHMS(cum)} - Part ${i + 1} 시작`);
+            cum += durations[i].seconds;
+          }
+        }
+        lines.push(`총 재생 시간: ${formatTimestampHMS(cum)}`);
+        longformVisualTimestamps.value = lines.join("\n");
+        setStatus(`WAV ${durations.length}개 파일에서 타임스탬프 생성 완료`, "ready");
+        updateCounts();
+      } catch (err) {
+        setStatus("WAV 파일을 읽을 수 없습니다. 올바른 WAV 파일인지 확인해주세요.", "error");
+      }
+    }
+
     function prepareShortsMomentTemplate(template) {
       if (!template) return "";
       if (template.includes(SHORTS_MOMENT_PLACEHOLDER)) return template;
@@ -7155,6 +8110,43 @@ ${englishScriptInput}
       copyShortsMomentPromptBtn.disabled = true;
       updateCounts();
       shortsMomentEpisodeScript.focus();
+    }
+
+    function extractStep12Title() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다. Step 9 결과를 먼저 저장해주세요.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      shortsMomentEpisodeTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractStep12Keyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다. Step 1 결과를 먼저 저장해주세요.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      shortsMomentCoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractStep12Concept() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다. Step 1 결과를 먼저 저장해주세요.", "error"); return; }
+      const categoryMatch = step1.match(/Source category[:\s]*([^\n]+)/i);
+      const notesMatch = step1.match(/Brief background notes[^*]*\*?\*?\s*\n+([\s\S]+?)(?:\n\n---)/i);
+      if (!categoryMatch && !notesMatch) { setStatus("Step 1 결과에서 콘셉트 정보를 찾을 수 없습니다.", "error"); return; }
+      const parts = [];
+      if (categoryMatch) parts.push(`Source category: ${categoryMatch[1].trim()}`);
+      if (notesMatch) parts.push(notesMatch[1].trim());
+      shortsMomentLongformConcept.value = parts.join("\n\n");
+      setStatus("Step 1에서 롱폼 영상 콘셉트 추출 완료", "ready");
+      updateCounts();
     }
 
     function prepareShortsScriptTemplate(template) {
@@ -7326,6 +8318,48 @@ ${concept}`;
         : `${currentTemplate.trimEnd()}\n\n${inputBlock}`;
       copyShortsScriptPromptBtn.disabled = !shortsScriptFinalPrompt.value;
       setStatus("Shorts Script 최종 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function importAndExtractFromStep12() {
+      await importPipelineResultToField(12, shortsScriptFullStep12Result, "Step 12 결과");
+      extractRecommendedShortsMomentBlock();
+    }
+
+    function extractStep13Title() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다. Step 9 결과를 먼저 저장해주세요.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      shortsScriptEpisodeTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractStep13Keyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다. Step 1 결과를 먼저 저장해주세요.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      shortsScriptCoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractStep13Concept() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다. Step 1 결과를 먼저 저장해주세요.", "error"); return; }
+      const categoryMatch = step1.match(/Source category[:\s]*([^\n]+)/i);
+      const notesMatch = step1.match(/Brief background notes[^*]*\*?\*?\s*\n+([\s\S]+?)(?:\n\n---)/i);
+      if (!categoryMatch && !notesMatch) { setStatus("Step 1 결과에서 콘셉트 정보를 찾을 수 없습니다.", "error"); return; }
+      const parts = [];
+      if (categoryMatch) parts.push(`Source category: ${categoryMatch[1].trim()}`);
+      if (notesMatch) parts.push(notesMatch[1].trim());
+      shortsScriptLongformConcept.value = parts.join("\n\n");
+      setStatus("Step 1에서 롱폼 영상 콘셉트 추출 완료", "ready");
       updateCounts();
     }
 
@@ -7553,6 +8587,39 @@ Moonlit Eastern Tales`;
         : `${currentTemplate.trimEnd()}\n\n${inputBlock}`;
       copyShortsPackagingPromptBtn.disabled = !shortsPackagingFinalPrompt.value;
       setStatus("Shorts Packaging 최종 프롬프트 생성 완료", "ready");
+      updateCounts();
+    }
+
+    async function importAndExtractFromStep13ForPackaging() {
+      await importPipelineResultToField(13, shortsPackagingFullStep13Result, "Step 13 결과");
+      extractRecommendedShortsPackagingScript();
+    }
+
+    async function importAndExtractFromStep12ForPackaging() {
+      await importPipelineResultToField(12, shortsPackagingFullStep12Result, "Step 12 결과");
+      extractShortsPackagingMomentBlock();
+    }
+
+    function extractStep14Title() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다. Step 9 결과를 먼저 저장해주세요.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      shortsPackagingEpisodeTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractStep14Keyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다. Step 1 결과를 먼저 저장해주세요.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      shortsPackagingCoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
       updateCounts();
     }
 
@@ -7929,6 +8996,162 @@ ${valueOrEmpty(data.shortsPackaging)}
       saveOperationAState();
       updateCounts();
       operationAEpisodeNumber.focus();
+    }
+
+    function fillEpisodeNumber(targetField) {
+      const prefix = getPipelineResultFilePrefix();
+      if (!prefix || prefix === "Keyword") {
+        setStatus("에피소드 저장 폴더를 먼저 선택해주세요.", "error");
+        return;
+      }
+      targetField.value = prefix;
+      setStatus("폴더명으로 에피소드 번호 입력 완료", "ready");
+      updateCounts();
+    }
+
+    function fillOperationAEpisodeNumber() { fillEpisodeNumber(operationAEpisodeNumber); }
+    function fillOperationBEpisodeNumber() { fillEpisodeNumber(operationBEpisodeNumber); }
+    function fillOperationCEpisodeNumber() { fillEpisodeNumber(operationCEpisodeNumber); }
+    function fillOperationDEpisodeNumber() { fillEpisodeNumber(operationDEpisodeNumber); }
+
+    function extractOperationATitle() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      operationAFinalTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationAKeyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      operationACoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationAConcept() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const categoryMatch = step1.match(/Source category[:\s]*([^\n]+)/i);
+      const notesMatch = step1.match(/Brief background notes[^*]*\*?\*?\s*\n+([\s\S]+?)(?:\n\n---)/i);
+      if (!categoryMatch && !notesMatch) { setStatus("Step 1 결과에서 콘셉트 정보를 찾을 수 없습니다.", "error"); return; }
+      const parts = [];
+      if (categoryMatch) parts.push(`Source category: ${categoryMatch[1].trim()}`);
+      if (notesMatch) parts.push(notesMatch[1].trim());
+      operationAShortConcept.value = parts.join("\n\n");
+      setStatus("Step 1에서 콘셉트 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationBTitle() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      operationBFinalTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationBKeyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      operationBCoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationCTitle() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      operationCFinalTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationCKeyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      operationCCoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationCConcept() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const categoryMatch = step1.match(/Source category[:\s]*([^\n]+)/i);
+      const notesMatch = step1.match(/Brief background notes[^*]*\*?\*?\s*\n+([\s\S]+?)(?:\n\n---)/i);
+      if (!categoryMatch && !notesMatch) { setStatus("Step 1 결과에서 콘셉트 정보를 찾을 수 없습니다.", "error"); return; }
+      const parts = [];
+      if (categoryMatch) parts.push(`Source category: ${categoryMatch[1].trim()}`);
+      if (notesMatch) parts.push(notesMatch[1].trim());
+      operationCShortConcept.value = parts.join("\n\n");
+      setStatus("Step 1에서 콘셉트 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationDTitle() {
+      const step9 = loadPipelineResult(9);
+      if (!step9.trim()) { setStatus("Step 9 결과가 없습니다.", "error"); return; }
+      const sectionMatch = step9.match(/최종\s*추천\s*제목\s*\n/i);
+      if (!sectionMatch) { setStatus("Step 9에서 '최종 추천 제목' 섹션을 찾을 수 없습니다.", "error"); return; }
+      const sectionText = step9.slice(sectionMatch.index + sectionMatch[0].length, sectionMatch.index + sectionMatch[0].length + 600);
+      const titleMatch = sectionText.match(/업로드용\s*영어\s*제목[^\n]*\n\s*([^\n]+)/i);
+      if (!titleMatch) { setStatus("Step 9 결과에서 제목을 찾을 수 없습니다.", "error"); return; }
+      operationDFinalTitle.value = titleMatch[1].trim();
+      setStatus("Step 9에서 에피소드 제목 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationDKeyword() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const match = step1.match(/\*?\*?Main keyword[:\*]*\*?\*?\s*\n+\s*([^\n(]+)/i);
+      if (!match) { setStatus("Step 1 결과에서 Main keyword를 찾을 수 없습니다.", "error"); return; }
+      operationDCoreKeyword.value = match[1].trim();
+      setStatus("Step 1에서 핵심 키워드 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function extractOperationDConcept() {
+      const step1 = loadPipelineResult(1);
+      if (!step1.trim()) { setStatus("Step 1 결과가 없습니다.", "error"); return; }
+      const categoryMatch = step1.match(/Source category[:\s]*([^\n]+)/i);
+      const notesMatch = step1.match(/Brief background notes[^*]*\*?\*?\s*\n+([\s\S]+?)(?:\n\n---)/i);
+      if (!categoryMatch && !notesMatch) { setStatus("Step 1 결과에서 콘셉트 정보를 찾을 수 없습니다.", "error"); return; }
+      const parts = [];
+      if (categoryMatch) parts.push(`Source category: ${categoryMatch[1].trim()}`);
+      if (notesMatch) parts.push(notesMatch[1].trim());
+      operationDShortConcept.value = parts.join("\n\n");
+      setStatus("Step 1에서 콘셉트 추출 완료", "ready");
+      updateCounts();
+    }
+
+    function fillOperationDToday() {
+      operationDProductionDate.value = new Date().toISOString().slice(0, 10);
+      setStatus("오늘 날짜 입력 완료", "ready");
+      updateCounts();
     }
 
     function syncOperationBTemplateEditor() {
@@ -9280,6 +10503,35 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       importPipelineResultJson(8, pipelineResultStep8, importPipelineResultStep8File.files[0]);
       importPipelineResultStep8File.value = "";
     });
+    supertoneTtsText.addEventListener("input", updateCounts);
+    supertoneSampleText.addEventListener("input", updateCounts);
+    extractSupertoneTtsReadyBtn.addEventListener("click", extractSupertoneTtsReadyScript);
+    importSupertoneStep8JsonBtn.addEventListener("click", () => importSupertoneStep8JsonFile.click());
+    importSupertoneStep8JsonFile.addEventListener("change", () => {
+      importSupertoneStep8Json(importSupertoneStep8JsonFile.files[0]);
+      importSupertoneStep8JsonFile.value = "";
+    });
+    clearSupertoneTtsInputBtn.addEventListener("click", clearSupertoneTtsInput);
+    createSupertonicPartsBtn.addEventListener("click", createSupertonicParts);
+    loadSupertonicPartBtn.addEventListener("click", loadSelectedSupertonicPart);
+    copySupertonicPartBtn.addEventListener("click", copySelectedSupertonicPart);
+    supertonicPartSelect.addEventListener("change", updateSelectedSupertonicPartInfo);
+    supertonicPartPreviewMode.addEventListener("change", updateSelectedSupertonicPartInfo);
+    [supertonicPartTarget, supertonicSleepFadeSplit].forEach((field) => {
+      field.addEventListener("change", saveSupertoneSettings);
+    });
+    supertonicMoodPreset.addEventListener("change", applySupertonicMoodPreset);
+    [supertoneServerUrl, supertoneLanguage, supertoneModel, supertoneStyle, supertonicSteps, supertonicSilence].forEach((field) => {
+      field.addEventListener("input", saveSupertoneSettings);
+      field.addEventListener("change", saveSupertoneSettings);
+    });
+    supertoneModel.addEventListener("change", () => {
+      const selectedLabel = supertoneModel.selectedOptions[0]?.textContent || supertoneModel.value;
+      supertoneTtsStatus.textContent = `${selectedLabel} 선택됨`;
+    });
+    generateSupertoneSampleBtn.addEventListener("click", generateSupertoneSample);
+    generateSupertoneTtsBtn.addEventListener("click", generateSupertoneTts);
+    downloadSupertoneAudioBtn.addEventListener("click", downloadSupertoneAudio);
     packagingTtsReadyInput.addEventListener("input", updateCounts);
     copyPackagingTtsReadyWithTitleBtn.addEventListener("click", copyPackagingTtsReadyWithTitle);
     importStep8ResultBtn.addEventListener("click", () => importPipelineResultToField(8, packagingFullTtsResult, "Step 8 결과"));
@@ -9314,7 +10566,13 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importStep8ToLongformVisualBtn.addEventListener("click", () => importPipelineResultToField(8, longformVisualFullTtsResult, "Step 8 TTS Adaptation Generator 결과"));
     longformVisualTtsReadyInput.addEventListener("input", updateCounts);
     longformVisualVideoTitle.addEventListener("input", updateCounts);
+    extractTitleFromStep9Btn.addEventListener("click", extractTitleFromStep9);
     longformVisualTimestamps.addEventListener("input", updateCounts);
+    generateTimestampsFromWavBtn.addEventListener("click", () => generateTimestampsFromWavFile.click());
+    generateTimestampsFromWavFile.addEventListener("change", () => {
+      generateTimestampsFromWav(generateTimestampsFromWavFile.files);
+      generateTimestampsFromWavFile.value = "";
+    });
     extractLongformVisualTtsReadyBtn.addEventListener("click", extractLongformVisualTtsReadyScript);
     longformVisualTemplateEditor.addEventListener("input", updateCounts);
     longformVisualFinalPrompt.addEventListener("input", updateCounts);
@@ -9326,28 +10584,67 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       importPipelineResultJson(11, pipelineResultStep11, importPipelineResultStep11File.files[0]);
       importPipelineResultStep11File.value = "";
     });
+    pipelineResultStep12.addEventListener("input", () => handlePipelineResultInput(12, pipelineResultStep12));
+    clearPipelineResultStep12Btn.addEventListener("click", () => clearPipelineResultField(12, pipelineResultStep12));
+    exportPipelineResultStep12Btn.addEventListener("click", () => exportPipelineResultJson(12, pipelineResultStep12));
+    importPipelineResultStep12Btn.addEventListener("click", () => importPipelineResultStep12File.click());
+    importPipelineResultStep12File.addEventListener("change", () => {
+      importPipelineResultJson(12, pipelineResultStep12, importPipelineResultStep12File.files[0]);
+      importPipelineResultStep12File.value = "";
+    });
+    pipelineResultStep13.addEventListener("input", () => handlePipelineResultInput(13, pipelineResultStep13));
+    clearPipelineResultStep13Btn.addEventListener("click", () => clearPipelineResultField(13, pipelineResultStep13));
+    exportPipelineResultStep13Btn.addEventListener("click", () => exportPipelineResultJson(13, pipelineResultStep13));
+    importPipelineResultStep13Btn.addEventListener("click", () => importPipelineResultStep13File.click());
+    importPipelineResultStep13File.addEventListener("change", () => {
+      importPipelineResultJson(13, pipelineResultStep13, importPipelineResultStep13File.files[0]);
+      importPipelineResultStep13File.value = "";
+    });
+    pipelineResultStep14.addEventListener("input", () => handlePipelineResultInput(14, pipelineResultStep14));
+    clearPipelineResultStep14Btn.addEventListener("click", () => clearPipelineResultField(14, pipelineResultStep14));
+    exportPipelineResultStep14Btn.addEventListener("click", () => exportPipelineResultJson(14, pipelineResultStep14));
+    importPipelineResultStep14Btn.addEventListener("click", () => importPipelineResultStep14File.click());
+    importPipelineResultStep14File.addEventListener("change", () => {
+      importPipelineResultJson(14, pipelineResultStep14, importPipelineResultStep14File.files[0]);
+      importPipelineResultStep14File.value = "";
+    });
+    importStep8ToShortsMomentBtn.addEventListener("click", () => importPipelineResultToField(8, shortsMomentEpisodeScript, "Step 8 TTS Adaptation Generator 결과"));
     shortsMomentEpisodeScript.addEventListener("input", updateCounts);
     shortsMomentEpisodeTitle.addEventListener("input", updateCounts);
+    extractStep12TitleBtn.addEventListener("click", extractStep12Title);
     shortsMomentCoreKeyword.addEventListener("input", updateCounts);
+    extractStep12KeywordBtn.addEventListener("click", extractStep12Keyword);
     shortsMomentLongformConcept.addEventListener("input", updateCounts);
+    extractStep12ConceptBtn.addEventListener("click", extractStep12Concept);
     shortsMomentTemplateEditor.addEventListener("input", updateCounts);
     shortsMomentFinalPrompt.addEventListener("input", updateCounts);
+    importStep12ToShortsScriptBtn.addEventListener("click", () => importPipelineResultToField(12, shortsScriptFullStep12Result, "Step 12 결과"));
     shortsScriptFullStep12Result.addEventListener("input", updateCounts);
     extractShortsScriptMomentBtn.addEventListener("click", extractRecommendedShortsMomentBlock);
     shortsScriptSelectedMoment.addEventListener("input", updateCounts);
+    importAndExtractStep12Btn.addEventListener("click", importAndExtractFromStep12);
+    extractStep13TitleBtn.addEventListener("click", extractStep13Title);
+    extractStep13KeywordBtn.addEventListener("click", extractStep13Keyword);
+    extractStep13ConceptBtn.addEventListener("click", extractStep13Concept);
     shortsScriptEpisodeTitle.addEventListener("input", updateCounts);
     shortsScriptCoreKeyword.addEventListener("input", updateCounts);
     shortsScriptLongformConcept.addEventListener("input", updateCounts);
     shortsScriptTemplateEditor.addEventListener("input", updateCounts);
     shortsScriptFinalPrompt.addEventListener("input", updateCounts);
+    importStep13ToShortsPackagingBtn.addEventListener("click", () => importPipelineResultToField(13, shortsPackagingFullStep13Result, "Step 13 결과"));
     shortsPackagingFullStep13Result.addEventListener("input", updateCounts);
     extractShortsPackagingScriptBtn.addEventListener("click", extractRecommendedShortsPackagingScript);
+    importAndExtractStep13ForPackagingBtn.addEventListener("click", importAndExtractFromStep13ForPackaging);
     shortsPackagingFinalScript.addEventListener("input", updateCounts);
+    importStep12ToShortsPackagingBtn.addEventListener("click", () => importPipelineResultToField(12, shortsPackagingFullStep12Result, "Step 12 결과"));
     shortsPackagingFullStep12Result.addEventListener("input", updateCounts);
     extractShortsPackagingMomentBtn.addEventListener("click", extractShortsPackagingMomentBlock);
+    importAndExtractStep12ForPackagingBtn.addEventListener("click", importAndExtractFromStep12ForPackaging);
     shortsPackagingSelectedMoment.addEventListener("input", updateCounts);
     shortsPackagingEpisodeTitle.addEventListener("input", updateCounts);
+    extractStep14TitleBtn.addEventListener("click", extractStep14Title);
     shortsPackagingCoreKeyword.addEventListener("input", updateCounts);
+    extractStep14KeywordBtn.addEventListener("click", extractStep14Keyword);
     shortsPackagingVideoUrl.addEventListener("input", updateCounts);
     shortsPackagingTemplateEditor.addEventListener("input", updateCounts);
     shortsPackagingFinalPrompt.addEventListener("input", updateCounts);
@@ -9576,6 +10873,10 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importOperationAStep13Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[5]));
     importOperationAStep14Btn.addEventListener("click", () => importOperationAResult(operationAResultSources[6]));
     importAllOperationAResultsBtn.addEventListener("click", importAllOperationAResults);
+    fillOperationAEpisodeNumberBtn.addEventListener("click", fillOperationAEpisodeNumber);
+    extractOperationATitleBtn.addEventListener("click", extractOperationATitle);
+    extractOperationAKeywordBtn.addEventListener("click", extractOperationAKeyword);
+    extractOperationAConceptBtn.addEventListener("click", extractOperationAConcept);
     saveOperationBTemplateBtn.addEventListener("click", saveOperationBTemplate);
     resetOperationBTemplateBtn.addEventListener("click", resetOperationBTemplate);
     importOperationBTemplateBtn.addEventListener("click", () => importOperationBTemplateFile.click());
@@ -9596,6 +10897,9 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importOperationBStep14Btn.addEventListener("click", () => importOperationBResult(operationBResultSources[6]));
     importOperationBAResultBtn.addEventListener("click", () => importOperationBResult(operationBResultSources[7]));
     importAllOperationBResultsBtn.addEventListener("click", importAllOperationBResults);
+    fillOperationBEpisodeNumberBtn.addEventListener("click", fillOperationBEpisodeNumber);
+    extractOperationBTitleBtn.addEventListener("click", extractOperationBTitle);
+    extractOperationBKeywordBtn.addEventListener("click", extractOperationBKeyword);
     saveOperationCTemplateBtn.addEventListener("click", saveOperationCTemplate);
     resetOperationCTemplateBtn.addEventListener("click", resetOperationCTemplate);
     importOperationCTemplateBtn.addEventListener("click", () => importOperationCTemplateFile.click());
@@ -9615,6 +10919,10 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importOperationCAResultBtn.addEventListener("click", () => importOperationCResult(operationCResultSources[5]));
     importOperationCBResultBtn.addEventListener("click", () => importOperationCResult(operationCResultSources[6]));
     importAllOperationCResultsBtn.addEventListener("click", importAllOperationCResults);
+    fillOperationCEpisodeNumberBtn.addEventListener("click", fillOperationCEpisodeNumber);
+    extractOperationCTitleBtn.addEventListener("click", extractOperationCTitle);
+    extractOperationCKeywordBtn.addEventListener("click", extractOperationCKeyword);
+    extractOperationCConceptBtn.addEventListener("click", extractOperationCConcept);
     saveOperationDTemplateBtn.addEventListener("click", saveOperationDTemplate);
     resetOperationDTemplateBtn.addEventListener("click", resetOperationDTemplate);
     importOperationDTemplateBtn.addEventListener("click", () => importOperationDTemplateFile.click());
@@ -9637,6 +10945,11 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importOperationDBResultBtn.addEventListener("click", () => importOperationDResult(operationDResultSources[8]));
     importOperationDCResultBtn.addEventListener("click", () => importOperationDResult(operationDResultSources[9]));
     importAllOperationDResultsBtn.addEventListener("click", importAllOperationDResults);
+    fillOperationDEpisodeNumberBtn.addEventListener("click", fillOperationDEpisodeNumber);
+    fillOperationDTodayBtn.addEventListener("click", fillOperationDToday);
+    extractOperationDTitleBtn.addEventListener("click", extractOperationDTitle);
+    extractOperationDKeywordBtn.addEventListener("click", extractOperationDKeyword);
+    extractOperationDConceptBtn.addEventListener("click", extractOperationDConcept);
 
     loadKeywordTemplate();
     loadPromptTemplate();
@@ -9647,6 +10960,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     loadSleepFadeTemplate();
     loadPostProcessorTemplate();
     loadTtsTemplate();
+    loadSupertoneSettings();
     loadPackagingTemplate();
     loadKoreanReviewTemplate();
     loadLongformVisualTemplate();
