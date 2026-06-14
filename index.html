@@ -871,6 +871,27 @@
       text-align: center;
       padding: 32px 0;
     }
+    .storyboard-script {
+      font-size: 12px;
+      color: var(--ink);
+      line-height: 1.7;
+      background: var(--input);
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 8px;
+      white-space: pre-wrap;
+      max-height: 180px;
+      overflow-y: auto;
+      border: 1px solid var(--line);
+    }
+    .storyboard-script-label {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
     @media (max-width: 520px) {
       .storyboard-card { flex-direction: column; }
       .storyboard-img-slot { width: 100%; height: 160px; }
@@ -11509,6 +11530,24 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
         return cuts;
       }
 
+      function getStep8Text() {
+        const el = document.querySelector("#pipelineResultStep8");
+        return el ? el.value.trim() : "";
+      }
+
+      function extractScriptPassage(fullScript, startCue, endCue) {
+        if (!fullScript || !startCue) return "";
+        const startKey = startCue.slice(0, 12).trim();
+        const startIdx = fullScript.indexOf(startKey);
+        if (startIdx === -1) return "";
+        const endKey = endCue ? endCue.slice(-12).trim() : "";
+        const endIdx = endKey ? fullScript.indexOf(endKey, startIdx) : -1;
+        if (endIdx !== -1) {
+          return fullScript.slice(startIdx, endIdx + endKey.length).trim();
+        }
+        return fullScript.slice(startIdx, startIdx + 600).trim();
+      }
+
       function getImagesFromDom() {
         return Array.from(document.querySelectorAll("#imageGenGrid .image-gen-card img"))
           .map(img => img.src)
@@ -11590,6 +11629,17 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
             body.appendChild(prompt);
           }
 
+          if (cut.scriptPassage) {
+            const label = document.createElement("div");
+            label.className = "storyboard-script-label";
+            label.textContent = "대본";
+            const scriptDiv = document.createElement("div");
+            scriptDiv.className = "storyboard-script";
+            scriptDiv.textContent = cut.scriptPassage;
+            body.appendChild(label);
+            body.appendChild(scriptDiv);
+          }
+
           card.appendChild(slot);
           card.appendChild(body);
           grid.appendChild(card);
@@ -11597,8 +11647,12 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       }
 
       loadBtn.addEventListener("click", () => {
-        const text = getStep11Text();
-        const cuts = parseStep11Cuts(text);
+        const step11Text = getStep11Text();
+        const step8Text  = getStep8Text();
+        const cuts = parseStep11Cuts(step11Text);
+        cuts.forEach(cut => {
+          cut.scriptPassage = extractScriptPassage(step8Text, cut.startCue, cut.endCue);
+        });
         const images = getImagesFromDom();
         renderPalette(images);
         renderStoryboard(cuts);
