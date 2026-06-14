@@ -3159,7 +3159,7 @@
 
             <div class="actions" style="margin-top:12px">
               <button id="generateImageBtn" class="btn primary" type="button">이미지 생성</button>
-              <button id="clearImageGenBtn" class="btn warn" type="button">결과 초기화</button>
+              <button id="clearImageGenBtn" class="btn warn" type="button">전체 삭제</button>
             </div>
 
             <div id="imageGenStatus" class="image-gen-status" style="display:none">
@@ -11232,8 +11232,17 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
             a.download = `moonlit-image-${Date.now()}-${i + 1}.png`;
             a.click();
           });
+          const delBtn = document.createElement("button");
+          delBtn.className = "btn warn";
+          delBtn.type = "button";
+          delBtn.textContent = "삭제";
+          delBtn.addEventListener("click", () => {
+            generatedImages.splice(i, 1);
+            renderGrid();
+          });
           footer.appendChild(label);
           footer.appendChild(dlBtn);
+          footer.appendChild(delBtn);
           card.appendChild(image);
           card.appendChild(footer);
           grid.appendChild(card);
