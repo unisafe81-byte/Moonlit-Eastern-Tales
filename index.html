@@ -184,7 +184,7 @@
     }
 
     .operations-tabs {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       padding: 0;
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -357,7 +357,11 @@
     #operationDCoreKeyword,
     #operationDFinalTitle,
     #operationDShortConcept,
-    #operationDEpisodeStatus {
+    #operationDEpisodeStatus,
+    #operationEEpisodeNumber,
+    #operationECoreKeyword,
+    #operationEKoreanTitle,
+    #operationEEnglishSubtitle {
       flex: 0 0 auto;
       min-height: 70px;
     }
@@ -739,6 +743,27 @@
       text-overflow: ellipsis;
       white-space: nowrap;
     }
+    .image-gen-card-source {
+      padding: 4px 10px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.03);
+    }
+    .img-source-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .05em;
+      padding: 1px 8px;
+      border-radius: 8px;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .img-source-badge[data-step="9"]  { background: rgba(99,179,237,.15); color:#63b3ed; }
+    .img-source-badge[data-step="11"] { background: rgba(154,117,234,.15); color:#9a75ea; }
+    .img-source-badge[data-step="14"] { background: rgba(72,187,120,.15);  color:#48bb78; }
+    .img-source-badge[data-step="직접"] { background: rgba(160,160,160,.12); color:var(--muted); }
 
     .image-gen-status {
       min-height: 32px;
@@ -948,6 +973,24 @@
       cursor: pointer;
     }
 
+    .prompt-gen-btn.generated { background: #276749 !important; border-color: #276749 !important; color: #9ae6b4 !important; }
+    .prompt-gen-btn.generated:hover { background: #22543d !important; }
+    .prompt-source-section { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 14px; }
+    .prompt-source-section h3 { font-size: 12px; font-weight: 600; margin-bottom: 8px; color: var(--label); }
+    .prompt-card { border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 10px; background: var(--surface); margin-top: 10px; }
+    .prompt-card-label { font-size: 11px; font-weight: 700; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-bottom: 6px; }
+    .prompt-card textarea { width: 100%; min-height: 72px; resize: vertical; box-sizing: border-box; }
+    .prompt-card-actions { margin-top: 8px; display: flex; gap: 8px; }
+    .prompt-card-neg-label { font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; margin-top: 10px; margin-bottom: 4px; opacity: .7; }
+    .prompt-source-section-header { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; }
+    .prompt-source-section-header h3 { margin: 0; flex: 1; }
+    .prompt-section-toggle { background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; padding: 2px 4px; line-height: 1; }
+    .prompt-section-body.collapsed { display: none; }
+    /* Step 16 좌우 레이아웃 */
+    #imageGenPromptPanel .input-area { overflow-y: auto; max-height: calc(100vh - 120px); }
+    .image-gen-result-panel { position: sticky; top: 16px; max-height: calc(100vh - 80px); overflow: hidden; }
+    .image-gen-result-panel .input-area { overflow-y: auto; }
+
     .tabs,
     .tabs *,
     .operations-nav,
@@ -1123,6 +1166,59 @@
         padding: 5px 6px;
         font-size: 11px;
       }
+    }
+
+    /* Operation E — Thumbnail Generator */
+    .thumbnail-canvas-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      background: var(--input);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      margin-top: 8px;
+    }
+
+    #thumbnailCanvas {
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      border-radius: 6px;
+      display: block;
+      border: 1px solid var(--line);
+    }
+
+    .template-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .template-btn {
+      min-height: 38px;
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      background: #102b47;
+      color: var(--ink);
+      padding: 0 14px;
+      cursor: pointer;
+      font-weight: 650;
+      font-size: 13px;
+      transition: border-color 0.15s;
+    }
+
+    .template-btn.active {
+      border-color: var(--accent);
+      background: #0f3550;
+      color: var(--accent-strong);
+      font-weight: 700;
+    }
+
+    .template-btn:hover:not(.active) {
+      border-color: rgba(63, 199, 181, 0.5);
     }
   </style>
 </head>
@@ -2360,6 +2456,17 @@
 
             <div class="control-grid">
               <div class="control-field">
+                <label for="ttsMode">TTS 방식</label>
+                <select id="ttsMode">
+                  <option value="supertonic">Supertonic (로컬 고품질)</option>
+                  <option value="browser">브라우저 TTS (어디서나 · 미리듣기용)</option>
+                </select>
+              </div>
+            </div>
+
+            <div id="supertonicModeControls">
+            <div class="control-grid">
+              <div class="control-field">
                 <label for="supertonicMoodPreset">분위기 프리셋</label>
                 <select id="supertonicMoodPreset">
                   <option value="sleep">수면 내레이션</option>
@@ -2447,6 +2554,33 @@
               <div class="meta-box">
                 <strong>예상 분할</strong>
                 <span id="supertoneTtsChunkSummary">0개</span>
+              </div>
+            </div>
+            </div>
+
+            <div id="browserTtsControls" style="display:none">
+              <div class="info-band">
+                <p>브라우저 내장 TTS는 미리듣기·검수용입니다. WAV 저장은 지원하지 않습니다. 서버 없이 어디서나 사용할 수 있습니다.</p>
+              </div>
+              <div class="control-grid">
+                <div class="control-field">
+                  <label for="browserTtsVoice">목소리</label>
+                  <select id="browserTtsVoice"></select>
+                </div>
+                <div class="control-field">
+                  <label for="browserTtsRate">속도 (<span id="browserTtsRateLabel">0.85</span>)</label>
+                  <input id="browserTtsRate" type="range" min="0.5" max="2" step="0.05" value="0.85">
+                </div>
+              </div>
+              <div class="actions">
+                <button id="generateBrowserTtsBtn" class="btn primary" type="button">브라우저 TTS 재생</button>
+                <button id="stopBrowserTtsBtn" class="btn warn" type="button">재생 중지</button>
+              </div>
+              <div class="meta-row">
+                <div class="meta-box">
+                  <strong>재생 상태</strong>
+                  <span id="browserTtsStatus">대기 중</span>
+                </div>
               </div>
             </div>
           </div>
@@ -3259,20 +3393,12 @@
           </div>
         </section>
 
-        <section class="workspace" aria-labelledby="imageGenPromptTitle">
+        <section class="workspace" id="imageGenPromptPanel" aria-labelledby="imageGenPromptTitle">
           <div class="panel-head">
             <h2 id="imageGenPromptTitle">이미지 프롬프트 입력</h2>
           </div>
           <div class="input-area">
-            <div class="actions">
-              <button id="importImagePromptStep9Btn" class="btn" type="button">Step 9 결과 가져오기</button>
-              <button id="importImagePromptStep11Btn" class="btn" type="button">Step 11 결과 가져오기</button>
-              <button id="importImagePromptStep14Btn" class="btn" type="button">Step 14 결과 가져오기</button>
-            </div>
-            <label for="imageGenPromptInput">이미지 프롬프트 (영어 권장)</label>
-            <textarea id="imageGenPromptInput" spellcheck="false" style="min-height:100px" placeholder="예: A serene moonlit bamboo forest with soft mist, ancient lanterns glowing warmly, painterly style, ultra-detailed, cinematic lighting"></textarea>
-
-            <div class="model-select-row" style="margin-top:12px">
+            <div class="model-select-row">
               <label for="imageGenModelSelect">모델 선택</label>
               <select id="imageGenModelSelect">
                 <option value="gpt-image-1">GPT Image 1 (OpenAI · 고품질)</option>
@@ -3281,7 +3407,6 @@
                 <option value="stabilityai/stable-diffusion-xl-base-1.0">Stable Diffusion XL (세밀한 제어)</option>
               </select>
             </div>
-
             <div class="count-select-row" style="margin-top:8px">
               <label for="imageGenCountSelect">생성 개수</label>
               <select id="imageGenCountSelect">
@@ -3291,8 +3416,50 @@
               </select>
             </div>
 
-            <div class="actions" style="margin-top:12px">
-              <button id="generateImageBtn" class="btn primary" type="button">이미지 생성</button>
+            <div class="prompt-source-section">
+              <h3>직접 입력</h3>
+              <label for="imageGenPromptInput">이미지 프롬프트 (영어 권장)</label>
+              <textarea id="imageGenPromptInput" spellcheck="false" style="min-height:80px" placeholder="예: A serene moonlit bamboo forest with soft mist, ancient lanterns glowing warmly, painterly style, ultra-detailed, cinematic lighting"></textarea>
+              <div class="actions" style="margin-top:8px">
+                <button id="generateImageBtn" class="btn primary" type="button">이미지 생성</button>
+                <button id="clearDirectPromptBtn" class="btn" type="button">지우기</button>
+              </div>
+            </div>
+
+            <div class="prompt-source-section">
+              <div class="prompt-source-section-header">
+                <h3>Step 9 — 유튜브 썸네일 (A+네거티브 / B+네거티브 / C+네거티브)</h3>
+                <button class="prompt-section-toggle" type="button" aria-expanded="true">▼</button>
+              </div>
+              <div class="prompt-section-body">
+                <button id="importImagePromptStep9Btn" class="btn" type="button">Step 9 결과 가져오기</button>
+                <div id="imagePromptCardsStep9"></div>
+              </div>
+            </div>
+
+            <div class="prompt-source-section">
+              <div class="prompt-source-section-header">
+                <h3>Step 11 — 롱폼 비주얼 컷 이미지 프롬프트</h3>
+                <button class="prompt-section-toggle" type="button" aria-expanded="true">▼</button>
+              </div>
+              <div class="prompt-section-body">
+                <button id="importImagePromptStep11Btn" class="btn" type="button">Step 11 결과 가져오기</button>
+                <div id="imagePromptCardsStep11"></div>
+              </div>
+            </div>
+
+            <div class="prompt-source-section">
+              <div class="prompt-source-section-header">
+                <h3>Step 14 — 쇼츠 이미지 프롬프트 (A / B / C + 모션 + 네거티브)</h3>
+                <button class="prompt-section-toggle" type="button" aria-expanded="true">▼</button>
+              </div>
+              <div class="prompt-section-body">
+                <button id="importImagePromptStep14Btn" class="btn" type="button">Step 14 결과 가져오기</button>
+                <div id="imagePromptCardsStep14"></div>
+              </div>
+            </div>
+
+            <div class="actions" style="margin-top:16px">
               <button id="clearImageGenBtn" class="btn warn" type="button">전체 삭제</button>
             </div>
 
@@ -3303,13 +3470,13 @@
           </div>
         </section>
 
-        <section class="workspace wide" aria-labelledby="imageGenResultTitle">
+        <section class="workspace image-gen-result-panel" aria-labelledby="imageGenResultTitle">
           <div class="panel-head">
             <h2 id="imageGenResultTitle">생성된 이미지</h2>
           </div>
           <div class="input-area">
             <div id="imageGenGrid" class="image-gen-grid"></div>
-            <p id="imageGenEmpty" style="color:var(--muted);font-size:12px;margin:0">생성된 이미지가 없습니다. 위에서 프롬프트를 입력하고 이미지 생성 버튼을 누르세요.</p>
+            <p id="imageGenEmpty" style="color:var(--muted);font-size:12px;margin:0">생성된 이미지가 없습니다. 왼쪽에서 프롬프트를 입력하고 이미지 생성 버튼을 누르세요.</p>
           </div>
         </section>
       </section>
@@ -4665,6 +4832,15 @@
     const exportPipelineResultStep8Btn = document.querySelector("#exportPipelineResultStep8Btn");
     const importPipelineResultStep8Btn = document.querySelector("#importPipelineResultStep8Btn");
     const importPipelineResultStep8File = document.querySelector("#importPipelineResultStep8File");
+    const ttsMode = document.querySelector("#ttsMode");
+    const supertonicModeControls = document.querySelector("#supertonicModeControls");
+    const browserTtsControls = document.querySelector("#browserTtsControls");
+    const browserTtsVoice = document.querySelector("#browserTtsVoice");
+    const browserTtsRate = document.querySelector("#browserTtsRate");
+    const browserTtsRateLabel = document.querySelector("#browserTtsRateLabel");
+    const generateBrowserTtsBtn = document.querySelector("#generateBrowserTtsBtn");
+    const stopBrowserTtsBtn = document.querySelector("#stopBrowserTtsBtn");
+    const browserTtsStatus = document.querySelector("#browserTtsStatus");
     const supertoneTtsText = document.querySelector("#supertoneTtsText");
     const extractSupertoneTtsReadyBtn = document.querySelector("#extractSupertoneTtsReadyBtn");
     const importSupertoneStep8JsonBtn = document.querySelector("#importSupertoneStep8JsonBtn");
@@ -7739,6 +7915,64 @@ ${finalIntegratedScript}
       } finally {
         generateSupertoneTtsBtn.disabled = false;
       }
+    }
+
+    function initBrowserTtsVoices() {
+      if (!window.speechSynthesis) return;
+      const voices = window.speechSynthesis.getVoices();
+      browserTtsVoice.innerHTML = "";
+      voices.forEach((voice) => {
+        const option = document.createElement("option");
+        option.value = voice.name;
+        option.textContent = `${voice.name} (${voice.lang})`;
+        browserTtsVoice.appendChild(option);
+      });
+    }
+
+    function onTtsModeChange() {
+      const isBrowser = ttsMode.value === "browser";
+      supertonicModeControls.style.display = isBrowser ? "none" : "";
+      browserTtsControls.style.display = isBrowser ? "" : "none";
+      if (isBrowser) {
+        initBrowserTtsVoices();
+        setStatus("브라우저 TTS 모드 — 서버 없이 미리듣기 가능", "ready");
+      } else {
+        setStatus("Supertonic 로컬 모드", "ready");
+      }
+    }
+
+    function generateBrowserTts() {
+      const text = supertoneTtsText.value.trim();
+      if (!text) { setStatus("음성으로 만들 대본을 먼저 입력하세요.", "error"); return; }
+      if (!window.speechSynthesis) { setStatus("이 브라우저는 Web Speech API를 지원하지 않습니다.", "error"); return; }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      const selectedVoice = window.speechSynthesis.getVoices().find((v) => v.name === browserTtsVoice.value);
+      if (selectedVoice) utterance.voice = selectedVoice;
+      utterance.rate = parseFloat(browserTtsRate.value);
+      utterance.onstart = () => {
+        browserTtsStatus.textContent = "재생 중";
+        generateBrowserTtsBtn.disabled = true;
+        setStatus("브라우저 TTS 재생 중...", "ready");
+      };
+      utterance.onend = () => {
+        browserTtsStatus.textContent = "재생 완료";
+        generateBrowserTtsBtn.disabled = false;
+        setStatus("브라우저 TTS 재생 완료", "ready");
+      };
+      utterance.onerror = (e) => {
+        browserTtsStatus.textContent = "재생 실패";
+        generateBrowserTtsBtn.disabled = false;
+        setStatus(`브라우저 TTS 오류: ${e.error}`, "error");
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function stopBrowserTts() {
+      window.speechSynthesis.cancel();
+      browserTtsStatus.textContent = "중지됨";
+      generateBrowserTtsBtn.disabled = false;
+      setStatus("브라우저 TTS 재생 중지", "ready");
     }
 
     function downloadSupertoneAudio() {
@@ -10873,6 +11107,15 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       const selectedLabel = supertoneModel.selectedOptions[0]?.textContent || supertoneModel.value;
       supertoneTtsStatus.textContent = `${selectedLabel} 선택됨`;
     });
+    ttsMode.addEventListener("change", onTtsModeChange);
+    generateBrowserTtsBtn.addEventListener("click", generateBrowserTts);
+    stopBrowserTtsBtn.addEventListener("click", stopBrowserTts);
+    browserTtsRate.addEventListener("input", () => {
+      browserTtsRateLabel.textContent = browserTtsRate.value;
+    });
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = initBrowserTtsVoices;
+    }
     generateSupertoneSampleBtn.addEventListener("click", generateSupertoneSample);
     generateSupertoneTtsBtn.addEventListener("click", generateSupertoneTts);
     downloadSupertoneAudioBtn.addEventListener("click", downloadSupertoneAudio);
@@ -11317,53 +11560,323 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
         if (msg) statusText.textContent = msg;
       }
 
-      function extractFirstImagePrompt(text) {
-        if (!text) return "";
-        const lines = text.split("\n");
-        for (const line of lines) {
-          const lower = line.toLowerCase();
-          if (
-            lower.includes("image prompt") ||
-            lower.includes("thumbnail prompt") ||
-            lower.includes("visual prompt") ||
-            lower.includes("이미지 프롬프트")
-          ) {
-            const idx = lines.indexOf(line);
-            for (let i = idx + 1; i < Math.min(idx + 6, lines.length); i++) {
-              const candidate = lines[i].trim();
-              if (candidate && !candidate.startsWith("#") && candidate.length > 20) {
-                return candidate;
-              }
-            }
-          }
-        }
-        const engLines = lines.filter(l => /^[A-Za-z, ]+/.test(l.trim()) && l.trim().length > 30);
-        return engLines[0]?.trim() || "";
-      }
-
       function getResultText(stepN) {
         const el = document.querySelector(`#pipelineResultStep${stepN}`);
         return el ? el.value.trim() : "";
       }
 
+      // ── 섹션별 콘텐츠 추출 헬퍼 ─────────────────────────────
+      function extractSectionContent(lines, startIdx, endIdx) {
+        const block = lines.slice(startIdx + 1, endIdx);
+        const result = [];
+        let started = false;
+        for (const line of block) {
+          const t = line.trim();
+          if (!t) {
+            if (started) break;
+            continue;
+          }
+          if (t.startsWith("#") || t.startsWith("**") || t.startsWith("---")) continue;
+          const isKoreanLabel = /^[가-힣]/.test(t) && (t.endsWith(":") || t.length < 30);
+          const isNumberedHeader = /^[0-9]+\.\s/.test(t) && t.length < 80;
+          if (isKoreanLabel || isNumberedHeader) {
+            if (started) break;
+            continue;
+          }
+          if (t.length > 15) {
+            started = true;
+            result.push(t);
+          } else if (started) {
+            break;
+          }
+        }
+        return result.join(" ").trim();
+      }
+
+      function extractNamedSections(text, sectionDefs) {
+        if (!text) return sectionDefs.map(d => ({ label: d.label, text: "" }));
+        const lines = text.split("\n");
+        const starts = sectionDefs.map(def => ({
+          ...def,
+          startIdx: lines.findIndex(l => def.keys.some(k => l.toLowerCase().includes(k)))
+        }));
+        return starts.map((sec, i) => {
+          if (sec.startIdx === -1) return { label: sec.label, text: "" };
+          const next = starts.slice(i + 1).find(s => s.startIdx > sec.startIdx);
+          const endIdx = next ? next.startIdx : lines.length;
+          return { label: sec.label, text: extractSectionContent(lines, sec.startIdx, endIdx) };
+        });
+      }
+
+      function extractStep9Prompts(text) {
+        return extractNamedSections(text, [
+          { label: "썸네일 이미지 프롬프트 A", keys: ["image prompt a", "이미지 프롬프트 a"] },
+          { label: "썸네일 이미지 프롬프트 B", keys: ["image prompt b", "이미지 프롬프트 b"] },
+          { label: "썸네일 이미지 프롬프트 C", keys: ["image prompt c", "이미지 프롬프트 c"] },
+          { label: "네거티브 프롬프트",         keys: ["negative prompt", "네거티브 프롬프트"] },
+        ]);
+      }
+
+      function extractStep14Prompts(text) {
+        return extractNamedSections(text, [
+          { label: "Shorts 이미지 프롬프트 A", keys: ["image prompt a", "이미지 프롬프트 a"] },
+          { label: "Shorts 이미지 프롬프트 B", keys: ["image prompt b", "이미지 프롬프트 b"] },
+          { label: "Shorts 이미지 프롬프트 C", keys: ["image prompt c", "이미지 프롬프트 c"] },
+          { label: "영상 모션 프롬프트",        keys: ["video motion prompt", "motion prompt", "영상 모션"] },
+          { label: "네거티브 프롬프트",         keys: ["negative prompt", "네거티브 프롬프트"] },
+        ]);
+      }
+
+      // ── 이미지 생성 코어 ──────────────────────────────────────
+      async function generateImagesFromPrompt(prompt, source = "직접 입력") {
+        if (!prompt) { alert("이미지 프롬프트를 입력해 주세요."); return; }
+        const model = modelSelect.value;
+        const count = parseInt(countSelect.value, 10);
+        setStatus(true, `${count}장 생성 중... (모델: ${modelSelect.options[modelSelect.selectedIndex].text})`);
+        try {
+          const tasks = Array.from({ length: count }, () => puter.ai.txt2img({ prompt, model }));
+          const results = await Promise.allSettled(tasks);
+          const newImgs = [];
+          const errors = [];
+          results.forEach((r, i) => {
+            if (r.status === "fulfilled" && r.value) {
+              let src = null;
+              if (typeof r.value === "string") src = r.value;
+              else if (r.value instanceof HTMLImageElement) src = r.value.src;
+              else if (r.value && r.value.src) src = r.value.src;
+              if (src) newImgs.push({ src, prompt, source });
+              else { const m = `이미지 ${i + 1}: 유효하지 않은 결과`; errors.push(m); console.warn(m, r.value); }
+            } else if (r.status === "rejected") {
+              const m = r.reason?.message || String(r.reason) || "알 수 없는 오류";
+              errors.push(m);
+              console.warn(`이미지 ${i + 1} 생성 실패:`, r.reason);
+            }
+          });
+          if (newImgs.length === 0) {
+            const detail = errors.length > 0 ? `\n\n오류 상세: ${errors[0]}` : "";
+            throw new Error(`생성된 이미지가 없습니다. 다시 시도해 주세요.${detail}`);
+          }
+          generatedImages = [...newImgs, ...generatedImages];
+          renderGrid();
+          setStatus(false);
+          return newImgs.length;
+        } catch (err) {
+          setStatus(false);
+          alert(`이미지 생성 실패: ${err.message || err}`);
+          return 0;
+        }
+      }
+
+      // ── 프롬프트 카드 렌더 ────────────────────────────────────
+      function renderPromptCards(containerId, items, sourcePrefix = "") {
+        const container = document.querySelector(`#${containerId}`);
+        if (!container) return;
+        container.innerHTML = "";
+        if (!items.length || items.every(it => !it.text)) {
+          container.innerHTML = '<p style="color:var(--muted);font-size:12px;margin-top:8px">추출된 프롬프트가 없습니다. 해당 Step 결과를 먼저 저장해 주세요.</p>';
+          return;
+        }
+        items.forEach(({ label, text }, idx) => {
+          const card = document.createElement("div");
+          card.className = "prompt-card";
+          const taId = `${containerId}_ta_${idx}`;
+          const source = sourcePrefix ? `${sourcePrefix} · ${label}` : label;
+          card.innerHTML = `
+            <div class="prompt-card-label">${label}</div>
+            <textarea id="${taId}" spellcheck="false">${text}</textarea>
+            <div class="prompt-card-actions">
+              <button class="btn primary prompt-gen-btn" type="button" data-ta="${taId}" data-source="${source}">이미지 생성</button>
+              <button class="btn prompt-clear-btn" type="button" data-ta="${taId}">지우기</button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+        container.querySelectorAll(".prompt-gen-btn").forEach(btn => {
+          btn.addEventListener("click", async () => {
+            const ta = document.querySelector(`#${btn.dataset.ta}`);
+            if (!ta) return;
+            btn.disabled = true;
+            try {
+              const generated = await generateImagesFromPrompt(ta.value.trim(), btn.dataset.source);
+              if (generated > 0) {
+                const prev = parseInt(btn.dataset.genCount || "0");
+                btn.dataset.genCount = prev + generated;
+                btn.classList.add("generated");
+                btn.textContent = `✓ 생성완료 (${btn.dataset.genCount}장)`;
+              }
+            } finally { btn.disabled = false; }
+          });
+        });
+        container.querySelectorAll(".prompt-clear-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const ta = document.querySelector(`#${btn.dataset.ta}`);
+            if (ta) ta.value = "";
+            const card = btn.closest(".prompt-card");
+            const genBtn = card?.querySelector(".prompt-gen-btn");
+            if (genBtn) {
+              genBtn.classList.remove("generated");
+              delete genBtn.dataset.genCount;
+              genBtn.textContent = "이미지 생성";
+            }
+          });
+        });
+      }
+
+      // ── Step 9 전용: A+Negative / B+Negative / C+Negative 쌍 카드 ──
+      function renderStep9PairedCards(containerId, posItems, negItem) {
+        const container = document.querySelector(`#${containerId}`);
+        if (!container) return;
+        container.innerHTML = "";
+        if (!posItems.length || posItems.every(it => !it.text)) {
+          container.innerHTML = '<p style="color:var(--muted);font-size:12px;margin-top:8px">추출된 프롬프트가 없습니다. Step 9 결과를 먼저 저장해 주세요.</p>';
+          return;
+        }
+        posItems.forEach(({ label, text }, idx) => {
+          const card = document.createElement("div");
+          card.className = "prompt-card";
+          const posTaId = `${containerId}_pos_${idx}`;
+          const negTaId = `${containerId}_neg_${idx}`;
+          const source = `Step 9 · ${label}`;
+          card.innerHTML = `
+            <div class="prompt-card-label">${label}</div>
+            <textarea id="${posTaId}" spellcheck="false">${text}</textarea>
+            <div class="prompt-card-neg-label">네거티브 프롬프트</div>
+            <textarea id="${negTaId}" spellcheck="false" style="min-height:56px">${negItem?.text || ""}</textarea>
+            <div class="prompt-card-actions">
+              <button class="btn primary prompt-gen-btn" type="button" data-ta="${posTaId}" data-source="${source}">이미지 생성</button>
+              <button class="btn prompt-clear-btn" type="button" data-pos="${posTaId}" data-neg="${negTaId}">지우기</button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+        container.querySelectorAll(".prompt-gen-btn").forEach(btn => {
+          btn.addEventListener("click", async () => {
+            const ta = document.querySelector(`#${btn.dataset.ta}`);
+            if (!ta) return;
+            btn.disabled = true;
+            try {
+              const generated = await generateImagesFromPrompt(ta.value.trim(), btn.dataset.source);
+              if (generated > 0) {
+                const prev = parseInt(btn.dataset.genCount || "0");
+                btn.dataset.genCount = prev + generated;
+                btn.classList.add("generated");
+                btn.textContent = `✓ 생성완료 (${btn.dataset.genCount}장)`;
+              }
+            } finally { btn.disabled = false; }
+          });
+        });
+        container.querySelectorAll(".prompt-clear-btn").forEach(btn => {
+          btn.addEventListener("click", () => {
+            const pos = document.querySelector(`#${btn.dataset.pos}`);
+            const neg = document.querySelector(`#${btn.dataset.neg}`);
+            if (pos) pos.value = "";
+            if (neg) neg.value = "";
+            const card = btn.closest(".prompt-card");
+            const genBtn = card?.querySelector(".prompt-gen-btn");
+            if (genBtn) {
+              genBtn.classList.remove("generated");
+              delete genBtn.dataset.genCount;
+              genBtn.textContent = "이미지 생성";
+            }
+          });
+        });
+      }
+
+      // ── 가져오기 버튼 ─────────────────────────────────────────
       importStep9Btn.addEventListener("click", () => {
-        const extracted = extractFirstImagePrompt(getResultText(9));
-        if (extracted) promptInput.value = extracted;
-        else alert("Step 9 결과물에서 이미지 프롬프트를 찾지 못했습니다.\n직접 붙여 넣어 주세요.");
+        const prompts = extractStep9Prompts(getResultText(9));
+        const negItem = prompts[3]; // 네거티브 프롬프트
+        const posItems = prompts.slice(0, 3); // A, B, C
+        renderStep9PairedCards("imagePromptCardsStep9", posItems, negItem);
       });
 
       importStep11Btn.addEventListener("click", () => {
-        const extracted = extractFirstImagePrompt(getResultText(11));
-        if (extracted) promptInput.value = extracted;
-        else alert("Step 11 결과물에서 이미지 프롬프트를 찾지 못했습니다.\n직접 붙여 넣어 주세요.");
+        const text = getResultText(11);
+        if (!text) { renderPromptCards("imagePromptCardsStep11", []); return; }
+        const lines = text.split("\n");
+
+        // 영어 프로덕션 섹션부터만 파싱 (한국어 리뷰 섹션의 Cut 헤더 중복 방지)
+        let parseFrom = 0;
+        for (let i = 0; i < lines.length; i++) {
+          if (/english production prompt/i.test(lines[i])) {
+            parseFrom = i + 1;
+            break;
+          }
+        }
+
+        const cuts = [];
+        let current = null;
+
+        for (let i = parseFrom; i < lines.length; i++) {
+          const trimmed = lines[i].trim();
+
+          // Cut 헤더 감지: ## Cut N. 이름
+          if (/^#{1,3}\s*(visual\s*)?cut\s*\d+/i.test(trimmed)) {
+            if (current) cuts.push(current);
+            current = { title: trimmed.replace(/^#+\s*/, ""), imagePrompt: "" };
+            continue;
+          }
+          if (!current) continue;
+
+          // Final Image Prompt 필드 감지 (굵은 글씨 **...** 포함)
+          if (/^(\*{1,2})?final image prompt(\*{1,2})?\s*[:\-–]/i.test(trimmed)) {
+            const inline = trimmed.replace(/^\*{0,2}final image prompt\*{0,2}\s*[:\-–]\s*/i, "").trim();
+            if (inline.length > 20) {
+              current.imagePrompt = inline;
+            } else {
+              // 다음 줄에서 실제 프롬프트 추출
+              for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
+                const c = lines[j].trim();
+                if (!c) continue;
+                // 다른 필드 레이블이면 중단
+                if (/^(\*{0,2})\w[\w\s]{1,30}(\*{0,2})\s*[:\-–]/.test(c) && c.length < 80) break;
+                if (c.length > 20) { current.imagePrompt = c; break; }
+              }
+            }
+          }
+        }
+        if (current) cuts.push(current);
+
+        renderPromptCards("imagePromptCardsStep11", cuts.map(c => ({ label: c.title, text: c.imagePrompt })), "Step 11");
       });
 
       importStep14Btn.addEventListener("click", () => {
-        const extracted = extractFirstImagePrompt(getResultText(14));
-        if (extracted) promptInput.value = extracted;
-        else alert("Step 14 결과물에서 이미지 프롬프트를 찾지 못했습니다.\n직접 붙여 넣어 주세요.");
+        renderPromptCards("imagePromptCardsStep14", extractStep14Prompts(getResultText(14)), "Step 14");
       });
 
+      // ── 직접 입력 생성 버튼 ───────────────────────────────────
+      generateBtn.addEventListener("click", async () => {
+        generateBtn.disabled = true;
+        try {
+          const generated = await generateImagesFromPrompt(promptInput.value.trim(), "직접 입력");
+          if (generated > 0) {
+            const prev = parseInt(generateBtn.dataset.genCount || "0");
+            generateBtn.dataset.genCount = prev + generated;
+            generateBtn.classList.add("generated");
+            generateBtn.textContent = `✓ 생성완료 (${generateBtn.dataset.genCount}장)`;
+          }
+        } finally { generateBtn.disabled = false; }
+      });
+
+      document.querySelector("#clearDirectPromptBtn").addEventListener("click", () => {
+        promptInput.value = "";
+        generateBtn.classList.remove("generated");
+        delete generateBtn.dataset.genCount;
+        generateBtn.textContent = "이미지 생성";
+      });
+
+      // ── 섹션 접기/펼치기 ─────────────────────────────────────
+      document.querySelectorAll("#imageGenPromptPanel .prompt-source-section-header").forEach(header => {
+        header.addEventListener("click", () => {
+          const body = header.nextElementSibling;
+          const btn  = header.querySelector(".prompt-section-toggle");
+          const collapsed = body.classList.toggle("collapsed");
+          btn.textContent = collapsed ? "▶" : "▼";
+          btn.setAttribute("aria-expanded", String(!collapsed));
+        });
+      });
+
+      // ── 이미지 그리드 렌더 ────────────────────────────────────
       function renderGrid() {
         grid.innerHTML = "";
         emptyMsg.style.display = generatedImages.length ? "none" : "block";
@@ -11374,6 +11887,16 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
           image.src = img.src;
           image.alt = `생성된 이미지 ${i + 1}`;
           image.loading = "lazy";
+          // 소스 배지
+          const sourceBar = document.createElement("div");
+          sourceBar.className = "image-gen-card-source";
+          const badge = document.createElement("span");
+          badge.className = "img-source-badge";
+          const stepKey = (img.source || "").match(/(\d+|직접)/)?.[0] || "직접";
+          badge.dataset.step = stepKey;
+          badge.textContent = img.source || "직접 입력";
+          badge.title = img.source || "직접 입력";
+          sourceBar.appendChild(badge);
           const footer = document.createElement("div");
           footer.className = "image-gen-card-footer";
           const label = document.createElement("span");
@@ -11402,65 +11925,11 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
           footer.appendChild(dlBtn);
           footer.appendChild(delBtn);
           card.appendChild(image);
+          card.appendChild(sourceBar);
           card.appendChild(footer);
           grid.appendChild(card);
         });
       }
-
-      generateBtn.addEventListener("click", async () => {
-        const prompt = promptInput.value.trim();
-        if (!prompt) { alert("이미지 프롬프트를 입력해 주세요."); return; }
-
-        const model = modelSelect.value;
-        const count = parseInt(countSelect.value, 10);
-
-        generateBtn.disabled = true;
-        setStatus(true, `${count}장 생성 중... (모델: ${modelSelect.options[modelSelect.selectedIndex].text})`);
-
-        try {
-          const tasks = Array.from({ length: count }, () =>
-            puter.ai.txt2img({ prompt, model })
-          );
-          const results = await Promise.allSettled(tasks);
-          const newImgs = [];
-          const errors = [];
-          results.forEach((r, i) => {
-            if (r.status === "fulfilled" && r.value) {
-              let src = null;
-              if (typeof r.value === "string") {
-                src = r.value;
-              } else if (r.value instanceof HTMLImageElement) {
-                src = r.value.src;
-              } else if (r.value && r.value.src) {
-                src = r.value.src;
-              }
-              if (src) {
-                newImgs.push({ src, prompt });
-              } else {
-                const msg = `이미지 ${i + 1}: 유효하지 않은 결과`;
-                errors.push(msg);
-                console.warn(msg, r.value);
-              }
-            } else if (r.status === "rejected") {
-              const msg = r.reason?.message || String(r.reason) || "알 수 없는 오류";
-              errors.push(msg);
-              console.warn(`이미지 ${i + 1} 생성 실패:`, r.reason);
-            }
-          });
-          if (newImgs.length === 0) {
-            const detail = errors.length > 0 ? `\n\n오류 상세: ${errors[0]}` : "";
-            throw new Error(`생성된 이미지가 없습니다. 다시 시도해 주세요.${detail}`);
-          }
-          generatedImages = [...newImgs, ...generatedImages];
-          renderGrid();
-          setStatus(false);
-        } catch (err) {
-          setStatus(false);
-          alert(`이미지 생성 실패: ${err.message || err}`);
-        } finally {
-          generateBtn.disabled = false;
-        }
-      });
 
       clearBtn.addEventListener("click", () => {
         generatedImages = [];
