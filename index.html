@@ -11252,25 +11252,44 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
 
         try {
           const tasks = Array.from({ length: count }, () =>
-            puter.ai.txt2img(prompt, { model })
+            puter.ai.txt2img({ prompt, model })
           );
           const results = await Promise.allSettled(tasks);
           const newImgs = [];
+          const errors = [];
           results.forEach((r, i) => {
             if (r.status === "fulfilled" && r.value) {
-              const src = r.value.src || (r.value instanceof HTMLImageElement ? r.value.src : null);
-              if (src) newImgs.push({ src, prompt });
-            } else {
+              let src = null;
+              if (typeof r.value === "string") {
+                src = r.value;
+              } else if (r.value instanceof HTMLImageElement) {
+                src = r.value.src;
+              } else if (r.value && r.value.src) {
+                src = r.value.src;
+              }
+              if (src) {
+                newImgs.push({ src, prompt });
+              } else {
+                const msg = `이미지 ${i + 1}: 유효하지 않은 결과`;
+                errors.push(msg);
+                console.warn(msg, r.value);
+              }
+            } else if (r.status === "rejected") {
+              const msg = r.reason?.message || String(r.reason) || "알 수 없는 오류";
+              errors.push(msg);
               console.warn(`이미지 ${i + 1} 생성 실패:`, r.reason);
             }
           });
-          if (newImgs.length === 0) throw new Error("생성된 이미지가 없습니다. 다시 시도해 주세요.");
+          if (newImgs.length === 0) {
+            const detail = errors.length > 0 ? `\n\n오류 상세: ${errors[0]}` : "";
+            throw new Error(`생성된 이미지가 없습니다. 다시 시도해 주세요.${detail}`);
+          }
           generatedImages = [...newImgs, ...generatedImages];
           renderGrid();
           setStatus(false);
         } catch (err) {
           setStatus(false);
-          alert(`이미지 생성 실패: ${err.message || err}\n\nPuter.js는 로그인 없이도 사용 가능하지만, 처음 사용 시 팝업 창에서 허용이 필요할 수 있습니다.`);
+          alert(`이미지 생성 실패: ${err.message || err}`);
         } finally {
           generateBtn.disabled = false;
         }
