@@ -3143,8 +3143,8 @@
               <select id="imageGenModelSelect">
                 <option value="dall-e-3">DALL-E 3 (OpenAI · 고품질)</option>
                 <option value="gpt-image-1">GPT Image 1 (OpenAI · 최신)</option>
-                <option value="flux">FLUX (Black Forest Labs · 빠름)</option>
-                <option value="stable-diffusion">Stable Diffusion (세밀한 제어)</option>
+                <option value="black-forest-labs/FLUX.1-schnell">FLUX (Black Forest Labs · 빠름)</option>
+                <option value="stabilityai/stable-diffusion-xl-base-1.0">Stable Diffusion (세밀한 제어)</option>
               </select>
             </div>
 
@@ -11252,7 +11252,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
 
         try {
           const tasks = Array.from({ length: count }, () =>
-            puter.ai.txt2img(prompt, false)
+            puter.ai.txt2img(prompt, { model })
           );
           const results = await Promise.allSettled(tasks);
           const newImgs = [];
