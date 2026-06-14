@@ -11252,7 +11252,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
 
         try {
           const tasks = Array.from({ length: count }, () =>
-            puter.ai.imageGenerate(prompt, { model })
+            puter.ai.txt2img(prompt, false)
           );
           const results = await Promise.allSettled(tasks);
           const newImgs = [];
