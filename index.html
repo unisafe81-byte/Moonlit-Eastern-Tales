@@ -764,6 +764,118 @@
       flex-shrink: 0;
     }
 
+    /* ── 스토리보드 ── */
+    .storyboard-palette {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .storyboard-palette-thumb {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color .15s, opacity .15s;
+      opacity: .75;
+    }
+    .storyboard-palette-thumb:hover { opacity: 1; }
+    .storyboard-palette-thumb.selected {
+      border-color: var(--accent);
+      opacity: 1;
+    }
+    .storyboard-palette-empty {
+      color: var(--muted);
+      font-size: 12px;
+      padding: 8px 0;
+    }
+    .storyboard-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .storyboard-card {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .storyboard-img-slot {
+      flex-shrink: 0;
+      width: 140px;
+      height: 100px;
+      border: 2px dashed var(--line);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--input);
+      transition: border-color .15s;
+      position: relative;
+    }
+    .storyboard-img-slot:hover { border-color: var(--accent); }
+    .storyboard-img-slot.has-image { border-style: solid; border-color: var(--accent); }
+    .storyboard-img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .storyboard-img-slot-label {
+      color: var(--muted);
+      font-size: 11px;
+      text-align: center;
+      padding: 6px;
+      pointer-events: none;
+    }
+    .storyboard-card-body {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .storyboard-cut-num {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .storyboard-cue {
+      font-size: 13px;
+      color: var(--ink);
+      line-height: 1.55;
+      border-left: 2px solid var(--accent);
+      padding-left: 8px;
+    }
+    .storyboard-prompt {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+    .storyboard-empty {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 32px 0;
+    }
+    @media (max-width: 520px) {
+      .storyboard-card { flex-direction: column; }
+      .storyboard-img-slot { width: 100%; height: 160px; }
+    }
+
     @keyframes spin {
       to { transform: rotate(360deg); }
     }
@@ -1026,6 +1138,7 @@
       <button class="tab" type="button" data-tab="shortsPackaging">14. 쇼츠 패키징 생성</button>
       <button class="tab" type="button" data-tab="supertoneTts">15. Supertonic 로컬 TTS 생성</button>
       <button class="tab" type="button" data-tab="imageGen">16. AI 이미지 생성</button>
+      <button class="tab" type="button" data-tab="storyboard">17. 스토리보드</button>
     </nav>
 
     <section class="operations-nav" aria-label="운영 보조 도구">
@@ -3176,6 +3289,30 @@
           <div class="input-area">
             <div id="imageGenGrid" class="image-gen-grid"></div>
             <p id="imageGenEmpty" style="color:var(--muted);font-size:12px;margin:0">생성된 이미지가 없습니다. 위에서 프롬프트를 입력하고 이미지 생성 버튼을 누르세요.</p>
+          </div>
+        </section>
+      </section>
+
+      <section id="tabStoryboard" class="tab-panel" data-panel="storyboard">
+        <section class="workspace wide" aria-labelledby="storyboardTitle">
+          <div class="panel-head">
+            <h2 id="storyboardTitle">17. 스토리보드</h2>
+            <p class="panel-desc">Step 11의 시각 컷과 Step 16의 생성 이미지를 조합한 편집용 스토리보드입니다.</p>
+          </div>
+          <div class="input-area">
+            <div class="actions" style="margin-bottom:16px">
+              <button id="loadStoryboardBtn" class="btn primary" type="button">스토리보드 불러오기</button>
+              <button id="clearStoryboardBtn" class="btn warn" type="button">초기화</button>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-bottom:12px">
+              ① 팔레트에서 이미지를 선택(클릭)한 뒤 ② 카드의 이미지 슬롯을 클릭하면 배정됩니다. 슬롯을 다시 클릭하면 배정이 취소됩니다.
+            </p>
+            <div id="storyboardPalette" class="storyboard-palette">
+              <p class="storyboard-palette-empty">Step 16에서 이미지를 먼저 생성하세요.</p>
+            </div>
+            <div id="storyboardGrid" class="storyboard-grid">
+              <p class="storyboard-empty">「스토리보드 불러오기」 버튼을 눌러 시작하세요.</p>
+            </div>
           </div>
         </section>
       </section>
@@ -11310,6 +11447,169 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
       });
 
       renderGrid();
+    })();
+
+    // ── 17. 스토리보드 ────────────────────────────────────────────────
+    (function initStoryboard() {
+      const loadBtn    = document.querySelector("#loadStoryboardBtn");
+      const clearBtn2  = document.querySelector("#clearStoryboardBtn");
+      const palette    = document.querySelector("#storyboardPalette");
+      const grid       = document.querySelector("#storyboardGrid");
+
+      let selectedImgSrc = null;
+
+      function getStep11Text() {
+        const el = document.querySelector("#pipelineResultStep11");
+        return el ? el.value.trim() : "";
+      }
+
+      function parseStep11Cuts(text) {
+        if (!text) return [];
+        const cuts = [];
+        const lines = text.split("\n");
+        let current = null;
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+          const lower = line.toLowerCase();
+
+          // 새 컷 시작 감지 (Cut 1, Cut 2, Visual Cut 1 등)
+          if (/\b(visual\s*)?cut\s*\d+\b/i.test(line)) {
+            if (current) cuts.push(current);
+            current = { title: line.trim(), startCue: "", endCue: "", imagePrompt: "" };
+            continue;
+          }
+          if (!current) continue;
+
+          if (lower.includes("script start cue") || lower.includes("start cue")) {
+            current.startCue = (lines[i + 1] || "").replace(/^[:\-–\s]+/, "").trim()
+                             || line.replace(/.*cue[:\-–\s]*/i, "").trim();
+          }
+          if (lower.includes("script end cue") || lower.includes("end cue")) {
+            current.endCue = (lines[i + 1] || "").replace(/^[:\-–\s]+/, "").trim()
+                           || line.replace(/.*cue[:\-–\s]*/i, "").trim();
+          }
+          if (lower.includes("final image prompt") || lower.includes("image prompt")) {
+            // 같은 줄 또는 다음 줄에서 영문 프롬프트 추출
+            const inline = line.replace(/.*image prompt[:\-–\s]*/i, "").trim();
+            if (inline.length > 20) {
+              current.imagePrompt = inline;
+            } else {
+              for (let j = i + 1; j < Math.min(i + 4, lines.length); j++) {
+                const c = lines[j].trim();
+                if (c && !c.startsWith("#") && c.length > 20) {
+                  current.imagePrompt = c;
+                  break;
+                }
+              }
+            }
+          }
+        }
+        if (current) cuts.push(current);
+        return cuts;
+      }
+
+      function getImagesFromDom() {
+        return Array.from(document.querySelectorAll("#imageGenGrid .image-gen-card img"))
+          .map(img => img.src)
+          .filter(Boolean);
+      }
+
+      function renderPalette(images) {
+        palette.innerHTML = "";
+        if (!images.length) {
+          palette.innerHTML = '<p class="storyboard-palette-empty">Step 16에서 이미지를 먼저 생성하세요.</p>';
+          return;
+        }
+        images.forEach(src => {
+          const img = document.createElement("img");
+          img.src = src;
+          img.className = "storyboard-palette-thumb";
+          img.title = "클릭하여 선택";
+          img.addEventListener("click", () => {
+            document.querySelectorAll(".storyboard-palette-thumb").forEach(t => t.classList.remove("selected"));
+            if (selectedImgSrc === src) {
+              selectedImgSrc = null;
+            } else {
+              img.classList.add("selected");
+              selectedImgSrc = src;
+            }
+          });
+          palette.appendChild(img);
+        });
+      }
+
+      function renderStoryboard(cuts) {
+        grid.innerHTML = "";
+        if (!cuts.length) {
+          grid.innerHTML = '<p class="storyboard-empty">Step 11 결과물에서 컷 정보를 찾지 못했습니다.<br>Step 11을 먼저 실행해 주세요.</p>';
+          return;
+        }
+        cuts.forEach((cut, idx) => {
+          const card = document.createElement("div");
+          card.className = "storyboard-card";
+
+          const slot = document.createElement("div");
+          slot.className = "storyboard-img-slot";
+          slot.title = "클릭하여 선택한 이미지 배정";
+          slot.innerHTML = '<span class="storyboard-img-slot-label">이미지 선택 후<br>클릭</span>';
+          slot.addEventListener("click", () => {
+            if (slot.classList.contains("has-image")) {
+              // 배정 취소
+              slot.innerHTML = '<span class="storyboard-img-slot-label">이미지 선택 후<br>클릭</span>';
+              slot.classList.remove("has-image");
+            } else if (selectedImgSrc) {
+              const img = document.createElement("img");
+              img.src = selectedImgSrc;
+              img.alt = `컷 ${idx + 1} 이미지`;
+              slot.innerHTML = "";
+              slot.appendChild(img);
+              slot.classList.add("has-image");
+            }
+          });
+
+          const body = document.createElement("div");
+          body.className = "storyboard-card-body";
+
+          const num = document.createElement("div");
+          num.className = "storyboard-cut-num";
+          num.textContent = cut.title || `컷 ${idx + 1}`;
+
+          const cue = document.createElement("div");
+          cue.className = "storyboard-cue";
+          const cueText = [cut.startCue, cut.endCue].filter(Boolean).join(" … ");
+          cue.textContent = cueText || "(대본 큐 없음)";
+
+          body.appendChild(num);
+          body.appendChild(cue);
+
+          if (cut.imagePrompt) {
+            const prompt = document.createElement("div");
+            prompt.className = "storyboard-prompt";
+            prompt.textContent = "🖼 " + cut.imagePrompt;
+            body.appendChild(prompt);
+          }
+
+          card.appendChild(slot);
+          card.appendChild(body);
+          grid.appendChild(card);
+        });
+      }
+
+      loadBtn.addEventListener("click", () => {
+        const text = getStep11Text();
+        const cuts = parseStep11Cuts(text);
+        const images = getImagesFromDom();
+        renderPalette(images);
+        renderStoryboard(cuts);
+        selectedImgSrc = null;
+      });
+
+      clearBtn2.addEventListener("click", () => {
+        grid.innerHTML = '<p class="storyboard-empty">「스토리보드 불러오기」 버튼을 눌러 시작하세요.</p>';
+        palette.innerHTML = '<p class="storyboard-palette-empty">Step 16에서 이미지를 먼저 생성하세요.</p>';
+        selectedImgSrc = null;
+      });
     })();
 
     loadKeywordTemplate();
