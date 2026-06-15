@@ -7111,10 +7111,21 @@ ${keywordDirection.value.trim() || "없음"}`;
       updateCounts();
     }
 
+    function isIntegratedPostProcessorTemplate(template) {
+      return /Integrated Script Post-Processor/i.test(template)
+        && /FINAL INTEGRATED SCRIPT/i.test(template)
+        && /EDIT LOG/i.test(template);
+    }
+
     function loadPostProcessorTemplate() {
       builtInPostProcessorTemplate = window.INTEGRATED_POST_PROCESSOR_PROMPT || "";
       const savedTemplate = localStorage.getItem(POST_PROCESSOR_STORAGE_KEY);
-      postProcessorTemplate = savedTemplate || builtInPostProcessorTemplate;
+      const savedTemplateIsValid = savedTemplate && isIntegratedPostProcessorTemplate(savedTemplate);
+      postProcessorTemplate = savedTemplateIsValid ? savedTemplate : builtInPostProcessorTemplate;
+      if (savedTemplate && !savedTemplateIsValid && builtInPostProcessorTemplate) {
+        localStorage.setItem(POST_PROCESSOR_STORAGE_KEY, builtInPostProcessorTemplate);
+        localStorage.setItem(POST_PROCESSOR_SOURCE_STORAGE_KEY, POST_PROCESSOR_PROMPT_FILE);
+      }
       syncPostProcessorTemplateEditor();
       setStatus(postProcessorTemplate ? "Post-Processor 템플릿 로드됨" : "Post-Processor 템플릿을 찾을 수 없음", postProcessorTemplate ? "ready" : "error");
     }
@@ -7123,6 +7134,10 @@ ${keywordDirection.value.trim() || "없음"}`;
       const nextTemplate = postProcessorTemplateEditor.value;
       if (!nextTemplate.trim()) {
         setStatus("저장할 템플릿이 비어 있음", "error");
+        return;
+      }
+      if (!isIntegratedPostProcessorTemplate(nextTemplate)) {
+        setStatus("Step 7에는 Integrated Script Post-Processor 프롬프트만 저장할 수 있습니다.", "error");
         return;
       }
       postProcessorTemplate = nextTemplate;
@@ -7840,7 +7855,11 @@ ${finalIntegratedScript}
       }
 
       saveSupertoneSettings();
-      const response = await fetch("/api/supertonic/tts", {
+      const normalizedServerUrl = serverUrl.replace(/\/+$/, "");
+      const supertonicRequestEndpoint = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname)
+        ? "/api/supertonic/tts"
+        : `${normalizedServerUrl}/api/supertonic/tts`;
+      const response = await fetch(supertonicRequestEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -7855,11 +7874,21 @@ ${finalIntegratedScript}
         });
 
       if (!response.ok) {
-        const errorPayload = await response.json().catch(() => ({}));
-        throw new Error(errorPayload.error || `HTTP ${response.status}`);
+        const errorText = await response.text().catch(() => "");
+        let errorMessage = "";
+        try {
+          errorMessage = JSON.parse(errorText).error || "";
+        } catch (error) {
+          errorMessage = errorText.trim();
+        }
+        throw new Error(errorMessage || `HTTP ${response.status}`);
       }
 
-      return response.blob();
+      const audioBlob = await response.blob();
+      if (!audioBlob.size) {
+        throw new Error("Supertonic 서버가 빈 오디오 응답을 반환했습니다.");
+      }
+      return audioBlob;
     }
 
     async function generateSupertoneSample() {
