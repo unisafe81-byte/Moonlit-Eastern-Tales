@@ -7858,17 +7858,23 @@ ${finalIntegratedScript}
       const normalizedServerUrl = serverUrl.replace(/\/+$/, "");
       const supertonicRequestEndpoint = /^(localhost|127\.0\.0\.1)$/i.test(window.location.hostname)
         ? "/api/supertonic/tts"
-        : `${normalizedServerUrl}/api/supertonic/tts`;
+        : `${normalizedServerUrl}/v1/tts`;
       const response = await fetch(supertonicRequestEndpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             text,
+            input: text,
             serverUrl,
             language: supertoneLanguage.value,
+            lang: supertoneLanguage.value,
             voice: supertoneModel.value,
+            model: "supertonic-3",
+            response_format: "wav",
             speed: supertoneStyle.value.trim(),
             steps: supertonicSteps.value,
+            total_steps: supertonicSteps.value,
+            max_chunk_length: 10000,
             silenceDuration: supertonicSilence.value
           })
         });
@@ -7877,7 +7883,8 @@ ${finalIntegratedScript}
         const errorText = await response.text().catch(() => "");
         let errorMessage = "";
         try {
-          errorMessage = JSON.parse(errorText).error || "";
+          const parsedError = JSON.parse(errorText);
+          errorMessage = parsedError.error?.message || parsedError.error || "";
         } catch (error) {
           errorMessage = errorText.trim();
         }
@@ -7889,6 +7896,14 @@ ${finalIntegratedScript}
         throw new Error("Supertonic 서버가 빈 오디오 응답을 반환했습니다.");
       }
       return audioBlob;
+    }
+
+    function normalizeSupertonicErrorMessage(error) {
+      const message = error?.message || String(error);
+      if (/Failed to fetch|NetworkError|원격 서버에 연결할 수 없습니다|Could not connect|ECONNREFUSED|connection refused/i.test(message)) {
+        return "Supertonic 로컬 서버가 실행 중이 아닙니다. 별도 터미널에서 supertonic serve --host 127.0.0.1 --port 7788 을 먼저 실행한 뒤 다시 시도하세요.";
+      }
+      return message;
     }
 
     async function generateSupertoneSample() {
@@ -7912,7 +7927,7 @@ ${finalIntegratedScript}
         setStatus(`${supertoneModel.value} 샘플 음성 생성 완료`, "ready");
       } catch (error) {
         supertoneTtsStatus.textContent = "샘플 실패";
-        setStatus(`샘플 생성 실패: ${error.message}`, "error");
+        setStatus(`샘플 생성 실패: ${normalizeSupertonicErrorMessage(error)}`, "error");
       } finally {
         generateSupertoneSampleBtn.disabled = false;
       }
@@ -7940,7 +7955,7 @@ ${finalIntegratedScript}
         setStatus("Supertonic 로컬 WAV 음성 생성 완료", "ready");
       } catch (error) {
         supertoneTtsStatus.textContent = "생성 실패";
-        setStatus(`Supertonic 생성 실패: ${error.message}`, "error");
+        setStatus(`Supertonic 생성 실패: ${normalizeSupertonicErrorMessage(error)}`, "error");
       } finally {
         generateSupertoneTtsBtn.disabled = false;
       }
