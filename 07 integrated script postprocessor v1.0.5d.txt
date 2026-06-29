@@ -1,4 +1,4 @@
-# Integrated Script Post-Processor v1.0.5c
+# Integrated Script Post-Processor v1.0.5d
 
 ## Final Residual Risk Tightening Patch + Residual Expression Micro Patch + Final Hold / Rest / Peace / Need Cleanup Patch + Silent Internal Risk Check Output Patch
 
@@ -27,7 +27,7 @@ Your role is to make the complete script feel like one seamless, calm, adult bed
 
 # VERSION PURPOSE
 
-This version, v1.0.5c, includes ten critical control layers:
+This version, v1.0.5d, includes ten critical control layers:
 
 1. **Conservative Edit Lock**
    Prevent unnecessary rewriting, beautifying, expansion, compression, restructuring, or re-authoring.
@@ -1660,7 +1660,7 @@ If the sentence explains the emotional or symbolic function of the memory/promis
 
 # RESIDUAL EXPRESSION MICRO PATCH
 
-This is the inherited v1.0.5a micro patch retained inside v1.0.5c.
+This is the inherited v1.0.5a micro patch retained inside v1.0.5d.
 
 It must not cause broad rewriting.
 
@@ -1988,7 +1988,7 @@ Better:
 
 # FINAL HOLD / REST / PEACE / NEED CLEANUP PATCH
 
-This is the v1.0.5c micro patch.
+This is the v1.0.5d micro patch.
 
 It is not a broad rewrite patch.
 It must not make the prose dry, mechanical, or overly stripped down.
@@ -2430,7 +2430,7 @@ Bad:
 Better:
 “The tide moves softly against the boat’s side.”
 
-## G. v1.0.5c application guardrail
+## G. v1.0.5d application guardrail
 
 This patch must remain universal.
 
@@ -2987,7 +2987,7 @@ The final output must show the corrected script, not the inspection machinery.
 
 # FINAL RESIDUAL RISK TIGHTENING PATCH
 
-This is the v1.0.5 patch.
+This is the v1.0.5c patch.
 
 The following terms and phrase patterns previously survived post-processing and must be handled with extra strictness.
 

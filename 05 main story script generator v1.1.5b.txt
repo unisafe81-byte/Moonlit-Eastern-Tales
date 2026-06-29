@@ -1,3 +1,5 @@
+# Main Story Script Generator v1.1.5b
+
 Create the main story narration script for a global YouTube channel called **“Moonlit Eastern Tales.”**
 
 This channel creates calm bedtime stories for adults, inspired by old Korean folklore, Korean night imagery, and quiet Eastern tales.
@@ -319,6 +321,38 @@ If the story reaches the written message, emotional meaning, or soft understandi
 If most internal sensory beats are handled in one sentence each, the output fails.
 
 If multiple beats are compressed into a single summary paragraph without lingering, the output fails.
+
+---
+
+# STRUCTURAL FAILURE RECOVERY PROCEDURE
+
+A structural failure is any violation of the Scene Residency Requirement: a scene below its minimum paragraph count, total developed paragraphs below 38, or total length below 3,500 words.
+
+A structural failure is different from a wording violation.
+
+A wording violation (a forbidden term from a later filter section) is fixed by revising the sentence that contains it.
+
+A structural failure cannot be fixed by revising a sentence. It must be fixed by expanding the underdeveloped scene itself.
+
+When the internal self-check (see FINAL QUALITY CHECK BEFORE OUTPUT) finds a structural failure, do not output the draft as-is, and do not silently shorten the rest of the story to compensate elsewhere.
+
+Instead, before producing the final answer, silently repeat the following recovery loop:
+
+1. Identify which scene or scenes fall below their minimum paragraph count, or identify that the total length falls below the minimum.
+2. Return only to the underdeveloped scene or scenes. Do not rewrite scenes that already meet their minimum.
+3. Re-expand the identified scene using its own Internal Sensory Beat Control list (see the matching "Scene N." section above). Select additional beats from that scene's own list that were not yet given developed-paragraph treatment, and develop them as full paragraphs.
+4. Expand through sensory lingering only, following the same rule as the rest of this prompt: do not add new events, new characters, new objects, or new mysteries to reach the minimum. Length must come from staying longer inside the scene's existing sensory world.
+5. Re-check the expanded scene against its minimum paragraph count.
+6. If the scene still falls short, repeat steps 3–5 for that scene before moving on.
+7. Once every scene meets its minimum and the total length meets the minimum, re-check the whole narration once more as a single pass before output.
+
+This recovery loop is internal. Do not show the loop, the failed draft, the paragraph counts, or the recovery steps to the user.
+
+Do not skip the recovery loop and output a known-short draft with a note that it is short.
+
+Do not solve a structural failure by inserting filler sentences, repeated phrases, or restated imagery that does not add genuine sensory development. Padding the word count without lingering genuinely on a beat is itself a structural failure.
+
+If, after a reasonable number of recovery passes, a specific scene still cannot reach its minimum because the Main Story Structure input genuinely does not supply enough material for that scene, expand the adjacent scene instead so the overall minimums are still met, and continue the recovery loop rather than outputting an underdeveloped narration.
 
 ---
 
@@ -2378,5 +2412,8 @@ Before finalizing, silently check that:
 86. The Sleep Fade input block avoids “breath,” “breathing,” “body,” “mind,” “thoughts,” “listener,” and body-scan phrasing.
 87. The Sleep Fade input block avoids “ancient greeting,” “asks for nothing,” “asking nothing,” “old promise kept,” and object-intention formulas.
 88. If any forbidden expression appears in the final script or Sleep Fade Input block, revise internally before output.
+89. If any item 10–20 above is failing (a scene below its minimum paragraph count, fewer than 38 total developed paragraphs, or fewer than 3,500 words), this is a structural failure, not a wording violation. Do not revise a sentence to fix it. Follow the STRUCTURAL FAILURE RECOVERY PROCEDURE above before output.
+
+Do not output a narration that is known to fail items 10–20 above. Complete the structural recovery loop first, then re-run this Final Quality Check once more before producing the final answer.
 
 Now write the full Main Story narration script and the required Sleep Fade Input block using the provided Main Story Structure.
