@@ -1317,6 +1317,10 @@
                 <strong>결합 위치</strong>
                 <span>지침 → 원문 → 입력값</span>
               </div>
+              <div class="meta-box">
+                <strong>저장 방식</strong>
+                <span id="packagingTemplateSaveModeSummary">브라우저 저장소</span>
+              </div>
             </div>
 
             <details class="prompt-editor">
@@ -1652,9 +1656,33 @@
               </div>
               <div class="meta-box">
                 <strong>결합 위치</strong>
-                <span>에피소드 재료 안의 다섯 개 빈칸</span>
+                <span>지침 → 원문 → 입력값</span>
               </div>
             </div>
+
+            <details class="prompt-editor">
+              <summary>역할 지침 파일 등록</summary>
+              <div class="prompt-editor-body">
+                <label for="openingInstructionEditor">수면 진입 오프닝 역할 지침</label>
+                <textarea id="openingInstructionEditor" spellcheck="false" placeholder="B_chat_instructions.md 파일을 선택하면 최종 프롬프트 제일 상단에 추가됩니다."></textarea>
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>지침 파일</strong>
+                    <span id="openingInstructionFileName">선택된 지침 없음</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>지침 길이</strong>
+                    <span id="openingInstructionCount">0자</span>
+                  </div>
+                </div>
+                <div class="actions">
+                  <button id="importOpeningInstructionBtn" class="btn" type="button">지침 파일 선택</button>
+                  <button id="saveOpeningInstructionBtn" class="btn primary" type="button">현재 지침 저장</button>
+                  <button id="resetOpeningInstructionBtn" class="btn warn" type="button">지침 제거</button>
+                  <input id="importOpeningInstructionFile" class="file-input" type="file" accept=".md,.txt,text/markdown,text/plain">
+                </div>
+              </div>
+            </details>
 
             <details class="prompt-editor">
               <summary>프롬프트 업데이트</summary>
@@ -2669,10 +2697,34 @@
                 <span id="packagingTemplateFileName">09 youtube packaging generator v1.0.4.txt</span>
               </div>
               <div class="meta-box">
-                <strong>저장 방식</strong>
-                <span id="packagingTemplateSaveModeSummary">브라우저 저장소</span>
+                <strong>결합 위치</strong>
+                <span>지침 → 원문 → 입력값</span>
               </div>
             </div>
+
+            <details class="prompt-editor">
+              <summary>역할 지침 파일 등록</summary>
+              <div class="prompt-editor-body">
+                <label for="packagingInstructionEditor">유튜브 패키징 역할 지침</label>
+                <textarea id="packagingInstructionEditor" spellcheck="false" placeholder="C_chat_instructions.md 파일을 선택하면 최종 프롬프트 제일 상단에 추가됩니다."></textarea>
+                <div class="meta-row">
+                  <div class="meta-box">
+                    <strong>지침 파일</strong>
+                    <span id="packagingInstructionFileName">선택된 지침 없음</span>
+                  </div>
+                  <div class="meta-box">
+                    <strong>지침 길이</strong>
+                    <span id="packagingInstructionCount">0자</span>
+                  </div>
+                </div>
+                <div class="actions">
+                  <button id="importPackagingInstructionBtn" class="btn" type="button">지침 파일 선택</button>
+                  <button id="savePackagingInstructionBtn" class="btn primary" type="button">현재 지침 저장</button>
+                  <button id="resetPackagingInstructionBtn" class="btn warn" type="button">지침 제거</button>
+                  <input id="importPackagingInstructionFile" class="file-input" type="file" accept=".md,.txt,text/markdown,text/plain">
+                </div>
+              </div>
+            </details>
 
             <details class="prompt-editor">
               <summary>프롬프트 업데이트</summary>
@@ -4388,6 +4440,8 @@
     const OPENING_PROMPT_FILE = "03 opening sleepdescent script generator v1.2.5.txt";
     const OPENING_STORAGE_KEY = `moonlitOpeningPrompt${FINAL_PROMPT_SET_SUFFIX}`;
     const OPENING_SOURCE_STORAGE_KEY = `moonlitOpeningPromptSource${FINAL_PROMPT_SET_SUFFIX}`;
+    const OPENING_INSTRUCTION_STORAGE_KEY = `moonlitOpeningInstructionTemplate${FINAL_PROMPT_SET_SUFFIX}`;
+    const OPENING_INSTRUCTION_SOURCE_STORAGE_KEY = `moonlitOpeningInstructionTemplateSource${FINAL_PROMPT_SET_SUFFIX}`;
     const STRUCTURE_PROMPT_FILE = "04 main story structure generator v1.0.3a.txt";
     const STRUCTURE_STORAGE_KEY = `moonlit_main_story_structure_template_v102${FINAL_PROMPT_SET_SUFFIX}`;
     const STRUCTURE_SOURCE_STORAGE_KEY = `moonlit_main_story_structure_template_source${FINAL_PROMPT_SET_SUFFIX}`;
@@ -4416,6 +4470,8 @@
     const PACKAGING_PROMPT_FILE = "09 youtube packaging generator v1.0.4.txt";
     const PACKAGING_STORAGE_KEY = `moonlit_youtube_packaging_template_v104${FINAL_PROMPT_SET_SUFFIX}`;
     const PACKAGING_SOURCE_STORAGE_KEY = `moonlit_youtube_packaging_template_source${FINAL_PROMPT_SET_SUFFIX}`;
+    const PACKAGING_INSTRUCTION_STORAGE_KEY = `moonlitPackagingInstructionTemplate${FINAL_PROMPT_SET_SUFFIX}`;
+    const PACKAGING_INSTRUCTION_SOURCE_STORAGE_KEY = `moonlitPackagingInstructionTemplateSource${FINAL_PROMPT_SET_SUFFIX}`;
     const KOREAN_REVIEW_PROMPT_FILE = "10 korean review translation generator v1.0.txt";
     const KOREAN_REVIEW_STORAGE_KEY = `moonlit_korean_review_translation_template_v100${FINAL_PROMPT_SET_SUFFIX}`;
     const KOREAN_REVIEW_SOURCE_STORAGE_KEY = `moonlit_korean_review_translation_template_source${FINAL_PROMPT_SET_SUFFIX}`;
@@ -4708,6 +4764,13 @@
     const extractOpeningMaterialBtn = document.querySelector("#extractOpeningMaterialBtn");
     const openingMaterialFields = Array.from(document.querySelectorAll(".opening-material"));
     const copyOpeningFieldsBtn = document.querySelector("#copyOpeningFieldsBtn");
+    const openingInstructionEditor = document.querySelector("#openingInstructionEditor");
+    const openingInstructionFileName = document.querySelector("#openingInstructionFileName");
+    const openingInstructionCount = document.querySelector("#openingInstructionCount");
+    const importOpeningInstructionBtn = document.querySelector("#importOpeningInstructionBtn");
+    const saveOpeningInstructionBtn = document.querySelector("#saveOpeningInstructionBtn");
+    const resetOpeningInstructionBtn = document.querySelector("#resetOpeningInstructionBtn");
+    const importOpeningInstructionFile = document.querySelector("#importOpeningInstructionFile");
     const openingTemplateEditor = document.querySelector("#openingTemplateEditor");
     const openingFinalPrompt = document.querySelector("#openingFinalPrompt");
     const openingInputCount = document.querySelector("#openingInputCount");
@@ -4911,6 +4974,13 @@
     const packagingTtsReadyInput = document.querySelector("#packagingTtsReadyInput");
     const copyPackagingTtsReadyWithTitleBtn = document.querySelector("#copyPackagingTtsReadyWithTitleBtn");
     const packagingInputCount = document.querySelector("#packagingInputCount");
+    const packagingInstructionEditor = document.querySelector("#packagingInstructionEditor");
+    const packagingInstructionFileName = document.querySelector("#packagingInstructionFileName");
+    const packagingInstructionCount = document.querySelector("#packagingInstructionCount");
+    const importPackagingInstructionBtn = document.querySelector("#importPackagingInstructionBtn");
+    const savePackagingInstructionBtn = document.querySelector("#savePackagingInstructionBtn");
+    const resetPackagingInstructionBtn = document.querySelector("#resetPackagingInstructionBtn");
+    const importPackagingInstructionFile = document.querySelector("#importPackagingInstructionFile");
     const packagingTemplateEditor = document.querySelector("#packagingTemplateEditor");
     const packagingTemplateHeaderCount = document.querySelector("#packagingTemplateHeaderCount");
     const packagingTemplateCount = document.querySelector("#packagingTemplateCount");
@@ -5282,6 +5352,7 @@
     let builtInEpisodeTemplate = "";
     let openingTemplate = "";
     let builtInOpeningTemplate = "";
+    let openingInstructions = "";
     let structureTemplate = "";
     let builtInStructureTemplate = "";
     let mainScriptTemplate = "";
@@ -5297,6 +5368,7 @@
     let supertonicParts = [];
     let packagingTemplate = "";
     let builtInPackagingTemplate = "";
+    let packagingInstructions = "";
     let koreanReviewTemplate = "";
     let builtInKoreanReviewTemplate = "";
     let longformVisualTemplate = "";
@@ -6007,6 +6079,7 @@ ${keywordDirection.value.trim() || "없음"}`;
       pipelineResultStep2Count.textContent = `${pipelineResultStep2.value.length.toLocaleString("ko-KR")}자`;
       const openingInputLength = openingFullMaterial.value.length + openingMaterialFields.reduce((total, field) => total + field.value.length, 0);
       openingInputCount.textContent = `${openingInputLength.toLocaleString("ko-KR")}자`;
+      openingInstructionCount.textContent = `${openingInstructionEditor.value.length.toLocaleString("ko-KR")}자`;
       openingTemplateCount.textContent = `${openingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       openingOutputCount.textContent = `${openingFinalPrompt.value.length.toLocaleString("ko-KR")}자`;
       pipelineResultStep3Count.textContent = `${pipelineResultStep3.value.length.toLocaleString("ko-KR")}자`;
@@ -6044,6 +6117,7 @@ ${keywordDirection.value.trim() || "없음"}`;
         updateSelectedSupertonicPartInfo();
       }
       packagingInputCount.textContent = `${(packagingFullTtsResult.value.length + packagingTtsReadyInput.value.length).toLocaleString("ko-KR")}자`;
+      packagingInstructionCount.textContent = `${packagingInstructionEditor.value.length.toLocaleString("ko-KR")}자`;
       packagingTemplateHeaderCount.textContent = `${packagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       packagingTemplateCount.textContent = `${packagingTemplateEditor.value.length.toLocaleString("ko-KR")}자`;
       pipelineResultStep9Count.textContent = `${pipelineResultStep9.value.length.toLocaleString("ko-KR")}자`;
@@ -6541,6 +6615,54 @@ ${keywordDirection.value.trim() || "없음"}`;
       updateCounts();
     }
 
+    function syncOpeningInstructionEditor() {
+      openingInstructionEditor.value = openingInstructions;
+      openingInstructionFileName.textContent = openingInstructions.trim()
+        ? localStorage.getItem(OPENING_INSTRUCTION_SOURCE_STORAGE_KEY) || "브라우저 저장 지침"
+        : "선택된 지침 없음";
+      updateCounts();
+    }
+
+    function applyOpeningInstructions(nextInstructions, shouldSave, sourceLabel = "") {
+      openingInstructions = nextInstructions;
+      if (shouldSave) {
+        if (openingInstructions.trim()) {
+          localStorage.setItem(OPENING_INSTRUCTION_STORAGE_KEY, openingInstructions);
+          localStorage.setItem(OPENING_INSTRUCTION_SOURCE_STORAGE_KEY, sourceLabel || "브라우저 저장 지침");
+        } else {
+          localStorage.removeItem(OPENING_INSTRUCTION_STORAGE_KEY);
+          localStorage.removeItem(OPENING_INSTRUCTION_SOURCE_STORAGE_KEY);
+        }
+      }
+      syncOpeningInstructionEditor();
+    }
+
+    function loadOpeningInstructions() {
+      openingInstructions = localStorage.getItem(OPENING_INSTRUCTION_STORAGE_KEY) || "";
+      syncOpeningInstructionEditor();
+    }
+
+    function saveOpeningInstructions() {
+      applyOpeningInstructions(openingInstructionEditor.value, true, localStorage.getItem(OPENING_INSTRUCTION_SOURCE_STORAGE_KEY) || "브라우저 저장 지침");
+      setStatus(openingInstructionEditor.value.trim() ? "수면 진입 오프닝 역할 지침 저장 완료" : "수면 진입 오프닝 역할 지침 제거 완료", "ready");
+    }
+
+    function resetOpeningInstructions() {
+      applyOpeningInstructions("", true, "");
+      setStatus("수면 진입 오프닝 역할 지침 제거 완료", "ready");
+    }
+
+    function importOpeningInstructions(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        applyOpeningInstructions(String(reader.result || ""), true, `지침 파일: ${file.name}`);
+        importOpeningInstructionFile.value = "";
+        setStatus(`${file.name} 지침 파일 등록 완료`, "ready");
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
     function loadOpeningTemplate() {
       builtInOpeningTemplate = window.OPENING_SLEEP_DESCENT_PROMPT || "";
       openingTemplate = localStorage.getItem(OPENING_STORAGE_KEY) || builtInOpeningTemplate;
@@ -6603,6 +6725,12 @@ ${keywordDirection.value.trim() || "없음"}`;
       reader.readAsText(file, "utf-8");
     }
 
+    function getOpeningInputBlock(values) {
+      return OPENING_FIELD_COPY_LABELS
+        .map((label, index) => `${label}:\n${values[index].trim()}`)
+        .join("\n\n");
+    }
+
     function generateOpeningPrompt() {
       const values = openingMaterialFields.map((field) => field.value);
       const emptyIndex = values.findIndex((value) => !value.trim());
@@ -6615,23 +6743,14 @@ ${keywordDirection.value.trim() || "없음"}`;
         return;
       }
 
-      const matches = openingTemplateEditor.value.match(/\[  \]/g) || [];
-      if (matches.length < openingMaterialFields.length) {
-        setStatus("템플릿 안에 에피소드 재료 빈칸이 부족함", "error");
-        openingFinalPrompt.value = "";
-        copyOpeningPromptBtn.disabled = true;
-        updateCounts();
-        return;
-      }
-
-      let index = 0;
       openingTemplate = openingTemplateEditor.value;
-      openingFinalPrompt.value = openingTemplate.replace(/\[  \]/g, (match) => {
-        if (index >= values.length) return match;
-        const nextValue = values[index];
-        index += 1;
-        return nextValue;
-      });
+      const promptBody = openingTemplate.replace(/\[  \]/g, "").trimEnd();
+      const inputBlock = getOpeningInputBlock(values);
+      const instructionBlock = openingInstructionEditor.value.trim();
+      const promptWithInput = `${promptBody}\n\n---\n\n${inputBlock}\n`;
+      openingFinalPrompt.value = instructionBlock
+        ? `${instructionBlock}\n\n---\n\n${promptWithInput.trimStart()}`
+        : promptWithInput;
 
       copyOpeningPromptBtn.disabled = !openingFinalPrompt.value;
       setStatus("오프닝 최종 프롬프트 생성 완료", "ready");
@@ -8146,6 +8265,54 @@ ${finalIntegratedScript}
       updateCounts();
     }
 
+    function syncPackagingInstructionEditor() {
+      packagingInstructionEditor.value = packagingInstructions;
+      packagingInstructionFileName.textContent = packagingInstructions.trim()
+        ? localStorage.getItem(PACKAGING_INSTRUCTION_SOURCE_STORAGE_KEY) || "브라우저 저장 지침"
+        : "선택된 지침 없음";
+      updateCounts();
+    }
+
+    function applyPackagingInstructions(nextInstructions, shouldSave, sourceLabel = "") {
+      packagingInstructions = nextInstructions;
+      if (shouldSave) {
+        if (packagingInstructions.trim()) {
+          localStorage.setItem(PACKAGING_INSTRUCTION_STORAGE_KEY, packagingInstructions);
+          localStorage.setItem(PACKAGING_INSTRUCTION_SOURCE_STORAGE_KEY, sourceLabel || "브라우저 저장 지침");
+        } else {
+          localStorage.removeItem(PACKAGING_INSTRUCTION_STORAGE_KEY);
+          localStorage.removeItem(PACKAGING_INSTRUCTION_SOURCE_STORAGE_KEY);
+        }
+      }
+      syncPackagingInstructionEditor();
+    }
+
+    function loadPackagingInstructions() {
+      packagingInstructions = localStorage.getItem(PACKAGING_INSTRUCTION_STORAGE_KEY) || "";
+      syncPackagingInstructionEditor();
+    }
+
+    function savePackagingInstructions() {
+      applyPackagingInstructions(packagingInstructionEditor.value, true, localStorage.getItem(PACKAGING_INSTRUCTION_SOURCE_STORAGE_KEY) || "브라우저 저장 지침");
+      setStatus(packagingInstructionEditor.value.trim() ? "유튜브 패키징 역할 지침 저장 완료" : "유튜브 패키징 역할 지침 제거 완료", "ready");
+    }
+
+    function resetPackagingInstructions() {
+      applyPackagingInstructions("", true, "");
+      setStatus("유튜브 패키징 역할 지침 제거 완료", "ready");
+    }
+
+    function importPackagingInstructions(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.addEventListener("load", () => {
+        applyPackagingInstructions(String(reader.result || ""), true, `지침 파일: ${file.name}`);
+        importPackagingInstructionFile.value = "";
+        setStatus(`${file.name} 지침 파일 등록 완료`, "ready");
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
     async function loadPackagingTemplate() {
       try {
         const sourceTemplate = window.YOUTUBE_PACKAGING_PROMPT || await fetch(encodeURI(PACKAGING_PROMPT_FILE), { cache: "no-store" }).then((response) => {
@@ -8284,9 +8451,14 @@ ${ttsReadyScript}
 
       const inputBlock = buildPackagingInputBlock(ttsReadyScript);
       const currentTemplate = packagingTemplateEditor.value;
-      packagingFinalPrompt.value = currentTemplate.includes(PACKAGING_PLACEHOLDER)
-        ? currentTemplate.replace(PACKAGING_PLACEHOLDER, () => inputBlock)
-        : `${currentTemplate.trimEnd()}\n\n${inputBlock}`;
+      const promptBody = currentTemplate.includes(PACKAGING_PLACEHOLDER)
+        ? currentTemplate.replace(PACKAGING_PLACEHOLDER, "").trimEnd()
+        : currentTemplate.trimEnd();
+      const instructionBlock = packagingInstructionEditor.value.trim();
+      const promptWithInput = `${promptBody}\n\n---\n\n${inputBlock}\n`;
+      packagingFinalPrompt.value = instructionBlock
+        ? `${instructionBlock}\n\n---\n\n${promptWithInput.trimStart()}`
+        : promptWithInput;
       copyPackagingPromptBtn.disabled = !packagingFinalPrompt.value;
       setStatus("YouTube Packaging 최종 프롬프트 생성 완료", "ready");
       updateCounts();
@@ -11146,6 +11318,11 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     extractOpeningMaterialBtn.addEventListener("click", extractOpeningMaterials);
     openingMaterialFields.forEach((field) => field.addEventListener("input", updateCounts));
     copyOpeningFieldsBtn.addEventListener("click", copyOpeningFieldsWithTitles);
+    openingInstructionEditor.addEventListener("input", updateCounts);
+    importOpeningInstructionBtn.addEventListener("click", () => importOpeningInstructionFile.click());
+    saveOpeningInstructionBtn.addEventListener("click", saveOpeningInstructions);
+    resetOpeningInstructionBtn.addEventListener("click", resetOpeningInstructions);
+    importOpeningInstructionFile.addEventListener("change", () => importOpeningInstructions(importOpeningInstructionFile.files[0]));
     openingTemplateEditor.addEventListener("input", updateCounts);
     pipelineResultStep3.addEventListener("input", () => handlePipelineResultInput(3, pipelineResultStep3));
     clearPipelineResultStep3Btn.addEventListener("click", () => clearPipelineResultField(3, pipelineResultStep3));
@@ -11277,6 +11454,11 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     importStep8ResultBtn.addEventListener("click", () => importPipelineResultToField(8, packagingFullTtsResult, "Step 8 결과"));
     packagingFullTtsResult.addEventListener("input", updateCounts);
     extractPackagingTtsReadyBtn.addEventListener("click", extractTtsReadyScriptFromTab8Result);
+    packagingInstructionEditor.addEventListener("input", updateCounts);
+    importPackagingInstructionBtn.addEventListener("click", () => importPackagingInstructionFile.click());
+    savePackagingInstructionBtn.addEventListener("click", savePackagingInstructions);
+    resetPackagingInstructionBtn.addEventListener("click", resetPackagingInstructions);
+    importPackagingInstructionFile.addEventListener("change", () => importPackagingInstructions(importPackagingInstructionFile.files[0]));
     packagingTemplateEditor.addEventListener("input", updateCounts);
     packagingFinalPrompt.addEventListener("input", updateCounts);
     pipelineResultStep9.addEventListener("input", () => handlePipelineResultInput(9, pipelineResultStep9));
@@ -12292,6 +12474,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     loadKeywordTemplate();
     loadPromptTemplate();
     loadEpisodeTemplate();
+    loadOpeningInstructions();
     loadOpeningTemplate();
     loadStructureTemplate();
     loadMainScriptTemplate();
@@ -12299,6 +12482,7 @@ ${valueOrEmpty(data.uploadPerformanceNotes)}
     loadPostProcessorTemplate();
     loadTtsTemplate();
     loadSupertoneSettings();
+    loadPackagingInstructions();
     loadPackagingTemplate();
     loadKoreanReviewTemplate();
     loadLongformVisualTemplate();
