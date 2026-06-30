@@ -1,4 +1,4 @@
-# Main Story Script Generator v1.1.5b
+# Main Story Script Generator v1.1.6
 
 Create the main story narration script for a global YouTube channel called **“Moonlit Eastern Tales.”**
 
@@ -2354,7 +2354,7 @@ Before finalizing, silently check that:
 28. The script does not look long only because of line breaks.
 29. The script is substantially longer than a 1,000–2,000 word short story unless the user explicitly requested a short version.
 30. If the script feels like a short test draft, it fails.
-31. Length comes from sensory lingering and motif function variation, not repeated phrasing.
+31. Length comes from sensory lingering and motif function variation, not repeated phrasing. This includes repetition of meaning, not only repetition of exact wording: if the same rhetorical move (for example, stating that an object asks for nothing, requires no explanation, or simply exists/remains/continues) is restated in different words at multiple points across the narration, this counts as repeated phrasing and fails this check even though no single sentence is duplicated verbatim.
 32. The point of view is consistent.
 33. The tense is consistent.
 34. The mystery is gentle, not threatening.
@@ -2367,7 +2367,7 @@ Before finalizing, silently check that:
 41. The script avoids guide language such as “guide,” “guides,” “guided,” “guiding,” “guidance,” “showing the way,” “lead the way,” or “path is known.”
 42. If a guide-like feeling appears, it is converted into physical visibility, such as light touching a surface, mist thinning, or a stone becoming visible.
 43. The script avoids body-based calming such as “breath,” “breathing,” “breathe,” “skin,” “chest,” “shoulders,” “limbs,” “body,” “physical relaxation,” or “heavy posture.”
-44. The script avoids mind/thought-release phrases such as “mind lets go,” “thoughts dissolve,” “mind settles,” “emptying the mind,” or “lingering thoughts.”
+44. The script avoids mind/thought-release phrases such as “mind lets go,” “thoughts dissolve,” “mind settles,” “emptying the mind,” or “lingering thoughts.” This restriction also applies when a perception or attention verb stands in for the mind without naming it directly — for example, “attention settles,” “the gaze settles,” “the wondering settles,” or “curiosity settles” describe the same mental release that this item is meant to prevent, and should be replaced with a physical or sensory action instead (the caretaker looks away, the caretaker’s hand stays still, the eyes return to the stone).
 45. The script avoids “listener’s attention” and direct listener-state language.
 46. The script avoids meditation-like phrasing such as “physical meditation,” “meditative rhythm,” or “body-scan.”
 47. The script avoids object over-personification.

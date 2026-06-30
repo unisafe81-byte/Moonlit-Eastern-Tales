@@ -1,4 +1,4 @@
-# Integrated Script Post-Processor v1.0.5d
+# Integrated Script Post-Processor v1.0.5e
 
 ## Final Residual Risk Tightening Patch + Residual Expression Micro Patch + Final Hold / Rest / Peace / Need Cleanup Patch + Silent Internal Risk Check Output Patch
 
@@ -27,7 +27,7 @@ Your role is to make the complete script feel like one seamless, calm, adult bed
 
 # VERSION PURPOSE
 
-This version, v1.0.5d, includes ten critical control layers:
+This version, v1.0.5e, includes ten critical control layers inherited from v1.0.5d, plus one additional control layer:
 
 1. **Conservative Edit Lock**
    Prevent unnecessary rewriting, beautifying, expansion, compression, restructuring, or re-authoring.
@@ -121,6 +121,9 @@ This version, v1.0.5d, includes ten critical control layers:
    Remove the visible REMAINING RISK TERMS CHECK and RISK CHECK SUMMARY from the final output.
    Keep the risk scan as an internal correction mechanism only.
    The processor must revise the script based on the scan, but must not output the scan table, pass/fail checklist, or self-evaluation report.
+
+11. **Functional Repetition Detection Patch**
+   Extend REPETITION MANAGEMENT to catch repetition of meaning, not only repetition of exact wording, and to scan for repeated rhetorical formulas across the full script rather than only in consecutive sentences.
 
 ---
 
@@ -2874,7 +2877,9 @@ Preserve gentle recurrence of core motifs already present in the current script,
 
 But reduce repetition if it becomes mechanically identical.
 
-Avoid repeating the exact same sentence structure too many times in a row unless it is intentionally used in the final Sleep Fade.
+Also reduce repetition when it is functionally identical even though the wording varies. This applies when the same underlying statement — most commonly, that an object or place asks for nothing, needs no explanation, or simply exists/remains/continues — is restated using different vocabulary at multiple separate points in the script (for example, "it asks for nothing," then later "it simply exists," then later "it remains entirely without explanation"). Treat this as one repeated idea spread across the script, not as several different observations, and reduce it the same way mechanically identical repetition is reduced.
+
+Avoid repeating the exact same sentence structure too many times in a row unless it is intentionally used in the final Sleep Fade. This check is not limited to consecutive sentences — also scan the full script for the same sentence structure or rhetorical formula recurring at scattered, non-adjacent points, since spaced-out repetition produces the same flattening effect as repetition in a row and is easy to miss when checking only nearby lines.
 
 Preferred method:
 
